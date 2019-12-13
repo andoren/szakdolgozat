@@ -7,11 +7,13 @@ A programot használó dolgozók adatait tartalmazza.
 Felhasználónév aminek a maximum mérete 45 karakterhosszú.
 Jelszó ami SHA1-ben lesz eltárolva.
 A felhasználó teljes neve.
-
+## Évek:
+* Meghatározzák az iktatószám évét illetve, hogy melyik évbe lehet még iktatni. Az évzárást Admin jogosultsággal rendelkezõk végezhetik majd el.
 ## Privilege
 A felhasználóknak a jogosultsági szintje a programban.
 ### Admin:
 * Az admin jogosultsággal rendelkezõk a törzseket szabadon szerkeszthetik.
+* Évet zárhatnak.
 * Felhasználókat is  hozzá tudnak adni a rendszerhez. 	
 * Törölhetnek iktatásokat.
 ### User:
