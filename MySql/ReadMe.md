@@ -48,7 +48,7 @@ Ez maga az iktató könyv. Ha bejön egy irat vagy kimegy azt itt kell  ebben lesz 
 * iktatottID: Pl hanyadik válasz vagy csak simán hanyadik kimenõ vagy bejövö iktatás.
 * iktatoszam: ezt generálni fogjuk az adatokból. Egy példa: B-SZ/R/3/2019 
 	 * Az elsõ karakteret az határozza meg, hogy K - kimenõ vagy B  - bejövõ
-	* A második karakter a jellege határozza meg SZ pl szerzõdés
+	* A második karakter a Csoport határozza meg SZ pl szerzõdés
 	 * A harmadik karakter a telephely jelöli pl. R - Rákóczi, V- Vajda  stb..
 	* A negyedik karakter sorozat a sorszám ami lehet kötöjeles Pl. B-SZ/R/3-1/2019 vagy B-SZ/R/3-1-1/2019 a válaszokhoz mérve
 	 * Az utolsó rész pedig az évet jelöli.
