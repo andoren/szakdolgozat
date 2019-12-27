@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  26 DEC 2019 18:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  27 DEC 2019 20:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -502,35 +502,34 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 8
-4.
-
-(c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 84--88
- \OT1/ptm/m/it/10 3) Storde pro-ce-dures: [][] \OT1/ptm/m/n/10 Please use ``sof
-t'' (e.g.,
+Underfull \hbox (badness 5787) in paragraph at lines 75--77
+\OT1/ptm/m/n/10 kapc-sol[]odik az ik-tatand[]o anyag. P[]eld[]aul Ell[]atotti,
  []
 
 [1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<fig1.png, id=14, 82.1469pt x 71.5473pt>
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+16.
+
+(c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [2]
+<fig1.png, id=18, 82.1469pt x 71.5473pt>
 File: fig1.png Graphic file (type png)
 <use fig1.png>
-Package pdftex.def Info: fig1.png  used on input line 189.
+Package pdftex.def Info: fig1.png  used on input line 221.
 (pdftex.def)             Requested size: 82.14668pt x 71.5471pt.
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 2
-00.
+32.
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
- [2 <./fig1.png (PNG copy)>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 232.
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -542,29 +541,27 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
-
-] (./conference_101719.aux) ) 
+[3 <./fig1.png (PNG copy)>] (./conference_101719.aux) ) 
 Here is how much of TeX's memory you used:
- 4779 strings out of 492167
- 67233 string characters out of 6129159
- 143655 words of memory out of 5000000
- 9062 multiletter control sequences out of 15000+600000
+ 4782 strings out of 492167
+ 67257 string characters out of 6129159
+ 144655 words of memory out of 5000000
+ 9065 multiletter control sequences out of 15000+600000
  44433 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  53i,11n,37p,588b,279s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8
-r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:
-/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2019/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/courier/uc
-rr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texli
-ve/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on conference_101719.pdf (3 pages, 124373 bytes).
+{c:/texlive/2019/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/
+fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
+<c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2019/t
+exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on conference_101719.pdf (3 pages, 127097 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream

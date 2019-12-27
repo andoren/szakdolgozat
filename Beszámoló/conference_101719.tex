@@ -55,15 +55,47 @@ even after they have been defined in the abstract. Abbreviations such as
 IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
 abbreviations in the title or heads unless they are unavoidable.
 
-\subsubsection{Tables}
+\subsubsection{Táblák}
 \begin{itemize}
-\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
-\item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
-\item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
-\item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
+	\item Evek:
+	Az aktív évet jeleníti meg a programban, hogy melyik évre iktatunk. Év zárása után már nem lehet arra az évre iktatni.
+	\item User tábla:
+	A programot használó dolgozók adatait tartalmazza. Három oszlopból áll. Felhasználónév aminek a maximális mérete 45 karakterhosszú. Jelszó ami SHA1 kódolással lesz eltárolva, illetve a felhasználó teljese neve.
+	\item Privilege:
+	A felhasználó jogosultásgi szintje a programban. Lehet Admin és User. Az admin jogosultsággal rendelkezők a törzseket szabadon szerkeszthetik, felhasználókat adhatnak a rendszerhez illetve "törölhetnek" iktatásokat.
+	Míg a sima felhasználó iktatáson kívül még partnert, partner ügyintézőt és ügyintézőket tud csak hozzáadni a rendszerhez.
+	\item Telephely:
+	Ez jelöli, hogy az adat az melyik telephelyhez tartozik az adatbázisban. Ez vonatkozik az iktatásra és a törzsadatokra egyaránt.	
+	\item Felhtelephely:	
+	Minden felhasználóhoz tartozik egy vagy több telephely ahová tud iktatni vagy törzs adatokat rögzíteni. 
+	\item Partner:	
+	\item Parter ügyintéző:
+	\item Partnerügyintező kapcsoló
+	Az a személy, intézmény vagy cég aki külde az iratot. Munkaszerződéseknél a partner a dolgozó nevét jelöli. Lehet például E-on, Járási hivatal..stb. Ennek a táblának az id-je fog idegen kulcsként megjelenni az iktatásban.
+	\item Csoport
+	Az iratok azon típusait jelöli, amely egységhez kapcsolódik az iktatandó anyag. Például Ellátotti, Főzőkonyha, Munkaügy.
+	\item Jelleg
+	A dokumentum formai megjelenésének megadása. Ez lehet e-mail, küldemény, fax, levél, munkaügyi irat.
+	\item Ügyintéző	
+	Ez a szervezeten belüli dolgozó kollégára utal, hogy ezt az ügyet vagy iratot ki intézi.
+	\item Doc
+	Itt tároljuk az iktatásokhoz feltöltött állományokat mediumblobban. Illetve eltároljuk még annak nevét és a kiterjesztését is. Lehet Pdf,JPG,PNG,XLSX,DOCX...stb.
+	\item Ikonyv docs
+	Az adott iktatáshoz tartozó dokumentum.
+	\item Ikonyv
+	Ez maga az iktató könyv. Ha bejön egy irat vagy kimegy azt itt lesz rögzítve. Az iktatószámot tárolt eljárással fogom előállítani ami a megadott adatok alapján fog generálódni. Egy példa: B-SZ/R/3/2019 Ennek felépítése
+	\begin{itemize}
+		\item Az első karakteret az határozza meg, hogy K - kimenő vagy B - bejövő
+		\item A második karakter a jellege határozza meg SZ pl szerződés.
+		\item A harmadik karakter a telephely jelöli pl. R - Rákóczi, V- Vajda stb..
+		\item A negyedik karakter sorozat a sorszám ami lehet kötöjeles Pl. B-SZ/R/3-1/2019 vagy B-SZ/R/3-1-1/2019 a válaszokhoz mérve.
+		\item Az utolsó rész pedig az évet jelöli.
+		
+	\end{itemize}
+	Az iktatószám generálása után el is lesz tárolva.
+	
 \end{itemize}
-
-\subsubsection{Foreign keys}
+\subsubsection{Idegen kulcsok}
 Number equations consecutively. To make your 
 equations more compact, you may use the solidus (~/~), the exp function, or 
 appropriate exponents. Italicize Roman symbols for quantities and variables, 
@@ -79,7 +111,7 @@ symbols in your equation have been defined before or immediately following
 the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
 the beginning of a sentence: ``Equation \eqref{eq} is . . .''
 
-\subsubsection{Storde procedures}
+\subsubsection{Tárolt eljárások}
 
 Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
 of ``hard'' references (e.g., \verb|(1)|). That will make it possible
@@ -132,7 +164,7 @@ surrounding equation.
 \end{itemize}
 An excellent style manual for science writers is \cite{b7}.
 
-\subsubsection{,,Osztályok""}
+\subsubsection{,,Osztályok"}
 \textbf{The class file is designed for, but not limited to, six authors.} A 
 minimum of one author is required for all conference articles. Author names 
 should be listed starting from left to right and then moving down to the 
