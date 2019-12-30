@@ -29,5 +29,8 @@ namespace IktatogRPCClient.ViewModels
         public async void LoginButton() {
             await connectToServer();
         }
+        public void ExitButton() {
+            TryClose();
+        }
     }
 }

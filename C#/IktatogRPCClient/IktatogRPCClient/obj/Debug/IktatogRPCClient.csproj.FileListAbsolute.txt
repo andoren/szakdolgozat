@@ -1,3 +1,4 @@
+E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Numerics.Vectors.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\grpc_csharp_ext.x86.dll
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\grpc_csharp_ext.x64.dll
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x86.so
@@ -30,7 +31,6 @@ E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\IktatogRPCD
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\IktatogRPCDLL.dll.config
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Buffers.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Memory.xml
-E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Numerics.Vectors.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.pdb
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.xml
@@ -42,6 +42,7 @@ E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\GeneratedIn
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient_MarkupCompile.cache
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient_MarkupCompile.lref
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\App.baml
+E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\style.baml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoginView.baml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.g.resources
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.Properties.Resources.resources
@@ -49,3 +50,4 @@ E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCC
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csproj.CopyComplete
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.pdb
+E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache
