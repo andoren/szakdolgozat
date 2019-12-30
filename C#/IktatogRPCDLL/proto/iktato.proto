@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package Iktato;
+
+service IktatoService {
+  rpc Login (LoginMessage) returns (User);
+  rpc Logout (User) returns (Answer);
+  rpc Register (User) returns (Answer);
+}
+
+
+message LoginMessage{
+	string username = 1;
+	string password = 2;
+}
+message EmptyMessage{
+
+}
+
+message Privilege{
+    int32 id = 1;
+    string name = 2;
+}
+message Answer{
+    bool error = 1;
+    string message = 2;
+}
+
+message User {
+  int32 id = 1;
+  string username = 2;
+  string fullname = 3;
+  string password = 4;
+  Privilege privilege = 5;
+}
