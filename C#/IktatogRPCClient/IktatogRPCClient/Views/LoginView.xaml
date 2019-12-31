@@ -10,7 +10,7 @@
         FontFamily="Roboto"
         AllowsTransparency="True"
         Background="{x:Null}"
-        Title="Bejelentkezés" Height="600" Width="500" WindowStartupLocation="CenterScreen" Topmost="True" ResizeMode="NoResize">
+        Title="Bejelentkezés" Height="700" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Border BorderBrush="#FF2280C0" BorderThickness="3" CornerRadius="10">
         <Border.Background>
@@ -43,7 +43,7 @@
                         </Grid>
                             <TextBox x:Name="UsernameBox" Padding="0" Width="295" BorderBrush="{x:Null}" BorderThickness="0" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" VerticalContentAlignment="Center"/>
                     </Grid>
-                    <TextBlock Foreground="White" Margin="10,0,0,0">Jelszó:</TextBlock>
+                    <TextBlock Foreground="White" Margin="10,10,0,0">Jelszó:</TextBlock>
                     <Grid Margin="10,0,10,0" Background="White">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50"/>
@@ -64,6 +64,11 @@
                     </Grid>
                     <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
                     <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
+                        <CheckBox VerticalAlignment="Center"  Margin="10,0,0,0"/>
+
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10" >
                         <TextBlock Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -1,0 +1,6 @@
+//Hitelesítéshez
+https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
+https://grpc.io/docs/guides/auth/
+
+//MVVM
+https://caliburnmicro.com/

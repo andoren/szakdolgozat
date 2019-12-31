@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,16 +28,21 @@ namespace IktatogRPCServer
             StartServer();
         }
         Server server;
-        const int Port = 1991;
+        const int Port = 443;
         public void StartServer()
         {
             try
             {
-
+                var servercert = File.ReadAllText("certs/server.crt");
+                var serverkey = File.ReadAllText("certs/server.key");
+                
+                KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
+                SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });
                 server = new Server
                 {
                     Services = { IktatoService.BindService(new Service.SerivceForgRPC ()) },
-                    Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure)}
+                    Ports = { new ServerPort("localhost", Port, credentials)},
+                    
                 };
                 server.Start();
                 MessageBox.Show("The server has started successfully");
