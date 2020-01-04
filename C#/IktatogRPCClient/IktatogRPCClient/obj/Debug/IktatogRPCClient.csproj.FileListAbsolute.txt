@@ -1,7 +1,7 @@
+E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x86.so
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\cert\server.crt
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\grpc_csharp_ext.x86.dll
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\grpc_csharp_ext.x64.dll
-E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x86.so
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x64.so
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x86.dylib
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\libgrpc_csharp_ext.x64.dylib
@@ -35,7 +35,6 @@ E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Nume
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.pdb
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.xml
-E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe.config
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoginView.g.cs
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\App.g.cs
@@ -52,3 +51,4 @@ E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCC
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csproj.CopyComplete
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.pdb
+E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache

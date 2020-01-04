@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{listings}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -26,32 +27,20 @@ mpekar55@gmail.com}
 \maketitle
 
 \begin{abstract}
-Ebben a dokumentumban arról fogok írni, hogy a jelenlegi félévben milyen feladatokat tudtam teljesíteni a szakdolgozatom megírásában illetve, hogy nehézségekbe ütköztem ezalatt. Továbbá azt is befogom még mutatni, hogy mik várnak még rám a szakdolgozatom befejeztéig. 
+Ebben a dokumentumban arról fogok írni, hogy a jelenlegi félévben milyen feladatokat tudtam teljesíteni a szakdolgozatom megírásában illetve, hogy milyen nehézségekbe ütköztem ezalatt. Továbbá azt is befogom még mutatni, hogy mik várnak még rám a szakdolgozatom befejeztéig. 
 \end{abstract}
 
 \begin{IEEEkeywords}
-iktatás, szakdolgozat, grpc, mysql, protobuf
+iktatás, szakdolgozat, grpc, mysql, protobuffer
 \end{IEEEkeywords}
 
 \section{Bevezetés}
-Ez egy bevezetés lesz ahol is kontextusba kell helyeznem a dokumentumot ami foglamam sincs, hogy mit jelent, de remélem hamarosan okosabb leszek. :)
-
+Ebben a félévben szakdolgozatom írásánál a legtöbb időt az adatbázis elkészítésére fordítottam. Sok nehézségekbe ütköztem közben. A legnagyobb hátráltatás az volt, hogy megbeszélések soha nem jöttek össze a munkáltatómmal ha mégis nem sok időnk volt alaposan átbeszélni. Miután ez összejött az adatbázis struktúra kialakításához kezdtem ahol az iktatókönyvnek a törlésével elég sokat küzdöttem. Majd jött Protobuffer fájl elkészítése ahol egyenlőre bejelentkezés, kijelentkezés és a regisztrálásnak az rpc hívásait készítettem el. A továbbiakban még elkészítettem c\#-ban a server-t és a klienst ahol implementáltam a protobuffer-ben elkészített rpc call-okat. A login teljesen készlet. 
 \section{Féléves munka bemutatása}
 
-\subsection{\textbf{Igényfelmérés}}
-
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
-
-
 \subsection{\textbf{Adatbázis tervezése és megvalósítása}}
-
-
+Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit az igényfelmérés során összegyűjtöttem. Reményeim szerint nem fog kelleni sok mindent újra tervezni mikor csinálom a gRPC szervert illetve a felhasználó felületet. Amit már biztosan tudok, hogy az adatbázisban még van egy probléma méghozzá a partnereknek a tárolása amit még újra kell gondolnom.
+\\
 \subsubsection{\textbf{Táblák}}
 \begin{figure}[htbp]
 	\centerline {\includegraphics[width=8cm,height=8cm,keepaspectratio]{adatbazis.png}}
@@ -99,21 +88,9 @@ Please do not revise any of the current designations.
 	Az iktatószám generálása után el is lesz tárolva.
 	
 \end{itemize}
-\subsubsection{\textbf{Views}}
-Number equations consecutively. To make your 
-equations more compact, you may use the solidus (~/~), the exp function, or 
-appropriate exponents. Italicize Roman symbols for quantities and variables, 
-but not Greek symbols. Use a long dash rather than a hyphen for a minus 
-sign. Punctuate equations with commas or periods when they are part of a 
-sentence, as in:
-\begin{equation}
-a+b=\gamma\label{eq}
-\end{equation}
+\subsubsection{\textbf{Nézetek}}
+Egyenlőre három nézetem van. Első a creatIktSzam ahol a iktató könyv tábla összes idegen kulcsa össze van kapcsolva a táblájával és ezekből össze állítja az aktuális iktató könyv iktatószámát. A második a currentYearIkonyv itt lekérem az aktuális év iktatásait olyan formában amiben majd a programban kelleni fog. Illetve az utolsó a prevYearIkonyv ami hasonló a currentYearIkonyvhöz de itt saját kezűleg kell paraméterezni az évet.
 
-Be sure that the 
-symbols in your equation have been defined before or immediately following 
-the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
-the beginning of a sentence: ``Equation \eqref{eq} is . . .''
 
 \subsubsection{\textbf{Tárolt eljárások}}
 
@@ -121,36 +98,64 @@ Minden kérést amit lehetett tárolt eljárásba tettem. Ezzel is megakadályoz
 Pár fontosabb eljárást fogok csak bemutatni, mivel a nagy része csak az adatok megfelelő módosításáról, törléséről és hozzáadásáról szól. A legfontosabbak a következők.
 AddRootIkonyv, AddSubIkonyv, DelIkonyv, setDeletedByValaszID, getNextIktatottID, getIkonyvek. Ezek okozták a legtöbb fejtörést a számomra.
  
-\begin{itemize}
-	\item AddRootIkonyv:
-	\item AddSubIkonyv:
-	\item DelIkonyv:
-	\item setDeletedByValaszID:
-	\item getNextIktatottID:
-	\item getIkonyvek:
-\end{itemize} 
+\textbf{AddRootIkonyv:}
+	Bemenete az iktatóhoz szükséges adatok mint a Tárgy, Hivatkozási szám, Ügyintéző id-je, PartnerÜgyintézőkapcsoló id-je, stb... Első lépésben lekérem az aktuális évet, erre azért van szükség hogy az iktatószámhoz hozzátudjam adni.(Az aktuális év nem feltétlenül egyezik meg az aktuális dátummal). Második lépésben lekérem a következő Id-t. Mivel több telephely is szerepel a táblázatban ezért van erre szükség így mindegyik telephelyen a számozás konzisztens marad illetve még a válasz iktatások is bekavarnának a sima ID-ba. Harmadik lépésben hozzáadom az uj iktató könyvet még iktatószám nélkül. Negyedik lépésben lekérem az ő ID-ját a táblából így az generateIktSzam viewval le tudom generáltati az iktatószámát és hozzáadni az iktatókönyvhöz. Utolsó lépésben vissza adom az új iktatásnak az id-ját így ha kell le tudom egyből kérdezni. Ez lehet változni fog mivel valószínűleg csak az iktatószámra lesz szükségem a hozzáadás során.
 
-Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit az igényfelmérés során összegyűjtöttem. Reményeim szerint nem fog kelleni sok mindent újra tervezni mikor csinálom a gRPC szervert illetve a felhasználó felületet. Amit már biztosan tudok, hogy az adatbázisban még van egy probléma méghozzá a partnereknek a tárolása amit még újra kell gondolnom.
+\textbf{AddSubIkonyv:}
+ 	A bemenete hasonló az szülőhöz de itt még paraméterként várom annak az iktatókönyvnek az id-jet amihez ez az iktatás kapcsolódik. A lépések ugyan azok mint a szülő ikönyvnél, de itt mikor lekérem az iktatókönyvnek a következő id-jet még hozzá kell tennem a szülőnek az ID-jét is. Iktatószám generálása kicsit másképp történik. Először lekérem az szülő  iktatószámát és azt átalakítva mentem el az ikönyv táblában.
+ 	
+\textbf{DelIkonyv:}
+ Az iktató könyv törlése elég macerás dolog. Mivel a könyvnek lehetnek gyermek iktatásai és a gyermek iktatásnak is lehetnek gyermek iktatásai, ezért erre oda kell figyelnem, hogy ha az egyik szülőt kiszedjük a fa struktúrából akkor az összes gyermeket is "törölje". Természetesen végleges törlést nem csinálunk csak a deleted flaget 1-re állítjuk.
+ Bemenő paraméterek: az iktató könyvnek az id-je és a felhasználónak az id-je. Igazából nem csinál mást csak meghivja a setDeletedByValaszID-t a bemenő paraméterekkel.
+
+\textbf{setDeletedByValaszID:}
+ A bemenő paraméterek ugyan azok mint a DelIkonyvnek. Első lépésben megnézzük, hogy az iktatásnak vannak-e gyermekei, ha nincs akkor a flaget 1-re állítjuk ha van akkor a következő lépéseket kezdjük. Amíg van gyermeke addig kiválasztjuk az első gyermeket. A gyermek delete flagjét 1-re állítjuk és meghívjuk ezt az eljárást a jelenlegi gyermek iktatásra. A legvégén az eredetileg meghívott iktatókönyvnek is a flag-jét 1-re állítjuk. 
+ 
+ \textbf{getNextIktatottID:}
+ A bemenete a telephelynek az id-je és hogy ha van akkor a szülőnek az id-je. Először meg nézem hogy a válasz id null-e ha igen akkor a következő selectet meghívom:  select IFNULL(MAX(iktatottid),0)+1 into nextiktatottid from ikonyv where telephely = telephely\_b and valaszid is null\;
+ Viszont ha van válaszid akkor ugyan ezt a selectet hívom meg csak a where feltétel módosul.
+ 
+ \textbf{getIkonyvek:}
+ Bemente a userid így kitudom keresni hogy a felhasználóhoz melyek azok a telephelyek amik hozzá tartoznak és csak azokat fogom lekérni. Egy ilyet még írnom kell a prevYearIkonyv-re is de ahhoz még kelleni fog bemenő paraméternek az év. Illetve a lapozáshoz még fog kelleni egy tól-ig paraméter is.
+
+
 \subsection{\textbf{gRPC és Protocol Buffers}}
 \textbf{Grpc:}
-GRPC-ről egy rövid leírás és hogy meddig jutottam vele.
+
+A gRPC rekurzív mozaik szó. A jelentése gRPC Remote Procedure Call. A google fejlesztette 2015-ben. Nyílt forráskódú. Két főrészből áll. Első a gRPC protokoll és a ProtocolBuffer azaz a adat szerializáció. A protokoll http2 alapokon működik és ki is használja azok előnyeit. Például fejléc tömörítés, egyetlen folyamatos TCP kapcsolat, megszakító és időtúllépés contract a kliens és a szerver között. A gRPC RPC tipusa: Unáris: Azaz a kliens küld egy requestet és a szerver válaszol arra. Kliens streaming RPC: Ahol a kliens több üzenetet küld ezt megvárja a szerver és ha a kliens végzett a szerver válaszol egy válaszban. Server Streaming RPC: Ami a Kliensnek az ellentettje. És van a bidirectional streaming rpc ahol a kliens és a szerver egymástól függetlenül tudnak több üzenetet küld egymásnak. 
 
 \textbf{Protocol Buffer:}
-\subsubsection{Osztályok}
+A protocol buffer egy nyelv, platform semleges protokoll ami az adatok szerializációjáért felel. Sokkal egyszerűbb, hatékonyabb és flexibilisebb mint egy XML struktúra és könnyebben olvasható is. Két részből áll az egyik a Message a másik a Service amiben az rpc-k találhatóak. Megtalálhatóak benne skalár típusok Pl.: int32,int64,double,string stb \dots 
 
-\subsubsection{Metódusok}
-
-
-\subsubsection{Függvények}
+\subsubsection{Message}
+A message egy üzenet ami az rpc híváskor adható meg paraméterként illetve ilyen üzeneteket tud visszaküldeni a szerver. Itt lehet a classokat kialakítani illetve egyéb segéd osztályokat. Illetve az rpc hivásoknál nem lehet üres a metódus ezért létre kell hozni egy EmptyMessaget aminek nincs semmi mezője és ezt belerakni. Nekem egyenlőre van a user-hez kapcsolodó rpc-k és messagek vannak kialakítva. Ami LoginMessage, Answer, User, Privilege. Az LoginMessage tartalmaz egy string felhasználó nevet és egy string password mezőt. Ezt fogja a kliens elküldeni a szerver felé a szerver majd válaszol egy User requesttel. Az Answer tartalmaz egy bool error és egy string message mezőt. Ami a kijelentkezéskor és a regisztrációkor használatos. 
 
 
+\subsubsection{Service}
+
+A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni szeretnénk a grpc-kor. Több service is megadható, de ki kell választanunk szerver indításakor, hogy melyiket használja. Egyenlőre három rpc-m van a Login, Logout,Register,ModifyUser. Ezek lesznek a userrel való műveletek. Mint látszódik is a login egy LoginMessaget vár a többi User Messaget. és a Loginon kívül más nem küld vissza User Message-t.
+
+\begin{lstinputlisting}{iktato.proto}
+	
+\end{lstinputlisting}
+\subsection{\textbf{Szerver és Kliens}}
+
+\subsubsection{Szerver}
+
+
+\subsubsection{Kliens}
+\begin{figure}[htbp]
+	\centerline {\includegraphics[height=8cm,keepaspectratio]{login.png}}
+	\caption{A kliens login felülete.}
+	\label{fig1}
+\end{figure}
 
 \section*{Feladatok, tervek és azok kivitelezése a szakdolgozat befejezéséig.}
-
+Lényegében az egész egész szoftver fejlesztése még hátra van,de szerencsére a caliburn.micro és a gRPC segítségével nem lesz nehéz időben ezt befejezni. Tervbe van még véve, hogy TDD-ben lesz a fejlesztés és egy loggolás server és kliens oldalon is. Illetve, hogy a RPC hívsoknál várni fogok még valami token -t is ami validálja a usert hogy meghívhatja e az adott metódust.
 
 
 \section*{Eredmények}
-
+Ebben a félévben elértem, hogy az adatbázisommal ne nagyon kelljen foglalkoznom már a fejlesztés során illetve sikerült összehozni egy körülbelüli képet a munkáltatómmal, hogy hogy is nézzen ki a program. Sikerült SSL titkosítás implementálása, hogy a gRPC szerver és a kliens ne egy insecure channelen kommunikáljanak.
 
 \begin{thebibliography}{00}
 \bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.

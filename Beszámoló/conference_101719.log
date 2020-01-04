@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  29 DEC 2019 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  4 JAN 2020 19:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -401,42 +401,72 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(./conference_101719.aux)
+(c:/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count111
+\lst@gtempboxa=\box31
+\lst@token=\toks21
+\lst@length=\count112
+\lst@currlwidth=\dimen137
+\lst@column=\count113
+\lst@pos=\count114
+\lst@lostspace=\dimen138
+\lst@width=\dimen139
+\lst@newlines=\count115
+\lst@lineno=\count116
+\lst@maxwidth=\dimen140
+
+(c:/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count117
+\lst@skipnumbers=\count118
+\lst@framebox=\box32
+)
+(c:/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(./conference_101719.aux
+
+LaTeX Warning: Label `fig1' multiply defined.
+
+)
 \openout1 = `conference_101719.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-2.
+3.
  (c:/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    ... okay on input line 13.
+
 -- Lines per column: 56 (exact).
 (c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen137
-\scratchbox=\box31
-\nofMPsegments=\count112
-\nofMParguments=\count113
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen138
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
-\everyMPtoPDFconversion=\toks22
+\scratchcounter=\count119
+\scratchdimen=\dimen141
+\scratchbox=\box33
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen142
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks23
 ) (c:/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -490,44 +520,108 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+\c@lstlisting=\count125
+
+Underfull \hbox (badness 1552) in paragraph at lines 38--39
+\OT1/ptm/m/n/10 az adatb[]azis elk[]esz[]^^Pt[]es[]ere ford[]^^Ptottam. Sok neh
+[]ezs[]egekbe
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+\OT1/ptm/m/n/10 fi-gyelembe vet-tem amit az ig[]enyfelm[]er[]es sor[]an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+[]\OT1/ptm/m/n/10 osszegy[]ujt[]ottem. Rem[]enyeim sz-erint nem fog kel-leni
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
+
+ []
+
 <adatbazis.png, id=1, 1009.52156pt x 620.3175pt>
 File: adatbazis.png Graphic file (type png)
 <use adatbazis.png>
-Package pdftex.def Info: adatbazis.png  used on input line 57.
+Package pdftex.def Info: adatbazis.png  used on input line 46.
 (pdftex.def)             Requested size: 227.61008pt x 139.85884pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
 
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 75--77
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
 []\OT1/ptm/m/n/10 Partner[]ugyint[]ez[]o: A megadott part-ner-hez tar-toz[]o
  []
 
 
-Underfull \hbox (badness 5787) in paragraph at lines 79--81
+Underfull \hbox (badness 5787) in paragraph at lines 68--70
 \OT1/ptm/m/n/10 kapc-sol[]odik az ik-tatand[]o anyag. P[]eld[]aul Ell[]atotti,
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7685) has occurred while \output is active []
 
  [1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
  <./adatbazis.png>]
-Underfull \hbox (badness 2538) in paragraph at lines 120--123
+Underfull \hbox (badness 2538) in paragraph at lines 97--100
 []\OT1/ptm/m/n/10 es hozz[]aad[]as[]ar[]ol sz[]ol. A leg-fontosab-bak a k[]ovet
 kez[]ok.
  []
 
+
+Underfull \hbox (badness 1874) in paragraph at lines 101--103
+\OT1/ptm/m/n/10 ner[]Ugyint[]ez[]okapcsol[]o id-je, stb... Els[]o l[]ep[]esben 
+lek[]erem
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 101--103
+\OT1/ptm/m/n/10 az aktu[]alis []evet, erre az[]ert van sz[]uks[]eg hogy az ik-
+ []
+
+
+Underfull \hbox (badness 2744) in paragraph at lines 101--103
+\OT1/ptm/m/n/10 egyezik meg az aktu[]alis d[]atummal). M[]asodik l[]ep[]esben
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 107--110
+\OT1/ptm/m/n/10 oda kell fi-gyel-nem, hogy ha az egyik sz[]ul[]ot kiszedj[]uk
+ []
+
+
+Underfull \hbox (badness 1931) in paragraph at lines 125--126
+\OT1/ptm/m/n/10 a Pro-to-col-Buffer azaz a adat sz-e-ri-aliz[]aci[]o. A pro-tok
+oll
+ []
+
+[2] (./iktato.proto
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 5
+.
+ (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
+)
+<login.png, id=15, 501.875pt x 702.625pt>
+File: login.png Graphic file (type png)
+<use login.png>
+Package pdftex.def Info: login.png  used on input line 148.
+(pdftex.def)             Requested size: 162.58669pt x 227.62204pt.
+
+[3 <./login.png>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -539,26 +633,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2] (./conference_101719.aux) ) 
+[4
+
+] (./conference_101719.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4702 strings out of 492167
- 66249 string characters out of 6129159
- 145619 words of memory out of 5000000
- 9003 multiletter control sequences out of 15000+600000
+ 6333 strings out of 492167
+ 87683 string characters out of 6129159
+ 181620 words of memory out of 5000000
+ 10614 multiletter control sequences out of 15000+600000
  36909 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,8n,37p,432b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base
-/8r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1
-/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a
-.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (2 pages, 174616 bytes).
+ 53i,8n,37p,1067b,1427s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
+urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.
+pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/20
+19/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on conference_101719.pdf (4 pages, 676279 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 46 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
