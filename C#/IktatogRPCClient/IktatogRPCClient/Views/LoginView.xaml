@@ -47,7 +47,7 @@
                         <Path Fill="Black" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
                             </Grid>
                         </Grid>
-                            <TextBox x:Name="UsernameBox" Padding="0" Width="295" BorderBrush="{x:Null}" BorderThickness="0" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" VerticalContentAlignment="Center"/>
+                            <TextBox x:Name="UsernameBox"  Grid.Column="1" Style="{DynamicResource loginTextBox}"/>
                     </Grid>
                     <TextBlock Foreground="White" Margin="10,10,0,0">Jelszó:</TextBlock>
                     <Grid Margin="10,0,10,0" Background="White">
@@ -66,7 +66,7 @@
 		C109.047,119.666,105.689,116.309,101.547,116.309z"/>
                             </Grid>
                         </Grid>
-                        <PasswordBox x:Name="PasswordBox" Padding="0" Width="295" BorderBrush="{x:Null}" BorderThickness="0" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" VerticalContentAlignment="Center"/>
+                        <PasswordBox x:Name="PasswordBox" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
                     </Grid>
                     <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
                     <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>

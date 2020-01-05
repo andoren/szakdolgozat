@@ -134,7 +134,7 @@ A message egy üzenet ami az rpc híváskor adható meg paraméterként illetve 
 \subsubsection{Service}
 
 A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni szeretnénk a grpc-kor. Több service is megadható, de ki kell választanunk szerver indításakor, hogy melyiket használja. Egyenlőre három rpc-m van a Login, Logout,Register,ModifyUser. Ezek lesznek a userrel való műveletek. Mint látszódik is a login egy LoginMessaget vár a többi User Messaget. és a Loginon kívül más nem küld vissza User Message-t.
-
+\\Minta a .proto fájlról:
 \begin{lstinputlisting}{iktato.proto}
 	
 \end{lstinputlisting}
@@ -142,12 +142,14 @@ A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni
 
 \subsubsection{Szerver}
 
+A szervert is c\#-ban írom bár lehetne nagyjából bármilyen nyelven, mivel a választott technológiának. Egy WPF alkalmazást kezdtem el írni, de valószínűleg ezt módosítani fogom egy console alkalmazásra. Egyenlőre egy pár metódus van még csak implementálva, hogy a kliens felé tudjunk küldeni valamilyen adatot. A későbbiekben még implementálom a logolást, JWT token hitelesítést. 
 
 \subsubsection{Kliens}
-\begin{figure}[htbp]
+A kliensen már telepítettem a caliburn.micro és a grpc részeit, hogy működjenek a hívások. Az caliburn.micro egy kicsi, ám de erős keretrendszer, arra lett tervezve, hogy applikációkat készítsenek vele az összes XAML platformon. Erős támogatása van a MV* típusú tervezési mintákhoz ezáltal segíti a gyors fejlesztés anélkül, hogy feláldoznánk a kód minőségét vagy tesztelhetőségét. IDE EGY BIBITEM JÖHET. A loginnak a fejlesztésével kezdtem, ennek a nagyja már megvan még a hiba kezelés nem megoldott benne, illetve a server által későbbiekben jwt token tárolása illetve a gRPC hivások sem mivel minden hívás előtt be kell állítani majd a header részében a tokent. Ezért erre egy külön proxy classt fogok csinálni, hogy a későbbiekben azzal ne kelljen foglalkoznom.
+\begin{figure}[hp!]
 	\centerline {\includegraphics[height=8cm,keepaspectratio]{login.png}}
 	\caption{A kliens login felülete.}
-	\label{fig1}
+	\label{fig2}
 \end{figure}
 
 \section*{Feladatok, tervek és azok kivitelezése a szakdolgozat befejezéséig.}
@@ -155,16 +157,15 @@ Lényegében az egész egész szoftver fejlesztése még hátra van,de szerencs�
 
 
 \section*{Eredmények}
-Ebben a félévben elértem, hogy az adatbázisommal ne nagyon kelljen foglalkoznom már a fejlesztés során illetve sikerült összehozni egy körülbelüli képet a munkáltatómmal, hogy hogy is nézzen ki a program. Sikerült SSL titkosítás implementálása, hogy a gRPC szerver és a kliens ne egy insecure channelen kommunikáljanak.
+Ebben a félévben elértem, hogy az adatbázisommal ne nagyon kelljen foglalkoznom már a fejlesztés során illetve sikerült összehozni egy körülbelüli képet a munkáltatómmal, hogy hogyan is nézzen ki a program. Sikerült SSL titkosítás implementálása, így a gRPC szerver és a kliens nem egy insecure channelen kommunikálnak.
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\bibitem{b1} https://caliburnmicro.com/
+\bibitem{b2} https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
+\bibitem{b3} https://grpc.io/docs/guides/auth/
+\bibitem{b4} https://blog.container-solutions.com/introduction-to-grpc
+\bibitem{b5} https://grpc.io/docs/
+\bibitem{b6} https://grpc.io/docs/talks/
 \end{thebibliography}
 \vspace{12pt}
 

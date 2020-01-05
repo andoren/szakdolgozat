@@ -11,6 +11,9 @@ namespace IktatogRPCServer.Service
     {
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
+            if (context.RequestHeaders.Select(x=>x.Value == "Kiscica") != null) {
+                return Task.FromResult<User>(new User() { Id = 1, Username = "Misi", Fullname = "Megy a hitelesítés", Privilege = new Privilege() { Id = 1, Name = "Admin" } });
+            } 
             return Task.FromResult<User>(new User() { Id = 1, Username ="Misi", Fullname= "Pekár Mihály", Privilege = new Privilege() { Id = 1, Name = "Admin"} }) ;
         }
         public override Task<Answer> Logout(User request, ServerCallContext context)

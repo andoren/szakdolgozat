@@ -22,10 +22,10 @@ namespace IktatogRPCClient.ViewModels
             string csatinfo = "localhost" + ":" + "443";
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new  SslCredentials(servercert);
-            Channel channel = new Channel(csatinfo,creds);
-            IktatoService.IktatoServiceClient client = new IktatoService.IktatoServiceClient(channel);
+            Channel channel = new Channel(csatinfo,creds);        
+            IktatoService.IktatoServiceClient client = new IktatoService.IktatoServiceClient(channel);           
             LoginMessage login = new LoginMessage() { Username = "misi", Password = "Kiscica" };
-            User user = await client.LoginAsync(login);
+            User user = await client.LoginAsync(login, new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", "Kiscica") }));
             MessageBox.Show(user.Fullname);
 
         }
