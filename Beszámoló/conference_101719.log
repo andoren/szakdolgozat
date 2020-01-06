@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  5 JAN 2020 16:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  6 JAN 2020 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -569,9 +569,8 @@ Underfull \vbox (badness 7685) has occurred while \output is active []
 
 
  <./adatbazis.png>]
-Underfull \hbox (badness 2538) in paragraph at lines 97--100
-[]\OT1/ptm/m/n/10 es hozz[]aad[]as[]ar[]ol sz[]ol. A leg-fontosab-bak a k[]ovet
-kez[]ok.
+Underfull \hbox (badness 5388) in paragraph at lines 97--100
+\OT1/ptm/m/n/10 sz[]ol. A leg-fontosab-bak a k[]ovetkez[]ok. Ad-d-RootIkonyv,
  []
 
 
@@ -610,7 +609,7 @@ File: omsptm.fd
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
 )
-Underfull \hbox (badness 2591) in paragraph at lines 145--146
+Underfull \hbox (badness 2591) in paragraph at lines 146--147
 \OT1/ptm/m/n/10 WPF al-ka-lmaz[]ast kezdtem el []^^Prni, de val[]osz[]^^Pn[]ule
 g ezt
  []
@@ -618,8 +617,8 @@ g ezt
 <login.png, id=15, 501.875pt x 702.625pt>
 File: login.png Graphic file (type png)
 <use login.png>
-Package pdftex.def Info: login.png  used on input line 150.
-(pdftex.def)             Requested size: 162.58669pt x 227.62204pt.
+Package pdftex.def Info: login.png  used on input line 151.
+(pdftex.def)             Requested size: 121.9381pt x 170.71652pt.
 [3 <./login.png>]
 
 ** Conference Paper **
@@ -636,20 +635,20 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./conference_101719.aux) ) 
 Here is how much of TeX's memory you used:
- 6333 strings out of 492167
- 87685 string characters out of 6129159
- 181586 words of memory out of 5000000
- 10614 multiletter control sequences out of 15000+600000
+ 6332 strings out of 492167
+ 87681 string characters out of 6129159
+ 181583 words of memory out of 5000000
+ 10613 multiletter control sequences out of 15000+600000
  36909 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,8n,37p,1067b,1427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,8n,37p,1104b,1427s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8
 r.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:
 /texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2
 019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/time
 s/utmr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (4 pages, 677005 bytes).
+Output written on conference_101719.pdf (4 pages, 677229 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  30 compressed objects within 1 object stream

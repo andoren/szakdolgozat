@@ -35,11 +35,11 @@ iktatás, szakdolgozat, grpc, mysql, protobuffer
 \end{IEEEkeywords}
 
 \section{Bevezetés}
-Ebben a félévben szakdolgozatom írásánál a legtöbb időt az adatbázis elkészítésére fordítottam. Sok nehézségekbe ütköztem közben. A legnagyobb hátráltatás az volt, hogy megbeszélések soha nem jöttek össze a munkáltatómmal ha mégis nem sok időnk volt alaposan átbeszélni. Miután ez összejött az adatbázis struktúra kialakításához kezdtem ahol az iktatókönyvnek a törlésével elég sokat küzdöttem. Majd jött Protobuffer fájl elkészítése ahol egyenlőre bejelentkezés, kijelentkezés és a regisztrálásnak az rpc hívásait készítettem el. A továbbiakban még elkészítettem c\#-ban a server-t és a klienst ahol implementáltam a protobuffer-ben elkészített rpc call-okat. A login teljesen készlet. 
+Ebben a félévben szakdolgozatom írásánál a legtöbb időt az adatbázis elkészítésére fordítottam. Sok nehézségekbe ütköztem közben. A legnagyobb hátráltatás az volt, hogy megbeszélések soha nem jöttek össze a munkáltatómmal ha mégis nem sok időnk volt alaposan átbeszélni. Miután ez összejött az adatbázis struktúra kialakításához kezdtem ahol az ikönyv okozta a legtöbb fejtörést. Majd jött Protobuffer fájl elkészítése ahol egyenlőre bejelentkezés, kijelentkezés és a regisztrálásnak az rpc hívásait készítettem el. A továbbiakban még elkészítettem c\#-ban a server-t és a klienst ahol implementáltam a protobuffer-ben elkészített rpc call-okat.
 \section{Féléves munka bemutatása}
 
 \subsection{\textbf{Adatbázis tervezése és megvalósítása}}
-Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit az igényfelmérés során összegyűjtöttem. Reményeim szerint nem fog kelleni sok mindent újra tervezni mikor csinálom a gRPC szervert illetve a felhasználó felületet. Amit már biztosan tudok, hogy az adatbázisban még van egy probléma méghozzá a partnereknek a tárolása amit még újra kell gondolnom.
+Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit az igényfelmérés során összegyűjtöttem. Reményeim szerint nem fog kelleni sok mindent újra tervezni amikor csinálom a gRPC szervert és a felhasználói felületet. Amit már biztosan tudok, hogy az adatbázisban még van egy probléma méghozzá a partnereknek tárolása, amit még újra kell gondolnom.
 \\
 \subsubsection{\textbf{Táblák}}
 \begin{figure}[htbp]
@@ -49,11 +49,11 @@ Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit
 \end{figure}
 \begin{itemize}
 	\item Évek:
-	Az aktív évet jeleníti meg a programban, hogy melyik évre iktatunk. Év zárása után már nem lehet arra az évre iktatni.
+	Az aktív évet reprezentálja, hogy melyik évre iktatunk. Év zárása után már nem lehet arra az évre iktatni.
 	\item User tábla:
 	A programot használó dolgozók adatait tartalmazza. Három oszlopból áll. Felhasználónév aminek a maximális mérete 45 karakterhosszú. Jelszó ami SHA1 kódolással lesz eltárolva, illetve a felhasználó teljese neve.
 	\item Privilege:
-	A felhasználó jogosultásgi szintje a programban. Lehet Admin és User. Az admin jogosultsággal rendelkezők a törzseket szabadon szerkeszthetik, felhasználókat adhatnak , módosíthatnak vagy törölhetnek a rendszerben illetve "törölhetnek" iktatásokat.
+	A felhasználó jogosultsági szintje a programban. Lehet Admin és User. Az admin jogosultsággal rendelkezők a törzseket szabadon szerkeszthetik, felhasználókat adhatnak , módosíthatnak vagy törölhetnek a rendszerben illetve "törölhetnek" iktatásokat.
 	Míg a sima felhasználó iktatáson kívül még partnert, partner ügyintézőt és ügyintézőket tud csak hozzáadni a rendszerhez.
 	\item Telephely:
 	Ez jelöli, hogy az adat az melyik telephelyhez tartozik az adatbázisban. Ez vonatkozik az iktatásra és a törzsadatokra egyaránt.	
@@ -65,17 +65,17 @@ Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit
 	A megadott partnerhez tartozó ügyintézőket tartalmazza
 	\item Partnerügyintéző kapcsoló:
 	Az a személy, intézmény vagy cég aki küldte az iratot. Munkaszerződéseknél a partner a dolgozó nevét jelöli. Lehet például E-on, Járási hivatal..stb. Ennek a táblának az id-je fog idegen kulcsként megjelenni az iktatásban.
-	\item Csoport
+	\item Csoport:
 	Az iratok azon típusait jelöli, amely egységhez kapcsolódik az iktatandó anyag. Például Ellátotti, Főzőkonyha, Munkaügy.
-	\item Jelleg
+	\item Jelleg:
 	A dokumentum formai megjelenésének megadása. Ez lehet e-mail, küldemény, fax, levél, munkaügyi irat.
-	\item Ügyintéző	
+	\item Ügyintéző:	
 	Ez a szervezeten belüli dolgozó kollégára utal, hogy ezt az ügyet vagy iratot ki intézi.
-	\item Doc
+	\item Doc:
 	Itt tároljuk az iktatásokhoz feltöltött állományokat mediumblobban. Illetve eltároljuk még annak nevét és a kiterjesztését is. Lehet Pdf,JPG,PNG,XLSX,DOCX...stb.
-	\item Ikonyv docs
+	\item Ikonyv docs:
 	Az adott iktatáshoz tartozó dokumentum.
-	\item Ikonyv
+	\item Ikonyv:
 	Ez maga az iktató könyv. Ha bejön egy irat vagy kimegy azt itt lesz rögzítve. Az iktatószámot tárolt eljárással fogom előállítani ami a megadott adatok alapján fog generálódni. Egy példa: B-SZ/R/3/2019 Ennek felépítése
 	\begin{itemize}
 		\item Az első karakteret az határozza meg, hogy K - kimenő vagy B - bejövő
@@ -85,21 +85,21 @@ Az adatbázisnak a megtervezésekor mindent információt figyelembe vettem amit
 		\item Az utolsó rész pedig az évet jelöli.
 		
 	\end{itemize}
-	Az iktatószám generálása után el is lesz tárolva.
+	A generált iktatószám el is lesz tárolva a táblában.
 	
 \end{itemize}
 \subsubsection{\textbf{Nézetek}}
-Egyenlőre három nézetem van. Első a creatIktSzam ahol a iktató könyv tábla összes idegen kulcsa össze van kapcsolva a táblájával és ezekből össze állítja az aktuális iktató könyv iktatószámát. A második a currentYearIkonyv itt lekérem az aktuális év iktatásait olyan formában amiben majd a programban kelleni fog. Illetve az utolsó a prevYearIkonyv ami hasonló a currentYearIkonyvhöz de itt saját kezűleg kell paraméterezni az évet.
+Egyenlőre három nézetem van. Első a creatIktSzam ahol a iktató könyv tábla összes idegen kulcsa össze van kapcsolva a táblájával és ezekből összeállítja az aktuális iktató könyv iktatószámát. A második a currentYearIkonyv itt lekérem az aktuális év iktatásait olyan formában amiben majd a programban kelleni fog. Illetve az utolsó a prevYearIkonyv ami hasonló a currentYearIkonyvhöz de itt saját kezűleg kell paraméterezni az évet.
 
 
 \subsubsection{\textbf{Tárolt eljárások}}
 
-Minden kérést amit lehetett tárolt eljárásba tettem. Ezzel is megakadályozva az SQL injectionnek a lehetőségét. Összesen 39 darab lett belőlük, de ezeknek a száma valószínűleg csak növekedni fog az iktató program fejlesztése során mivel előfordulhatnak olyan lekérdezések amikre még nem gondoltam a tervezés során.
+Minden kérést amit lehetett tárolt eljárásba tettem. Ezzel is megakadályozva az SQL injectionnek a lehetőségét. Összesen 39 darab lett belőlük, de ezeknek a száma valószínűleg csak növekedni fog az iktató program fejlesztése során mivel előfordulhatnak olyan lekérdezések amikre még nem gondoltam.
 Pár fontosabb eljárást fogok csak bemutatni, mivel a nagy része csak az adatok megfelelő módosításáról, törléséről és hozzáadásáról szól. A legfontosabbak a következők.
 AddRootIkonyv, AddSubIkonyv, DelIkonyv, setDeletedByValaszID, getNextIktatottID, getIkonyvek. Ezek okozták a legtöbb fejtörést a számomra.
  
 \textbf{AddRootIkonyv:}
-	Bemenete az iktatóhoz szükséges adatok mint a Tárgy, Hivatkozási szám, Ügyintéző id-je, PartnerÜgyintézőkapcsoló id-je, stb... Első lépésben lekérem az aktuális évet, erre azért van szükség hogy az iktatószámhoz hozzátudjam adni.(Az aktuális év nem feltétlenül egyezik meg az aktuális dátummal). Második lépésben lekérem a következő Id-t. Mivel több telephely is szerepel a táblázatban ezért van erre szükség így mindegyik telephelyen a számozás konzisztens marad illetve még a válasz iktatások is bekavarnának a sima ID-ba. Harmadik lépésben hozzáadom az uj iktató könyvet még iktatószám nélkül. Negyedik lépésben lekérem az ő ID-ját a táblából így az generateIktSzam viewval le tudom generáltati az iktatószámát és hozzáadni az iktatókönyvhöz. Utolsó lépésben vissza adom az új iktatásnak az id-ját így ha kell le tudom egyből kérdezni. Ez lehet változni fog mivel valószínűleg csak az iktatószámra lesz szükségem a hozzáadás során.
+	Bemenete az iktatóhoz szükséges adatok mint a Tárgy, Hivatkozási szám, Ügyintéző id-je, PartnerÜgyintézőkapcsoló id-je, stb... Első lépésben lekérem az aktuális évet, erre azért van szükség hogy az iktatószámhoz hozzátudjam adni.(Az aktuális év nem feltétlenül egyezik meg az aktuális dátummal). Második lépésben lekérem a következő Id-t. Mivel több telephely is szerepel a táblázatban ezért van erre szükség, így mindegyik telephelyen a számozás konzisztens marad illetve még a válasz iktatások is bezavarnának, hogy ha csak a sima primary key-t használnám. Harmadik lépésben hozzáadom az uj iktató könyvet még iktatószám nélkül. Negyedik lépésben lekérem az ő ID-ját a táblából így az generateIktSzam viewval le tudom generáltati az iktatószámát és hozzáadni az iktatókönyvhöz. Utolsó lépésben vissza adom az új iktatásnak az id-ját így ha kell le tudom egyből kérdezni. Ez lehet változni fog, mivel valószínűleg csak az iktatószámra lesz szükségem a hozzáadás során.
 
 \textbf{AddSubIkonyv:}
  	A bemenete hasonló az szülőhöz de itt még paraméterként várom annak az iktatókönyvnek az id-jet amihez ez az iktatás kapcsolódik. A lépések ugyan azok mint a szülő ikönyvnél, de itt mikor lekérem az iktatókönyvnek a következő id-jet még hozzá kell tennem a szülőnek az ID-jét is. Iktatószám generálása kicsit másképp történik. Először lekérem az szülő  iktatószámát és azt átalakítva mentem el az ikönyv táblában.
@@ -122,19 +122,20 @@ AddRootIkonyv, AddSubIkonyv, DelIkonyv, setDeletedByValaszID, getNextIktatottID,
 \subsection{\textbf{gRPC és Protocol Buffers}}
 \textbf{Grpc:}
 
-A gRPC rekurzív mozaik szó. A jelentése gRPC Remote Procedure Call. A google fejlesztette 2015-ben. Nyílt forráskódú. Két főrészből áll. Első a gRPC protokoll és a ProtocolBuffer azaz a adat szerializáció. A protokoll http2 alapokon működik és ki is használja azok előnyeit. Például fejléc tömörítés, egyetlen folyamatos TCP kapcsolat, megszakító és időtúllépés contract a kliens és a szerver között. A gRPC RPC tipusa: Unáris: Azaz a kliens küld egy requestet és a szerver válaszol arra. Kliens streaming RPC: Ahol a kliens több üzenetet küld ezt megvárja a szerver és ha a kliens végzett a szerver válaszol egy válaszban. Server Streaming RPC: Ami a Kliensnek az ellentettje. És van a bidirectional streaming rpc ahol a kliens és a szerver egymástól függetlenül tudnak több üzenetet küld egymásnak. 
+A gRPC rekurzív mozaik szó. A jelentése gRPC Remote Procedure Call. A google fejlesztette 2015-ben. Nyílt forráskódú. Két főrészből áll. Első a gRPC protokoll és a ProtocolBuffer azaz a adat szerializáció. A protokoll http2 alapokon működik és ki is használja azok előnyeit. Például fejléc tömörítés, egyetlen folyamatos TCP kapcsolat, megszakító és időtúllépés contract a kliens és a szerver között.\cite{b1} A gRPC RPC tipusa: Unáris: Azaz a kliens küld egy requestet és a szerver válaszol arra. Kliens streaming RPC: Ahol a kliens több üzenetet küld ezt megvárja a szerver és ha a kliens végzett a szerver válaszol egy válaszban. Server Streaming RPC: Ami a Kliensnek az ellentettje. És van a bidirectional streaming rpc ahol a kliens és a szerver egymástól függetlenül tudnak több üzenetet küld egymásnak. \cite{b3}
 
 \textbf{Protocol Buffer:}
-A protocol buffer egy nyelv, platform semleges protokoll ami az adatok szerializációjáért felel. Sokkal egyszerűbb, hatékonyabb és flexibilisebb mint egy XML struktúra és könnyebben olvasható is. Két részből áll az egyik a Message a másik a Service amiben az rpc-k találhatóak. Megtalálhatóak benne skalár típusok Pl.: int32,int64,double,string stb \dots 
+A protocol buffer egy nyelv és platform semleges protokoll, ami az adatok szerializációjáért felel. Sokkal egyszerűbb, hatékonyabb és flexibilisebb mint egy XML struktúra és könnyebben olvasható is.\cite{b2} Két részből áll az egyik a Message a másik a Service amiben az rpc-k találhatóak. Megtalálhatóak benne skalár típusok Pl.: int32,int64,double,string stb \dots 
 
 \subsubsection{Message}
-A message egy üzenet ami az rpc híváskor adható meg paraméterként illetve ilyen üzeneteket tud visszaküldeni a szerver. Itt lehet a classokat kialakítani illetve egyéb segéd osztályokat. Illetve az rpc hivásoknál nem lehet üres a metódus ezért létre kell hozni egy EmptyMessaget aminek nincs semmi mezője és ezt belerakni. Nekem egyenlőre van a user-hez kapcsolodó rpc-k és messagek vannak kialakítva. Ami LoginMessage, Answer, User, Privilege. Az LoginMessage tartalmaz egy string felhasználó nevet és egy string password mezőt. Ezt fogja a kliens elküldeni a szerver felé a szerver majd válaszol egy User requesttel. Az Answer tartalmaz egy bool error és egy string message mezőt. Ami a kijelentkezéskor és a regisztrációkor használatos. 
+A message egy üzenet ami az rpc híváskor adható meg paraméterként illetve ilyen üzeneteket tud visszaküldeni a szerver. Itt lehet a classokat kialakítani illetve egyéb segéd osztályokat. Illetve az rpc hivásoknál nem lehet üres a metódus ezért létre kell hozni egy EmptyMessaget aminek nincs semmi mezője és ezt belerakni. Nekem egyenlőre csak a user-hez kapcsolodó rpc-k és messagek vannak kialakítva. Ami LoginMessage, Answer, User, Privilege. Az LoginMessage tartalmaz egy string felhasználó nevet és egy string password mezőt. Ezt fogja a kliens elküldeni a szerver felé majd az válaszol egy User modellel. Az Answer tartalmaz egy bool error és egy string message mezőt. Ami a kijelentkezéskor és a regisztrációkor használatos. 
 
 
 \subsubsection{Service}
 
-A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni szeretnénk a grpc-kor. Több service is megadható, de ki kell választanunk szerver indításakor, hogy melyiket használja. Egyenlőre három rpc-m van a Login, Logout,Register,ModifyUser. Ezek lesznek a userrel való műveletek. Mint látszódik is a login egy LoginMessaget vár a többi User Messaget. és a Loginon kívül más nem küld vissza User Message-t.
-\\Minta a .proto fájlról:
+A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni szeretnénk a grpc-kor. Több service is megadható, de ki kell választanunk szerver indításakor, hogy melyiket használja. Egyenlőre négy metódusom van a Login, Logout, Register, ModifyUser. Ezek lesznek a userrel való műveletek. Mint látszódik is a login egy LoginMessaget a többi User Messaget vár.
+
+A .proto fájl:
 \begin{lstinputlisting}{iktato.proto}
 	
 \end{lstinputlisting}
@@ -142,12 +143,12 @@ A service nem más mint azoknak a rpc metódusoknak gyűjtőneve amit használni
 
 \subsubsection{Szerver}
 
-A szervert is c\#-ban írom bár lehetne nagyjából bármilyen nyelven, mivel a választott technológiának. Egy WPF alkalmazást kezdtem el írni, de valószínűleg ezt módosítani fogom egy console alkalmazásra. Egyenlőre egy pár metódus van még csak implementálva, hogy a kliens felé tudjunk küldeni valamilyen adatot. A későbbiekben még implementálom a logolást, JWT token hitelesítést. 
+A szervert is c\#-ban írom bár lehetne nagyjából bármilyen nyelven, mivel a választott technológiának. Egy WPF alkalmazást kezdtem el írni, de valószínűleg ezt módosítani fogom egy console alkalmazásra. Egyenlőre egy pár metódus van még csak implementálva, hogy a kliens felé tudjunk küldeni valamilyen adatot. A későbbiekben még implementálom a logolást, JWT token hitelesítést. Biztonság tekintetében implementáltam az ssl kapcsolatot. Generáltam egy public és private key párt openssl segítségével. Utána a public keyt hozzáadtam a klienshez, míg a private és public -t a szerverhez. A fájlokat beolvastam és a channel consturctorába hozzá kell adni.\cite{b4} 
 
 \subsubsection{Kliens}
-A kliensen már telepítettem a caliburn.micro és a grpc részeit, hogy működjenek a hívások. Az caliburn.micro egy kicsi, ám de erős keretrendszer, arra lett tervezve, hogy applikációkat készítsenek vele az összes XAML platformon. Erős támogatása van a MV* típusú tervezési mintákhoz ezáltal segíti a gyors fejlesztés anélkül, hogy feláldoznánk a kód minőségét vagy tesztelhetőségét. IDE EGY BIBITEM JÖHET. A loginnak a fejlesztésével kezdtem, ennek a nagyja már megvan még a hiba kezelés nem megoldott benne, illetve a server által későbbiekben jwt token tárolása illetve a gRPC hivások sem mivel minden hívás előtt be kell állítani majd a header részében a tokent. Ezért erre egy külön proxy classt fogok csinálni, hogy a későbbiekben azzal ne kelljen foglalkoznom.
+A kliensen már telepítettem a caliburn.micro és a grpc részeit, hogy működjenek a hívások. Az caliburn.micro egy kicsi, ám de erős keretrendszer, arra lett tervezve, hogy applikációkat készítsenek vele az összes XAML platformon. Erős támogatása van a MV* típusú tervezési mintákhoz ezáltal segíti a gyors fejlesztés anélkül, hogy feláldoznánk a kód minőségét vagy tesztelhetőségét.\cite{b5} A loginnak a fejlesztésével kezdtem, ennek a nagyja már megvan még a hiba kezelés nem megoldott benne, illetve a server által későbbiekben jwt token tárolása illetve a gRPC hivások sem mivel minden hívás előtt be kell állítani majd a header részében a tokent. Ezért erre egy külön proxy classt fogok csinálni, hogy a későbbiekben azzal ne kelljen foglalkoznom.
 \begin{figure}[hp!]
-	\centerline {\includegraphics[height=8cm,keepaspectratio]{login.png}}
+	\centerline {\includegraphics[height=6cm,keepaspectratio]{login.png}}
 	\caption{A kliens login felülete.}
 	\label{fig2}
 \end{figure}
@@ -160,12 +161,11 @@ Lényegében az egész egész szoftver fejlesztése még hátra van,de szerencs�
 Ebben a félévben elértem, hogy az adatbázisommal ne nagyon kelljen foglalkoznom már a fejlesztés során illetve sikerült összehozni egy körülbelüli képet a munkáltatómmal, hogy hogyan is nézzen ki a program. Sikerült SSL titkosítás implementálása, így a gRPC szerver és a kliens nem egy insecure channelen kommunikálnak.
 
 \begin{thebibliography}{00}
-\bibitem{b1} https://caliburnmicro.com/
-\bibitem{b2} https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
-\bibitem{b3} https://grpc.io/docs/guides/auth/
-\bibitem{b4} https://blog.container-solutions.com/introduction-to-grpc
-\bibitem{b5} https://grpc.io/docs/
-\bibitem{b6} https://grpc.io/docs/talks/
+\bibitem{b1} https://grpc.io/docs/
+\bibitem{b2} https://grpc.io/docs/talks/
+\bibitem{b3} https://blog.container-solutions.com/introduction-to-grpc
+\bibitem{b4} https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
+\bibitem{b5} https://caliburnmicro.com/
 \end{thebibliography}
 \vspace{12pt}
 
