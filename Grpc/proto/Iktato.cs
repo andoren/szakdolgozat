@@ -27,13 +27,16 @@ namespace Iktato {
             "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byIyCgxMb2dpbk1lc3NhZ2USEAoIdXNl",
             "cm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiDgoMRW1wdHlNZXNzYWdl",
             "IiUKCVByaXZpbGVnZRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIigKBkFu",
-            "c3dlchINCgVlcnJvchgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIm4KBFVzZXIS",
-            "CgoCaWQYASABKAUSEAoIdXNlcm5hbWUYAiABKAkSEAoIZnVsbG5hbWUYAyAB",
-            "KAkSEAoIcGFzc3dvcmQYBCABKAkSJAoJcHJpdmlsZWdlGAUgASgLMhEuSWt0",
-            "YXRvLlByaXZpbGVnZTKOAQoNSWt0YXRvU2VydmljZRIrCgVMb2dpbhIULklr",
-            "dGF0by5Mb2dpbk1lc3NhZ2UaDC5Ja3RhdG8uVXNlchImCgZMb2dvdXQSDC5J",
-            "a3RhdG8uVXNlchoOLklrdGF0by5BbnN3ZXISKAoIUmVnaXN0ZXISDC5Ja3Rh",
-            "dG8uVXNlchoOLklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
+            "c3dlchINCgVlcnJvchgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIpQBCgRVc2Vy",
+            "EgoKAmlkGAEgASgFEhAKCHVzZXJuYW1lGAIgASgJEhAKCGZ1bGxuYW1lGAMg",
+            "ASgJEhAKCHBhc3N3b3JkGAQgASgJEiQKCXByaXZpbGVnZRgFIAEoCzIRLklr",
+            "dGF0by5Qcml2aWxlZ2USJAoJYXV0aHRva2VuGAYgASgLMhEuSWt0YXRvLkF1",
+            "dGhUb2tlbiIaCglBdXRoVG9rZW4SDQoFdG9rZW4YASABKAkyyQEKDUlrdGF0",
+            "b1NlcnZpY2USKwoFTG9naW4SFC5Ja3RhdG8uTG9naW5NZXNzYWdlGgwuSWt0",
+            "YXRvLlVzZXISKwoGTG9nb3V0EhEuSWt0YXRvLkF1dGhUb2tlbhoOLklrdGF0",
+            "by5BbnN3ZXISLQoIUmVnaXN0ZXISES5Ja3RhdG8uQXV0aFRva2VuGg4uSWt0",
+            "YXRvLkFuc3dlchIvCgpNb2RpZnlVc2VyEhEuSWt0YXRvLkF1dGhUb2tlbhoO",
+            "LklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -41,7 +44,8 @@ namespace Iktato {
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.EmptyMessage), global::Iktato.EmptyMessage.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Privilege), global::Iktato.Privilege.Parser, new[]{ "Id", "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Answer), global::Iktato.Answer.Parser, new[]{ "Error", "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege", "Authtoken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.AuthToken), global::Iktato.AuthToken.Parser, new[]{ "Token" }, null, null, null)
           }));
     }
     #endregion
@@ -650,6 +654,7 @@ namespace Iktato {
       fullname_ = other.fullname_;
       password_ = other.password_;
       privilege_ = other.privilege_ != null ? other.privilege_.Clone() : null;
+      authtoken_ = other.authtoken_ != null ? other.authtoken_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -713,6 +718,17 @@ namespace Iktato {
       }
     }
 
+    /// <summary>Field number for the "authtoken" field.</summary>
+    public const int AuthtokenFieldNumber = 6;
+    private global::Iktato.AuthToken authtoken_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.AuthToken Authtoken {
+      get { return authtoken_; }
+      set {
+        authtoken_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as User);
@@ -731,6 +747,7 @@ namespace Iktato {
       if (Fullname != other.Fullname) return false;
       if (Password != other.Password) return false;
       if (!object.Equals(Privilege, other.Privilege)) return false;
+      if (!object.Equals(Authtoken, other.Authtoken)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -742,6 +759,7 @@ namespace Iktato {
       if (Fullname.Length != 0) hash ^= Fullname.GetHashCode();
       if (Password.Length != 0) hash ^= Password.GetHashCode();
       if (privilege_ != null) hash ^= Privilege.GetHashCode();
+      if (authtoken_ != null) hash ^= Authtoken.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -775,6 +793,10 @@ namespace Iktato {
         output.WriteRawTag(42);
         output.WriteMessage(Privilege);
       }
+      if (authtoken_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Authtoken);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -797,6 +819,9 @@ namespace Iktato {
       }
       if (privilege_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Privilege);
+      }
+      if (authtoken_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Authtoken);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -826,6 +851,12 @@ namespace Iktato {
           Privilege = new global::Iktato.Privilege();
         }
         Privilege.MergeFrom(other.Privilege);
+      }
+      if (other.authtoken_ != null) {
+        if (authtoken_ == null) {
+          Authtoken = new global::Iktato.AuthToken();
+        }
+        Authtoken.MergeFrom(other.Authtoken);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -859,6 +890,142 @@ namespace Iktato {
               Privilege = new global::Iktato.Privilege();
             }
             input.ReadMessage(Privilege);
+            break;
+          }
+          case 50: {
+            if (authtoken_ == null) {
+              Authtoken = new global::Iktato.AuthToken();
+            }
+            input.ReadMessage(Authtoken);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AuthToken : pb::IMessage<AuthToken> {
+    private static readonly pb::MessageParser<AuthToken> _parser = new pb::MessageParser<AuthToken>(() => new AuthToken());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AuthToken> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken(AuthToken other) : this() {
+      token_ = other.token_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken Clone() {
+      return new AuthToken(this);
+    }
+
+    /// <summary>Field number for the "token" field.</summary>
+    public const int TokenFieldNumber = 1;
+    private string token_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Token {
+      get { return token_; }
+      set {
+        token_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AuthToken);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AuthToken other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Token != other.Token) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Token.Length != 0) hash ^= Token.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Token.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Token);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Token.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AuthToken other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Token.Length != 0) {
+        Token = other.Token;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Token = input.ReadString();
             break;
           }
         }

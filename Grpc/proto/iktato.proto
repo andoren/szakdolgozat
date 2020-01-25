@@ -4,9 +4,9 @@ package Iktato;
 
 service IktatoService {
   rpc Login (LoginMessage) returns (User);
-  rpc Logout (User) returns (Answer);
-  rpc Register (User) returns (Answer);
-  rpc ModifyUser(User)returns(Answer);
+  rpc Logout (AuthToken) returns (Answer);
+  rpc Register (AuthToken) returns (Answer);
+  rpc ModifyUser(AuthToken) returns(Answer);
 }
 
 
@@ -33,4 +33,8 @@ message User {
   string fullname = 3;
   string password = 4;
   Privilege privilege = 5;
+  AuthToken authtoken = 6;
+}
+message AuthToken {
+	string token = 1;
 }

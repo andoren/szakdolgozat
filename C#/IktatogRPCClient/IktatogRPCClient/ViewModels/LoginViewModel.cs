@@ -24,13 +24,22 @@ namespace IktatogRPCClient.ViewModels
             SslCredentials creds = new  SslCredentials(servercert);
             Channel channel = new Channel(csatinfo,creds);        
             IktatoService.IktatoServiceClient client = new IktatoService.IktatoServiceClient(channel);           
-            LoginMessage login = new LoginMessage() { Username = "misi", Password = "Kiscica" };
-            User user = await client.LoginAsync(login, new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", "Kiscica") }));
-            MessageBox.Show(user.Fullname);
-
+            LoginMessage loginMessage = new LoginMessage() { Username = "misi", Password = "Kiscica" };
+            User user = await client.LoginAsync(loginMessage, new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", "Kiscica") }));
+            if (user.Fullname == "") MessageBox.Show("Hibás felhasználó név vagy jelszó!");
+            
         }
         public async void LoginButton() {
-            await connectToServer();
+            try
+            {
+                await connectToServer();
+                var manager = new WindowManager();
+                manager.ShowWindow(new ContainerViewModel(), null, null);
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+           
         }
         public void ExitButton() {
             TryClose();

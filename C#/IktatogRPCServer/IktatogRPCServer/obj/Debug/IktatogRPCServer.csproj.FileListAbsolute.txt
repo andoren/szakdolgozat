@@ -43,3 +43,8 @@ E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCS
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.pdb
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csprojAssemblyReference.cache
+E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.dll
+E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Newtonsoft.Json.dll
+E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.pdb
+E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.xml
+E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Newtonsoft.Json.xml
