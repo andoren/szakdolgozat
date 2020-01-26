@@ -35,6 +35,7 @@ namespace IktatogRPCClient.ViewModels
                 await connectToServer();
                 var manager = new WindowManager();
                 manager.ShowWindow(new ContainerViewModel(), null, null);
+                TryClose();
             }
             catch (Exception e) {
                 MessageBox.Show(e.Message);

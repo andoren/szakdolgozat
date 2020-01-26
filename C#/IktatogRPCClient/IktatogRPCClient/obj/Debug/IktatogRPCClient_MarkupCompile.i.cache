@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Repos\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\App.xaml
-3-265869789
+71297312525
 71742264877
-11287042490
+211671667897
 129-794713588
-style.xaml;Views\ContainerView.xaml;Views\LoginView.xaml;
+style.xaml;Views\ContainerView.xaml;Views\FooldalView.xaml;Views\IktatasView.xaml;Views\KeresesView.xaml;Views\LoginView.xaml;Views\TorzsView.xaml;
 
-True
+False
 

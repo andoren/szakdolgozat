@@ -95,14 +95,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Managers\SceneManager.cs" />
+    <Compile Include="Models\Scenes\Exceptions\InvalidSceneExeption.cs" />
+    <Compile Include="Models\Scenes\SceneManager.cs" />
+    <Compile Include="Models\Scenes\Scenes.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
+    <Compile Include="ViewModels\FooldalViewModel.cs" />
+    <Compile Include="ViewModels\IktatasViewModel.cs" />
+    <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\TorzsViewModel.cs" />
     <Compile Include="Views\ContainerView.xaml.cs">
       <DependentUpon>ContainerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FooldalView.xaml.cs">
+      <DependentUpon>FooldalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IktatasView.xaml.cs">
+      <DependentUpon>IktatasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KeresesView.xaml.cs">
+      <DependentUpon>KeresesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TorzsView.xaml.cs">
+      <DependentUpon>TorzsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +164,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FooldalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IktatasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KeresesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TorzsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\loginLogo.png" />

@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace IktatogRPCClient.Views
 {
     /// <summary>
-    /// Interaction logic for ContainerView.xaml
+    /// Interaction logic for IktatasView.xaml
     /// </summary>
-    public partial class ContainerView : Window
+    public partial class IktatasView : UserControl
     {
-        public ContainerView()
+        public IktatasView()
         {
             InitializeComponent();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
     }
 }

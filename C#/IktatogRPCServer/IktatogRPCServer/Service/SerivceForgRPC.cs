@@ -29,6 +29,16 @@ namespace IktatogRPCServer.Service
         }
         public override Task<Answer> Logout(AuthToken request, ServerCallContext context)
         {
+            try
+            {
+                User user;
+                if (TokenManager.IsValidToken(request,out user)) {
+                    return Task.FromResult<Answer>(new Answer() { Error=false,Message = "Sikeres kijelentkezés."});
+                }
+            }
+            catch (Exception e) {
+                return Task.FromException<Answer>(new Exception());
+            }
             return base.Logout(request, context);
         }
         public override Task<Answer> Register(AuthToken request, ServerCallContext context)

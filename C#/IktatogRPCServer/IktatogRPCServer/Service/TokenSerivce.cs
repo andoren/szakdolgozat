@@ -15,11 +15,12 @@ namespace IktatogRPCServer.Service
 
         }
         private string Secret = "Ótemplomi Szeretetszolgálat";
-        internal bool IsValidToken(string token, out User user) {
+        internal bool IsValidToken(AuthToken token, out User user) {
             user = new User();
             try
             {
-                user = GetUserFromJWT(token);
+                user = GetUserFromJWT(token.Token);
+                throw new Exception("Ez egy exception a grpcn keresztül.");
                 return true;
             }
             catch (SignatureVerificationException) {
