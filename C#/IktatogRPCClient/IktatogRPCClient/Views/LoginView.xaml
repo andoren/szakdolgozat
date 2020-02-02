@@ -74,7 +74,7 @@
                 <StackPanel Orientation="Vertical" Margin="10" >
                     <TextBlock  HorizontalAlignment="Center" Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" >
-                            <Hyperlink Foreground="#ffc3ab20" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
+                            <Hyperlink Foreground="#ffc3ab20" Cursor="Hand" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
                     </TextBlock>
 
                 </StackPanel>

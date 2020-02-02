@@ -30,6 +30,7 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Margin" Value="10,20,10,0"/>
         <Setter Property="Height" Value="50"/>
+        <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -147,6 +148,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Background" Value="#2868b0"></Setter>
         <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
