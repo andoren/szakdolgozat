@@ -6,83 +6,95 @@
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         mc:Ignorable="d"
         WindowStyle="None"
-        FontSize="20"
+        FontSize="25"
         FontFamily="Roboto"
-        AllowsTransparency="True"
-        Background="{x:Null}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" 
         
-        Title="Bejelentkezés" Height="700" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Iktatás" Height="800" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
-    <Border BorderBrush="#FF2280C0" BorderThickness="3" CornerRadius="10">
-        <Border.Background>
-            <ImageBrush ImageSource="/IktatogRPCClient;component/Resources/loginBackground.jpg" TileMode="Tile" Stretch="UniformToFill"/>
-        </Border.Background>
-        <!--<Border.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF2380BF" Offset="1"/>
-                <GradientStop Color="#FF87FFB3"/>
-                <GradientStop Color="#FF2081C3" Offset="0.313"/>
-            </LinearGradientBrush>
-        </Border.Background>-->
-    
-    <Grid Margin="0,20,0,20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Image Panel.ZIndex="2" Margin="0,0,0,0" Height="150" Source="/IktatogRPCClient;component/Resources/loginLogo.png"/>
-            <Border Grid.Row="1"  Margin="40,-90,40,30" Background="#602081C3"   CornerRadius="20" >
-                <StackPanel Margin="30,90,30,0" >
-                    <TextBlock Foreground="White" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30">Bejelentkezés</TextBlock>
-                    <TextBlock Foreground="White"  Margin="10,0,0,0">Felhasználónév:</TextBlock>
-                    <Grid Margin="10,0,10,0" Background="White">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Background="LightGray" >
-                            <Grid Margin="-4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Path Fill="Black" Data="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/>
-                        <Path Fill="Black" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
-                            </Grid>
+    <Grid Background="#43464B" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1"  Background="#FF1E2833" BorderThickness="0,0,2,0" BorderBrush="#66FFFFFF">
+            <StackPanel Margin="5,100" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Margin="10,0" Source="/IktatogRPCClient;component/Resources/icon.png" Width="70" />
+                    <TextBlock FontSize="60" Grid.Column="1" Foreground="White">Iktató</TextBlock>
+
+                </Grid>
+
+                <!--<TextBlock Foreground="White" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50">Iktatás</TextBlock>-->
+                <TextBlock Foreground="White"  Margin="10,50,0,5">Felhasználónév:</TextBlock>
+                <Grid Margin="10,0,10,0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#ff2081C3" Height="50" >
+                        <Grid Margin="-4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Fill="White" Data="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/>
+                            <Path Fill="White" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
                         </Grid>
-                            <TextBox x:Name="UsernameBox"  Grid.Column="1" Style="{DynamicResource loginTextBox}"/>
                     </Grid>
-                    <TextBlock Foreground="White" Margin="10,10,0,0">Jelszó:</TextBlock>
-                    <Grid Margin="10,0,10,0" Background="White">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
-                          <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Background="LightGray" Height="50"  >
-                            <Grid HorizontalAlignment="Center">
-                                <Path Width="40" Height="32"  Fill="Black" Data="M153.976,73.236h-3.308V49.115C150.669,22.033,128.634,0,101.549,0C74.465,0,52.43,22.033,52.43,49.115v24.121H49.12
+                    <TextBox x:Name="UsernameBox"  Grid.Column="1" HorizontalAlignment="Stretch" Style="{DynamicResource loginTextBox}" />
+                </Grid>
+                <TextBlock Foreground="White" Margin="10,10,0,5">Jelszó:</TextBlock>
+                <Grid Margin="10,0,10,20" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#ff2081C3" Height="50"  >
+                        <Grid HorizontalAlignment="Center">
+                            <Path Width="40" Height="32"  Fill="White" Data="M153.976,73.236h-3.308V49.115C150.669,22.033,128.634,0,101.549,0C74.465,0,52.43,22.033,52.43,49.115v24.121H49.12
 		c-9.649,0-17.5,7.851-17.5,17.5v94.859c0,9.649,7.851,17.5,17.5,17.5h104.856c9.649,0,17.5-7.851,17.5-17.5V90.736
 		C171.476,81.087,163.626,73.236,153.976,73.236z M67.43,49.115C67.43,30.304,82.736,15,101.549,15
 		c18.813,0,34.119,15.304,34.119,34.115v24.121H67.43V49.115z M156.476,185.596c0,1.355-1.145,2.5-2.5,2.5H49.12
 		c-1.355,0-2.5-1.145-2.5-2.5V90.736c0-1.355,1.145-2.5,2.5-2.5H59.93h83.238h10.808c1.355,0,2.5,1.145,2.5,2.5V185.596z" Stretch="Uniform" StrokeLineJoin="Round"/>
-                                <Path Width="32" Height="32"  Fill="Black" Data="M101.547,116.309c-4.142,0-7.5,3.357-7.5,7.5v28.715c0,4.143,3.358,7.5,7.5,7.5c4.142,0,7.5-3.357,7.5-7.5v-28.715
+                            <Path Width="32" Height="32"  Fill="White" Data="M101.547,116.309c-4.142,0-7.5,3.357-7.5,7.5v28.715c0,4.143,3.358,7.5,7.5,7.5c4.142,0,7.5-3.357,7.5-7.5v-28.715
 		C109.047,119.666,105.689,116.309,101.547,116.309z"/>
-                            </Grid>
                         </Grid>
-                        <PasswordBox x:Name="PasswordBox" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
                     </Grid>
-                    <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
-                    <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
-                        <CheckBox VerticalAlignment="Center"  Margin="10,0,0,0"/>
+                    <PasswordBox x:Name="PasswordBox" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
+                </Grid>
+                <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
+                <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
+                    <CheckBox VerticalAlignment="Center"  Margin="10,0,0,0"/>
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10" >
-                        <TextBlock Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Hyperlink NavigateUri="https://google.com">Kattintson ide</Hyperlink>
-                        </TextBlock>
-                    </StackPanel>
                 </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10" >
+                    <TextBlock  HorizontalAlignment="Center" Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <Hyperlink Foreground="#ffc3ab20" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
+                    </TextBlock>
+
+                </StackPanel>
+            </StackPanel>
         </Border>
+        <Grid Grid.Column="1">
+
+            <Image Source="/IktatogRPCClient;component/Resources/evangelikus-otemplom.jpg" Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Grid Background="#66FFFFFF"></Grid>
+            
+        </Grid>
     </Grid>
-    </Border>
+
 </Window>

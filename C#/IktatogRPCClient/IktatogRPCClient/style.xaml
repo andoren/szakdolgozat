@@ -10,8 +10,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="Login.Button.Static.Background" Color="#FF2180C2"/>
-    <SolidColorBrush x:Key="Login.Button.Static.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Login.Button.Static.Background" Color="#ff2081C3"/>
+    <SolidColorBrush x:Key="Login.Button.Static.Border" Color="#FF0761A0"/>
     <SolidColorBrush x:Key="Login.Button.MouseOver.Background" Color="#FF0761A0"/>
     <SolidColorBrush x:Key="Login.Button.MouseOver.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Login.Button.Pressed.Background" Color="#FF03426E"/>
@@ -29,7 +29,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Margin" Value="10,20,10,0"/>
-        <Setter Property="Height" Value="40"/>
+        <Setter Property="Height" Value="50"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -59,7 +59,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#ff2081C3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF2180C2"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF2180C2"/>
     <Style x:Key="loginTextBox" TargetType="{x:Type TextBox}">
@@ -73,8 +73,8 @@
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Width" Value="285"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="Width" Value="auto"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -110,8 +110,8 @@
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Width" Value="285"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="Width" Value="auto"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -135,5 +135,30 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="MainWindowButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="5" Margin="5" Background="Transparent" CornerRadius="0"  >
+                        <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="#2868b0"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="BorderBrush" Value="#e5e5e5"></Setter>
+        <Setter Property="BorderThickness" Value="0,0,2,2"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#1b508c"/>
+                <Setter Property="BorderBrush" Value="Blue"/>
+                <Setter Property="BorderThickness" Value="0,0,0,5"/>
+            </Trigger>
+
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
