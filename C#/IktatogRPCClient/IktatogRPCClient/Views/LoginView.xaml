@@ -18,15 +18,19 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="1"  Background="#FF1E2833" BorderThickness="0,0,2,0" BorderBrush="#66FFFFFF">
+        <Border Grid.Row="1"  Background="#FF0F2948" BorderThickness="0,0,2,0" BorderBrush="#FF036A9A">
             <StackPanel Margin="5,100" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Margin="10,0" Source="/IktatogRPCClient;component/Resources/icon.png" Width="70" />
-                    <TextBlock FontSize="60" Grid.Column="1" Foreground="White">Iktató</TextBlock>
+                    <Image Margin="10,0" Source="/IktatogRPCClient;component/Resources/iconwhite.png" Width="90" />
+                    <StackPanel  Grid.Column="1">
+                        <TextBlock Margin="0,10,0,0" FontSize="21" Foreground="White">Ótemplomi Szeretetszolgálat</TextBlock>
+                        <TextBlock FontSize="50" Foreground="White">Iktató</TextBlock>
+                    </StackPanel>
+                    
 
                 </Grid>
 
@@ -37,7 +41,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid Background="#ff2081C3" Height="50" >
+                    <Grid Background="#FF016B9A" Height="50" >
                         <Grid Margin="-4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Path Fill="White" Data="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/>
                             <Path Fill="White" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
@@ -51,7 +55,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid Background="#ff2081C3" Height="50"  >
+                    <Grid Background="#FF03699D" Height="50"  >
                         <Grid HorizontalAlignment="Center">
                             <Path Width="40" Height="32"  Fill="White" Data="M153.976,73.236h-3.308V49.115C150.669,22.033,128.634,0,101.549,0C74.465,0,52.43,22.033,52.43,49.115v24.121H49.12
 		c-9.649,0-17.5,7.851-17.5,17.5v94.859c0,9.649,7.851,17.5,17.5,17.5h104.856c9.649,0,17.5-7.851,17.5-17.5V90.736
@@ -74,27 +78,13 @@
                 <StackPanel Orientation="Vertical" Margin="10" >
                     <TextBlock  HorizontalAlignment="Center" Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" >
-                            <Hyperlink Foreground="#ffc3ab20" Cursor="Hand" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
+                            <Hyperlink Foreground="#FF8ABFDE" Cursor="Hand" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
                     </TextBlock>
 
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Grid Grid.Column="1">
-
-            <Image Source="/IktatogRPCClient;component/Resources/evangelikus-otemplom.jpg" Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="1" ScaleX="-1"/>
-                        <SkewTransform AngleY="0" AngleX="0"/>
-                        <RotateTransform Angle="0"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Grid Background="#66FFFFFF"></Grid>
-            
-        </Grid>
+        <Image Grid.Column="1" Source="/IktatogRPCClient;component/Resources/loginbackground.jpg" Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5" />
     </Grid>
 
 </Window>

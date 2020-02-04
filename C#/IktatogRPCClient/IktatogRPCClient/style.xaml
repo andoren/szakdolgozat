@@ -10,10 +10,10 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="Login.Button.Static.Background" Color="#ff2081C3"/>
-    <SolidColorBrush x:Key="Login.Button.Static.Border" Color="#FF0761A0"/>
-    <SolidColorBrush x:Key="Login.Button.MouseOver.Background" Color="#FF0761A0"/>
-    <SolidColorBrush x:Key="Login.Button.MouseOver.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="Login.Button.Static.Background" Color="#FF036A9A"/>
+    <SolidColorBrush x:Key="Login.Button.Static.Border" Color="#FF6AA9D0"/>
+    <SolidColorBrush x:Key="Login.Button.MouseOver.Background" Color="#FF044B6C"/>
+    <SolidColorBrush x:Key="Login.Button.MouseOver.Border" Color="#FF6AA9D0"/>
     <SolidColorBrush x:Key="Login.Button.Pressed.Background" Color="#FF03426E"/>
     <SolidColorBrush x:Key="Login.Button.Pressed.Border" Color="#FF2C628B"/>
     <SolidColorBrush x:Key="Login.Button.Disabled.Background" Color="#FFF4F4F4"/>
@@ -27,7 +27,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Padding" Value="2"/>
         <Setter Property="Margin" Value="10,20,10,0"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="Cursor" Value="Hand"></Setter>
