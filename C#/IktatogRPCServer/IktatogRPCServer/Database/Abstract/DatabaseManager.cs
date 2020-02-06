@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCServer.Database.Abstract
 {
-    public abstract class DatabaseManager
+    public abstract class DatabaseManager<T>
     {
-        ConnectionManager connectionManager;
+        protected ConnectionManager connectionManager;
         public DatabaseManager(ConnectionManager connectionManager)
         {
             this.connectionManager = connectionManager;
@@ -17,5 +17,11 @@ namespace IktatogRPCServer.Database.Abstract
 
         abstract public void OpenConnection();
         abstract public void CloseConnection();
+        abstract public bool Add(T newObjet);
+        abstract public bool Update(T modifiedObject);
+        abstract public bool Delete(int id);
+
+        abstract public List<T> GetAllData();
+        abstract public T GetDataById(int id);
     }
 }

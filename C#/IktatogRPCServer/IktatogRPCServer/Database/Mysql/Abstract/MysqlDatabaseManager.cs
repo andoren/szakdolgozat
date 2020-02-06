@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCServer.Database.Mysql.Abstract
 {
-    public abstract class MysqlDatabaseManager<T> : DatabaseManager
+    public abstract class MysqlDatabaseManager<T> : DatabaseManager<T>
     {
         public MysqlDatabaseManager(ConnectionManager connection) : base(connection)
         {
@@ -29,11 +29,6 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
         {
             throw new NotImplementedException();
         }
-        abstract public bool Add(T newObjet);
-        abstract public bool Update(T modifiedObject);
-        abstract public bool Delete(int id);
 
-        abstract public List<T> GetAllData();
-        abstract public T GetDataById(int id);
     }
 }
