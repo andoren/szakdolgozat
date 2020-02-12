@@ -31,7 +31,7 @@ namespace IktatogRPCClient.ViewModels
             ChangeCurrentMenuLabel("Főoldal");
 
         }
-        public void Iktato() {
+        public void Iktatas() {
             ChangeScene(Scenes.Iktato);
             ChangeCurrentMenuLabel("Iktató");
         }

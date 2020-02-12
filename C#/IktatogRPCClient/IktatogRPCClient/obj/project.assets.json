@@ -1537,20 +1537,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\oszsz_17\\.nuget\\packages\\": {}
+    "C:\\Users\\Misi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Repos\\Szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\IktatogRPCClient.csproj",
+      "projectUniqueName": "E:\\Repos\\szakdolgozat\\szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\IktatogRPCClient.csproj",
       "projectName": "IktatogRPCClient",
-      "projectPath": "E:\\Repos\\Szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\IktatogRPCClient.csproj",
-      "packagesPath": "C:\\Users\\oszsz_17\\.nuget\\packages\\",
-      "outputPath": "E:\\Repos\\Szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\obj\\",
+      "projectPath": "E:\\Repos\\szakdolgozat\\szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\IktatogRPCClient.csproj",
+      "packagesPath": "C:\\Users\\Misi\\.nuget\\packages\\",
+      "outputPath": "E:\\Repos\\szakdolgozat\\szakdolgozat\\C#\\IktatogRPCClient\\IktatogRPCClient\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\oszsz_17\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Misi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

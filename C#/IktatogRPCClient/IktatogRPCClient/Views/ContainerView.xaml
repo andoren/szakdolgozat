@@ -15,53 +15,68 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="Iktatás" Height="700" Width="1100"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <Grid Background="#FFF7F8FA" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <!--Üdvözlő-->
-            <StackPanel Background="White" Orientation="Horizontal">
-            
-                <TextBlock Padding="5">Üdv:</TextBlock>
-                
-            </StackPanel>
-            <!--Főmenü-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Üdvözlő-->
+        <!--<StackPanel Background="#FF0F2948" Orientation="Horizontal">
 
+            <TextBlock Padding="5">Üdv:</TextBlock>
+
+        </StackPanel>-->
+        <!--Főmenü-->
+        <Grid Grid.Row="1" Background="#FFE1E3E6" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Fooldal" VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "0" >Főoldal</Button>
+            <Button x:Name="Iktatas"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "1">Iktatás</Button>
+            <Button x:Name="Kereses"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "2">Keresés</Button>
+            <Button x:Name="Torzs"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "3">Törzs</Button>
+            <Button x:Name="Kijelentkezes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "4">Kijelentkezés</Button>
+            <Button x:Name="Kilepes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "5">Kilépés</Button>
+        </Grid>
 
 
 
 
         <!--Pages(user controlls)-->
-            <ContentControl Grid.Row="2" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem"></ContentControl>
-            <!--Information bar-->
-           
-                <Grid Grid.Row="3"  Background="#2868b0" Height="20" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-   
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="White" Margin="5,0,5,0">Menü:</TextBlock>
-                        <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentMenu"> Főoldal</TextBlock>
+        <ContentControl Grid.Row="2" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem" Background="Black"/>
+        <!--Information bar-->
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
-                        <TextBlock Foreground="White" Margin="5,0,5,0">Dokumentáció: </TextBlock>
-                        <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="Link" > &gt;&gt;Letöltés&lt;&lt;</TextBlock>
+        <Grid Grid.Row="3"  Background="#FF036A9A" Height="20" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
-                        <TextBlock Margin="0,0,5,0"  Foreground="White">Készítette: Pekár Mihály</TextBlock>
-                        <TextBlock Foreground="White" Margin="5,0,5,0" >Verzió:</TextBlock>
-                        <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentVersion"></TextBlock>
-                    </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="White" Margin="5,0,5,0">Menü:</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentMenu"> Főoldal</TextBlock>
 
-                </Grid>
-        
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                <TextBlock Foreground="White" Margin="5,0,5,0">Dokumentáció:</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="Link" > &gt;&gt;Letöltés&lt;&lt;</TextBlock>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                <TextBlock Margin="0,0,5,0"  Foreground="White">Készítette: Pekár Mihály</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" >Verzió:</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentVersion"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+
 
 
     </Grid>
