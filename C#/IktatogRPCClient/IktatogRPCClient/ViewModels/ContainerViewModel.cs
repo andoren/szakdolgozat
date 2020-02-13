@@ -28,15 +28,25 @@ namespace IktatogRPCClient.ViewModels
             get { return _currentMenu; }
             set { _currentMenu = value; }
         }
+        private bool _loaderIsVisible;
+
+        public bool LoaderIsVisible
+        {
+            get { return _loaderIsVisible; }
+            set { _loaderIsVisible = value;
+                NotifyOfPropertyChange(()=>LoaderIsVisible);
+            }
+        }
 
         public void Fooldal() {
             ChangeScene(Scenes.Fooldal);
             ChangeCurrentMenuLabel("Főoldal");
-
+            LoaderIsVisible = false;
         }
         public void Iktatas() {
             ChangeScene(Scenes.Iktato);
             ChangeCurrentMenuLabel("Iktató");
+            LoaderIsVisible = true;
         }
         public void Kereses() {
             ChangeScene(Scenes.Kereses);

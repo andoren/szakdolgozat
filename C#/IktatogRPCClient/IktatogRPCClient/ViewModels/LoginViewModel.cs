@@ -51,17 +51,21 @@ namespace IktatogRPCClient.ViewModels
         private void CheckPassword() {
             if (string.IsNullOrWhiteSpace(PasswordBox)) throw new InvalidPasswordException("Hibás jelszó");
             else if (PasswordBox.Length < 3 || PasswordBox.Length > 20) throw new InvalidPasswordException("Hibás jelszó");
+            
         }
         public async void LoginButton() {
             try
             {
+                LoaderIsVisible = true;
                 await connectToServer();
                 var manager = new WindowManager();
                 manager.ShowWindow(new ContainerViewModel(user), null, null);
                 TryClose();
             }
             catch (Exception e) {
+                LoaderIsVisible = false;
                 MessageBox.Show(e.Message);
+                
             }
            
         }
@@ -77,5 +81,17 @@ namespace IktatogRPCClient.ViewModels
         public void IsEnterPressed(KeyEventArgs keyArgs) {
             if(keyArgs.Key == Key.Enter)LoginButton();
         }
+        private bool _loaderIsVisible;
+        public bool LoaderIsVisible {
+            get {
+                return _loaderIsVisible;
+            } 
+            set {
+                _loaderIsVisible = value;
+                NotifyOfPropertyChange(() => LoaderIsVisible);    
+            }
+        } 
+        
+        
     }
 }

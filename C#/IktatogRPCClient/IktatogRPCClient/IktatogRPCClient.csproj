@@ -69,14 +69,14 @@
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\InvalidCallOperation.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\LoginErrorException.cs" />
     <Compile Include="Models\Managers\Helpers\Server\ServerHelper.cs" />
-    <Compile Include="Models\Scenes\Exceptions\InvalidSceneExeption.cs" />
-    <Compile Include="Models\Scenes\SceneManager.cs" />
-    <Compile Include="Models\Scenes\Scenes.cs" />
+    <Compile Include="Models\Managers\Scenes\Exceptions\InvalidSceneExeption.cs" />
+    <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
+    <Compile Include="Models\Managers\Scenes\Scenes.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
-    <Compile Include="Models\InvalidUserNameExepction.cs" />
-    <Compile Include="Models\InvalidPasswordException.cs" />
+    <Compile Include="Models\Exceptions\InvalidUserNameExepction.cs" />
+    <Compile Include="Models\Exceptions\InvalidPasswordException.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="Views\KeresesView.xaml.cs">
       <DependentUpon>KeresesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadingSpinnerView.xaml.cs">
+      <DependentUpon>LoadingSpinnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\KeresesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadingSpinnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

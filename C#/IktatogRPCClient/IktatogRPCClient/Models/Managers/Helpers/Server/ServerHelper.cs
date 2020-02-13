@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using System.Configuration;
 using Iktato;
+using System.Threading;
+
 namespace IktatogRPCClient.Models.Managers
 {
     class ServerHelper
@@ -54,6 +56,7 @@ namespace IktatogRPCClient.Models.Managers
             await client.LogoutAsync(token, calloptions);
         }
         public static async Task<User> Login(LoginMessage message) {
+
             User user =  await new IktatoService.IktatoServiceClient(GetChannel()).LoginAsync(message);
             if (user.Username == "") throw new LoginErrorException("Hibás felhasznlónév vagy jelszó! Próbálja megújra");
             return user;

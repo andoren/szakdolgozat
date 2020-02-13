@@ -81,7 +81,6 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\IktatogRPCDLL.dll.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Debug\Google.Protobuf.xml
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\ContainerView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\FooldalView.g.cs
@@ -108,3 +107,5 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.pdb
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.g.cs
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.baml

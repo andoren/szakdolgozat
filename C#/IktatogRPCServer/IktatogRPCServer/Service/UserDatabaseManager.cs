@@ -1,5 +1,6 @@
 ﻿using Iktato;
 using System;
+using System.Threading;
 
 namespace IktatogRPCServer.Service
 {
@@ -12,6 +13,7 @@ namespace IktatogRPCServer.Service
 
         internal bool IsValidUser(LoginMessage request, out User user)
         {
+            Thread.Sleep(100);
             user = new User();
             if (request.Username == "misi")
             {
