@@ -22,9 +22,10 @@ namespace IktatogRPCServer.Service
                 return Task.FromResult<User>(new User());
             }
 
-            //if (context.RequestHeaders.Select(x=>x.Value == "Kiscica") != null) {
+            //if (context.RequestHeaders.Select(x => x.Value == "kiscica") != null)
+            //{
             //    return Task.FromResult<User>(new User() { Id = 1, Username = "Misi", Fullname = "Pekár Mihály",, Privilege = new Privilege() { Id = 1, Name = "Admin" } });
-            //} 
+            //}
 
         }
         public override Task<Answer> Logout(AuthToken request, ServerCallContext context)

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="http://www.caliburnproject.org"
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -10,7 +11,10 @@
         FontFamily="Roboto"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" 
         
-        Title="Iktatás" Height="800" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Iktatás" Height="800" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        cal:Message.Attach="[Event KeyDown] = [Action IsEnterPressed($eventArgs)]"
+        
+        >
 
     <Grid Background="#43464B" >
 
@@ -47,7 +51,7 @@
                             <Path Fill="White" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
                         </Grid>
                     </Grid>
-                    <TextBox x:Name="UsernameBox"  Grid.Column="1" HorizontalAlignment="Stretch" Style="{DynamicResource loginTextBox}" />
+                    <TextBox x:Name="UsernameBox" Grid.Column="1" HorizontalAlignment="Stretch" Style="{DynamicResource loginTextBox}" />
                 </Grid>
                 <TextBlock Foreground="White" Margin="10,10,0,5">Jelszó:</TextBlock>
                 <Grid Margin="10,0,10,20" Background="White">
@@ -66,7 +70,7 @@
 		C109.047,119.666,105.689,116.309,101.547,116.309z"/>
                         </Grid>
                     </Grid>
-                    <PasswordBox x:Name="PasswordBox" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
+                    <PasswordBox cal:Message.Attach="[Event PasswordChanged] = [Action OnPasswordChanged($source)]" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
                 </Grid>
                 <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
                 <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>

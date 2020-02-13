@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Iktato;
 using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -12,14 +13,16 @@ namespace IktatogRPCClient.ViewModels
 {
     class ContainerViewModel : Conductor<Screen>
     {
-        public ContainerViewModel()
+       
+        public ContainerViewModel(User user)
         {
             Fooldal();
+            this.user = user;
             CurrentMenu = "Főoldal";
         }
         SceneManager sceneManager = new SceneManager();
         private string _currentMenu;
-
+        private User user;
         public string CurrentMenu
         {
             get { return _currentMenu; }

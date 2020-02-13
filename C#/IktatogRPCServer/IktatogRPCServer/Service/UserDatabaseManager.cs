@@ -17,6 +17,7 @@ namespace IktatogRPCServer.Service
             {
                 user.Fullname = "Pekár Mihály";
                 user.Id = 1;
+                user.Username = request.Username;
                 user.Privilege = new Privilege() { Id = 1, Name = "Admin" };
                 return true;
             }

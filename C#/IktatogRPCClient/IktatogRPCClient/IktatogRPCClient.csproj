@@ -41,6 +41,7 @@
       <HintPath>..\..\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\IktatogRPCDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
@@ -65,12 +66,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Managers\Helpers\Server\Exceptions\InvalidCallOperation.cs" />
+    <Compile Include="Models\Managers\Helpers\Server\Exceptions\LoginErrorException.cs" />
+    <Compile Include="Models\Managers\Helpers\Server\ServerHelper.cs" />
     <Compile Include="Models\Scenes\Exceptions\InvalidSceneExeption.cs" />
     <Compile Include="Models\Scenes\SceneManager.cs" />
     <Compile Include="Models\Scenes\Scenes.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
+    <Compile Include="Models\InvalidUserNameExepction.cs" />
+    <Compile Include="Models\InvalidPasswordException.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
@@ -162,7 +168,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Managers\" />
+    <Folder Include="Models\Managers\Helpers\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\loginLogo.png" />
