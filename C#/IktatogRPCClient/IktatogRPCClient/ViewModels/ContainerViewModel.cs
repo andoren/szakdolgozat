@@ -19,6 +19,7 @@ namespace IktatogRPCClient.ViewModels
             Fooldal();
             this.user = user;
             CurrentMenu = "Főoldal";
+            ChangeCurrentMenuLabel(user.Fullname,user.Privilege.Name);
         }
         SceneManager sceneManager = new SceneManager();
         private string _currentMenu;
@@ -40,21 +41,19 @@ namespace IktatogRPCClient.ViewModels
 
         public void Fooldal() {
             ChangeScene(Scenes.Fooldal);
-            ChangeCurrentMenuLabel("Főoldal");
             LoaderIsVisible = false;
         }
         public void Iktatas() {
             ChangeScene(Scenes.Iktato);
-            ChangeCurrentMenuLabel("Iktató");
             LoaderIsVisible = true;
         }
         public void Kereses() {
             ChangeScene(Scenes.Kereses);
-            ChangeCurrentMenuLabel("Keresés");
+         
         }
         public void Torzs() {
             ChangeScene(Scenes.Torzs);
-            ChangeCurrentMenuLabel("Törzs");
+        
         }
 
         public void Kijelentkezes() {
@@ -67,12 +66,13 @@ namespace IktatogRPCClient.ViewModels
         }
 
 
-        private void ChangeCurrentMenuLabel(string label)
+        private void ChangeCurrentMenuLabel(string name, string Role)
         {
-            CurrentMenu = label;
+            CurrentMenu = $"{name} - {Role}";
         }
         private void ChangeScene(Scenes scene) {
             ActivateItem(sceneManager.CreateScene(scene));
         }
+
     }
 }

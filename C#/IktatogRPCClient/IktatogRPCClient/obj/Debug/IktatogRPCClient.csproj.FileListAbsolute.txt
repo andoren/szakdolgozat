@@ -109,3 +109,4 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.baml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache

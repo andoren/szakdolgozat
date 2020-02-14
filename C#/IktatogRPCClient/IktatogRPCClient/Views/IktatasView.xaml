@@ -5,8 +5,89 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             FontSize="18"
+             FontFamily="Roboto"
+             d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
-        <TextBlock>Iktatás</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="ViewLabel" Grid.Row="0" Background="#FF036A9A" Height="75" Margin="0">
+            <TextBlock Margin="10"  FontSize="40" VerticalAlignment="Center"  Foreground="White">Iktatás</TextBlock>
+        </Grid>
+        <Grid Background="White"  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <StackPanel>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <StackPanel>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <StackPanel>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                        <TextBox VerticalAlignment="Center" FontSize="30" Margin="5,10" ></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <DataGrid Grid.Row="2"></DataGrid>
     </Grid>
 </UserControl>
