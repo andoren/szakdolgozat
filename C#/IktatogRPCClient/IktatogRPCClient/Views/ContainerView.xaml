@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
@@ -13,7 +12,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        Title="Iktatás" Height="700" Width="1100"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Iktatás" Height="700" Width="1300"  WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+    <Border BorderBrush="#FF0F2948" BorderThickness="2">
     <Grid Background="#FFF7F8FA" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -23,7 +23,11 @@
         
 
         <!--Főmenü-->
-        <Grid Grid.Row="0"  >
+            <Grid Grid.Row="0" Background="#FF0F2948"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -32,19 +36,20 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="Fooldal" VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "0" >Főoldal</Button>
-            <Button x:Name="Iktatas"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "1">Iktatás</Button>
-            <Button x:Name="Kereses"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "2">Keresés</Button>
-            <Button x:Name="Torzs"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "3">Törzs</Button>
-            <Button x:Name="Kijelentkezes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "4">Kijelentkezés</Button>
-            <Button x:Name="Kilepes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Column = "5">Kilépés</Button>
+
+            <Button x:Name="Fooldal" VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "0" >Főoldal</Button>
+                <Button x:Name="Iktatas"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "1">Iktatás</Button>
+                <Button x:Name="Kereses"  VerticalAlignment="Center"  Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "2">Keresés</Button>
+                <Button x:Name="Torzs"  VerticalAlignment="Center"  Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "3">Törzs</Button>
+                <Button x:Name="Kijelentkezes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "4">Kijelentkezés</Button>
+                <Button x:Name="Kilepes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "5">Kilépés</Button>
         </Grid>
 
         <!--Pages(user controlls)-->
         <ContentControl Grid.Row="1" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem" Background="Black"/>
         <!--Information bar-->
 
-        <Grid Grid.Row="2"  Background="#FF036A9A" Height="20" >
+        <Grid Grid.Row="2"  Background="#FF0F2948" Height="20" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*"/>
@@ -52,19 +57,15 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Foreground="White" Margin="5,0,5,0">Menü:</TextBlock>
-                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentMenu"> Főoldal</TextBlock>
+                <TextBlock Foreground="White" Margin="15,0,5,0">Felhasználó:</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentMenu"> User</TextBlock>
 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
-                <TextBlock Foreground="White" Margin="5,0,5,0">Dokumentáció:</TextBlock>
-                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="Link" > &gt;&gt;Letöltés&lt;&lt;</TextBlock>
 
-            </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
-                <TextBlock Margin="0,0,5,0"  Foreground="White">Készítette: Pekár Mihály</TextBlock>
-                <TextBlock Foreground="White" Margin="5,0,5,0" >Verzió:</TextBlock>
-                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentVersion"></TextBlock>
+                <TextBlock Margin="0,0,15,0"  Foreground="White">Készítette: Pekár Mihály</TextBlock>
+
+
             </StackPanel>
 
         </Grid>
@@ -72,5 +73,5 @@
         <local:LoadingSpinnerView Grid.RowSpan="5" x:Name="LoaderIsVisible" Visibility="Hidden"></local:LoadingSpinnerView>
 
     </Grid>
-
+    </Border>
 </Window>

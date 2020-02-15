@@ -41,11 +41,11 @@ namespace IktatogRPCClient.ViewModels
 
         public void Fooldal() {
             ChangeScene(Scenes.Fooldal);
-            LoaderIsVisible = false;
+            
         }
         public void Iktatas() {
             ChangeScene(Scenes.Iktato);
-            LoaderIsVisible = true;
+           
         }
         public void Kereses() {
             ChangeScene(Scenes.Kereses);

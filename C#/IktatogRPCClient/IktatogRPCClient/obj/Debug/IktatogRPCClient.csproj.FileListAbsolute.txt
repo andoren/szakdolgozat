@@ -86,6 +86,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\FooldalView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\IktatasView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\KeresesView.g.cs
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoginView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\TorzsView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\App.g.cs
@@ -99,6 +100,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\FooldalView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\IktatasView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\KeresesView.baml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoginView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\TorzsView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.g.resources
@@ -107,6 +109,4 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.g.cs
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\LoadingSpinnerView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\IktatogRPCClient.csprojAssemblyReference.cache

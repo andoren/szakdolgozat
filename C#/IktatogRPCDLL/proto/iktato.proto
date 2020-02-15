@@ -4,10 +4,62 @@ package Iktato;
 
 service IktatoService {
   rpc Login (LoginMessage) returns (User);
-  rpc Logout (User) returns (Answer);
+  rpc Logout (EmptyMessage) returns (Answer);
   rpc Register (User) returns (Answer);
+  rpc AddIktatas(Ikonyv) returns (Answer);
+  rpc ModifyIktatas(Ikonyv) returns (Answer);
+  rpc ListallIktatas(EmptyMessage) returns (stream Ikonyv);
+  rpc ListIktatas(FromTo) returns (stream Ikonyv);
+  rpc DeleteIktatas(DeleteMessage) returns (Answer);
+
 }
 
+message FromTo{
+    int32 From = 1;
+    int32 To = 2;
+}
+message Ikonyv{
+    int32 id = 1;
+    string targy = 2;
+    string hivszam = 3;
+    Ugyintezo Ugyintezo = 4;
+    Partner Partner = 5;
+    User created_by= 6;
+    Telephely Telephely = 7;
+    Csoport Csoport = 8;
+    Jelleg Jelleg = 9;
+    int32 Irany = 10;
+    string Erkezett = 11;
+    string HatIdo = 12;
+    string Iktatoszam = 13;
+    string szoveg = 14; 
+}
+message Ugyintezo{
+    int32 id = 1;
+    string name = 2;
+}
+message Partner{
+    int32 id = 1;
+    string name = 2;
+    PartnerUgyintezo Ugyintezok = 3; 
+}
+message PartnerUgyintezo{
+    int32 id = 1;
+    string name = 2;
+}
+message Telephely{
+    int32 id  = 1;
+    string name = 2;
+}
+message Csoport {
+    int32 id = 1;
+    string name = 2;
+    string shortname = 3;
+}
+message Jelleg {
+    int32 id = 1;
+    string name = 2;
+}
 
 message LoginMessage{
 	string username = 1;
@@ -32,4 +84,11 @@ message User {
   string fullname = 3;
   string password = 4;
   Privilege privilege = 5;
+  AuthToken AuthToken = 6;
+}
+message AuthToken{
+    string token = 1;
+}
+message DeleteMessage{
+    int32 id = 1;
 }

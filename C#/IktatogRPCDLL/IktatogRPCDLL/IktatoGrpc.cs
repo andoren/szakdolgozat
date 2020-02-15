@@ -14,8 +14,11 @@ namespace Iktato {
 
     static readonly grpc::Marshaller<global::Iktato.LoginMessage> __Marshaller_Iktato_LoginMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.LoginMessage.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.User> __Marshaller_Iktato_User = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.User.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Iktato.AuthToken> __Marshaller_Iktato_AuthToken = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.AuthToken.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.EmptyMessage> __Marshaller_Iktato_EmptyMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.EmptyMessage.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.Answer> __Marshaller_Iktato_Answer = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Answer.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Ikonyv> __Marshaller_Iktato_Ikonyv = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Ikonyv.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.FromTo> __Marshaller_Iktato_FromTo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.FromTo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.DeleteMessage> __Marshaller_Iktato_DeleteMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DeleteMessage.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Iktato.LoginMessage, global::Iktato.User> __Method_Login = new grpc::Method<global::Iktato.LoginMessage, global::Iktato.User>(
         grpc::MethodType.Unary,
@@ -24,25 +27,53 @@ namespace Iktato {
         __Marshaller_Iktato_LoginMessage,
         __Marshaller_Iktato_User);
 
-    static readonly grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer> __Method_Logout = new grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer>(
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Answer> __Method_Logout = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Answer>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Logout",
-        __Marshaller_Iktato_AuthToken,
+        __Marshaller_Iktato_EmptyMessage,
         __Marshaller_Iktato_Answer);
 
-    static readonly grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer> __Method_Register = new grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer>(
+    static readonly grpc::Method<global::Iktato.User, global::Iktato.Answer> __Method_Register = new grpc::Method<global::Iktato.User, global::Iktato.Answer>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Register",
-        __Marshaller_Iktato_AuthToken,
+        __Marshaller_Iktato_User,
         __Marshaller_Iktato_Answer);
 
-    static readonly grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer> __Method_ModifyUser = new grpc::Method<global::Iktato.AuthToken, global::Iktato.Answer>(
+    static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer> __Method_AddIktatas = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "ModifyUser",
-        __Marshaller_Iktato_AuthToken,
+        "AddIktatas",
+        __Marshaller_Iktato_Ikonyv,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer> __Method_ModifyIktatas = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyIktatas",
+        __Marshaller_Iktato_Ikonyv,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Ikonyv> __Method_ListallIktatas = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Ikonyv>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ListallIktatas",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_Ikonyv);
+
+    static readonly grpc::Method<global::Iktato.FromTo, global::Iktato.Ikonyv> __Method_ListIktatas = new grpc::Method<global::Iktato.FromTo, global::Iktato.Ikonyv>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ListIktatas",
+        __Marshaller_Iktato_FromTo,
+        __Marshaller_Iktato_Ikonyv);
+
+    static readonly grpc::Method<global::Iktato.DeleteMessage, global::Iktato.Answer> __Method_DeleteIktatas = new grpc::Method<global::Iktato.DeleteMessage, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteIktatas",
+        __Marshaller_Iktato_DeleteMessage,
         __Marshaller_Iktato_Answer);
 
     /// <summary>Service descriptor</summary>
@@ -60,17 +91,37 @@ namespace Iktato {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> Logout(global::Iktato.AuthToken request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> Logout(global::Iktato.EmptyMessage request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> Register(global::Iktato.AuthToken request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> Register(global::Iktato.User request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyUser(global::Iktato.AuthToken request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> AddIktatas(global::Iktato.Ikonyv request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyIktatas(global::Iktato.Ikonyv request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task ListallIktatas(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.Ikonyv> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task ListIktatas(global::Iktato.FromTo request, grpc::IServerStreamWriter<global::Iktato.Ikonyv> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> DeleteIktatas(global::Iktato.DeleteMessage request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -116,53 +167,101 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_Login, null, options, request);
       }
-      public virtual global::Iktato.Answer Logout(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Iktato.Answer Logout(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Logout(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Iktato.Answer Logout(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual global::Iktato.Answer Logout(global::Iktato.EmptyMessage request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Logout, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> LogoutAsync(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> LogoutAsync(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return LogoutAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> LogoutAsync(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> LogoutAsync(global::Iktato.EmptyMessage request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Logout, null, options, request);
       }
-      public virtual global::Iktato.Answer Register(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Iktato.Answer Register(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Register(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Iktato.Answer Register(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual global::Iktato.Answer Register(global::Iktato.User request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Register, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RegisterAsync(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RegisterAsync(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return RegisterAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RegisterAsync(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RegisterAsync(global::Iktato.User request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Register, null, options, request);
       }
-      public virtual global::Iktato.Answer ModifyUser(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Iktato.Answer AddIktatas(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ModifyUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return AddIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Iktato.Answer ModifyUser(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual global::Iktato.Answer AddIktatas(global::Iktato.Ikonyv request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_ModifyUser, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_AddIktatas, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUserAsync(global::Iktato.AuthToken request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> AddIktatasAsync(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ModifyUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return AddIktatasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUserAsync(global::Iktato.AuthToken request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> AddIktatasAsync(global::Iktato.Ikonyv request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_ModifyUser, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_AddIktatas, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyIktatas(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyIktatas(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyIktatas, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyIktatasAsync(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyIktatasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyIktatasAsync(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyIktatas, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListallIktatas(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ListallIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListallIktatas(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_ListallIktatas, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.FromTo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ListIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.FromTo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_ListIktatas, null, options, request);
+      }
+      public virtual global::Iktato.Answer DeleteIktatas(global::Iktato.DeleteMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer DeleteIktatas(global::Iktato.DeleteMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteIktatas, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> DeleteIktatasAsync(global::Iktato.DeleteMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteIktatasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> DeleteIktatasAsync(global::Iktato.DeleteMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteIktatas, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override IktatoServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -179,7 +278,11 @@ namespace Iktato {
           .AddMethod(__Method_Login, serviceImpl.Login)
           .AddMethod(__Method_Logout, serviceImpl.Logout)
           .AddMethod(__Method_Register, serviceImpl.Register)
-          .AddMethod(__Method_ModifyUser, serviceImpl.ModifyUser).Build();
+          .AddMethod(__Method_AddIktatas, serviceImpl.AddIktatas)
+          .AddMethod(__Method_ModifyIktatas, serviceImpl.ModifyIktatas)
+          .AddMethod(__Method_ListallIktatas, serviceImpl.ListallIktatas)
+          .AddMethod(__Method_ListIktatas, serviceImpl.ListIktatas)
+          .AddMethod(__Method_DeleteIktatas, serviceImpl.DeleteIktatas).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -189,9 +292,13 @@ namespace Iktato {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, IktatoServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_Login, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.LoginMessage, global::Iktato.User>(serviceImpl.Login));
-      serviceBinder.AddMethod(__Method_Logout, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.AuthToken, global::Iktato.Answer>(serviceImpl.Logout));
-      serviceBinder.AddMethod(__Method_Register, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.AuthToken, global::Iktato.Answer>(serviceImpl.Register));
-      serviceBinder.AddMethod(__Method_ModifyUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.AuthToken, global::Iktato.Answer>(serviceImpl.ModifyUser));
+      serviceBinder.AddMethod(__Method_Logout, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.EmptyMessage, global::Iktato.Answer>(serviceImpl.Logout));
+      serviceBinder.AddMethod(__Method_Register, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.User, global::Iktato.Answer>(serviceImpl.Register));
+      serviceBinder.AddMethod(__Method_AddIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.AddIktatas));
+      serviceBinder.AddMethod(__Method_ModifyIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.ModifyIktatas));
+      serviceBinder.AddMethod(__Method_ListallIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Ikonyv>(serviceImpl.ListallIktatas));
+      serviceBinder.AddMethod(__Method_ListIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.FromTo, global::Iktato.Ikonyv>(serviceImpl.ListIktatas));
+      serviceBinder.AddMethod(__Method_DeleteIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DeleteMessage, global::Iktato.Answer>(serviceImpl.DeleteIktatas));
     }
 
   }

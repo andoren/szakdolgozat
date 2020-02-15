@@ -77,7 +77,7 @@
                 <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
-                    <CheckBox VerticalAlignment="Center"  Margin="10,0,0,0"/>
+                    <CheckBox x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"  Margin="10,0,0,0"/>
 
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10" >
@@ -85,11 +85,15 @@
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" >
                             <Hyperlink Foreground="#FF8ABFDE" Cursor="Hand" NavigateUri="https://google.com">Kattintson ide</Hyperlink>
                     </TextBlock>
-
+        
                 </StackPanel>
             </StackPanel>
         </Border>
         <Image Grid.Column="1" Source="/IktatogRPCClient;component/Resources/loginbackground.jpg" Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" >
+            <TextBlock VerticalAlignment="Bottom" Foreground="White" FontSize="16">Programverzió:</TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Foreground="White"  FontSize="16" Margin="5,0,5,0">1.0.0.</TextBlock>
+        </StackPanel>
         <local:LoadingSpinnerView x:Name="LoaderIsVisible" Grid.ColumnSpan="2" Visibility="Hidden"></local:LoadingSpinnerView>
     </Grid>
 </Window>

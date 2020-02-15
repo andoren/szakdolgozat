@@ -24,30 +24,1753 @@ namespace Iktato {
     static IktatoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byIyCgxMb2dpbk1lc3NhZ2USEAoIdXNl",
-            "cm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiDgoMRW1wdHlNZXNzYWdl",
-            "IiUKCVByaXZpbGVnZRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIigKBkFu",
-            "c3dlchINCgVlcnJvchgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIm4KBFVzZXIS",
-            "CgoCaWQYASABKAUSEAoIdXNlcm5hbWUYAiABKAkSEAoIZnVsbG5hbWUYAyAB",
-            "KAkSEAoIcGFzc3dvcmQYBCABKAkSJAoJcHJpdmlsZWdlGAUgASgLMhEuSWt0",
-            "YXRvLlByaXZpbGVnZTKOAQoNSWt0YXRvU2VydmljZRIrCgVMb2dpbhIULklr",
-            "dGF0by5Mb2dpbk1lc3NhZ2UaDC5Ja3RhdG8uVXNlchImCgZMb2dvdXQSDC5J",
-            "a3RhdG8uVXNlchoOLklrdGF0by5BbnN3ZXISKAoIUmVnaXN0ZXISDC5Ja3Rh",
-            "dG8uVXNlchoOLklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
+            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byIiCgZGcm9tVG8SDAoERnJvbRgBIAEo",
+            "BRIKCgJUbxgCIAEoBSLbAgoGSWtvbnl2EgoKAmlkGAEgASgFEg0KBXRhcmd5",
+            "GAIgASgJEg8KB2hpdnN6YW0YAyABKAkSJAoJVWd5aW50ZXpvGAQgASgLMhEu",
+            "SWt0YXRvLlVneWludGV6bxIgCgdQYXJ0bmVyGAUgASgLMg8uSWt0YXRvLlBh",
+            "cnRuZXISIAoKY3JlYXRlZF9ieRgGIAEoCzIMLklrdGF0by5Vc2VyEiQKCVRl",
+            "bGVwaGVseRgHIAEoCzIRLklrdGF0by5UZWxlcGhlbHkSIAoHQ3NvcG9ydBgI",
+            "IAEoCzIPLklrdGF0by5Dc29wb3J0Eh4KBkplbGxlZxgJIAEoCzIOLklrdGF0",
+            "by5KZWxsZWcSDQoFSXJhbnkYCiABKAUSEAoIRXJrZXpldHQYCyABKAkSDgoG",
+            "SGF0SWRvGAwgASgJEhIKCklrdGF0b3N6YW0YDSABKAkSDgoGc3pvdmVnGA4g",
+            "ASgJIiUKCVVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIlEK",
+            "B1BhcnRuZXISCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCRIsCgpVZ3lpbnRl",
+            "em9rGAMgASgLMhguSWt0YXRvLlBhcnRuZXJVZ3lpbnRlem8iLAoQUGFydG5l",
+            "clVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIiUKCVRlbGVw",
+            "aGVseRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIjYKB0Nzb3BvcnQSCgoC",
+            "aWQYASABKAUSDAoEbmFtZRgCIAEoCRIRCglzaG9ydG5hbWUYAyABKAkiIgoG",
+            "SmVsbGVnEgoKAmlkGAEgASgFEgwKBG5hbWUYAiABKAkiMgoMTG9naW5NZXNz",
+            "YWdlEhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIg4KDEVt",
+            "cHR5TWVzc2FnZSIlCglQcml2aWxlZ2USCgoCaWQYASABKAUSDAoEbmFtZRgC",
+            "IAEoCSIoCgZBbnN3ZXISDQoFZXJyb3IYASABKAgSDwoHbWVzc2FnZRgCIAEo",
+            "CSKUAQoEVXNlchIKCgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIQCghm",
+            "dWxsbmFtZRgDIAEoCRIQCghwYXNzd29yZBgEIAEoCRIkCglwcml2aWxlZ2UY",
+            "BSABKAsyES5Ja3RhdG8uUHJpdmlsZWdlEiQKCUF1dGhUb2tlbhgGIAEoCzIR",
+            "LklrdGF0by5BdXRoVG9rZW4iGgoJQXV0aFRva2VuEg0KBXRva2VuGAEgASgJ",
+            "IhsKDURlbGV0ZU1lc3NhZ2USCgoCaWQYASABKAUymAMKDUlrdGF0b1NlcnZp",
+            "Y2USKwoFTG9naW4SFC5Ja3RhdG8uTG9naW5NZXNzYWdlGgwuSWt0YXRvLlVz",
+            "ZXISLgoGTG9nb3V0EhQuSWt0YXRvLkVtcHR5TWVzc2FnZRoOLklrdGF0by5B",
+            "bnN3ZXISKAoIUmVnaXN0ZXISDC5Ja3RhdG8uVXNlchoOLklrdGF0by5BbnN3",
+            "ZXISLAoKQWRkSWt0YXRhcxIOLklrdGF0by5Ja29ueXYaDi5Ja3RhdG8uQW5z",
+            "d2VyEi8KDU1vZGlmeUlrdGF0YXMSDi5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRv",
+            "LkFuc3dlchI4Cg5MaXN0YWxsSWt0YXRhcxIULklrdGF0by5FbXB0eU1lc3Nh",
+            "Z2UaDi5Ja3RhdG8uSWtvbnl2MAESLwoLTGlzdElrdGF0YXMSDi5Ja3RhdG8u",
+            "RnJvbVRvGg4uSWt0YXRvLklrb255djABEjYKDURlbGV0ZUlrdGF0YXMSFS5J",
+            "a3RhdG8uRGVsZXRlTWVzc2FnZRoOLklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.FromTo), global::Iktato.FromTo.Parser, new[]{ "From", "To" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Ikonyv), global::Iktato.Ikonyv.Parser, new[]{ "Id", "Targy", "Hivszam", "Ugyintezo", "Partner", "CreatedBy", "Telephely", "Csoport", "Jelleg", "Irany", "Erkezett", "HatIdo", "Iktatoszam", "Szoveg" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Ugyintezo), global::Iktato.Ugyintezo.Parser, new[]{ "Id", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Partner), global::Iktato.Partner.Parser, new[]{ "Id", "Name", "Ugyintezok" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.PartnerUgyintezo), global::Iktato.PartnerUgyintezo.Parser, new[]{ "Id", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Telephely), global::Iktato.Telephely.Parser, new[]{ "Id", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Csoport), global::Iktato.Csoport.Parser, new[]{ "Id", "Name", "Shortname" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Jelleg), global::Iktato.Jelleg.Parser, new[]{ "Id", "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.LoginMessage), global::Iktato.LoginMessage.Parser, new[]{ "Username", "Password" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.EmptyMessage), global::Iktato.EmptyMessage.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Privilege), global::Iktato.Privilege.Parser, new[]{ "Id", "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Answer), global::Iktato.Answer.Parser, new[]{ "Error", "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege", "AuthToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.AuthToken), global::Iktato.AuthToken.Parser, new[]{ "Token" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.DeleteMessage), global::Iktato.DeleteMessage.Parser, new[]{ "Id" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
+  public sealed partial class FromTo : pb::IMessage<FromTo> {
+    private static readonly pb::MessageParser<FromTo> _parser = new pb::MessageParser<FromTo>(() => new FromTo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FromTo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FromTo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FromTo(FromTo other) : this() {
+      from_ = other.from_;
+      to_ = other.to_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FromTo Clone() {
+      return new FromTo(this);
+    }
+
+    /// <summary>Field number for the "From" field.</summary>
+    public const int FromFieldNumber = 1;
+    private int from_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int From {
+      get { return from_; }
+      set {
+        from_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "To" field.</summary>
+    public const int ToFieldNumber = 2;
+    private int to_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int To {
+      get { return to_; }
+      set {
+        to_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FromTo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FromTo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (From != other.From) return false;
+      if (To != other.To) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (From != 0) hash ^= From.GetHashCode();
+      if (To != 0) hash ^= To.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (From != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(From);
+      }
+      if (To != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(To);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (From != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(From);
+      }
+      if (To != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(To);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FromTo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.From != 0) {
+        From = other.From;
+      }
+      if (other.To != 0) {
+        To = other.To;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            From = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            To = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Ikonyv : pb::IMessage<Ikonyv> {
+    private static readonly pb::MessageParser<Ikonyv> _parser = new pb::MessageParser<Ikonyv>(() => new Ikonyv());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Ikonyv> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ikonyv() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ikonyv(Ikonyv other) : this() {
+      id_ = other.id_;
+      targy_ = other.targy_;
+      hivszam_ = other.hivszam_;
+      ugyintezo_ = other.ugyintezo_ != null ? other.ugyintezo_.Clone() : null;
+      partner_ = other.partner_ != null ? other.partner_.Clone() : null;
+      createdBy_ = other.createdBy_ != null ? other.createdBy_.Clone() : null;
+      telephely_ = other.telephely_ != null ? other.telephely_.Clone() : null;
+      csoport_ = other.csoport_ != null ? other.csoport_.Clone() : null;
+      jelleg_ = other.jelleg_ != null ? other.jelleg_.Clone() : null;
+      irany_ = other.irany_;
+      erkezett_ = other.erkezett_;
+      hatIdo_ = other.hatIdo_;
+      iktatoszam_ = other.iktatoszam_;
+      szoveg_ = other.szoveg_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ikonyv Clone() {
+      return new Ikonyv(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "targy" field.</summary>
+    public const int TargyFieldNumber = 2;
+    private string targy_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Targy {
+      get { return targy_; }
+      set {
+        targy_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "hivszam" field.</summary>
+    public const int HivszamFieldNumber = 3;
+    private string hivszam_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Hivszam {
+      get { return hivszam_; }
+      set {
+        hivszam_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Ugyintezo" field.</summary>
+    public const int UgyintezoFieldNumber = 4;
+    private global::Iktato.Ugyintezo ugyintezo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.Ugyintezo Ugyintezo {
+      get { return ugyintezo_; }
+      set {
+        ugyintezo_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Partner" field.</summary>
+    public const int PartnerFieldNumber = 5;
+    private global::Iktato.Partner partner_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.Partner Partner {
+      get { return partner_; }
+      set {
+        partner_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "created_by" field.</summary>
+    public const int CreatedByFieldNumber = 6;
+    private global::Iktato.User createdBy_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.User CreatedBy {
+      get { return createdBy_; }
+      set {
+        createdBy_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Telephely" field.</summary>
+    public const int TelephelyFieldNumber = 7;
+    private global::Iktato.Telephely telephely_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.Telephely Telephely {
+      get { return telephely_; }
+      set {
+        telephely_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Csoport" field.</summary>
+    public const int CsoportFieldNumber = 8;
+    private global::Iktato.Csoport csoport_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.Csoport Csoport {
+      get { return csoport_; }
+      set {
+        csoport_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Jelleg" field.</summary>
+    public const int JellegFieldNumber = 9;
+    private global::Iktato.Jelleg jelleg_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.Jelleg Jelleg {
+      get { return jelleg_; }
+      set {
+        jelleg_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Irany" field.</summary>
+    public const int IranyFieldNumber = 10;
+    private int irany_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Irany {
+      get { return irany_; }
+      set {
+        irany_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Erkezett" field.</summary>
+    public const int ErkezettFieldNumber = 11;
+    private string erkezett_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Erkezett {
+      get { return erkezett_; }
+      set {
+        erkezett_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "HatIdo" field.</summary>
+    public const int HatIdoFieldNumber = 12;
+    private string hatIdo_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string HatIdo {
+      get { return hatIdo_; }
+      set {
+        hatIdo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Iktatoszam" field.</summary>
+    public const int IktatoszamFieldNumber = 13;
+    private string iktatoszam_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Iktatoszam {
+      get { return iktatoszam_; }
+      set {
+        iktatoszam_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "szoveg" field.</summary>
+    public const int SzovegFieldNumber = 14;
+    private string szoveg_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Szoveg {
+      get { return szoveg_; }
+      set {
+        szoveg_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Ikonyv);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Ikonyv other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Targy != other.Targy) return false;
+      if (Hivszam != other.Hivszam) return false;
+      if (!object.Equals(Ugyintezo, other.Ugyintezo)) return false;
+      if (!object.Equals(Partner, other.Partner)) return false;
+      if (!object.Equals(CreatedBy, other.CreatedBy)) return false;
+      if (!object.Equals(Telephely, other.Telephely)) return false;
+      if (!object.Equals(Csoport, other.Csoport)) return false;
+      if (!object.Equals(Jelleg, other.Jelleg)) return false;
+      if (Irany != other.Irany) return false;
+      if (Erkezett != other.Erkezett) return false;
+      if (HatIdo != other.HatIdo) return false;
+      if (Iktatoszam != other.Iktatoszam) return false;
+      if (Szoveg != other.Szoveg) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Targy.Length != 0) hash ^= Targy.GetHashCode();
+      if (Hivszam.Length != 0) hash ^= Hivszam.GetHashCode();
+      if (ugyintezo_ != null) hash ^= Ugyintezo.GetHashCode();
+      if (partner_ != null) hash ^= Partner.GetHashCode();
+      if (createdBy_ != null) hash ^= CreatedBy.GetHashCode();
+      if (telephely_ != null) hash ^= Telephely.GetHashCode();
+      if (csoport_ != null) hash ^= Csoport.GetHashCode();
+      if (jelleg_ != null) hash ^= Jelleg.GetHashCode();
+      if (Irany != 0) hash ^= Irany.GetHashCode();
+      if (Erkezett.Length != 0) hash ^= Erkezett.GetHashCode();
+      if (HatIdo.Length != 0) hash ^= HatIdo.GetHashCode();
+      if (Iktatoszam.Length != 0) hash ^= Iktatoszam.GetHashCode();
+      if (Szoveg.Length != 0) hash ^= Szoveg.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Targy.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Targy);
+      }
+      if (Hivszam.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Hivszam);
+      }
+      if (ugyintezo_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Ugyintezo);
+      }
+      if (partner_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Partner);
+      }
+      if (createdBy_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(CreatedBy);
+      }
+      if (telephely_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Telephely);
+      }
+      if (csoport_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Csoport);
+      }
+      if (jelleg_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Jelleg);
+      }
+      if (Irany != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(Irany);
+      }
+      if (Erkezett.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(Erkezett);
+      }
+      if (HatIdo.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(HatIdo);
+      }
+      if (Iktatoszam.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteString(Iktatoszam);
+      }
+      if (Szoveg.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(Szoveg);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Targy.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Targy);
+      }
+      if (Hivszam.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Hivszam);
+      }
+      if (ugyintezo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Ugyintezo);
+      }
+      if (partner_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Partner);
+      }
+      if (createdBy_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreatedBy);
+      }
+      if (telephely_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Telephely);
+      }
+      if (csoport_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Csoport);
+      }
+      if (jelleg_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Jelleg);
+      }
+      if (Irany != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Irany);
+      }
+      if (Erkezett.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Erkezett);
+      }
+      if (HatIdo.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(HatIdo);
+      }
+      if (Iktatoszam.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Iktatoszam);
+      }
+      if (Szoveg.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Szoveg);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Ikonyv other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Targy.Length != 0) {
+        Targy = other.Targy;
+      }
+      if (other.Hivszam.Length != 0) {
+        Hivszam = other.Hivszam;
+      }
+      if (other.ugyintezo_ != null) {
+        if (ugyintezo_ == null) {
+          Ugyintezo = new global::Iktato.Ugyintezo();
+        }
+        Ugyintezo.MergeFrom(other.Ugyintezo);
+      }
+      if (other.partner_ != null) {
+        if (partner_ == null) {
+          Partner = new global::Iktato.Partner();
+        }
+        Partner.MergeFrom(other.Partner);
+      }
+      if (other.createdBy_ != null) {
+        if (createdBy_ == null) {
+          CreatedBy = new global::Iktato.User();
+        }
+        CreatedBy.MergeFrom(other.CreatedBy);
+      }
+      if (other.telephely_ != null) {
+        if (telephely_ == null) {
+          Telephely = new global::Iktato.Telephely();
+        }
+        Telephely.MergeFrom(other.Telephely);
+      }
+      if (other.csoport_ != null) {
+        if (csoport_ == null) {
+          Csoport = new global::Iktato.Csoport();
+        }
+        Csoport.MergeFrom(other.Csoport);
+      }
+      if (other.jelleg_ != null) {
+        if (jelleg_ == null) {
+          Jelleg = new global::Iktato.Jelleg();
+        }
+        Jelleg.MergeFrom(other.Jelleg);
+      }
+      if (other.Irany != 0) {
+        Irany = other.Irany;
+      }
+      if (other.Erkezett.Length != 0) {
+        Erkezett = other.Erkezett;
+      }
+      if (other.HatIdo.Length != 0) {
+        HatIdo = other.HatIdo;
+      }
+      if (other.Iktatoszam.Length != 0) {
+        Iktatoszam = other.Iktatoszam;
+      }
+      if (other.Szoveg.Length != 0) {
+        Szoveg = other.Szoveg;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Targy = input.ReadString();
+            break;
+          }
+          case 26: {
+            Hivszam = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (ugyintezo_ == null) {
+              Ugyintezo = new global::Iktato.Ugyintezo();
+            }
+            input.ReadMessage(Ugyintezo);
+            break;
+          }
+          case 42: {
+            if (partner_ == null) {
+              Partner = new global::Iktato.Partner();
+            }
+            input.ReadMessage(Partner);
+            break;
+          }
+          case 50: {
+            if (createdBy_ == null) {
+              CreatedBy = new global::Iktato.User();
+            }
+            input.ReadMessage(CreatedBy);
+            break;
+          }
+          case 58: {
+            if (telephely_ == null) {
+              Telephely = new global::Iktato.Telephely();
+            }
+            input.ReadMessage(Telephely);
+            break;
+          }
+          case 66: {
+            if (csoport_ == null) {
+              Csoport = new global::Iktato.Csoport();
+            }
+            input.ReadMessage(Csoport);
+            break;
+          }
+          case 74: {
+            if (jelleg_ == null) {
+              Jelleg = new global::Iktato.Jelleg();
+            }
+            input.ReadMessage(Jelleg);
+            break;
+          }
+          case 80: {
+            Irany = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            Erkezett = input.ReadString();
+            break;
+          }
+          case 98: {
+            HatIdo = input.ReadString();
+            break;
+          }
+          case 106: {
+            Iktatoszam = input.ReadString();
+            break;
+          }
+          case 114: {
+            Szoveg = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Ugyintezo : pb::IMessage<Ugyintezo> {
+    private static readonly pb::MessageParser<Ugyintezo> _parser = new pb::MessageParser<Ugyintezo>(() => new Ugyintezo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Ugyintezo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ugyintezo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ugyintezo(Ugyintezo other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Ugyintezo Clone() {
+      return new Ugyintezo(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Ugyintezo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Ugyintezo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Ugyintezo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Partner : pb::IMessage<Partner> {
+    private static readonly pb::MessageParser<Partner> _parser = new pb::MessageParser<Partner>(() => new Partner());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Partner> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Partner() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Partner(Partner other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      ugyintezok_ = other.ugyintezok_ != null ? other.ugyintezok_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Partner Clone() {
+      return new Partner(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Ugyintezok" field.</summary>
+    public const int UgyintezokFieldNumber = 3;
+    private global::Iktato.PartnerUgyintezo ugyintezok_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.PartnerUgyintezo Ugyintezok {
+      get { return ugyintezok_; }
+      set {
+        ugyintezok_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Partner);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Partner other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Ugyintezok, other.Ugyintezok)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (ugyintezok_ != null) hash ^= Ugyintezok.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (ugyintezok_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Ugyintezok);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (ugyintezok_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Ugyintezok);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Partner other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.ugyintezok_ != null) {
+        if (ugyintezok_ == null) {
+          Ugyintezok = new global::Iktato.PartnerUgyintezo();
+        }
+        Ugyintezok.MergeFrom(other.Ugyintezok);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (ugyintezok_ == null) {
+              Ugyintezok = new global::Iktato.PartnerUgyintezo();
+            }
+            input.ReadMessage(Ugyintezok);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PartnerUgyintezo : pb::IMessage<PartnerUgyintezo> {
+    private static readonly pb::MessageParser<PartnerUgyintezo> _parser = new pb::MessageParser<PartnerUgyintezo>(() => new PartnerUgyintezo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PartnerUgyintezo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PartnerUgyintezo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PartnerUgyintezo(PartnerUgyintezo other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PartnerUgyintezo Clone() {
+      return new PartnerUgyintezo(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PartnerUgyintezo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PartnerUgyintezo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PartnerUgyintezo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Telephely : pb::IMessage<Telephely> {
+    private static readonly pb::MessageParser<Telephely> _parser = new pb::MessageParser<Telephely>(() => new Telephely());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Telephely> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Telephely() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Telephely(Telephely other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Telephely Clone() {
+      return new Telephely(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Telephely);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Telephely other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Telephely other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Csoport : pb::IMessage<Csoport> {
+    private static readonly pb::MessageParser<Csoport> _parser = new pb::MessageParser<Csoport>(() => new Csoport());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Csoport> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Csoport() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Csoport(Csoport other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      shortname_ = other.shortname_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Csoport Clone() {
+      return new Csoport(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "shortname" field.</summary>
+    public const int ShortnameFieldNumber = 3;
+    private string shortname_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Shortname {
+      get { return shortname_; }
+      set {
+        shortname_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Csoport);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Csoport other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      if (Shortname != other.Shortname) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Shortname.Length != 0) hash ^= Shortname.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (Shortname.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Shortname);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Shortname.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Shortname);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Csoport other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Shortname.Length != 0) {
+        Shortname = other.Shortname;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            Shortname = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Jelleg : pb::IMessage<Jelleg> {
+    private static readonly pb::MessageParser<Jelleg> _parser = new pb::MessageParser<Jelleg>(() => new Jelleg());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Jelleg> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Jelleg() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Jelleg(Jelleg other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Jelleg Clone() {
+      return new Jelleg(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Jelleg);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Jelleg other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Jelleg other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class LoginMessage : pb::IMessage<LoginMessage> {
     private static readonly pb::MessageParser<LoginMessage> _parser = new pb::MessageParser<LoginMessage>(() => new LoginMessage());
     private pb::UnknownFieldSet _unknownFields;
@@ -56,7 +1779,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -213,7 +1936,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -314,7 +2037,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -471,7 +2194,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -628,7 +2351,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -650,6 +2373,7 @@ namespace Iktato {
       fullname_ = other.fullname_;
       password_ = other.password_;
       privilege_ = other.privilege_ != null ? other.privilege_.Clone() : null;
+      authToken_ = other.authToken_ != null ? other.authToken_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -713,6 +2437,17 @@ namespace Iktato {
       }
     }
 
+    /// <summary>Field number for the "AuthToken" field.</summary>
+    public const int AuthTokenFieldNumber = 6;
+    private global::Iktato.AuthToken authToken_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Iktato.AuthToken AuthToken {
+      get { return authToken_; }
+      set {
+        authToken_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as User);
@@ -731,6 +2466,7 @@ namespace Iktato {
       if (Fullname != other.Fullname) return false;
       if (Password != other.Password) return false;
       if (!object.Equals(Privilege, other.Privilege)) return false;
+      if (!object.Equals(AuthToken, other.AuthToken)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -742,6 +2478,7 @@ namespace Iktato {
       if (Fullname.Length != 0) hash ^= Fullname.GetHashCode();
       if (Password.Length != 0) hash ^= Password.GetHashCode();
       if (privilege_ != null) hash ^= Privilege.GetHashCode();
+      if (authToken_ != null) hash ^= AuthToken.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -775,6 +2512,10 @@ namespace Iktato {
         output.WriteRawTag(42);
         output.WriteMessage(Privilege);
       }
+      if (authToken_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(AuthToken);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -797,6 +2538,9 @@ namespace Iktato {
       }
       if (privilege_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Privilege);
+      }
+      if (authToken_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AuthToken);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -826,6 +2570,12 @@ namespace Iktato {
           Privilege = new global::Iktato.Privilege();
         }
         Privilege.MergeFrom(other.Privilege);
+      }
+      if (other.authToken_ != null) {
+        if (authToken_ == null) {
+          AuthToken = new global::Iktato.AuthToken();
+        }
+        AuthToken.MergeFrom(other.AuthToken);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -859,6 +2609,271 @@ namespace Iktato {
               Privilege = new global::Iktato.Privilege();
             }
             input.ReadMessage(Privilege);
+            break;
+          }
+          case 50: {
+            if (authToken_ == null) {
+              AuthToken = new global::Iktato.AuthToken();
+            }
+            input.ReadMessage(AuthToken);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AuthToken : pb::IMessage<AuthToken> {
+    private static readonly pb::MessageParser<AuthToken> _parser = new pb::MessageParser<AuthToken>(() => new AuthToken());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AuthToken> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken(AuthToken other) : this() {
+      token_ = other.token_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthToken Clone() {
+      return new AuthToken(this);
+    }
+
+    /// <summary>Field number for the "token" field.</summary>
+    public const int TokenFieldNumber = 1;
+    private string token_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Token {
+      get { return token_; }
+      set {
+        token_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AuthToken);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AuthToken other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Token != other.Token) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Token.Length != 0) hash ^= Token.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Token.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Token);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Token.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AuthToken other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Token.Length != 0) {
+        Token = other.Token;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Token = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DeleteMessage : pb::IMessage<DeleteMessage> {
+    private static readonly pb::MessageParser<DeleteMessage> _parser = new pb::MessageParser<DeleteMessage>(() => new DeleteMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DeleteMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteMessage(DeleteMessage other) : this() {
+      id_ = other.id_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteMessage Clone() {
+      return new DeleteMessage(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as DeleteMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(DeleteMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(DeleteMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
             break;
           }
         }
