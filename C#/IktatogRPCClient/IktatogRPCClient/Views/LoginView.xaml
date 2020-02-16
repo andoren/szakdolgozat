@@ -77,7 +77,7 @@
                 <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
-                    <CheckBox x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"  Margin="10,0,0,0"/>
+                    <CheckBox x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Margin="10,0,0,0"/>
 
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10" >

@@ -50,8 +50,8 @@
                 <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Iktatási csoport:</TextBlock>
 
                 <!--1. oszlop adatbeviteli mezők-->
-                <ComboBox Grid.Row="0" Grid.Column="1" IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A" Margin="5,10" ></ComboBox>
-                <ComboBox Grid.Row="1" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
+                <ComboBox  BorderThickness="1"  BorderBrush="#FF036A9A" Grid.Row="0" Grid.Column="1" Height="30"  Margin="5,10" ></ComboBox>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="1" Grid.Column="1" Height="30"    Margin="5,10" ></ComboBox>
 
                 <!--1. oszlop iktatás gomb-->
                 <Grid Margin="5" Grid.Row="2" Grid.ColumnSpan="2">
@@ -100,7 +100,7 @@
                 <TextBox Grid.Row="1" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
                 <TextBox Grid.Row="2" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
                 <TextBox Grid.Row="3" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
-                <ComboBox Grid.Row="4" Grid.Column="1" Margin="5,0" IsEditable="True" IsEnabled="{Binding ValaszIsChecked }" x:Name="IktSzamok"/>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="4" Grid.Column="1" Margin="5,0" Height="30"   IsEnabled="{Binding ValaszIsChecked }" x:Name="IktSzamok"/>
             </Grid>
             <!--3. oszlop adatfeltöltésnél-->
             <Grid Grid.Column="2">
@@ -121,8 +121,8 @@
                 <TextBlock Grid.Row="2" Style="{StaticResource TextBlockForIktatas}">Érkezett:</TextBlock>
                 <TextBlock Grid.Row="3" Style="{StaticResource TextBlockForIktatas}">Határidő:</TextBlock>
                 <!--3. oszlop adatbeviteli mezők-->
-                <ComboBox Grid.Row="0" Grid.Column="1" IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A" Margin="5,10" ></ComboBox>
-                <ComboBox Grid.Row="1" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="0" Grid.Column="1"  Height="30"  Margin="5,10" ></ComboBox>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="1" Grid.Column="1"  Height="30"   Margin="5,10" ></ComboBox>
                 <DatePicker Grid.Row="2" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
                 <DatePicker Grid.Row="3" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
                 <!--3. oszlop iktatás gomb-->

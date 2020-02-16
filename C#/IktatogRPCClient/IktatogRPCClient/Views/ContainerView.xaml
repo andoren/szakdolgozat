@@ -48,7 +48,7 @@
             </Border>
             <!--Pages(user controlls)-->
             <ContentControl Background="Blue" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem" >
-                
+              
             </ContentControl>
         <!--Information bar-->
 
