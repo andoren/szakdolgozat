@@ -23,7 +23,8 @@
         
 
         <!--Főmenü-->
-            <Grid Grid.Row="0" Background="#FF0F2948"  >
+            <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="#FF036A9A">
+            <Grid  Background="#FF0F2948" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
@@ -44,9 +45,11 @@
                 <Button x:Name="Kijelentkezes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "4">Kijelentkezés</Button>
                 <Button x:Name="Kilepes"  VerticalAlignment="Center" Margin="15" Style="{StaticResource LoginButtons}" Grid.Row="1" Grid.Column = "5">Kilépés</Button>
         </Grid>
-
-        <!--Pages(user controlls)-->
-        <ContentControl Grid.Row="1" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem" Background="Black"/>
+            </Border>
+            <!--Pages(user controlls)-->
+            <ContentControl Background="Blue" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"   x:Name="ActiveItem" >
+                
+            </ContentControl>
         <!--Information bar-->
 
         <Grid Grid.Row="2"  Background="#FF0F2948" Height="20" >

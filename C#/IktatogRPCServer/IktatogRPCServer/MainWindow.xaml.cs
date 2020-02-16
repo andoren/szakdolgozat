@@ -45,7 +45,7 @@ namespace IktatogRPCServer
                     
                 };
                 server.Start();
-                MessageBox.Show("The server has started successfully");
+               
 
         }
             catch (Exception ex)

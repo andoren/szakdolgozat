@@ -23,14 +23,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!--<Grid x:Name="ViewLabel" Grid.Row="0" Background="#FF0F2948" Height="80" Margin="0">
-            <TextBlock Margin="10"  FontSize="30" VerticalAlignment="Center"  Foreground="White">Iktatás</TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource LoginButtons}" Margin="15" Width="150" Height="50">Iktat</Button>
-                <Button Style="{StaticResource LoginButtons}" Margin="15" Width="150" Height="50">
-                    <TextBlock TextAlignment="Center"  TextWrapping="Wrap">Dokumentum hozzáadása</TextBlock></Button>
-            </StackPanel>
-        </Grid>-->
         <Grid Background="White"  Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -50,22 +42,37 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+
                 </Grid.RowDefinitions>
                 <!--1. oszlop Labels-->
                 <TextBlock  Style="{StaticResource TextBlockForIktatas}">Telephely:</TextBlock>
                 <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Iktatási csoport:</TextBlock>
-                <TextBlock Grid.Row="2"  Style="{StaticResource TextBlockForIktatas}">Jelleg:</TextBlock>
-                <TextBlock Grid.Row="3" Style="{StaticResource TextBlockForIktatas}">Ügyintéző:</TextBlock>
+
                 <!--1. oszlop adatbeviteli mezők-->
                 <ComboBox Grid.Row="0" Grid.Column="1" IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A" Margin="5,10" ></ComboBox>
                 <ComboBox Grid.Row="1" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
-                <ComboBox Grid.Row="2" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
-                <ComboBox Grid.Row="3" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
+
                 <!--1. oszlop iktatás gomb-->
-                <Button Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource LoginButtons}" Margin="5" Height="30"  >Iktatás</Button>
+                <Grid Margin="5" Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="0"  Style="{StaticResource TextBlockForIktatas}">Megjegyzés:</TextBlock>
+                    <TextBox TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalContentAlignment="Top"
+                             HorizontalScrollBarVisibility="Disabled"
+                             VerticalScrollBarVisibility="Auto" 
+                             Margin="0,0,0,5" 
+                             Grid.Row="1" 
+                             VerticalAlignment="Stretch" 
+                             SpellCheck.IsEnabled="True"
+                             MaxHeight="123"
+                             Style="{StaticResource loginTextBox}"  ></TextBox>
+                </Grid>
+                
             </Grid>
             <!--2. oszlop adatfeltöltésnél-->
             <Grid Grid.Column="1">
@@ -100,36 +107,30 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
-                  
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <!--3. oszlop Labels-->
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Érkezett:</TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockForIktatas}">Határidő:</TextBlock>
-                    
-                    
-                </StackPanel>
+                <TextBlock Grid.Row="0"  Style="{StaticResource TextBlockForIktatas}">Jelleg:</TextBlock>
+                <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Ügyintéző:</TextBlock>
+                <TextBlock Grid.Row="2" Style="{StaticResource TextBlockForIktatas}">Érkezett:</TextBlock>
+                <TextBlock Grid.Row="3" Style="{StaticResource TextBlockForIktatas}">Határidő:</TextBlock>
                 <!--3. oszlop adatbeviteli mezők-->
-                <StackPanel Grid.Column="1">
-                    <StackPanel>
-                        <DatePicker Margin="5,10" ></DatePicker>
-                        <DatePicker Margin="5,0" ></DatePicker>
-                    </StackPanel>
-                    
-                </StackPanel>
-                <Grid Margin="5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Margin="0"  Style="{StaticResource TextBlockForIktatas}">Megjegyzés:</TextBlock>
-                    <TextBox Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Stretch" Style="{StaticResource loginTextBox}"  ></TextBox>
-                </Grid>
-                
+                <ComboBox Grid.Row="0" Grid.Column="1" IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A" Margin="5,10" ></ComboBox>
+                <ComboBox Grid.Row="1" Grid.Column="1"  IsEditable="True" BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></ComboBox>
+                <DatePicker Grid.Row="2" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
+                <DatePicker Grid.Row="3" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
+                <!--3. oszlop iktatás gomb-->
+   
+
+           
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Style="{StaticResource LoginButtons}" Margin="5"   >Iktatás</Button>
+
             </Grid>
         </Grid>
         <DataGrid Grid.Row="2" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" >

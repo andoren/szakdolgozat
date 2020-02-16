@@ -5,9 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             Background="Transparent"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Background="Transparent" d:DesignWidth="800" Height="auto">
+   
     <Grid>
-        <TextBlock>Főoldal vagyok</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition  Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="15,15,15,0" FontSize="40" Foreground="#FF036A9A">
+            Üdvözöllek !
+        </TextBlock>
+        <StackPanel Grid.Column="1" Grid.Row="1" x:Name="SubSentencePanel" >
+            <TextBlock HorizontalAlignment="Center" Margin="15,0,15,10" FontSize="20" Foreground="#FF036A9A">Célunk az egyszerű iktatás a számotokra!</TextBlock>
+            <Line Stroke="#FF036A9A" Fill="#FF036A9A" Margin="15,0" StrokeThickness="2" X1="0" X2="{Binding ElementName=SubSentencePanel, Path=ActualWidth}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  ></Line>
+        </StackPanel>
+        <Image Margin="10" Grid.Row="2" Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png" Width="150" Height="150" />
+        <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Background="#FF0F2948">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
+                </Grid>
+                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
+                <Grid Grid.Row="2" Background="#FFE0E0E0">
+                    <StackPanel Margin="5">
+                        <TextBlock>Látogasd meg:</TextBlock>
+                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Background="#FF0F2948">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
+                </Grid>
+                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
+                <Grid Grid.Row="2" Background="#FFE0E0E0">
+                    <StackPanel Margin="5">
+                        <TextBlock>Látogasd meg:</TextBlock>
+                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Background="#FF0F2948">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
+                </Grid>
+                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
+                <Grid Grid.Row="2" Background="#FFE0E0E0">
+                    <StackPanel Margin="5">
+                        <TextBlock>Látogasd meg:</TextBlock>
+                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="3" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Background="#FF0F2948">
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
+                </Grid>
+                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
+                <Grid Grid.Row="2" Background="#FFE0E0E0">
+                    <StackPanel Margin="5">
+                        <TextBlock>Látogasd meg:</TextBlock>
+                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
+   
 </UserControl>
