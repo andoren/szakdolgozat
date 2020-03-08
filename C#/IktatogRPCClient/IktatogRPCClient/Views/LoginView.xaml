@@ -6,14 +6,11 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         FontSize="25"
-        FontFamily="Roboto"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" 
-        
+        FontFamily="Roboto"    
         Title="Iktatás" Height="800" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        cal:Message.Attach="[Event KeyDown] = [Action IsEnterPressed($eventArgs)]"
-        
+        cal:Message.Attach="[Event KeyDown] = [Action IsEnterPressed($eventArgs)]" Icon="/IktatogRPCClient;component/Resources/iconwhite.png" 
         >
 
     <Grid Background="#43464B" >

@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="15,10">
+            <ComboBox HorizontalAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="15,10">
                 <ComboBox.Effect>
                     <DropShadowEffect/>
                 </ComboBox.Effect>
@@ -44,12 +44,12 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <Image Height="24" Source="/IktatogRPCClient;component/Resources/searchicon.png"></Image>
-                    <TextBox BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}"></TextBox>
-                    <ComboBox x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"   ></ComboBox>
+                    <TextBox BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
+                    <ComboBox x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"></ComboBox>
                 </Grid>
             </Grid>
             <Grid Grid.Column="2">
-                <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Margin="10" HorizontalAlignment="right" Orientation="Horizontal">
                     <StackPanel.Effect>
                         <DropShadowEffect/>
                     </StackPanel.Effect>
