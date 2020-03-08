@@ -1,5 +1,8 @@
 ﻿using Caliburn.Micro;
+using Iktato;
+using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +16,10 @@ namespace IktatogRPCClient.ViewModels
         
         public TorzsViewModel()
         {
-            EventAggregatorSingleton.GetInstance().Subscribe(this);
+            UgyintezokViewModel = SceneManager.CreateScene(Scenes.Ugyintezok);
+            Items.Add(UgyintezokViewModel);
         }
+        public Screen UgyintezokViewModel { get; private set; }
 
     }
 }

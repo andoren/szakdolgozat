@@ -12,6 +12,8 @@ namespace IktatogRPCClient.Models.Scenes
         Fooldal,
         Iktato,
         Torzs,
-        Kereses
+        Kereses,
+        Ugyintezok,
+        AddUgyintezo
     }
 }

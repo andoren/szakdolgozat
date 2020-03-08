@@ -73,6 +73,7 @@
     <Compile Include="Models\Managers\Scenes\Exceptions\InvalidSceneExeption.cs" />
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
+    <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
@@ -81,6 +82,10 @@
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
+    <Compile Include="ViewModels\UgyintezokViewModel.cs" />
+    <Compile Include="Views\AddUgyintezoView.xaml.cs">
+      <DependentUpon>AddUgyintezoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ContainerView.xaml.cs">
       <DependentUpon>ContainerView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +106,9 @@
     </Compile>
     <Compile Include="Views\TorzsView.xaml.cs">
       <DependentUpon>TorzsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UgyintezokView.xaml.cs">
+      <DependentUpon>UgyintezokView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddUgyintezoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TorzsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UgyintezokView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

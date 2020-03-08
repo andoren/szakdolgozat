@@ -43,7 +43,7 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid Background="#FF0F2948">
+                <Grid Background="#FF036A9A">
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
                 </Grid>
                 <Grid Background="AliceBlue" Grid.Row="1"></Grid>
@@ -64,7 +64,7 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid Background="#FF0F2948">
+                <Grid Background="#FF036A9A">
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
                 </Grid>
                 <Grid Background="AliceBlue" Grid.Row="1"></Grid>
@@ -85,7 +85,7 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid Background="#FF0F2948">
+                <Grid Background="#FF036A9A">
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
                 </Grid>
                 <Grid Background="AliceBlue" Grid.Row="1"></Grid>
@@ -106,7 +106,7 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid Background="#FF0F2948">
+                <Grid Background="#FF036A9A">
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
                 </Grid>
                 <Grid Background="AliceBlue" Grid.Row="1"></Grid>

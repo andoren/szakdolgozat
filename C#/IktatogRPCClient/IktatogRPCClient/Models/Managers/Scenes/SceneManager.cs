@@ -11,7 +11,7 @@ namespace IktatogRPCClient.Managers
 {
     class SceneManager
     {
-        public Screen CreateScene(Scenes scene)
+        public static Screen CreateScene(Scenes scene)
         {
             Screen screen = null;
             switch (scene) {
@@ -34,6 +34,16 @@ namespace IktatogRPCClient.Managers
                 case Scenes.Torzs:
                     {
                         screen = new TorzsViewModel();
+                        break;
+                    }
+                case Scenes.Ugyintezok:
+                    {
+                        screen = new UgyintezokViewModel();
+                        break;
+                    }
+                case Scenes.AddUgyintezo:
+                    {
+                        screen = new AddUgyintezoViewModel();
                         break;
                     }
                 default:

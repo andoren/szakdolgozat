@@ -72,6 +72,7 @@ namespace IktatogRPCClient.ViewModels
                 LoaderIsVisible = true;
                 await ConnectToServerAndLogin();
                 var manager = new WindowManager();
+                ServerHelper.GetInstance("Egy ideig ez lesz a token");
                 manager.ShowWindow(new ContainerViewModel(user), null, null);
                 TryClose();
             }

@@ -21,7 +21,6 @@ namespace IktatogRPCClient.ViewModels
             CurrentMenu = "Főoldal";
             ChangeCurrentMenuLabel(user.Fullname,user.Privilege.Name);
         }
-        SceneManager sceneManager = new SceneManager();
         private string _currentMenu;
         private User user;
         public string CurrentMenu
@@ -71,7 +70,7 @@ namespace IktatogRPCClient.ViewModels
             CurrentMenu = $"{name} - {Role}";
         }
         private void ChangeScene(Scenes scene) {
-            ActivateItem(sceneManager.CreateScene(scene));
+            ActivateItem(SceneManager.CreateScene(scene));
         }
 
     }
