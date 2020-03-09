@@ -46,6 +46,11 @@ namespace IktatogRPCClient.Managers
                         screen = new AddUgyintezoViewModel();
                         break;
                     }
+                case Scenes.ModifyUgyintezo:
+                    {
+                        screen = new ModifyUgyintezoViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

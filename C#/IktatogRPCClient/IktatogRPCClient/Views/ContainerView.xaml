@@ -21,7 +21,7 @@
 
         <!--Főmenü-->
         <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="#FF036A9A">
-            <Grid  Background="#FF036A9A" >
+            <Grid UseLayoutRounding="True" SnapsToDevicePixels="True"  Background="#FF036A9A" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>

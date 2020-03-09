@@ -45,6 +45,12 @@ namespace IktatogRPCClient.Models.Managers
         {
 
         }
+
+        public bool ModifyUgyintezo(Ugyintezo modifiedUgyintezo)
+        {
+            return true;
+        }
+
         private ServerHelper(string token)
         {
             this.token = new AuthToken() { Token = token };
@@ -69,7 +75,7 @@ namespace IktatogRPCClient.Models.Managers
             await client.LogoutAsync(new EmptyMessage(), calloptions);
         }
 
-        internal Ugyintezo AddUgyintezoToTelephely(Telephely valasztottTelephely, string ugyintezoNeve)
+        public Ugyintezo AddUgyintezoToTelephely(Telephely valasztottTelephely, string ugyintezoNeve)
         {
             return new Ugyintezo() {Id = new Random().Next(1,100),Name = ugyintezoNeve };
         }

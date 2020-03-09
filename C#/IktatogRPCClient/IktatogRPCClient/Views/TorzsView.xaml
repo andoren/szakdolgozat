@@ -9,21 +9,17 @@
              FontFamily="Roboto"
              d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ContentControl x:Name="UgyintezokViewModel"/>
+
+        <WrapPanel>
+            <ContentControl x:Name="UgyintezokViewModel"/>
+            <ContentControl x:Name="TelephelyViewModel"/>
+            <ContentControl x:Name="CsoportViewModel"/>
+            <ContentControl x:Name="JellegViewModel"/>
+            <ContentControl x:Name="FelhasználóViewModel"/>
+            <ContentControl x:Name="PartnerViewModel"/>
+        </WrapPanel>
+        
+        
+        
     </Grid>
 </UserControl>

@@ -14,6 +14,7 @@ namespace IktatogRPCClient.Models.Scenes
         Torzs,
         Kereses,
         Ugyintezok,
-        AddUgyintezo
+        AddUgyintezo,
+        ModifyUgyintezo
     }
 }

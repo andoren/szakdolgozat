@@ -11,18 +11,19 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>
+    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>,IHandle<(Telephely,Ugyintezo)>
     {
         public UgyintezokViewModel()
         {
-            EventAggregatorSingleton.GetInstance().Subscribe(this);
+            eventAggergator.Subscribe(this);
             LoadData();
         }
         private void LoadData() {
             ValaszthatoTelephely = serverHelper.GetTelephelyek();
             ValasztottTelephely = ValaszthatoTelephely.First();
-           
+      
         }
+        private EventAggregatorSingleton eventAggergator = EventAggregatorSingleton.GetInstance(); 
         private ServerHelper serverHelper = ServerHelper.GetInstance();
         private BindableCollection<Telephely> _valaszthatoTelephely;
         private BindableCollection<Ugyintezo> _telephelyUgyintezoi;
@@ -41,7 +42,7 @@ namespace IktatogRPCClient.ViewModels
             get { return _valasztottTelephely; }
             set {
                 _valasztottTelephely = value;
-                NotifyOfPropertyChange(() => ValaszthatoTelephely);
+                NotifyOfPropertyChange(() => ValasztottTelephely);
                 TelephelyUgyintezoi = serverHelper.GetUgyintezokByTelephely(value);
             }
         }     
@@ -61,11 +62,11 @@ namespace IktatogRPCClient.ViewModels
         public bool CreationIsVisible
         {
             get {
-                ActivateItem(SceneManager.CreateScene(Scenes.AddUgyintezo));
+                
                 return !UgyintezokIsVisible;
             }
+
         }
-       
         public BindableCollection<Ugyintezo> TelephelyUgyintezoi
         {
             get { return _telephelyUgyintezoi; }
@@ -80,16 +81,17 @@ namespace IktatogRPCClient.ViewModels
         public Ugyintezo ValasztottUgyintezo
         {
             get { return _valasztottUgyintezo; }
-            set {
+            set
+            {
                 _valasztottUgyintezo = value;
                 NotifyOfPropertyChange(() => ValasztottUgyintezo);
                 NotifyOfPropertyChange(() => CanRemoveUgyintezo);
+                NotifyOfPropertyChange(() => CanModifyUgyintezo);
             }
         }
-
-
         public void CreateUgyintezo() {
             UgyintezokIsVisible = false;
+            ActivateItem(SceneManager.CreateScene(Scenes.AddUgyintezo));
         }
         public void RemoveUgyintezo() {
             if (serverHelper.RemoveUgyintezoFromTelephely(ValasztottUgyintezo))
@@ -104,12 +106,47 @@ namespace IktatogRPCClient.ViewModels
                 return ValasztottUgyintezo != null;
             }
         }
+        public void ModifyUgyintezo() {
+            UgyintezokIsVisible = false;
+            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyUgyintezo);
+            eventAggergator.Subscribe(modifyScreen);
+            ActivateItem(modifyScreen);
+            eventAggergator.PublishOnUIThread(ValasztottUgyintezo);               
+        }
+        public bool CanModifyUgyintezo {
+            get {
+                return ValasztottUgyintezo != null;
+            }
+        }
         public void Handle(Ugyintezo message)
         {
+            if (message != ValasztottUgyintezo) {
+                UgyintezokIsVisible = true;
+                if (!string.IsNullOrWhiteSpace(message.Name)) {
 
+                    TelephelyUgyintezoi.Remove(ValasztottUgyintezo);
+                    TelephelyUgyintezoi.Add(message);
+                    
+                    NotifyOfPropertyChange(() => TelephelyUgyintezoi);
+                }
+            }
+        }
+
+        public void Handle((Telephely, Ugyintezo) message)
+        {
             UgyintezokIsVisible = true;
-            if(!string.IsNullOrWhiteSpace(message.Name))TelephelyUgyintezoi.Add(message);
-            NotifyOfPropertyChange(()=>TelephelyUgyintezoi);
+            if (message.Item1.Name == ValasztottTelephely.Name)
+            {             
+                if (!string.IsNullOrWhiteSpace(message.Item2.Name))
+                {
+                    TelephelyUgyintezoi.Add(message.Item2);
+                }
+                NotifyOfPropertyChange(() => TelephelyUgyintezoi);
+            }
+        }
+
+        ~UgyintezokViewModel() {
+            eventAggergator.Unsubscribe(this);
         }
     }
 }

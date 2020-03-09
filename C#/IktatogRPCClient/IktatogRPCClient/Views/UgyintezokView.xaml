@@ -4,32 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
-             mc:Ignorable="d" Background="White"
-             d:DesignHeight="400" d:DesignWidth="300">
-    <Grid>
+             mc:Ignorable="d" 
+             SnapsToDevicePixels="True"
+             
+             MinHeight="400" MinWidth="300">
+    <Border BorderBrush="#FF036A9A" BorderThickness="3" Margin="0" Padding="0">
+        <Grid Margin="0">
+            <Grid x:Name="UgyintezokIsVisible" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Ügyintézők</TextBlock>
+                    <TextBlock FontSize="20" Margin="5">Telephely</TextBlock>
+                    <ComboBox Margin="5 0" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
+                    <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="5 0">Ügyintézők a telephelyen</TextBlock>
+                </StackPanel>
+                <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="TelephelyUgyintezoi" SelectedItem="{Binding Path=ValasztottUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" />
+                <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+                    <Button x:Name="CreateUgyintezo" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
+                    <Button x:Name="ModifyUgyintezo" Background="Green" Foreground="White"  Padding="15" Margin="0,5,5,5">Módosítás</Button>
+                    <Button x:Name="RemoveUgyintezo" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="0,5,5,5">Törlés</Button>
+                </StackPanel>
+             </Grid>
+            <Grid Grid.Row="0" x:Name="CreationIsVisible">
+                <ContentControl  x:Name="ActiveItem"/>
+            </Grid>
 
-        <Grid x:Name="UgyintezokIsVisible" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Orientation="Vertical">
-            <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Ügyintézők</TextBlock>
-            <TextBlock FontSize="20" Margin="10">Telephely</TextBlock>
-            <ComboBox Margin="10,0,10,5" ItemsSource="{Binding Path=ValaszthatoTelephely}" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
-            <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="10">Ügyintézők a telephelyen</TextBlock>
-        </StackPanel>
-        <ListBox Margin="5" Grid.Row="1" MinHeight="200" ItemsSource="{Binding Path=TelephelyUgyintezoi}" SelectedItem="{Binding Path=ValasztottUgyintezo}" DisplayMemberPath="Name" />
-            <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                <Button x:Name="CreateUgyintezo" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                <Button x:Name="RemoveUgyintezo" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Törlés</Button>
-            </StackPanel>
         </Grid>
-        <Grid x:Name="CreationIsVisible">
-
-            <ContentControl x:Name="ActiveItem"/>
-        </Grid>
-    </Grid>
+    </Border>
 </UserControl>

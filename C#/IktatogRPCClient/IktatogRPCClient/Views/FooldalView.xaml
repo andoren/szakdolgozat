@@ -26,7 +26,8 @@
             <TextBlock HorizontalAlignment="Center" Margin="15,0,15,10" FontSize="20" Foreground="#FF036A9A">Célunk az egyszerű iktatás a számotokra!</TextBlock>
             <Line Stroke="#FF036A9A" Fill="#FF036A9A" Margin="15,0" StrokeThickness="2" X1="0" X2="{Binding ElementName=SubSentencePanel, Path=ActualWidth}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  ></Line>
         </StackPanel>
-        <Image Margin="10" Grid.Row="2" Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png" Width="150" Height="150" />
+        <Image Margin="10" Grid.Row="4" Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png"  />
+        <!--
         <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -119,6 +120,7 @@
                 </Grid>
             </Grid>
         </Grid>
+        -->
     </Grid>
    
 </UserControl>

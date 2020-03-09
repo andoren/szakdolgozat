@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Iktato;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddUgyintezoViewModel:Screen
+    class AddUgyintezoViewModel:TorzsDataView<Ugyintezo>
     {
         public AddUgyintezoViewModel()
         {
             LoadData();
         }
         private void LoadData() {
-            serverHelper = ServerHelper.GetInstance();
+
             ValaszthatoTelephely = serverHelper.GetTelephelyek();
-            ValasztottTelephely = ValaszthatoTelephely.First();
+            
         }
         private BindableCollection<Telephely> _valaszthatoTelephely = new BindableCollection<Telephely>();
         private Telephely _valasztottTelephely;
-        private ServerHelper serverHelper;
+
         public BindableCollection<Telephely> ValaszthatoTelephely
         {
             get { return _valaszthatoTelephely; }
@@ -39,6 +40,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _valasztottTelephely = value;
                 NotifyOfPropertyChange(() => ValaszthatoTelephely);
+                NotifyOfPropertyChange(() => CanUgyintezoNeve);
             }
         }
         private string _ugyintezoNeve;
@@ -52,7 +54,9 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(()=>CanCreateUgyintezo);
             }
         }
-
+        public bool CanUgyintezoNeve {
+            get { return ValasztottTelephely != null; }
+        }
         public bool CanCreateUgyintezo
         {
             get
@@ -69,14 +73,11 @@ namespace IktatogRPCClient.ViewModels
             else if (ugyintezoNeve.Length < 5 || ugyintezoNeve.Length > 100) isValid = false;
             return isValid;
         }
-        public void CreateUgyintezo() {
+        public override void DoAction() {
             Ugyintezo NewUgyintezo = serverHelper.AddUgyintezoToTelephely(ValasztottTelephely,UgyintezoNeve);
-            EventAggregatorSingleton.GetInstance().PublishOnUIThread(NewUgyintezo);
+            eventAggregator.PublishOnUIThread((ValasztottTelephely,NewUgyintezo));
             TryClose();
         }
-        public void CancelUgyintezo() {
-            EventAggregatorSingleton.GetInstance().PublishOnUIThread(new Ugyintezo());
-            TryClose();
-        }
+
     }
 }
