@@ -9,17 +9,23 @@
              FontFamily="Roboto"
              d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
-
-        <WrapPanel>
-            <ContentControl x:Name="UgyintezokViewModel"/>
-            <ContentControl x:Name="TelephelyViewModel"/>
-            <ContentControl x:Name="CsoportViewModel"/>
-            <ContentControl x:Name="JellegViewModel"/>
-            <ContentControl x:Name="FelhasználóViewModel"/>
-            <ContentControl x:Name="PartnerViewModel"/>
-        </WrapPanel>
-        
-        
+        <StackPanel Orientation="Vertical">
+            <TextBlock FontSize="24" Margin="5">Felhasználói beállítások:</TextBlock>
+             <WrapPanel Margin="5 0">
+                <ContentControl x:Name="UgyintezokViewModel"/>
+                <ContentControl x:Name="JellegViewModel"/>
+                <ContentControl x:Name="PartnerViewModel"/>
+            </WrapPanel>
+            <StackPanel x:Name="AdminSettingsIsVisible">
+                <TextBlock FontSize="24" Margin="5">Adminisztrátori beállítások:</TextBlock>
+                <WrapPanel Margin="5 0">
+                    <ContentControl x:Name="TelephelyViewModel"/>
+                    <ContentControl x:Name="FelhasználóViewModel"/>
+                    <ContentControl x:Name="CsoportViewModel"/>
+                </WrapPanel>
+            </StackPanel>
+  
+        </StackPanel>
         
     </Grid>
 </UserControl>

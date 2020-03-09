@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Iktato;
+using IktatogRPCServer.Database.Mysql;
+
 namespace IktatogRPCServer.Service
 {
     class SerivceForgRPC:IktatoService.IktatoServiceBase
@@ -12,7 +14,7 @@ namespace IktatogRPCServer.Service
         readonly TokenSerivce TokenManager = new TokenSerivce();
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
-            UserDatabaseManager userManager = new UserDatabaseManager();
+            UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
             User user;
             if (userManager.IsValidUser(request, out user)) {
 

@@ -9,7 +9,7 @@ namespace IktatogRPCServer.Database
 {
     public class ConnectionManager
     {
-        string ConnectionString
+          string ConnectionString
         {
             get
             {

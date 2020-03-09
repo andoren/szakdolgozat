@@ -67,9 +67,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
+    <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\InvalidCallOperation.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\LoginErrorException.cs" />
-    <Compile Include="Models\Managers\Helpers\Server\ServerHelper.cs" />
+    <Compile Include="Models\Managers\Helpers\Server\ServerHelperSingleton.cs" />
     <Compile Include="Models\Managers\Scenes\Exceptions\InvalidSceneExeption.cs" />
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
@@ -206,9 +207,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Managers\Helpers\Client\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\loginLogo.png" />
   </ItemGroup>

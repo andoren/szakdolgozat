@@ -118,7 +118,6 @@
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
     <Compile Include="Service\SerivceForgRPC.cs" />
     <Compile Include="Service\TokenSerivce.cs" />
-    <Compile Include="Service\UserDatabaseManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

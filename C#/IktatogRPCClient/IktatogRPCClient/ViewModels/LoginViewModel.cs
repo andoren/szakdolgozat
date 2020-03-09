@@ -2,6 +2,7 @@
 using Grpc.Core;
 using Iktato;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,12 @@ namespace IktatogRPCClient.ViewModels
 {
     class LoginViewModel:Screen
     {
-        User user;
+   
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "OtemplomIktato";
         const string keyName = userRoot + "\\" + subkey;
         private string _usernameBox;
+        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
 
         public string UsernameBox
         {
@@ -51,7 +53,7 @@ namespace IktatogRPCClient.ViewModels
         {
             CheckUsername();
             CheckPassword();
-            user = await ServerHelper.Login(GetDataFromLoginTextBoxes());
+            await userHelper.Login(GetDataFromLoginTextBoxes());
             if(SaveUsernameIsChecked)Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
         }
         private LoginMessage GetDataFromLoginTextBoxes() {            
@@ -72,8 +74,7 @@ namespace IktatogRPCClient.ViewModels
                 LoaderIsVisible = true;
                 await ConnectToServerAndLogin();
                 var manager = new WindowManager();
-                ServerHelper.GetInstance("Egy ideig ez lesz a token");
-                manager.ShowWindow(new ContainerViewModel(user), null, null);
+                manager.ShowWindow(new ContainerViewModel(), null, null);
                 TryClose();
             }
             catch (Exception e) {

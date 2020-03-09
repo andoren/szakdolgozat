@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,16 @@ namespace IktatogRPCClient.ViewModels
     class ContainerViewModel : Conductor<Screen>
     {
        
-        public ContainerViewModel(User user)
+        public ContainerViewModel()
         {
             Fooldal();
-            this.user = user;
+       
             CurrentMenu = "Főoldal";
-            ChangeCurrentMenuLabel(user.Fullname,user.Privilege.Name);
+            ChangeCurrentMenuLabel(userHelper.CurrentUser.Fullname, userHelper.CurrentUser.Privilege.Name);
         }
         private string _currentMenu;
-        private User user;
+
+        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
         public string CurrentMenu
         {
             get { return _currentMenu; }

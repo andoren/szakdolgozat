@@ -16,7 +16,7 @@ namespace IktatogRPCClient.Models
 
         }
         protected EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
-        protected ServerHelper serverHelper = ServerHelper.GetInstance();
+        protected ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         protected override void OnActivate()
         {
             eventAggregator.Subscribe(this);

@@ -24,7 +24,7 @@ namespace IktatogRPCClient.ViewModels
       
         }
         private EventAggregatorSingleton eventAggergator = EventAggregatorSingleton.GetInstance(); 
-        private ServerHelper serverHelper = ServerHelper.GetInstance();
+        private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         private BindableCollection<Telephely> _valaszthatoTelephely;
         private BindableCollection<Ugyintezo> _telephelyUgyintezoi;
         private Telephely _valasztottTelephely;

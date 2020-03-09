@@ -2,6 +2,7 @@
 using Iktato;
 using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace IktatogRPCClient.ViewModels
             Items.Add(UgyintezokViewModel);
         }
         public Screen UgyintezokViewModel { get; private set; }
+        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
+
+        public bool AdminSettingsIsVisible {
+            get{
+                return userHelper.IsAdmin;
+            }
+        }
 
     }
 }

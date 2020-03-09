@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
         
         <Border Grid.Row="1"  Background="#FF0F2948" BorderThickness="0,0,2,0" BorderBrush="#FF036A9A">
-            <StackPanel Margin="5,100" >
+            <StackPanel Margin="5,80" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -36,7 +36,7 @@
 
                 </Grid>
 
-                <!--<TextBlock Foreground="White" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50">Iktatás</TextBlock>-->
+                
                 <TextBlock Foreground="White"  Margin="10,50,0,5">Felhasználónév:</TextBlock>
                 <Grid Margin="10,0,10,0" Background="White">
                     <Grid.ColumnDefinitions>
