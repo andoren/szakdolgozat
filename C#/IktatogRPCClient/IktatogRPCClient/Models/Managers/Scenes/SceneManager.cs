@@ -51,6 +51,11 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyUgyintezoViewModel();
                         break;
                     }
+                case Scenes.Telephelyek:
+                    {
+                        screen = new TelephelyekViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

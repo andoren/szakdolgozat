@@ -59,6 +59,11 @@ namespace IktatogRPCClient.Models.Managers
             return channel;
         }
 
+        public bool RemoveTelephely(Telephely selectedTelephely)
+        {
+            return true;
+        }
+
         public async void Logout() {
             await client.LogoutAsync(new EmptyMessage(), calloptions);
         }
@@ -67,8 +72,6 @@ namespace IktatogRPCClient.Models.Managers
         {
             return new Ugyintezo() {Id = new Random().Next(1,100),Name = ugyintezoNeve };
         }
-
-
 
         public bool RemoveUgyintezoFromTelephely(Ugyintezo valasztottUgyintezo)
         {

@@ -18,9 +18,12 @@ namespace IktatogRPCClient.ViewModels
         public TorzsViewModel()
         {
             UgyintezokViewModel = SceneManager.CreateScene(Scenes.Ugyintezok);
+            TelephelyekViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
             Items.Add(UgyintezokViewModel);
+            Items.Add(TelephelyekViewModel);
         }
         public Screen UgyintezokViewModel { get; private set; }
+        public Screen TelephelyekViewModel { get; private set; }
         private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
 
         public bool AdminSettingsIsVisible {

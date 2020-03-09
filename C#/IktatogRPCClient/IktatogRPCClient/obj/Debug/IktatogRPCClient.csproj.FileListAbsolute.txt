@@ -116,3 +116,5 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\AddUgyintezoView.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\ModifyUgyintezoView.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\ModifyUgyintezoView.baml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\TelephelyekView.g.cs
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Debug\Views\TelephelyekView.baml

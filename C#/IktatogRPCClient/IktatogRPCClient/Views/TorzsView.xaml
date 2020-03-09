@@ -9,6 +9,7 @@
              FontFamily="Roboto"
              d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Orientation="Vertical">
             <TextBlock FontSize="24" Margin="5">Felhasználói beállítások:</TextBlock>
              <WrapPanel Margin="5 0">
@@ -16,16 +17,16 @@
                 <ContentControl x:Name="JellegViewModel"/>
                 <ContentControl x:Name="PartnerViewModel"/>
             </WrapPanel>
-            <StackPanel x:Name="AdminSettingsIsVisible">
+            <StackPanel Margin="0,10" x:Name="AdminSettingsIsVisible">
                 <TextBlock FontSize="24" Margin="5">Adminisztrátori beállítások:</TextBlock>
                 <WrapPanel Margin="5 0">
-                    <ContentControl x:Name="TelephelyViewModel"/>
+                    <ContentControl x:Name="TelephelyekViewModel"/>
                     <ContentControl x:Name="FelhasználóViewModel"/>
                     <ContentControl x:Name="CsoportViewModel"/>
                 </WrapPanel>
             </StackPanel>
   
         </StackPanel>
-        
+        </ScrollViewer>
     </Grid>
 </UserControl>
