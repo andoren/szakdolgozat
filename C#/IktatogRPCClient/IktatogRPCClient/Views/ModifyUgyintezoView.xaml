@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             MinHeight="200" MinWidth="300">
+             MinHeight="200" MinWidth="380" FontSize="18" >
     <Grid>
         <Grid >
             <Grid.RowDefinitions>

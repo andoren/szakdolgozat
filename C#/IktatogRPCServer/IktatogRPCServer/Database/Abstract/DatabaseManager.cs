@@ -9,6 +9,7 @@ namespace IktatogRPCServer.Database.Abstract
     public abstract class DatabaseManager<T>
     {
         protected ConnectionManager connectionManager;
+        private DatabaseManager() { }
         public DatabaseManager(ConnectionManager connectionManager)
         {
             this.connectionManager = connectionManager;

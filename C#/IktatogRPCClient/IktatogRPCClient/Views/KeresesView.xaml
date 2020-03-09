@@ -30,13 +30,13 @@
             </Grid.ColumnDefinitions>
             <ComboBox HorizontalAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="15,10">
                 <ComboBox.Effect>
-                    <DropShadowEffect/>
+                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </ComboBox.Effect>
             </ComboBox>
             <Grid VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,5">
                 <Grid Background="White">
                     <Grid.Effect>
-                        <DropShadowEffect/>
+                        <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                     </Grid.Effect>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
@@ -51,7 +51,7 @@
             <Grid Grid.Column="2">
                 <StackPanel Margin="10" HorizontalAlignment="right" Orientation="Horizontal">
                     <StackPanel.Effect>
-                        <DropShadowEffect/>
+                        <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                     </StackPanel.Effect>
                     <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="100" Height="40" Foreground="Black" Content="Előző"/>
                     <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="1"/>

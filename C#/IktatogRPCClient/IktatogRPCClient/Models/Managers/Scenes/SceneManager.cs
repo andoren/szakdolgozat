@@ -66,6 +66,11 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyTelephelyViewModel();
                         break;
                     }
+                case Scenes.Csoportok:
+                    {
+                        screen = new CsoportokViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

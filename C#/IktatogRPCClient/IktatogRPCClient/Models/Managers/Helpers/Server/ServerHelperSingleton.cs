@@ -32,6 +32,14 @@ namespace IktatogRPCClient.Models.Managers
         }
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
+
+        internal BindableCollection<Csoport> GetCsoportokByTelephely(Telephely selectedTelephely)
+        {
+            if (selectedTelephely.Name == "Rákóczi")
+                return new BindableCollection<Csoport>() { new Csoport() { Id = 3, Name = "Munkaügy" , Shortname= "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" }, new Csoport() { Id = 1, Name = "Konyha", Shortname = "K" } };
+            else return new BindableCollection<Csoport>() { new Csoport() { Id = 10, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" } };
+        }
+
         private static readonly object lockable = new object();
 
         public static ServerHelperSingleton GetInstance()
