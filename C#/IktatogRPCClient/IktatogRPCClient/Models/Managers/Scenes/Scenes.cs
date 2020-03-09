@@ -17,6 +17,7 @@ namespace IktatogRPCClient.Models.Scenes
         AddUgyintezo,
         ModifyUgyintezo,
         Telephelyek,
-        AddTelephely
+        AddTelephely,
+        ModifyTelephely
     }
 }

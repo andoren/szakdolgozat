@@ -56,6 +56,16 @@ namespace IktatogRPCClient.Managers
                         screen = new TelephelyekViewModel();
                         break;
                     }
+                case Scenes.AddTelephely:
+                    {
+                        screen = new AddTelephelyViewModel();
+                        break;
+                    }
+                case Scenes.ModifyTelephely:
+                    {
+                        screen = new ModifyTelephelyViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

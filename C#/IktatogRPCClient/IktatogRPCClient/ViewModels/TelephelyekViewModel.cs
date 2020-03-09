@@ -19,11 +19,12 @@ namespace IktatogRPCClient.ViewModels
         }
         private  void LoadData() {
             Telephelyek = serverHelper.GetTelephelyek();
-           
+            eventAggregator.Subscribe(this);
         }
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         private BindableCollection<Telephely> _telephelyek;
         private Telephely _selectedTelephely;
+        private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         public BindableCollection<Telephely> Telephelyek
         {
             get { return _telephelyek; }
@@ -39,7 +40,7 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _telephelyekIsVisible = value;
                 NotifyOfPropertyChange(() => TelephelyekIsVisible);
-                NotifyOfPropertyChange(() =>CreationIsVisible);
+                NotifyOfPropertyChange(() => CreationIsVisible);
             }
         }
         public bool CreationIsVisible {
@@ -74,8 +75,12 @@ namespace IktatogRPCClient.ViewModels
             TelephelyekIsVisible = false;
             ActivateItem(SceneManager.CreateScene(Scenes.AddTelephely));
         }
-        public void ModifyTelephely() { 
-        
+        public void ModifyTelephely() {
+            TelephelyekIsVisible = false;
+            Screen modifyTelephelyScreen = SceneManager.CreateScene(Scenes.ModifyTelephely);
+            eventAggregator.Subscribe(modifyTelephelyScreen);
+            eventAggregator.PublishOnUIThread(SelectedTelephely);
+            ActivateItem(modifyTelephelyScreen);
         }
  
 
@@ -91,13 +96,20 @@ namespace IktatogRPCClient.ViewModels
         public void Handle(Telephely message)
         {
             if (message != SelectedTelephely) {
-                TelephelyekIsVisible = true;
+                
                 Telephely telephely = Telephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
-                if (!string.IsNullOrWhiteSpace(message.Name))
+                if (telephely != null) {
+                    Telephelyek.Remove(SelectedTelephely);
+                    Telephelyek.Add(message);
+                }
+                else if (!string.IsNullOrWhiteSpace(message.Name))
                 {
 
                     Telephelyek.Add(message);
                 }
+                TelephelyekIsVisible = true;
+                NotifyOfPropertyChange(()=>Telephelyek);
+                
             }
             
         }

@@ -75,6 +75,7 @@
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
+    <Compile Include="ViewModels\AddTelephelyViewModel.cs" />
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
@@ -83,10 +84,14 @@
     <Compile Include="Models\Exceptions\InvalidPasswordException.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ModifyTelephelyViewModel.cs" />
     <Compile Include="ViewModels\ModifyUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\TelephelyekViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
     <Compile Include="ViewModels\UgyintezokViewModel.cs" />
+    <Compile Include="Views\AddTelephelyView.xaml.cs">
+      <DependentUpon>AddTelephelyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddUgyintezoView.xaml.cs">
       <DependentUpon>AddUgyintezoView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +112,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyTelephelyView.xaml.cs">
+      <DependentUpon>ModifyTelephelyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyUgyintezoView.xaml.cs">
       <DependentUpon>ModifyUgyintezoView.xaml</DependentUpon>
@@ -170,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddTelephelyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddUgyintezoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyTelephelyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

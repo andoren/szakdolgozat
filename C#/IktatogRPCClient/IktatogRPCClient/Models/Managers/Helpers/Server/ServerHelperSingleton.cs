@@ -20,6 +20,16 @@ namespace IktatogRPCClient.Models.Managers
         private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
         private CallOptions calloptions;
         private IktatoService.IktatoServiceClient client;
+
+        internal Telephely AddTelephely(string telephelyNeve)
+        {
+            return new Telephely() { Id = new Random().Next(1, 100), Name = telephelyNeve };
+        }
+
+        internal bool ModifyTelephely(Telephely telephely)
+        {
+            return true;
+        }
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
         private static readonly object lockable = new object();

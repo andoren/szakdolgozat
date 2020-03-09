@@ -12,4 +12,6 @@ FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\M
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TorzsView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\UgyintezokView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TelephelyekView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\AddTelephelyView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyTelephelyView.xaml;;
 

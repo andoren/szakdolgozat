@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="IktatogRPCClient.Views.AddTelephelyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IktatogRPCClient.Views"
+             mc:Ignorable="d" 
+             MinHeight="235" MinWidth="300">
+    <Grid>
+        <Grid x:Name="UgyintezokIsVisible" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                
+                <RowDefinition Height="auto"/>
+
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Telephely hozzáadása</TextBlock>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="5">Új telephely megnevezése:</TextBlock>
+                    <TextBox VerticalContentAlignment="Center" MinHeight="20" MinWidth="200" Margin="5 0 5 20" x:Name="TelephelyNeve"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+                <Button x:Name="DoAction" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
+                <Button x:Name="CancelAction" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Mégse</Button>
+            </StackPanel>
+
+        </Grid>
+
+
+
+    </Grid>
+</UserControl>

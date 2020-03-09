@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\App.xaml
-121730022773
+14-88787055
 7-1673234325
-37-1054660452
+41-983041421
 217-489975217
-style.xaml;Views\AddUgyintezoView.xaml;Views\ContainerView.xaml;Views\FooldalView.xaml;Views\IktatasView.xaml;Views\KeresesView.xaml;Views\LoadingSpinnerView.xaml;Views\LoginView.xaml;Views\ModifyUgyintezoView.xaml;Views\TelephelyekView.xaml;Views\TorzsView.xaml;Views\UgyintezokView.xaml;
+style.xaml;Views\AddTelephelyView.xaml;Views\AddUgyintezoView.xaml;Views\ContainerView.xaml;Views\FooldalView.xaml;Views\IktatasView.xaml;Views\KeresesView.xaml;Views\LoadingSpinnerView.xaml;Views\LoginView.xaml;Views\ModifyTelephelyView.xaml;Views\ModifyUgyintezoView.xaml;Views\TelephelyekView.xaml;Views\TorzsView.xaml;Views\UgyintezokView.xaml;
 
 False
 
