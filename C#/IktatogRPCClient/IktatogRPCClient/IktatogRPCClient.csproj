@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Protobuf, Version=3.11.2.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604" />
     <Reference Include="IktatogRPCDLL">
       <HintPath>..\..\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\IktatogRPCDLL.dll</HintPath>
     </Reference>
@@ -75,6 +76,8 @@
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
+    <Compile Include="ViewModels\AddCsoportViewModel.cs" />
+    <Compile Include="ViewModels\AddJellegViewModel.cs" />
     <Compile Include="ViewModels\AddTelephelyViewModel.cs" />
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
@@ -83,13 +86,22 @@
     <Compile Include="ViewModels\IktatasViewModel.cs" />
     <Compile Include="Models\Exceptions\InvalidUserNameExepction.cs" />
     <Compile Include="Models\Exceptions\InvalidPasswordException.cs" />
+    <Compile Include="ViewModels\JellegekViewModel.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ModifyCsoportViewModel.cs" />
+    <Compile Include="ViewModels\ModifyJellegViewModel.cs" />
     <Compile Include="ViewModels\ModifyTelephelyViewModel.cs" />
     <Compile Include="ViewModels\ModifyUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\TelephelyekViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
     <Compile Include="ViewModels\UgyintezokViewModel.cs" />
+    <Compile Include="Views\AddCsoportView.xaml.cs">
+      <DependentUpon>AddCsoportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddJellegView.xaml.cs">
+      <DependentUpon>AddJellegView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddTelephelyView.xaml.cs">
       <DependentUpon>AddTelephelyView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +120,9 @@
     <Compile Include="Views\IktatasView.xaml.cs">
       <DependentUpon>IktatasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\JellegekView.xaml.cs">
+      <DependentUpon>JellegekView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KeresesView.xaml.cs">
       <DependentUpon>KeresesView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +131,12 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyCsoportView.xaml.cs">
+      <DependentUpon>ModifyCsoportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyJellegView.xaml.cs">
+      <DependentUpon>ModifyJellegView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyTelephelyView.xaml.cs">
       <DependentUpon>ModifyTelephelyView.xaml</DependentUpon>
@@ -182,6 +203,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddCsoportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddJellegView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddTelephelyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +235,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\JellegekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\KeresesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +248,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyCsoportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyJellegView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,8 +28,6 @@ E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csp
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csproj.CopyComplete
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.dll
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.dll
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\grpc_csharp_ext.x86.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\grpc_csharp_ext.x64.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x86.so
@@ -56,4 +54,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\Syst
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Memory.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Numerics.Vectors.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csprojAssemblyReference.cache
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csproj.CopyComplete
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.dll
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.pdb

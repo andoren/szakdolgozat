@@ -71,6 +71,31 @@ namespace IktatogRPCClient.Managers
                         screen = new CsoportokViewModel();
                         break;
                     }
+                case Scenes.AddCsoport:
+                    {
+                        screen = new AddCsoportViewModel();
+                        break;
+                    }
+                case Scenes.ModifyCsoport:
+                    {
+                        screen = new ModifyCsoportViewModel();
+                        break;
+                    }
+                case Scenes.Jellegek:
+                    {
+                        screen = new JellegekViewModel();
+                        break;
+                    }
+                case Scenes.AddJelleg:
+                    {
+                        screen = new AddJellegViewModel();
+                        break;
+                    }
+                case Scenes.ModifyJelleg:
+                    {
+                        screen = new ModifyJellegViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

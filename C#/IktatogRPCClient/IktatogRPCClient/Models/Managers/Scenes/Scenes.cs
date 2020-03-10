@@ -19,6 +19,11 @@ namespace IktatogRPCClient.Models.Scenes
         Telephelyek,
         AddTelephely,
         ModifyTelephely,
-        Csoportok
+        Csoportok,
+        ModifyCsoport,
+        AddCsoport,
+        Jellegek,
+        AddJelleg,
+        ModifyJelleg
     }
 }

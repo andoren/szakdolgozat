@@ -72,11 +72,12 @@
                 </Grid>
                 <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
                 <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
-                <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock  Foreground="White">Felhasználó mentése:</TextBlock>
-                    <CheckBox x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Margin="10,0,0,0"/>
 
-                </StackPanel>
+                <CheckBox Margin="0,20,0,0" FlowDirection="RightToLeft"  x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Foreground="White" HorizontalAlignment="Center" Content="Felhasználó mentése">
+                    
+                </CheckBox>
+
+
                 <StackPanel Orientation="Vertical" Margin="10" >
                     <TextBlock  HorizontalAlignment="Center" Foreground="White" Margin="10,0,10,0">Elfelejtette jelszavát?</TextBlock>
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" >

@@ -51,13 +51,13 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _ugyintezoNeve = value;
                 NotifyOfPropertyChange(()=>UgyintezoNeve);
-                NotifyOfPropertyChange(()=>CanCreateUgyintezo);
+                NotifyOfPropertyChange(()=> CanDoAction);
             }
         }
         public bool CanUgyintezoNeve {
             get { return ValasztottTelephely != null; }
         }
-        public bool CanCreateUgyintezo
+        public bool CanDoAction
         {
             get
             {

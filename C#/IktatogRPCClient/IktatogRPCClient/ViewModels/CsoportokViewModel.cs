@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using Iktato;
+using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>
+    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>,IHandle<(Telephely,Csoport)>
     {
 
         public CsoportokViewModel()
@@ -23,6 +25,20 @@ namespace IktatogRPCClient.ViewModels
         private BindableCollection<Telephely> _valaszthatoTelephely;
         private Telephely _selectedTelephely;
 
+        private bool _csoportokIsVisible = true;
+
+        public bool CsoportokIsVisible
+        {
+            get { return _csoportokIsVisible; }
+            set { _csoportokIsVisible = value;
+                NotifyOfPropertyChange(()=>CsoportokIsVisible);
+                NotifyOfPropertyChange(() =>CreationIsVisible);
+            }
+        }
+        public bool CreationIsVisible { get {
+                return !CsoportokIsVisible;    
+            }
+        }
         public Telephely SelectedTelephely
         {
             get { return _selectedTelephely; }
@@ -70,18 +86,42 @@ namespace IktatogRPCClient.ViewModels
                 return SelectedCsoport != null;
                }
         }
-        public void CreateCsoport() { 
-        
+        public void CreateCsoport() {
+            CsoportokIsVisible = false;
+            ActivateItem(SceneManager.CreateScene(Scenes.AddCsoport));
         }
-        public void ModifyCsoport() { 
-            
+        public void ModifyCsoport() {
+            CsoportokIsVisible = false;
+            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyCsoport);
+            eventAggregator.Subscribe(modifyScreen);
+            ActivateItem(modifyScreen);
+            eventAggregator.PublishOnUIThread(SelectedCsoport);
         }
-        public void RemoveCsoport() { 
-        
+        public void RemoveCsoport() {
+            if (serverHelper.RemoveCsoport(SelectedCsoport))
+            {
+                TelephelyCsoportjai.Remove(SelectedCsoport);
+                NotifyOfPropertyChange(() => TelephelyCsoportjai);
+            }
         }
         public void Handle(Csoport message)
         {
-            throw new NotImplementedException();
+            if (message != SelectedCsoport)
+            {
+                CsoportokIsVisible = true;
+                Csoport modifiedCsoport = TelephelyCsoportjai.Where(x => x.Id == message.Id).FirstOrDefault();
+                if (modifiedCsoport != null) {
+                    TelephelyCsoportjai.Remove(SelectedCsoport);
+                    TelephelyCsoportjai.Add(message);
+
+                    NotifyOfPropertyChange(() => TelephelyCsoportjai);
+                }
+                else if (!string.IsNullOrWhiteSpace(message.Name))
+                {
+                    TelephelyCsoportjai.Add(message);
+                    NotifyOfPropertyChange(() => TelephelyCsoportjai);
+                }
+            }
         }
         private void LoadData()
         {
@@ -90,6 +130,14 @@ namespace IktatogRPCClient.ViewModels
             serverHelper = ServerHelperSingleton.GetInstance();
             ValaszthatoTelephely = serverHelper.GetTelephelyek();
             SelectedTelephely = ValaszthatoTelephely.First();
+        }
+
+        public void Handle((Telephely, Csoport) message)
+        {
+            CsoportokIsVisible = true;
+            if (message.Item1.Name == SelectedTelephely.Name) {
+                TelephelyCsoportjai.Add(message.Item2);
+            }
         }
     }
 }

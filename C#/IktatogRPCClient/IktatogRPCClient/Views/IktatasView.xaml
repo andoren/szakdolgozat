@@ -143,7 +143,7 @@
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

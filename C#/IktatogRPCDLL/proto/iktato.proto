@@ -41,7 +41,7 @@ message Ugyintezo{
 message Partner{
     int32 id = 1;
     string name = 2;
-    PartnerUgyintezo Ugyintezok = 3; 
+    repeated PartnerUgyintezo Ugyintezok = 3; 
 }
 message PartnerUgyintezo{
     int32 id = 1;

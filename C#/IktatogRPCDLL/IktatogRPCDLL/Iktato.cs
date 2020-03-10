@@ -35,7 +35,7 @@ namespace Iktato {
             "SGF0SWRvGAwgASgJEhIKCklrdGF0b3N6YW0YDSABKAkSDgoGc3pvdmVnGA4g",
             "ASgJIiUKCVVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIlEK",
             "B1BhcnRuZXISCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCRIsCgpVZ3lpbnRl",
-            "em9rGAMgASgLMhguSWt0YXRvLlBhcnRuZXJVZ3lpbnRlem8iLAoQUGFydG5l",
+            "em9rGAMgAygLMhguSWt0YXRvLlBhcnRuZXJVZ3lpbnRlem8iLAoQUGFydG5l",
             "clVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIiUKCVRlbGVw",
             "aGVseRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIjYKB0Nzb3BvcnQSCgoC",
             "aWQYASABKAUSDAoEbmFtZRgCIAEoCRIRCglzaG9ydG5hbWUYAyABKAkiIgoG",
@@ -951,7 +951,7 @@ namespace Iktato {
     public Partner(Partner other) : this() {
       id_ = other.id_;
       name_ = other.name_;
-      ugyintezok_ = other.ugyintezok_ != null ? other.ugyintezok_.Clone() : null;
+      ugyintezok_ = other.ugyintezok_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -984,13 +984,12 @@ namespace Iktato {
 
     /// <summary>Field number for the "Ugyintezok" field.</summary>
     public const int UgyintezokFieldNumber = 3;
-    private global::Iktato.PartnerUgyintezo ugyintezok_;
+    private static readonly pb::FieldCodec<global::Iktato.PartnerUgyintezo> _repeated_ugyintezok_codec
+        = pb::FieldCodec.ForMessage(26, global::Iktato.PartnerUgyintezo.Parser);
+    private readonly pbc::RepeatedField<global::Iktato.PartnerUgyintezo> ugyintezok_ = new pbc::RepeatedField<global::Iktato.PartnerUgyintezo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Iktato.PartnerUgyintezo Ugyintezok {
+    public pbc::RepeatedField<global::Iktato.PartnerUgyintezo> Ugyintezok {
       get { return ugyintezok_; }
-      set {
-        ugyintezok_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1008,7 +1007,7 @@ namespace Iktato {
       }
       if (Id != other.Id) return false;
       if (Name != other.Name) return false;
-      if (!object.Equals(Ugyintezok, other.Ugyintezok)) return false;
+      if(!ugyintezok_.Equals(other.ugyintezok_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1017,7 +1016,7 @@ namespace Iktato {
       int hash = 1;
       if (Id != 0) hash ^= Id.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (ugyintezok_ != null) hash ^= Ugyintezok.GetHashCode();
+      hash ^= ugyintezok_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1039,10 +1038,7 @@ namespace Iktato {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
-      if (ugyintezok_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Ugyintezok);
-      }
+      ugyintezok_.WriteTo(output, _repeated_ugyintezok_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1057,9 +1053,7 @@ namespace Iktato {
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
-      if (ugyintezok_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Ugyintezok);
-      }
+      size += ugyintezok_.CalculateSize(_repeated_ugyintezok_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1077,12 +1071,7 @@ namespace Iktato {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
-      if (other.ugyintezok_ != null) {
-        if (ugyintezok_ == null) {
-          Ugyintezok = new global::Iktato.PartnerUgyintezo();
-        }
-        Ugyintezok.MergeFrom(other.Ugyintezok);
-      }
+      ugyintezok_.Add(other.ugyintezok_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1103,10 +1092,7 @@ namespace Iktato {
             break;
           }
           case 26: {
-            if (ugyintezok_ == null) {
-              Ugyintezok = new global::Iktato.PartnerUgyintezo();
-            }
-            input.ReadMessage(Ugyintezok);
+            ugyintezok_.AddEntriesFrom(input, _repeated_ugyintezok_codec);
             break;
           }
         }

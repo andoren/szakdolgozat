@@ -53,11 +53,13 @@
                     <StackPanel.Effect>
                         <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                     </StackPanel.Effect>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="100" Height="40" Foreground="Black" Content="Előző"/>
+                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="80" Height="40" Foreground="Black" Content="Előző"/>
                     <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="1"/>
                     <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="2"/>
                     <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="3"/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="100" Height="40" Foreground="Black" Content="Következő"/>
+                    <Button Background="White" BorderBrush="LightGray"  Width="40" VerticalContentAlignment="Bottom" Height="40" FontSize="30" Foreground="Black" Content="..."/>
+                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="20"/>
+                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="80" Height="40" Foreground="Black" Content="Következő"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -71,7 +73,7 @@
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

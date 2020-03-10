@@ -47,7 +47,7 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             {
                 if (re.StatusCode == StatusCode.Unauthenticated) throw new LoginErrorException("Hibás felhasznlónév vagy jelszó! Próbálja megújra");               
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 MessageBox.Show("Sima Exception");           
             }

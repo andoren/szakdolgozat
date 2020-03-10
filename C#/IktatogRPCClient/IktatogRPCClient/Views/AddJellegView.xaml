@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="IktatogRPCClient.Views.AddJellegView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IktatogRPCClient.Views"
+             mc:Ignorable="d" 
+               MinHeight="235" MinWidth="380" FontSize="18" >
+    <Grid>
+        <Grid  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Jelleg hozzáadása</TextBlock>
+                <TextBlock FontSize="20" Margin="10">Telephely</TextBlock>
+                <ComboBox Margin="10,0,10,0" ItemsSource="{Binding Path=AvailableTelephelyek}" SelectedItem="{Binding Path = SelectedTelephely}" DisplayMemberPath="Name"></ComboBox>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="10">Új jelleg megnevezése:</TextBlock>
+                    <TextBox VerticalContentAlignment="Center" MinHeight="20" IsEnabled="{Binding Path=CanWriteJellegNeve}" MinWidth="200" Margin="10,0" x:Name="JellegNeve"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10" HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+                <Button x:Name="DoAction" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
+                <Button x:Name="CancelAction" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Mégse</Button>
+            </StackPanel>
+
+        </Grid>
+
+
+
+    </Grid>
+</UserControl>
