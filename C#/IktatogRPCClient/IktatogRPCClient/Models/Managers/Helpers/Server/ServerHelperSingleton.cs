@@ -40,6 +40,19 @@ namespace IktatogRPCClient.Models.Managers
             else return new BindableCollection<Csoport>() { new Csoport() { Id = 10, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" } };
         }
 
+        public BindableCollection<Partner> GetPartnerekByTelephely(Telephely selectedTelephely)
+        {
+            Partner partner1 = new Partner() { Id = new Random().Next(1, 4), Name = "Beszállító cica" };
+            Partner partner2 = new Partner() { Id = new Random().Next(5, 9), Name = "KutyaPartner" };
+            Partner partner3 = new Partner() { Id = new Random().Next(5, 9), Name = "E-on" };
+            partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1,Name="Cili"});
+            partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 2, Name = "Marci" });
+            partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 3, Name = "Elemér" });
+            partner2.Ugyintezok.Add(new PartnerUgyintezo() { Id = 4, Name = "Bodri" });
+            if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Partner>() { partner1, partner2 };
+            else return new BindableCollection<Partner>() { partner3 };
+        }
+
         public bool ModifyJelleg(Jelleg modifiedJelleg)
         {
             return true;
@@ -68,6 +81,11 @@ namespace IktatogRPCClient.Models.Managers
         public Jelleg AddJellegToTelephely(Telephely selectedTelephely, string jellegNeve)
         {
             return new Jelleg() { Id = new Random().Next(1, 40), Name = jellegNeve };
+        }
+
+        public bool RemovePartner(Partner selectedPartner)
+        {
+            return true;
         }
 
 

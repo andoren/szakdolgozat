@@ -57,20 +57,14 @@ namespace IktatogRPCClient.ViewModels
         public bool CanUgyintezoNeve {
             get { return ValasztottTelephely != null; }
         }
-        public bool CanDoAction
-        {
-            get
-            {
-                return ValidDataInView(UgyintezoNeve);
-            }
-        }
-        private bool ValidDataInView(string ugyintezoNeve) {
+
+        protected override bool ValidateDataInForm() {
             bool isValid = true;
-            if (string.IsNullOrWhiteSpace(ugyintezoNeve))
+            if (string.IsNullOrWhiteSpace(UgyintezoNeve))
             {
                 isValid = false;
             }
-            else if (ugyintezoNeve.Length < 5 || ugyintezoNeve.Length > 100) isValid = false;
+            else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 100) isValid = false;
             return isValid;
         }
         public override void DoAction() {

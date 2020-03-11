@@ -10,37 +10,15 @@
              d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel   Orientation="Vertical">
-            <TextBlock FontSize="24" Margin="5">Felhasználói beállítások:</TextBlock>
-                <Grid Margin="0,10"   >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                 <ContentControl Grid.Column="0"  Margin="5,0,5,0" x:Name="UgyintezokViewModel"/>
-                <ContentControl Grid.Column="1" Margin="5,0,5,0"  x:Name="JellegekViewModel"/>
-                <ContentControl Grid.Column="2" Margin="5,0,5,0" x:Name="PartnerViewModel"/>
-            </Grid>
-             
-            <Grid Margin="0,10" x:Name="AdminSettingsIsVisible">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height=" auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="24" Margin="5">Adminisztrátori beállítások:</TextBlock>
-                    <ContentControl Grid.Row="1" Grid.Column="0"  Margin="5,0,5,0" x:Name="TelephelyekViewModel"/>
-                    <ContentControl Grid.Row="1"  Grid.Column="1" Margin="5,0,5,0" x:Name="UsersViewModel"/>
-                    <ContentControl Grid.Row="1" Grid.Column="2" Margin="5,0,5,0" x:Name="CsoportokViewModel"/>
-                
-            </Grid>
-  
-        </StackPanel>
+            <WrapPanel   HorizontalAlignment="Center">
+                <ContentControl  Margin="10" x:Name="UgyintezokViewModel"/>
+                <ContentControl  Margin="10"  x:Name="JellegekViewModel"/>
+                <ContentControl  Margin="10" x:Name="PartnersViewModel"/>
+                <ContentControl  Margin="10" x:Name="PartnerekUgyintezoiViewModel"/>
+                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="TelephelyekViewModel" />
+                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="UsersViewModel"/>
+                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="CsoportokViewModel"/>
+            </WrapPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

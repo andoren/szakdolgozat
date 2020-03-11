@@ -63,12 +63,9 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => CanDoAction);
             }
         }
-        public bool CanDoAction
-        {
-            get { return ValidDataInView(); }
-        }
 
-        private bool ValidDataInView()
+
+        protected override bool ValidateDataInForm()
         {
             bool isValid = true;
             if (ValasztottTelephely == null) isValid = false;

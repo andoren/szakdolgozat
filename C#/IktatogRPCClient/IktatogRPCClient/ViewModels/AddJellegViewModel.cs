@@ -56,21 +56,15 @@ namespace IktatogRPCClient.ViewModels
             get { return SelectedTelephely != null; }
         }
 
-        public bool CanDoAction
-        {
-            get
-            {
-                return ValidDataInView(JellegNeve);
-            }
-        }
-        private bool ValidDataInView(string jellegNeve)
+
+        protected override bool ValidateDataInForm()
         {
             bool isValid = true;
-            if (string.IsNullOrWhiteSpace(jellegNeve))
+            if (string.IsNullOrWhiteSpace(JellegNeve))
             {
                 isValid = false;
             }
-            else if (jellegNeve.Length < 5 || jellegNeve.Length > 100) isValid = false;
+            else if (JellegNeve.Length < 5 || JellegNeve.Length > 100) isValid = false;
             return isValid;
         }
         public override void DoAction()

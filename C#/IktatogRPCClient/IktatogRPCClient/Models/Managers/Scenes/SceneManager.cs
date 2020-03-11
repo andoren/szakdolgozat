@@ -96,6 +96,16 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyJellegViewModel();
                         break;
                     }
+                case Scenes.Partnerek:
+                    {
+                        screen = new PartnerekViewModel();
+                        break;
+                    }
+                case Scenes.PartnerekUgyintezoi:
+                    {
+                        screen = new PartnerekUgyintezoiViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

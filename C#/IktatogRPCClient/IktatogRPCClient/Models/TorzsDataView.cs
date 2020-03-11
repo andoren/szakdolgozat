@@ -34,5 +34,10 @@ namespace IktatogRPCClient.Models
             TryClose();
         }
         public abstract void DoAction();
+        protected abstract bool ValidateDataInForm();
+        public bool CanDoAction { get {
+                return ValidateDataInForm();     
+            }
+        }
     }
 }

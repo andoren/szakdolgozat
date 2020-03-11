@@ -29,11 +29,10 @@ namespace IktatogRPCClient.ViewModels
             eventAggregator.PublishOnUIThread(newTelephely);
             TryClose();
         }
-        public bool CanDoAction {
-            get{ 
-                if (TelephelyNeve.Length > 4 && TelephelyNeve.Length < 100) return true;
-                else return false;
-            }
+
+        protected override bool ValidateDataInForm()
+        {
+            return !(TelephelyNeve.Length < 5 || TelephelyNeve.Length > 50);
         }
     }
 }

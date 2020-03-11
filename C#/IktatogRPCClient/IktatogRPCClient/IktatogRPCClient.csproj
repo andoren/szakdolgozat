@@ -78,6 +78,7 @@
     <Compile Include="Models\TorzsDataView.cs" />
     <Compile Include="ViewModels\AddCsoportViewModel.cs" />
     <Compile Include="ViewModels\AddJellegViewModel.cs" />
+    <Compile Include="ViewModels\AddPartnerViewModel.cs" />
     <Compile Include="ViewModels\AddTelephelyViewModel.cs" />
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
@@ -89,10 +90,13 @@
     <Compile Include="ViewModels\JellegekViewModel.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ModfiyPartnerViewModel.cs" />
     <Compile Include="ViewModels\ModifyCsoportViewModel.cs" />
     <Compile Include="ViewModels\ModifyJellegViewModel.cs" />
     <Compile Include="ViewModels\ModifyTelephelyViewModel.cs" />
     <Compile Include="ViewModels\ModifyUgyintezoViewModel.cs" />
+    <Compile Include="ViewModels\PartnerekUgyintezoiViewModel.cs" />
+    <Compile Include="ViewModels\PartnerekViewModel.cs" />
     <Compile Include="ViewModels\TelephelyekViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
     <Compile Include="ViewModels\UgyintezokViewModel.cs" />
@@ -143,6 +147,12 @@
     </Compile>
     <Compile Include="Views\ModifyUgyintezoView.xaml.cs">
       <DependentUpon>ModifyUgyintezoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PartnerekUgyintezoiView.xaml.cs">
+      <DependentUpon>PartnerekUgyintezoiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PartnerekView.xaml.cs">
+      <DependentUpon>PartnerekView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TelephelyekView.xaml.cs">
       <DependentUpon>TelephelyekView.xaml</DependentUpon>
@@ -264,6 +274,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModifyUgyintezoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PartnerekUgyintezoiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PartnerekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

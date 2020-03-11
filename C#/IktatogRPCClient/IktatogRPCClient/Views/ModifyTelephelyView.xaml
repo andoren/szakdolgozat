@@ -17,7 +17,7 @@
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Telephely módosítása</TextBlock>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="5">A módosítani kívánt telephely neve:</TextBlock>
-                    <TextBox VerticalContentAlignment="Center" MinHeight="20"  MinWidth="200" Margin="5,0" Text="{Binding Path=TelephelyNeve, Mode=TwoWay}"/>
+                    <TextBox VerticalContentAlignment="Center" MinHeight="20"  MinWidth="200" Margin="5,0" x:Name="TelephelyNeve"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">

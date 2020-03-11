@@ -22,14 +22,17 @@ namespace IktatogRPCClient.ViewModels
             CsoportokViewModel = SceneManager.CreateScene(Scenes.Csoportok);
             JellegekViewModel = SceneManager.CreateScene(Scenes.Jellegek);
             UsersViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
-            PartnersViewModel = SceneManager.CreateScene(Scenes.Csoportok);
+            PartnersViewModel = SceneManager.CreateScene(Scenes.Partnerek);
+            PartnerekUgyintezoiViewModel = SceneManager.CreateScene(Scenes.PartnerekUgyintezoi);
             Items.Add(UgyintezokViewModel);
             Items.Add(TelephelyekViewModel);
             Items.Add(CsoportokViewModel);
             Items.Add(JellegekViewModel);
             Items.Add(UsersViewModel);
             Items.Add(PartnersViewModel);
+            Items.Add(PartnerekUgyintezoiViewModel);
         }
+        public Screen PartnerekUgyintezoiViewModel { get; set; }
         public Screen UgyintezokViewModel { get; private set; }
         public Screen TelephelyekViewModel { get; private set; }
 

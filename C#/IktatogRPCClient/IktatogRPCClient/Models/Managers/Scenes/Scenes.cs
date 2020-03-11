@@ -24,6 +24,8 @@ namespace IktatogRPCClient.Models.Scenes
         AddCsoport,
         Jellegek,
         AddJelleg,
-        ModifyJelleg
+        ModifyJelleg,
+        Partnerek,
+        PartnerekUgyintezoi
     }
 }

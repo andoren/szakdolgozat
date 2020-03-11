@@ -36,8 +36,10 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _newName = value;
                 NotifyOfPropertyChange(() => NewName);
+                NotifyOfPropertyChange(() => CanDoAction);
             }
         }
+
 
         public void Handle(Ugyintezo message)
         {
@@ -53,6 +55,11 @@ namespace IktatogRPCClient.ViewModels
                 TryClose();
             }
  
+        }
+
+        protected override bool ValidateDataInForm()
+        {
+            return (NewName.Length > 4 && NewName.Length < 100);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace IktatogRPCClient.ViewModels
             get { return _newKod; }
             set { _newKod = value;
                 NotifyOfPropertyChange(() => CanDoAction);
+                NotifyOfPropertyChange(() => NewKod);
             }
         }
 
@@ -37,25 +38,10 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _newName = value;
                 NotifyOfPropertyChange(() => CanDoAction);
+                NotifyOfPropertyChange(() => NewName);
             }
         }
 
-        public bool CanDoAction
-        {
-            get { return ValidDataInView(); }
-        }
-
-        private bool ValidDataInView()
-        {
-            bool isValid = true;
-            
-            if (string.IsNullOrWhiteSpace(NewName) || string.IsNullOrWhiteSpace(NewKod))
-            {
-                isValid = false;
-            }
-            else  if (NewName.Length < 5 || NewName.Length > 100 || NewKod.Length < 1 || NewKod.Length > 3) isValid = false;
-            return isValid;
-        }
         public override void DoAction()
         {
             Csoport modifiedCsoport = new Csoport() { Id = ModifiedCsoport.Id, Name = NewName, Shortname = NewKod };
@@ -71,6 +57,18 @@ namespace IktatogRPCClient.ViewModels
             ModifiedCsoport = message;
             NewName = message.Name;
             NewKod = message.Shortname;
+        }
+
+        protected override bool ValidateDataInForm()
+        {
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(NewName) || string.IsNullOrWhiteSpace(NewKod))
+            {
+                isValid = false;
+            }
+            else if (NewName.Length < 5 || NewName.Length > 100 || NewKod.Length < 1 || NewKod.Length > 3) isValid = false;
+            return isValid;
         }
     }
 }

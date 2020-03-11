@@ -37,13 +37,6 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => CanDoAction);
             }
         }
-        public bool CanDoAction
-        {
-            get
-            {
-                return ValidDataInView(NewName);
-            }
-        }
         public void Handle(Jelleg message)
         {
             ModifiedJelleg =  message;
@@ -61,17 +54,17 @@ namespace IktatogRPCClient.ViewModels
 
         }
 
-        private bool ValidDataInView(string jellegNeve)
+        protected override bool ValidateDataInForm()
         {
             bool isValid = true;
-            if (string.IsNullOrWhiteSpace(jellegNeve))
+            if (string.IsNullOrWhiteSpace(NewName))
             {
                 isValid = false;
 
          
             }
            
-            else if (jellegNeve.Length < 3 || jellegNeve.Length > 100) isValid = false;
+            else if (NewName.Length < 3 || NewName.Length > 100) isValid = false;
             return isValid;
         }
     }
