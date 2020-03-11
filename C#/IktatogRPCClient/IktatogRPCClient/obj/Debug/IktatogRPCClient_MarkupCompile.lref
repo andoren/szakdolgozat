@@ -22,4 +22,8 @@ FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\P
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TelephelyekView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TorzsView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\UgyintezokView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\AddPartnerView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyPartnerView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\AddPartnerUgyintezoView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyPartnerUgyintezoView.xaml;;
 

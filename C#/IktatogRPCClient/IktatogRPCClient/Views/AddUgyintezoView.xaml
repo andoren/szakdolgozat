@@ -18,15 +18,15 @@
             <StackPanel Grid.Row="0" Orientation="Vertical">
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Ügyintéző hozzáadása</TextBlock>
                 <TextBlock FontSize="20" Margin="10">Telephely</TextBlock>
-                <ComboBox Margin="10,0,10,5" ItemsSource="{Binding Path=ValaszthatoTelephely}" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
+                <ComboBox Margin="10,0,10,5" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Margin="5">Új ügyintéző neve: </TextBlock>
-                    <TextBox VerticalContentAlignment="Center" MinHeight="20" IsEnabled="{Binding Path=CanUgyintezoNeve}" MinWidth="200" Margin="5,0" x:Name="UgyintezoNeve"></TextBox>
+                    <TextBlock Margin="10">Új ügyintéző neve: </TextBlock>
+                    <TextBox VerticalContentAlignment="Center" MinHeight="20" IsEnabled="{Binding Path=CanWriteUgyintezoNeve}" MinWidth="200" Margin="10,0" x:Name="UgyintezoNeve"></TextBox>
                 </StackPanel>
          
                 
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Margin="10" HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
                 <Button x:Name="DoAction" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
                 <Button x:Name="CancelAction" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Mégse</Button>
             </StackPanel>

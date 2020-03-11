@@ -106,6 +106,26 @@ namespace IktatogRPCClient.Managers
                         screen = new PartnerekUgyintezoiViewModel();
                         break;
                     }
+                case Scenes.AddPartner:
+                    {
+                        screen = new AddPartnerViewModel();
+                        break;
+                    }
+                case Scenes.ModifyPartner:
+                    {
+                        screen = new ModifyPartnerViewModel();
+                        break;
+                    }
+                case Scenes.AddPartnerUgyintezo:
+                    {
+                        screen = new AddPartnerUgyintezoViewModel();
+                        break;
+                    }
+                case Scenes.ModifyPartnerUgyintezo:
+                    {
+                        screen = new ModifyPartnerUgyintezoViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

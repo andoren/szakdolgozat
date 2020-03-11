@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddCsoportViewModel : TorzsDataView<Csoport>
+    class AddCsoportViewModel : TorzsDataView<Csoport>,IHandle<BindableCollection<Telephely>>
     {
         public AddCsoportViewModel()
         {
-            LoadData();
+            
         }
-        private void LoadData()
-        {
 
-            ValaszthatoTelephely = serverHelper.GetTelephelyek();
-
-        }
         private BindableCollection<Telephely> _valaszthatoTelephely;
         private Telephely _valasztottTelephely;
         private string _csoportKod="";
@@ -81,6 +76,11 @@ namespace IktatogRPCClient.ViewModels
             Csoport NewCsoport = serverHelper.AddCsoportToTelephely(ValasztottTelephely, CsoportName, CsoportKod);
             eventAggregator.PublishOnUIThread((ValasztottTelephely, NewCsoport));
             TryClose();
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            ValaszthatoTelephely = message;
         }
     }
 }

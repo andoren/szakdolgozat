@@ -18,7 +18,7 @@
             <StackPanel Grid.Row="0" Orientation="Vertical">
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Csoport hozzáadása</TextBlock>
                 <TextBlock FontSize="20" Margin="10">Telephely</TextBlock>
-                <ComboBox Margin="10,0,10,5" ItemsSource="{Binding Path=ValaszthatoTelephely}" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
+                <ComboBox Margin="10,0,10,5" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="10">Új csoport teljes neve:</TextBlock>
                     <TextBox VerticalContentAlignment="Center" MinHeight="20"  MinWidth="200" Margin="10,0" x:Name="CsoportName"></TextBox>

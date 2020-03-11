@@ -10,17 +10,13 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddUgyintezoViewModel:TorzsDataView<Ugyintezo>
+    class AddUgyintezoViewModel:TorzsDataView<Ugyintezo>,IHandle<BindableCollection<Telephely>>
     {
         public AddUgyintezoViewModel()
         {
-            LoadData();
+           
         }
-        private void LoadData() {
-
-            ValaszthatoTelephely = serverHelper.GetTelephelyek();
-            
-        }
+ 
         private BindableCollection<Telephely> _valaszthatoTelephely = new BindableCollection<Telephely>();
         private Telephely _valasztottTelephely;
 
@@ -40,7 +36,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _valasztottTelephely = value;
                 NotifyOfPropertyChange(() => ValaszthatoTelephely);
-                NotifyOfPropertyChange(() => CanUgyintezoNeve);
+                NotifyOfPropertyChange(() => CanWriteUgyintezoNeve);
             }
         }
         private string _ugyintezoNeve;
@@ -54,7 +50,8 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(()=> CanDoAction);
             }
         }
-        public bool CanUgyintezoNeve {
+        public bool CanWriteUgyintezoNeve
+        {
             get { return ValasztottTelephely != null; }
         }
 
@@ -73,5 +70,9 @@ namespace IktatogRPCClient.ViewModels
             TryClose();
         }
 
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            ValaszthatoTelephely = message;
+        }
     }
 }

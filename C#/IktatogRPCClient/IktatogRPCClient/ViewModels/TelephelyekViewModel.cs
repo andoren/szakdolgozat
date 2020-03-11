@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -86,6 +87,7 @@ namespace IktatogRPCClient.ViewModels
 
         public void RemoveTelephely() {
             if (serverHelper.RemoveTelephely(SelectedTelephely)) {
+                eventAggregator.PublishOnUIThread(new RemovedItem(SelectedTelephely));
                 Telephelyek.Remove(SelectedTelephely);
                 NotifyOfPropertyChange(()=>Telephelyek);
             }
@@ -95,23 +97,25 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle(Telephely message)
         {
-            if (message != SelectedTelephely) {
+            if(Telephelyek.Where(x=>x.Name == message.Name).FirstOrDefault() == null) { 
+                if (message != SelectedTelephely) {
                 
-                Telephely telephely = Telephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
-                if (telephely != null) {
-                    Telephelyek.Remove(SelectedTelephely);
-                    Telephelyek.Add(message);
-                }
-                else if (!string.IsNullOrWhiteSpace(message.Name))
-                {
+                    Telephely telephely = Telephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
+                    if (telephely != null) {
+                        Telephelyek.Remove(SelectedTelephely);
+                        Telephelyek.Add(message);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(message.Name))
+                    {
 
-                    Telephelyek.Add(message);
-                }
-                TelephelyekIsVisible = true;
-                NotifyOfPropertyChange(()=>Telephelyek);
+                        Telephelyek.Add(message);
+                    }
+                    TelephelyekIsVisible = true;
+                    NotifyOfPropertyChange(()=>Telephelyek);
                 
+                }
             }
-            
+
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Caliburn.Micro;
 using Iktato;
+using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +13,8 @@ using System.Threading.Tasks;
 namespace IktatogRPCClient.ViewModels
 {
     class PartnerekUgyintezoiViewModel:Conductor<Screen>,IHandle<Partner>,IHandle<(Telephely,Partner)>
+        ,IHandle<RemovedItem>,IHandle<Telephely>,IHandle<(Partner,PartnerUgyintezo)>, IHandle<PartnerUgyintezo>,
+        IHandle<(Telephely, Partner, PartnerUgyintezo)>
     {
         public PartnerekUgyintezoiViewModel()
         {
@@ -56,8 +61,10 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedPartner; }
             set { 
                 _selectedPartner = value;
-                NotifyOfPropertyChange(()=>SelectedPartner);
-                if(value != null)AvailableUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
+                
+                if (value != null) AvailableUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
+                else AvailableUgyintezok =  new BindableCollection<PartnerUgyintezo>();
+                NotifyOfPropertyChange(() => SelectedPartner);
             }
         }
 
@@ -65,8 +72,9 @@ namespace IktatogRPCClient.ViewModels
         {
             get { return _availablePartnerek; }
             set {
-                _availablePartnerek = value;
-                NotifyOfPropertyChange(() =>AvailablePartnerek);
+                _availablePartnerek = value;               
+                if(value.Count !=0)SelectedPartner = value.First();
+                NotifyOfPropertyChange(() => AvailablePartnerek);
             }
         }
 
@@ -76,7 +84,7 @@ namespace IktatogRPCClient.ViewModels
             set { _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
                 AvailablePartnerek = serverHelper.GetPartnerekByTelephely(SelectedTelephely);
-                SelectedPartner = AvailablePartnerek.First();
+               
             }
         }
 
@@ -116,25 +124,126 @@ namespace IktatogRPCClient.ViewModels
                 return SelectedUgyintezo != null;
             }
         }
-        public void RemoveUgyintezo() { }
-        public void ModifyUgyintezo() { }
-        public void CreateUgyintezo() { }
+        public void RemoveUgyintezo() {
+            bool success = serverHelper.RemovePartnerUgyintezo(SelectedUgyintezo);
+            if (success)AvailableUgyintezok.Remove(SelectedUgyintezo);
+        }
+        public void ModifyUgyintezo() {
+            PartnerekIsVisible = false;
+            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyPartnerUgyintezo);
+            eventAggregator.Subscribe(modifyScreen);
+            ActivateItem(modifyScreen);
+            eventAggregator.PublishOnUIThread((SelectedTelephely,SelectedPartner,SelectedUgyintezo));
+        }
+        public void CreateUgyintezo() {
+            PartnerekIsVisible = false;
+            Screen creatScreen = SceneManager.CreateScene(Scenes.AddPartnerUgyintezo);
+            eventAggregator.Subscribe(creatScreen);
+            ActivateItem(creatScreen);
+            eventAggregator.PublishOnUIThread(AvailablePartnerek);
+        }
         public void Handle((Telephely, Partner) message)
         {
-            throw new NotImplementedException();
+            if (message.Item1.Name == SelectedTelephely.Name) {
+                Partner partner = AvailablePartnerek.Where(x => x.Id == message.Item2.Id).FirstOrDefault();
+                if (partner!=null) {
+                    AvailablePartnerek.Remove(partner);
+                    AvailablePartnerek.Add(message.Item2);
+                    NotifyOfPropertyChange(()=>AvailablePartnerek);
+                }
+                else {
+                    AvailablePartnerek.Add(message.Item2);
+                    NotifyOfPropertyChange(() => AvailablePartnerek);
+                }
+  
+            }
         }
 
         public void Handle(Partner message)
         {
-            if (message != SelectedPartner) {
-                PartnerekIsVisible = true;
-                if (!string.IsNullOrWhiteSpace(message.Name)){
-                    AvailablePartnerek.Add(message);
+            PartnerekIsVisible = true;
+            Partner partner = AvailablePartnerek.Where(x => x.Id == message.Id).FirstOrDefault();
+            if (partner == null)
+            {
+                if (message != SelectedPartner)
+                {
+                    PartnerekIsVisible = true;
+                    if (!string.IsNullOrWhiteSpace(message.Name))
+                    {
+                        AvailablePartnerek.Add(message);
+                    }
+                }
+            }
+            else if (partner.Name != message.Name)
+            {
+                AvailablePartnerek.Remove(partner);
+                AvailablePartnerek.Add(message);
+                NotifyOfPropertyChange(() => AvailablePartnerek);
+
+            }
+        }
+
+
+        public void Handle(RemovedItem message)
+        {
+            if (message.Item is Partner) {
+                Partner partner = AvailablePartnerek.Where(x => x.Id == (message.Item as Partner).Id).FirstOrDefault();
+                AvailablePartnerek.Remove(partner);
+                NotifyOfPropertyChange(()=>AvailablePartnerek);
+            }
+            else if (message.Item is Telephely)
+            {
+                Telephely telephely = AvailableTelephelyek.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
+                AvailableTelephelyek.Remove(telephely);
+                NotifyOfPropertyChange(() => AvailableTelephelyek);
+            }
+        }
+
+        public void Handle(Telephely message)
+        {
+            if (message != SelectedTelephely && message != null)
+            {
+                Telephely telephely = AvailableTelephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
+                if (telephely == null)
+                {
+                    AvailableTelephelyek.Add(message);
+                    NotifyOfPropertyChange(() => AvailableTelephelyek);
+                }
+                else if(telephely.Name != message.Name)
+                {
+                    AvailableTelephelyek.Remove(telephely);
+                    AvailableTelephelyek.Add(message);
+                    NotifyOfPropertyChange(() => AvailableTelephelyek);
+                    
                 }
             }
         }
-        ~PartnerekUgyintezoiViewModel() { 
-            
+
+        public void Handle((Partner, PartnerUgyintezo) message)
+        {
+            PartnerekIsVisible = true;
+            if (message.Item1.Name == SelectedPartner.Name) {
+                AvailableUgyintezok.Add(message.Item2);
+                NotifyOfPropertyChange(()=>AvailableUgyintezok);
+            }
+        }
+
+        public void Handle(PartnerUgyintezo message)
+        {
+            if (SelectedUgyintezo != message) PartnerekIsVisible = true;
+        }
+
+        public void Handle((Telephely, Partner, PartnerUgyintezo) message)
+        {
+            if (message.Item3 != SelectedUgyintezo) {
+                PartnerekIsVisible = true;
+                if (message.Item1 == SelectedTelephely) {
+                    if (message.Item2 == SelectedPartner) {
+                        AvailableUgyintezok.Remove(SelectedUgyintezo);
+                        AvailableUgyintezok.Add(message.Item3);
+                    }
+                }
+            }
         }
     }
 }

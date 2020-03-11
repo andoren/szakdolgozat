@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>,IHandle<(Telephely,Csoport)>
+    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>,IHandle<(Telephely,Csoport)>, IHandle<Telephely>,IHandle<RemovedItem>
     {
 
         public CsoportokViewModel()
@@ -88,7 +89,10 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreateCsoport() {
             CsoportokIsVisible = false;
-            ActivateItem(SceneManager.CreateScene(Scenes.AddCsoport));
+            Screen createScreen = SceneManager.CreateScene(Scenes.AddCsoport);
+            eventAggregator.Subscribe(createScreen);
+            ActivateItem(createScreen);
+            eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
         }
         public void ModifyCsoport() {
             CsoportokIsVisible = false;
@@ -96,6 +100,7 @@ namespace IktatogRPCClient.ViewModels
             eventAggregator.Subscribe(modifyScreen);
             ActivateItem(modifyScreen);
             eventAggregator.PublishOnUIThread(SelectedCsoport);
+            
         }
         public void RemoveCsoport() {
             if (serverHelper.RemoveCsoport(SelectedCsoport))
@@ -137,6 +142,37 @@ namespace IktatogRPCClient.ViewModels
             CsoportokIsVisible = true;
             if (message.Item1.Name == SelectedTelephely.Name) {
                 TelephelyCsoportjai.Add(message.Item2);
+            }
+        }
+
+        public void Handle(Telephely message)
+        {
+            if (message != SelectedTelephely && message != null)
+            {
+                Telephely telephely = ValaszthatoTelephely.Where(x => x.Id == message.Id).FirstOrDefault();
+                if (telephely == null)
+                {
+                    ValaszthatoTelephely.Add(message);
+                    NotifyOfPropertyChange(() => ValaszthatoTelephely);
+                }
+                else if (telephely.Name != message.Name)
+                {
+                    ValaszthatoTelephely.Remove(telephely);
+                    ValaszthatoTelephely.Add(message);
+                    NotifyOfPropertyChange(() => ValaszthatoTelephely);
+
+                }
+            }
+        }
+
+        public void Handle(RemovedItem message)
+        {
+
+             if (message.Item is Telephely)
+            {
+                Telephely telephely = ValaszthatoTelephely.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
+                ValaszthatoTelephely.Remove(telephely);
+                NotifyOfPropertyChange(() => ValaszthatoTelephely);
             }
         }
     }

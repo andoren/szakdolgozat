@@ -11,21 +11,58 @@ namespace IktatogRPCClient.ViewModels
 {
     class AddPartnerViewModel : TorzsDataView<Partner>, IHandle<BindableCollection<Telephely>>
     {
-       
 
+        private BindableCollection<Telephely> _availableTelephelyek;
+        private Telephely _selectedTelephely;
+        private string _partnerNeve="";
+
+        public string PartnerNeve
+        {
+            get { return _partnerNeve; }
+            
+            set { _partnerNeve = value;
+                NotifyOfPropertyChange(()=>PartnerNeve);
+                NotifyOfPropertyChange(()=>CanDoAction);
+            }
+        }
+
+        public Telephely SelectedTelephely
+        {
+            get { return _selectedTelephely; }
+            
+            set { _selectedTelephely = value;
+                NotifyOfPropertyChange(() => SelectedTelephely);
+                NotifyOfPropertyChange(()=>CanWritePartnerNeve);
+            }
+        }
+
+        public BindableCollection<Telephely> AvailableTelephelyek
+        {
+            get { return _availableTelephelyek; }
+            set { _availableTelephelyek = value;
+                NotifyOfPropertyChange(() => AvailableTelephelyek);
+            }
+        }
+        public bool CanWritePartnerNeve { 
+            get {
+                return SelectedTelephely != null;
+            }
+        }
         public override void DoAction()
         {
-            throw new NotImplementedException();
+            Partner partner = serverHelper.AddPartnerToTelephely(SelectedTelephely,PartnerNeve) ;
+            eventAggregator.BeginPublishOnUIThread((SelectedTelephely,partner));
+            TryClose();
         }
 
         public void Handle(BindableCollection<Telephely> message)
         {
-            throw new NotImplementedException();
+            AvailableTelephelyek = message;
         }
 
         protected override bool ValidateDataInForm()
         {
-            throw new NotImplementedException();
+            return !(PartnerNeve.Length < 3 || PartnerNeve.Length > 50);
         }
     }
 }

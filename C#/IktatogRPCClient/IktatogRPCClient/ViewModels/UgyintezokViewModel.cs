@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -11,19 +12,20 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>,IHandle<(Telephely,Ugyintezo)>
+    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>,IHandle<(Telephely,Ugyintezo)>,IHandle<Telephely>,IHandle<RemovedItem>
     {
         public UgyintezokViewModel()
         {
-            eventAggergator.Subscribe(this);
+            
             LoadData();
         }
         private void LoadData() {
+            eventAggregator.Subscribe(this);
             ValaszthatoTelephely = serverHelper.GetTelephelyek();
             ValasztottTelephely = ValaszthatoTelephely.First();
       
         }
-        private EventAggregatorSingleton eventAggergator = EventAggregatorSingleton.GetInstance(); 
+        private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance(); 
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         private BindableCollection<Telephely> _valaszthatoTelephely;
         private BindableCollection<Ugyintezo> _telephelyUgyintezoi;
@@ -91,7 +93,10 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreateUgyintezo() {
             UgyintezokIsVisible = false;
-            ActivateItem(SceneManager.CreateScene(Scenes.AddUgyintezo));
+            Screen createScreen = SceneManager.CreateScene(Scenes.AddUgyintezo);
+            eventAggregator.Subscribe(createScreen);
+            ActivateItem(createScreen);
+            eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
         }
         public void RemoveUgyintezo() {
             if (serverHelper.RemoveUgyintezoFromTelephely(ValasztottUgyintezo))
@@ -109,9 +114,10 @@ namespace IktatogRPCClient.ViewModels
         public void ModifyUgyintezo() {
             UgyintezokIsVisible = false;
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyUgyintezo);
-            eventAggergator.Subscribe(modifyScreen);
+            eventAggregator.Subscribe(modifyScreen);
             ActivateItem(modifyScreen);
-            eventAggergator.PublishOnUIThread(ValasztottUgyintezo);               
+            eventAggregator.PublishOnUIThread(ValasztottUgyintezo);
+            eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
         }
         public bool CanModifyUgyintezo {
             get {
@@ -144,9 +150,35 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => TelephelyUgyintezoi);
             }
         }
+        public void Handle(Telephely message)
+        {
+            if (message != ValasztottTelephely && message != null)
+            {
+                Telephely telephely = ValaszthatoTelephely.Where(x => x.Id == message.Id).FirstOrDefault();
+                if (telephely == null)
+                {
+                    ValaszthatoTelephely.Add(message);
+                    NotifyOfPropertyChange(() => ValaszthatoTelephely);
+                }
+                else if (telephely.Name != message.Name)
+                {
+                    ValaszthatoTelephely.Remove(telephely);
+                    ValaszthatoTelephely.Add(message);
+                    NotifyOfPropertyChange(() => ValaszthatoTelephely);
 
-        ~UgyintezokViewModel() {
-            eventAggergator.Unsubscribe(this);
+                }
+            }
         }
+
+        public void Handle(RemovedItem message)
+        {
+            if (message.Item is Telephely)
+            {
+                Telephely telephely = ValaszthatoTelephely.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
+                ValaszthatoTelephely.Remove(telephely);
+                NotifyOfPropertyChange(() => ValaszthatoTelephely);
+            }
+        }
+
     }
 }

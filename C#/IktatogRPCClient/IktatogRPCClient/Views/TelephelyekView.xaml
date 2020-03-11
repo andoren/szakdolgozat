@@ -16,11 +16,11 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Telephelyek</TextBlock>
-                <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="Telephelyek" SelectedItem="{Binding Path=SelectedTelephely, Mode=TwoWay}" DisplayMemberPath="Name" />
+                <ListBox Margin="5" Grid.Row="1" MinHeight="300" x:Name="Telephelyek" SelectedItem="{Binding Path=SelectedTelephely, Mode=TwoWay}" DisplayMemberPath="Name" />
                 <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
                     <Button x:Name="CreateTelephely" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                    <Button x:Name="ModifyTelephely" Background="Green" Foreground="White"  Padding="15" Margin="0,5,5,5">Módosítás</Button>
-                    <Button x:Name="RemoveTelephely" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="0,5,5,5">Törlés</Button>
+                    <Button x:Name="ModifyTelephely" Background="Green" Foreground="White"  Padding="15" Margin="5,5,5,5">Módosítás</Button>
+                    <Button x:Name="RemoveTelephely" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5,5,5,5">Törlés</Button>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="0" x:Name="CreationIsVisible">

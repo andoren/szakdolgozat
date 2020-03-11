@@ -75,9 +75,11 @@
     <Compile Include="Models\Managers\Scenes\Exceptions\InvalidSceneExeption.cs" />
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
+    <Compile Include="Models\RemovedItem.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
     <Compile Include="ViewModels\AddCsoportViewModel.cs" />
     <Compile Include="ViewModels\AddJellegViewModel.cs" />
+    <Compile Include="ViewModels\AddPartnerUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\AddPartnerViewModel.cs" />
     <Compile Include="ViewModels\AddTelephelyViewModel.cs" />
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
@@ -90,7 +92,8 @@
     <Compile Include="ViewModels\JellegekViewModel.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ModfiyPartnerViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPartnerUgyintezoViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPartnerViewModel.cs" />
     <Compile Include="ViewModels\ModifyCsoportViewModel.cs" />
     <Compile Include="ViewModels\ModifyJellegViewModel.cs" />
     <Compile Include="ViewModels\ModifyTelephelyViewModel.cs" />
@@ -105,6 +108,12 @@
     </Compile>
     <Compile Include="Views\AddJellegView.xaml.cs">
       <DependentUpon>AddJellegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPartnerUgyintezoView.xaml.cs">
+      <DependentUpon>AddPartnerUgyintezoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPartnerView.xaml.cs">
+      <DependentUpon>AddPartnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddTelephelyView.xaml.cs">
       <DependentUpon>AddTelephelyView.xaml</DependentUpon>
@@ -141,6 +150,12 @@
     </Compile>
     <Compile Include="Views\ModifyJellegView.xaml.cs">
       <DependentUpon>ModifyJellegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyPartnerUgyintezoView.xaml.cs">
+      <DependentUpon>ModifyPartnerUgyintezoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyPartnerView.xaml.cs">
+      <DependentUpon>ModifyPartnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyTelephelyView.xaml.cs">
       <DependentUpon>ModifyTelephelyView.xaml</DependentUpon>
@@ -221,6 +236,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddPartnerUgyintezoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddPartnerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddTelephelyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +289,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModifyJellegView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyPartnerUgyintezoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyPartnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

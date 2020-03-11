@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class JellegekViewModel : Conductor<Screen>, IHandle<Jelleg>, IHandle<(Telephely, Jelleg)>
+    class JellegekViewModel : Conductor<Screen>, IHandle<Jelleg>, IHandle<(Telephely, Jelleg)>,IHandle<Telephely>,IHandle<RemovedItem>
     {
         public JellegekViewModel()
         {
@@ -144,6 +145,37 @@ namespace IktatogRPCClient.ViewModels
                     AvailableJellegek.Add(message.Item2);
                 }
                 NotifyOfPropertyChange(() => AvailableJellegek);
+            }
+        }
+
+ 
+            public void Handle(Telephely message)
+            {
+                if (message != SelectedTelephely && message != null)
+                {
+                    Telephely telephely = AvailableTelephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
+                    if (telephely == null)
+                    {
+                        AvailableTelephelyek.Add(message);
+                        NotifyOfPropertyChange(() => AvailableTelephelyek);
+                    }
+                    else if (telephely.Name != message.Name)
+                    {
+                        AvailableTelephelyek.Remove(telephely);
+                        AvailableTelephelyek.Add(message);
+                        NotifyOfPropertyChange(() => AvailableTelephelyek);
+
+                    }
+                }
+            }
+
+        public void Handle(RemovedItem message)
+        {
+            if (message.Item is Telephely)
+            {
+                Telephely telephely = AvailableTelephelyek.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
+                AvailableTelephelyek.Remove(telephely);
+                NotifyOfPropertyChange(() => AvailableTelephelyek);
             }
         }
     }

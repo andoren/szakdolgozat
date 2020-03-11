@@ -1,6 +1,9 @@
 ﻿using Caliburn.Micro;
 using Iktato;
+using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class PartnerekViewModel:Conductor<Screen>, IHandle<Partner>, IHandle<(Telephely, Partner)>
+    class PartnerekViewModel:Conductor<Screen>, IHandle<Partner>, IHandle<(Telephely, Partner)>,IHandle<Telephely>,IHandle<RemovedItem>
     {
         public PartnerekViewModel()
         {
@@ -107,19 +110,41 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreatePartner() {
             PartnerekIsVisible = false;
+            Screen createScreen = SceneManager.CreateScene(Scenes.AddPartner);
+            ActivateItem(createScreen);
+            eventAggregator.Subscribe(createScreen);
+            eventAggregator.PublishOnUIThread(AvailableTelephelyek);
         }
         public void RemovePartner() {
             if (serverHelper.RemovePartner(SelectedPartner)) {
+                
+                eventAggregator.PublishOnUIThread(new RemovedItem(SelectedPartner));
                 AvailablePartnerek.Remove(SelectedPartner);
             }
         }
-        public void ModifyPartner() { 
-        
+        public void ModifyPartner() {
+            PartnerekIsVisible = false;
+            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyPartner);
+            ActivateItem(modifyScreen);
+            eventAggregator.PublishOnUIThread(SelectedTelephely);
+            eventAggregator.PublishOnUIThread(SelectedPartner);
         }
 
         public void Handle((Telephely, Partner) message)
         {
-            throw new NotImplementedException();
+            PartnerekIsVisible = true;
+            if (message.Item1.Name == SelectedTelephely.Name) {
+                Partner partner = AvailablePartnerek.Where(x => x.Id == message.Item2.Id).FirstOrDefault();
+                if (partner != null) {
+                    AvailablePartnerek.Remove(partner);
+                    AvailablePartnerek.Add(message.Item2);
+                    NotifyOfPropertyChange(()=>AvailablePartnerek);
+                }
+                else {
+                    AvailablePartnerek.Add(message.Item2);
+                    NotifyOfPropertyChange(() => AvailablePartnerek);
+                }
+            }
         }
 
         public void Handle(Partner message)
@@ -137,6 +162,32 @@ namespace IktatogRPCClient.ViewModels
         {
             eventAggregator.Unsubscribe(this);
             base.OnDeactivate(close);
+        }
+        public void Handle(RemovedItem message)
+        {
+            if (message.Item is Telephely)
+            {
+
+                Telephely telephely = AvailableTelephelyek.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
+                 AvailableTelephelyek.Remove(telephely);
+                 NotifyOfPropertyChange(() => AvailableTelephelyek);
+            }
+        }
+        public void Handle(Telephely message)
+        {
+            if (message != SelectedTelephely&& message != null) { 
+                Telephely telephely = AvailableTelephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
+                if (telephely == null)
+                {
+                    AvailableTelephelyek.Add(message);
+                    NotifyOfPropertyChange(() => AvailableTelephelyek);
+                }
+                else {
+                    AvailableTelephelyek.Remove(telephely);
+                    AvailableTelephelyek.Add(message);
+                    NotifyOfPropertyChange(()=>AvailableTelephelyek);
+                }
+            }
         }
     }
 }

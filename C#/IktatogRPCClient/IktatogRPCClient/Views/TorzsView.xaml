@@ -10,15 +10,25 @@
              d:DesignHeight="600" d:DesignWidth="1100">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <WrapPanel   HorizontalAlignment="Center">
-                <ContentControl  Margin="10" x:Name="UgyintezokViewModel"/>
-                <ContentControl  Margin="10"  x:Name="JellegekViewModel"/>
-                <ContentControl  Margin="10" x:Name="PartnersViewModel"/>
-                <ContentControl  Margin="10" x:Name="PartnerekUgyintezoiViewModel"/>
-                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="TelephelyekViewModel" />
-                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="UsersViewModel"/>
-                <ContentControl IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="10" x:Name="CsoportokViewModel"/>
-            </WrapPanel>
+            <Grid   >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0" Margin="5" x:Name="UgyintezokViewModel"/>
+                <ContentControl Grid.Column="1"  Margin="5"  x:Name="JellegekViewModel"/>
+                <ContentControl Grid.Column="2"  Margin="5" x:Name="PartnersViewModel"/>
+                <ContentControl Grid.Column="3"  Margin="5" x:Name="PartnerekUgyintezoiViewModel"/>
+                <ContentControl Grid.Row="1" Grid.Column="0"  IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="5" x:Name="TelephelyekViewModel" />
+                <ContentControl Grid.Row="1" Grid.Column="1"  IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="5" x:Name="UsersViewModel"/>
+                <ContentControl Grid.Row="1" Grid.Column="2"  IsEnabled="{Binding Path=AdminSettingsIsVisible}" Margin="5" x:Name="CsoportokViewModel"/>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

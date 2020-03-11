@@ -16,8 +16,8 @@
             <StackPanel Grid.Row="0" Orientation="Vertical">
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Ügyintéző módosítása</TextBlock>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Margin="5">A módosítani kívánt ügyintéző neve:</TextBlock>
-                    <TextBox VerticalContentAlignment="Center" MinHeight="20"  MinWidth="200" Margin="5,0" x:Name="NewName"/>
+                    <TextBlock Margin="10">A módosítani kívánt ügyintéző neve:</TextBlock>
+                    <TextBox VerticalContentAlignment="Center" MinHeight="20"  MinWidth="200" Margin="10,0" x:Name="NewName"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
