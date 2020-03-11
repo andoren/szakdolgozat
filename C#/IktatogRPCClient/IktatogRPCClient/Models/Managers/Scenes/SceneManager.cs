@@ -126,6 +126,12 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyPartnerUgyintezoViewModel();
                         break;
                     }
+                case Scenes.Felhasznalok:
+                    {
+                        screen = new FelhasznalokViewModel();
+                        break;
+                    }
+
                 default:
                     throw new InvalidSceneExeption();
                     

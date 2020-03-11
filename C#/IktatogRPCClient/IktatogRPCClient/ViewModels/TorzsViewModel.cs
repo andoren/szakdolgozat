@@ -21,14 +21,14 @@ namespace IktatogRPCClient.ViewModels
             TelephelyekViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
             CsoportokViewModel = SceneManager.CreateScene(Scenes.Csoportok);
             JellegekViewModel = SceneManager.CreateScene(Scenes.Jellegek);
-            UsersViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
+            FelhasznalokViewModel = SceneManager.CreateScene(Scenes.Felhasznalok);
             PartnersViewModel = SceneManager.CreateScene(Scenes.Partnerek);
             PartnerekUgyintezoiViewModel = SceneManager.CreateScene(Scenes.PartnerekUgyintezoi);
             Items.Add(UgyintezokViewModel);
             Items.Add(TelephelyekViewModel);
             Items.Add(CsoportokViewModel);
             Items.Add(JellegekViewModel);
-            Items.Add(UsersViewModel);
+            Items.Add(FelhasznalokViewModel);
             Items.Add(PartnersViewModel);
             Items.Add(PartnerekUgyintezoiViewModel);
         }
@@ -38,7 +38,7 @@ namespace IktatogRPCClient.ViewModels
 
         public Screen CsoportokViewModel { get; private set; }
         public Screen JellegekViewModel { get; private set; }
-        public Screen UsersViewModel { get; private set; }
+        public Screen FelhasznalokViewModel { get; private set; }
 
         public Screen PartnersViewModel { get; private set; }
         private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();

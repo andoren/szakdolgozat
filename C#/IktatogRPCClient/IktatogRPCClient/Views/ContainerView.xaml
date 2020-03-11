@@ -58,7 +58,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Foreground="White" Margin="15,0,5,0">Felhasználó:</TextBlock>
-                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentMenu"> User</TextBlock>
+                <TextBlock Foreground="White" Margin="5,0,5,0" x:Name="CurrentUser"> User</TextBlock>
 
             </StackPanel>
 

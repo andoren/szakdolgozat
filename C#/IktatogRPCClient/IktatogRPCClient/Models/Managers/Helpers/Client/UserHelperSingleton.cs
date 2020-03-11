@@ -13,12 +13,20 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
     {
         private UserHelperSingleton()
         {
-
+            serverHelper =  ServerHelperSingleton.GetInstance();
         }
         private static UserHelperSingleton userHelper;
-        private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
+        private ServerHelperSingleton serverHelper  ;
         private AuthToken _token;
-        public User CurrentUser;
+        private static User _currentUser;
+        public static User CurrentUser {
+            get {
+                return _currentUser;
+            }
+            set {
+                _currentUser = value;
+            }
+        }
 
         public static UserHelperSingleton GetInstance()
         {
@@ -42,14 +50,15 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             {
                 CurrentUser = await new IktatoService.IktatoServiceClient(serverHelper.GetChannel()).LoginAsync(message);
                 Token = CurrentUser.AuthToken;
+                serverHelper.InitializeConnection();
             }
             catch (RpcException re)
             {
                 if (re.StatusCode == StatusCode.Unauthenticated) throw new LoginErrorException("Hibás felhasznlónév vagy jelszó! Próbálja megújra");               
             }
-            catch (Exception )
+            catch (Exception e )
             {
-                MessageBox.Show("Sima Exception");           
+                MessageBox.Show($"Sima Exception: {e.Message}");           
             }
 
         }

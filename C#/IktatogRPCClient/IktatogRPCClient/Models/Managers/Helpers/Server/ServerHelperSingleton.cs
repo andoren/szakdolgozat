@@ -17,7 +17,7 @@ namespace IktatogRPCClient.Models.Managers
     class ServerHelperSingleton
     {
         //TODO THE WHOLE HELPER! :(
-        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
+        private UserHelperSingleton userHelper;
         private CallOptions calloptions;
         private IktatoService.IktatoServiceClient client;
 
@@ -141,7 +141,8 @@ namespace IktatogRPCClient.Models.Managers
 
         public void InitializeConnection() {
 
-            client = new IktatoService.IktatoServiceClient(GetChannel());
+            client = new IktatoService.IktatoServiceClient(GetChannel());    
+            userHelper = UserHelperSingleton.GetInstance();
             calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
         }
         public Channel GetChannel() {
@@ -227,6 +228,17 @@ namespace IktatogRPCClient.Models.Managers
                konyv
             };
            
+        }
+
+        public BindableCollection<UserProxy> GetAllUser()
+        {
+            return new BindableCollection<UserProxy>() {
+                new UserProxy(new User() { Id = 4, Fullname= "Brachna Anita",
+                    Username = "banita" ,Password="Gerike a kedvencem2019" ,Privilege = new Privilege() { Id = 2, Name= "User" }
+                })
+                ,
+                new UserProxy(UserHelperSingleton.CurrentUser) 
+            };
         }
     }
 } 

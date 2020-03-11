@@ -77,6 +77,7 @@
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
     <Compile Include="Models\RemovedItem.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
+    <Compile Include="Models\UserProxy.cs" />
     <Compile Include="ViewModels\AddCsoportViewModel.cs" />
     <Compile Include="ViewModels\AddJellegViewModel.cs" />
     <Compile Include="ViewModels\AddPartnerUgyintezoViewModel.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\CsoportokViewModel.cs" />
+    <Compile Include="ViewModels\FelhasznalokViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
     <Compile Include="Models\Exceptions\InvalidUserNameExepction.cs" />
@@ -126,6 +128,9 @@
     </Compile>
     <Compile Include="Views\CsoportokView.xaml.cs">
       <DependentUpon>CsoportokView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FelhasznalokView.xaml.cs">
+      <DependentUpon>FelhasznalokView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FooldalView.xaml.cs">
       <DependentUpon>FooldalView.xaml</DependentUpon>
@@ -257,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CsoportokView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FelhasznalokView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

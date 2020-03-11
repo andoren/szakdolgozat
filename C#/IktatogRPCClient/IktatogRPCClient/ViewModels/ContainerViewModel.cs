@@ -18,19 +18,16 @@ namespace IktatogRPCClient.ViewModels
         public ContainerViewModel()
         {
             Fooldal();
-       
-            CurrentMenu = "Főoldal";
-            ChangeCurrentMenuLabel(userHelper.CurrentUser.Fullname, userHelper.CurrentUser.Privilege.Name);
-        }
-        private string _currentMenu;
-
-        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
-        public string CurrentMenu
-        {
-            get { return _currentMenu; }
-            set { _currentMenu = value; }
+            ChangeCurrentMenuLabel(UserHelperSingleton.CurrentUser.Fullname, UserHelperSingleton.CurrentUser.Privilege.Name);
         }
         private bool _loaderIsVisible;
+        private string _currentUSer;
+
+        public string CurrentUser
+        {
+            get { return _currentUSer; }
+            set { _currentUSer = value; }
+        }
 
         public bool LoaderIsVisible
         {
@@ -39,7 +36,6 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(()=>LoaderIsVisible);
             }
         }
-
         public void Fooldal() {
             ChangeScene(Scenes.Fooldal);
             
@@ -69,7 +65,7 @@ namespace IktatogRPCClient.ViewModels
 
         private void ChangeCurrentMenuLabel(string name, string Role)
         {
-            CurrentMenu = $"{name} - {Role}";
+            CurrentUser = $"{name} - {Role}";
         }
         private void ChangeScene(Scenes scene) {
             ActivateItem(SceneManager.CreateScene(scene));
