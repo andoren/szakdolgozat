@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Iktato;
+using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,13 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class FelhasznalokViewModel:Conductor<Screen>
+    class FelhasznalokViewModel:Conductor<Screen>,IHandle<UserProxy>
     {
 
 		public FelhasznalokViewModel()
 		{
 			AvailabelUsers = serverHelper.GetAllUser();
+			eventAggregator.Subscribe(this);
 		}
 		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
@@ -26,13 +29,18 @@ namespace IktatogRPCClient.ViewModels
 		public bool UsersIsVisible
 		{
 			get { return _usersIsVisible; }
-			set { _usersIsVisible = value; }
+			set { _usersIsVisible = value;
+				NotifyOfPropertyChange(()=>UsersIsVisible);
+				NotifyOfPropertyChange(() => CreationIsVisible);
+			}
 		}
-
+		public bool CreationIsVisible { get {
+				return !UsersIsVisible;
+			} }
 		public UserProxy SelectedUser
 		{
 			get { return _selectedUser; }
-			set {  if (value != null)_selectedUser = value;
+			set {  _selectedUser = value;
 				NotifyOfPropertyChange(()=> SelectedUser);
 				NotifyOfPropertyChange(() => CanDisableUser);
 				NotifyOfPropertyChange(() => CanModifyUser);
@@ -57,14 +65,39 @@ namespace IktatogRPCClient.ViewModels
 				return SelectedUser != null;
 			}
 		}
-		public void CreateUser() { 
-		
+		public void CreateUser() {
+			UsersIsVisible = false;
+			Screen createScreen = SceneManager.CreateScene(Scenes.AddFelhasznalo);
+			ActivateItem(createScreen);
+			
 		}
-		public void ModifyUser() { 
-		
+		public void ModifyUser() {
+			UsersIsVisible = false;
+			Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyFelhasznalo);
+			eventAggregator.Subscribe(modifyScreen);
+			ActivateItem(modifyScreen);
+			eventAggregator.PublishOnUIThread(SelectedUser);
 		}
-		public void DisableUser() { 
-		
+		public void DisableUser() {
+			if (serverHelper.DisableUser(SelectedUser.GetUser)) {
+				AvailabelUsers.Remove(SelectedUser);
+				NotifyOfPropertyChange(() => AvailabelUsers);
+				NotifyOfPropertyChange(()=>SelectedUser);
+			}
+		}
+
+		public void Handle(UserProxy message)
+		{
+			
+			if (message == SelectedUser) return;
+			UsersIsVisible = true;
+			UserProxy user = AvailabelUsers.Where(x=>x.Id == message.Id).FirstOrDefault();
+			if (user != null) {
+				AvailabelUsers.Remove(user);
+				AvailabelUsers.Add(message);
+				NotifyOfPropertyChange(()=>AvailabelUsers);
+			}
+			else if (!string.IsNullOrWhiteSpace(message.Fullname)) { AvailabelUsers.Add(message); }
 		}
 	}
 }

@@ -79,6 +79,7 @@
     <Compile Include="Models\TorzsDataView.cs" />
     <Compile Include="Models\UserProxy.cs" />
     <Compile Include="ViewModels\AddCsoportViewModel.cs" />
+    <Compile Include="ViewModels\AddFelhasznaloViewModel.cs" />
     <Compile Include="ViewModels\AddJellegViewModel.cs" />
     <Compile Include="ViewModels\AddPartnerUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\AddPartnerViewModel.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="ViewModels\JellegekViewModel.cs" />
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ModifyFelhasznaloViewModel.cs" />
     <Compile Include="ViewModels\ModifyPartnerUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ModifyPartnerViewModel.cs" />
     <Compile Include="ViewModels\ModifyCsoportViewModel.cs" />
@@ -107,6 +109,9 @@
     <Compile Include="ViewModels\UgyintezokViewModel.cs" />
     <Compile Include="Views\AddCsoportView.xaml.cs">
       <DependentUpon>AddCsoportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddFelhasznaloView.xaml.cs">
+      <DependentUpon>AddFelhasznaloView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddJellegView.xaml.cs">
       <DependentUpon>AddJellegView.xaml</DependentUpon>
@@ -152,6 +157,9 @@
     </Compile>
     <Compile Include="Views\ModifyCsoportView.xaml.cs">
       <DependentUpon>ModifyCsoportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyFelhasznaloView.xaml.cs">
+      <DependentUpon>ModifyFelhasznaloView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyJellegView.xaml.cs">
       <DependentUpon>ModifyJellegView.xaml</DependentUpon>
@@ -237,6 +245,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddFelhasznaloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddJellegView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -294,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModifyCsoportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyFelhasznaloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

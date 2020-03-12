@@ -43,20 +43,21 @@ namespace Iktato {
             "YWdlEhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIg4KDEVt",
             "cHR5TWVzc2FnZSIlCglQcml2aWxlZ2USCgoCaWQYASABKAUSDAoEbmFtZRgC",
             "IAEoCSIoCgZBbnN3ZXISDQoFZXJyb3IYASABKAgSDwoHbWVzc2FnZRgCIAEo",
-            "CSKUAQoEVXNlchIKCgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIQCghm",
+            "CSK8AQoEVXNlchIKCgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIQCghm",
             "dWxsbmFtZRgDIAEoCRIQCghwYXNzd29yZBgEIAEoCRIkCglwcml2aWxlZ2UY",
             "BSABKAsyES5Ja3RhdG8uUHJpdmlsZWdlEiQKCUF1dGhUb2tlbhgGIAEoCzIR",
-            "LklrdGF0by5BdXRoVG9rZW4iGgoJQXV0aFRva2VuEg0KBXRva2VuGAEgASgJ",
-            "IhsKDURlbGV0ZU1lc3NhZ2USCgoCaWQYASABKAUymAMKDUlrdGF0b1NlcnZp",
-            "Y2USKwoFTG9naW4SFC5Ja3RhdG8uTG9naW5NZXNzYWdlGgwuSWt0YXRvLlVz",
-            "ZXISLgoGTG9nb3V0EhQuSWt0YXRvLkVtcHR5TWVzc2FnZRoOLklrdGF0by5B",
-            "bnN3ZXISKAoIUmVnaXN0ZXISDC5Ja3RhdG8uVXNlchoOLklrdGF0by5BbnN3",
-            "ZXISLAoKQWRkSWt0YXRhcxIOLklrdGF0by5Ja29ueXYaDi5Ja3RhdG8uQW5z",
-            "d2VyEi8KDU1vZGlmeUlrdGF0YXMSDi5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRv",
-            "LkFuc3dlchI4Cg5MaXN0YWxsSWt0YXRhcxIULklrdGF0by5FbXB0eU1lc3Nh",
-            "Z2UaDi5Ja3RhdG8uSWtvbnl2MAESLwoLTGlzdElrdGF0YXMSDi5Ja3RhdG8u",
-            "RnJvbVRvGg4uSWt0YXRvLklrb255djABEjYKDURlbGV0ZUlrdGF0YXMSFS5J",
-            "a3RhdG8uRGVsZXRlTWVzc2FnZRoOLklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
+            "LklrdGF0by5BdXRoVG9rZW4SJgoLVGVsZXBoZWx5ZWsYByADKAsyES5Ja3Rh",
+            "dG8uVGVsZXBoZWx5IhoKCUF1dGhUb2tlbhINCgV0b2tlbhgBIAEoCSIbCg1E",
+            "ZWxldGVNZXNzYWdlEgoKAmlkGAEgASgFMpgDCg1Ja3RhdG9TZXJ2aWNlEisK",
+            "BUxvZ2luEhQuSWt0YXRvLkxvZ2luTWVzc2FnZRoMLklrdGF0by5Vc2VyEi4K",
+            "BkxvZ291dBIULklrdGF0by5FbXB0eU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2Vy",
+            "EigKCFJlZ2lzdGVyEgwuSWt0YXRvLlVzZXIaDi5Ja3RhdG8uQW5zd2VyEiwK",
+            "CkFkZElrdGF0YXMSDi5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRvLkFuc3dlchIv",
+            "Cg1Nb2RpZnlJa3RhdGFzEg4uSWt0YXRvLklrb255dhoOLklrdGF0by5BbnN3",
+            "ZXISOAoOTGlzdGFsbElrdGF0YXMSFC5Ja3RhdG8uRW1wdHlNZXNzYWdlGg4u",
+            "SWt0YXRvLklrb255djABEi8KC0xpc3RJa3RhdGFzEg4uSWt0YXRvLkZyb21U",
+            "bxoOLklrdGF0by5Ja29ueXYwARI2Cg1EZWxldGVJa3RhdGFzEhUuSWt0YXRv",
+            "LkRlbGV0ZU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2VyYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +73,7 @@ namespace Iktato {
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.EmptyMessage), global::Iktato.EmptyMessage.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Privilege), global::Iktato.Privilege.Parser, new[]{ "Id", "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Answer), global::Iktato.Answer.Parser, new[]{ "Error", "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege", "AuthToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.User), global::Iktato.User.Parser, new[]{ "Id", "Username", "Fullname", "Password", "Privilege", "AuthToken", "Telephelyek" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.AuthToken), global::Iktato.AuthToken.Parser, new[]{ "Token" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.DeleteMessage), global::Iktato.DeleteMessage.Parser, new[]{ "Id" }, null, null, null)
           }));
@@ -2360,6 +2361,7 @@ namespace Iktato {
       password_ = other.password_;
       privilege_ = other.privilege_ != null ? other.privilege_.Clone() : null;
       authToken_ = other.authToken_ != null ? other.authToken_.Clone() : null;
+      telephelyek_ = other.telephelyek_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2434,6 +2436,16 @@ namespace Iktato {
       }
     }
 
+    /// <summary>Field number for the "Telephelyek" field.</summary>
+    public const int TelephelyekFieldNumber = 7;
+    private static readonly pb::FieldCodec<global::Iktato.Telephely> _repeated_telephelyek_codec
+        = pb::FieldCodec.ForMessage(58, global::Iktato.Telephely.Parser);
+    private readonly pbc::RepeatedField<global::Iktato.Telephely> telephelyek_ = new pbc::RepeatedField<global::Iktato.Telephely>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Iktato.Telephely> Telephelyek {
+      get { return telephelyek_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as User);
@@ -2453,6 +2465,7 @@ namespace Iktato {
       if (Password != other.Password) return false;
       if (!object.Equals(Privilege, other.Privilege)) return false;
       if (!object.Equals(AuthToken, other.AuthToken)) return false;
+      if(!telephelyek_.Equals(other.telephelyek_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2465,6 +2478,7 @@ namespace Iktato {
       if (Password.Length != 0) hash ^= Password.GetHashCode();
       if (privilege_ != null) hash ^= Privilege.GetHashCode();
       if (authToken_ != null) hash ^= AuthToken.GetHashCode();
+      hash ^= telephelyek_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2502,6 +2516,7 @@ namespace Iktato {
         output.WriteRawTag(50);
         output.WriteMessage(AuthToken);
       }
+      telephelyek_.WriteTo(output, _repeated_telephelyek_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2528,6 +2543,7 @@ namespace Iktato {
       if (authToken_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AuthToken);
       }
+      size += telephelyek_.CalculateSize(_repeated_telephelyek_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2563,6 +2579,7 @@ namespace Iktato {
         }
         AuthToken.MergeFrom(other.AuthToken);
       }
+      telephelyek_.Add(other.telephelyek_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2602,6 +2619,10 @@ namespace Iktato {
               AuthToken = new global::Iktato.AuthToken();
             }
             input.ReadMessage(AuthToken);
+            break;
+          }
+          case 58: {
+            telephelyek_.AddEntriesFrom(input, _repeated_telephelyek_codec);
             break;
           }
         }

@@ -85,6 +85,7 @@ message User {
   string password = 4;
   Privilege privilege = 5;
   AuthToken AuthToken = 6;
+  repeated Telephely Telephelyek = 7;
 }
 message AuthToken{
     string token = 1;

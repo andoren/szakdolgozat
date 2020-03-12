@@ -1,4 +1,5 @@
-﻿using Iktato;
+﻿using Caliburn.Micro;
+using Iktato;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.Models
 {
-    class UserProxy
+    public class UserProxy
     {
+        public UserProxy()
+        {
+            _user = new User();
+        }
         public UserProxy(User _user)
         {
            
@@ -17,20 +22,16 @@ namespace IktatogRPCClient.Models
         }
         private User _user;
 
-        public int PasswordLength {
+        public string Password {
             get {
-                return _user.Password.Length;
+                return _user.Password;
             }
         }
       
         public void SetPassword(string password) {
             if (IsValidPassword(password)) _user.Password = password;
         }
-        private bool IsValidPassword(string password)
-        {
-            //TODO password strength checker
-            return true;
-        }
+
 
         public Privilege Privilege { get {
                 return _user.Privilege;
@@ -65,6 +66,28 @@ namespace IktatogRPCClient.Models
             get {
                 return new User(_user);
             }
+        }
+
+        public BindableCollection<Telephely> Telephelyek { 
+            get {
+                return new BindableCollection<Telephely>(_user.Telephelyek);
+            }
+        }
+
+        public static bool IsValidPassword(string newPassword)
+        {
+            //TODO Password Is Valid method
+            return newPassword.Length > 5;
+        }
+
+        public static bool IsValidFullname(string newFullname)
+        {
+            return !(newFullname.Length < 4 || newFullname.Length > 100 || !newFullname.Contains(" "));
+        }
+
+        public  static bool IsValidUsername(string newUsername)
+        {
+            return !(newUsername.Length < 4 || newUsername.Length > 20);
         }
     }
 }

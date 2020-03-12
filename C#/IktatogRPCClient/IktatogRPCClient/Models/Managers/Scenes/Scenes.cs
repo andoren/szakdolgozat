@@ -31,7 +31,8 @@ namespace IktatogRPCClient.Models.Scenes
         ModifyPartner,
         AddPartnerUgyintezo,
         ModifyPartnerUgyintezo,
-        Felhasznalok
-     
+        Felhasznalok,
+        AddFelhasznalo,
+        ModifyFelhasznalo
     }
 }

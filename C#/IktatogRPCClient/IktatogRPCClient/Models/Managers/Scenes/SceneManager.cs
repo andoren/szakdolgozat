@@ -131,7 +131,16 @@ namespace IktatogRPCClient.Managers
                         screen = new FelhasznalokViewModel();
                         break;
                     }
-
+                case Scenes.AddFelhasznalo:
+                    {
+                        screen = new AddFelhasznaloViewModel();
+                        break;
+                    }
+                case Scenes.ModifyFelhasznalo:
+                    {
+                        screen = new ModifyFelhasznaloViewModel();
+                        break;
+                    }
                 default:
                     throw new InvalidSceneExeption();
                     

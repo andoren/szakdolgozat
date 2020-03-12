@@ -19,6 +19,12 @@ namespace IktatogRPCClient.Models.Managers
         //TODO THE WHOLE HELPER! :(
         private UserHelperSingleton userHelper;
         private CallOptions calloptions;
+
+        public  BindableCollection<Privilege> GetPrivileges()
+        {
+            return new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
+        }
+
         private IktatoService.IktatoServiceClient client;
 
         public Telephely AddTelephely(string telephelyNeve)
@@ -45,6 +51,11 @@ namespace IktatogRPCClient.Models.Managers
         }
 
         public bool ModifyPartnerUgyintezo(PartnerUgyintezo selectedPartnerUgyintezo, string ugyintezoNeve)
+        {
+            return true;
+        }
+
+        public bool DisableUser(User getUser)
         {
             return true;
         }
@@ -81,6 +92,19 @@ namespace IktatogRPCClient.Models.Managers
             else return new BindableCollection<Partner>();
         }
 
+        public UserProxy AddUser(string newUsername, string newFullname, string newPassword, Privilege selectedPrivilege, BindableCollection<Telephely> selectedTelephelyek)
+        {
+            User user =  new User() { Id = new Random().Next(1,50), Fullname = newFullname, 
+                Password = newPassword, 
+                Privilege = selectedPrivilege, 
+                Username = newUsername};
+            foreach (var item in selectedTelephelyek)
+            {
+                user.Telephelyek.Add(item);
+            }
+            return new UserProxy(user);
+        }
+
         public bool ModifyJelleg(Jelleg modifiedJelleg)
         {
             return true;
@@ -109,6 +133,11 @@ namespace IktatogRPCClient.Models.Managers
             else {
                 return new BindableCollection<Jelleg>();
             }
+        }
+
+        public bool ModifyUser(User getUser)
+        {
+            return true;
         }
 
         public Jelleg AddJellegToTelephely(Telephely selectedTelephely, string jellegNeve)
@@ -232,10 +261,17 @@ namespace IktatogRPCClient.Models.Managers
 
         public BindableCollection<UserProxy> GetAllUser()
         {
+            User user = new User()
+            {
+                Id = 4,
+                Fullname = "Brachna Anita",
+                Username = "banita",
+                Password = "Gerike a kedvencem2019",
+                Privilege = new Privilege() { Id = 2, Name = "User" }
+            };
+            user.Telephelyek.Add(new Telephely() { Id = 1,Name = "Rákóczi"});
             return new BindableCollection<UserProxy>() {
-                new UserProxy(new User() { Id = 4, Fullname= "Brachna Anita",
-                    Username = "banita" ,Password="Gerike a kedvencem2019" ,Privilege = new Privilege() { Id = 2, Name= "User" }
-                })
+                new UserProxy(user)
                 ,
                 new UserProxy(UserHelperSingleton.CurrentUser) 
             };

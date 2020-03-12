@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
               MinHeight="235" MinWidth="380" FontSize="18" >
     <Grid>
-        <Grid x:Name="UgyintezokIsVisible" >
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>

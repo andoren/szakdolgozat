@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\App.xaml
-27-1515689233
+29-1249048933
 7-1673234325
-701075376473
+74-637541701
 218-250138142
-style.xaml;Views\AddCsoportView.xaml;Views\AddJellegView.xaml;Views\AddPartnerUgyintezoView.xaml;Views\AddPartnerView.xaml;Views\AddTelephelyView.xaml;Views\AddUgyintezoView.xaml;Views\ContainerView.xaml;Views\CsoportokView.xaml;Views\FelhasznalokView.xaml;Views\FooldalView.xaml;Views\IktatasView.xaml;Views\JellegekView.xaml;Views\KeresesView.xaml;Views\LoadingSpinnerView.xaml;Views\LoginView.xaml;Views\ModifyCsoportView.xaml;Views\ModifyJellegView.xaml;Views\ModifyPartnerUgyintezoView.xaml;Views\ModifyPartnerView.xaml;Views\ModifyTelephelyView.xaml;Views\ModifyUgyintezoView.xaml;Views\PartnerekUgyintezoiView.xaml;Views\PartnerekView.xaml;Views\TelephelyekView.xaml;Views\TorzsView.xaml;Views\UgyintezokView.xaml;
+style.xaml;Views\AddCsoportView.xaml;Views\AddFelhasznaloView.xaml;Views\AddJellegView.xaml;Views\AddPartnerUgyintezoView.xaml;Views\AddPartnerView.xaml;Views\AddTelephelyView.xaml;Views\AddUgyintezoView.xaml;Views\ContainerView.xaml;Views\CsoportokView.xaml;Views\FelhasznalokView.xaml;Views\FooldalView.xaml;Views\IktatasView.xaml;Views\JellegekView.xaml;Views\KeresesView.xaml;Views\LoadingSpinnerView.xaml;Views\LoginView.xaml;Views\ModifyCsoportView.xaml;Views\ModifyFelhasznaloView.xaml;Views\ModifyJellegView.xaml;Views\ModifyPartnerUgyintezoView.xaml;Views\ModifyPartnerView.xaml;Views\ModifyTelephelyView.xaml;Views\ModifyUgyintezoView.xaml;Views\PartnerekUgyintezoiView.xaml;Views\PartnerekView.xaml;Views\TelephelyekView.xaml;Views\TorzsView.xaml;Views\UgyintezokView.xaml;
 
 True
 
