@@ -22,11 +22,16 @@
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="5 0">Jellgek a telephelyen</TextBlock>
                 </StackPanel>
                 <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="AvailableJellegek" SelectedItem="{Binding Path=SelectedJelleg, Mode=TwoWay}" DisplayMemberPath="Name" />
-                <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                    <Button x:Name="CreateJelleg" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                    <Button x:Name="ModifyJelleg" Background="Green" Foreground="White"  Padding="15" Margin="0,5,5,5">Módosítás</Button>
-                    <Button x:Name="RemoveJelleg" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="0,5,5,5">Törlés</Button>
-                </StackPanel>
+                <Grid Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="CreateJelleg" MinHeight="45" FontSize="16" Grid.Column="0" Background="Green" Foreground="White"   Margin="5 0 5 5">Hozzáadás</Button>
+                    <Button x:Name="ModifyJelleg" MinHeight="45" FontSize="16" Grid.Column="1" Background="Green" Foreground="White"   Margin="0 0 5 5">Módosítás</Button>
+                    <Button x:Name="RemoveJelleg" MinHeight="45" FontSize="16" Grid.Column="2" Background="#FFFB2323" Foreground="White"  Margin="0 0 5 5">Törlés</Button>
+                </Grid>
             </Grid>
             <Grid Grid.Row="0" x:Name="CreationIsVisible">
                 <ContentControl  x:Name="ActiveItem"/>

@@ -9,15 +9,19 @@ service IktatoService {
   rpc AddIktatas(Ikonyv) returns (Answer);
   rpc ModifyIktatas(Ikonyv) returns (Answer);
   rpc ListallIktatas(EmptyMessage) returns (stream Ikonyv);
-  rpc ListIktatas(FromTo) returns (stream Ikonyv);
+  rpc ListIktatas(SearchIkonyvData) returns (stream Ikonyv);
   rpc DeleteIktatas(DeleteMessage) returns (Answer);
 
 }
 
-message FromTo{
-    int32 From = 1;
-    int32 To = 2;
+message SearchIkonyvData{
+    int32 Irany = 1;
+    int32 Year = 2;
+    int32 From = 3;
+    int32 To = 4;
+
 }
+
 message Ikonyv{
     int32 id = 1;
     string targy = 2;

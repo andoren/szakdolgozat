@@ -22,11 +22,16 @@
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="5 0">Csoportok a telephelyen</TextBlock>
                 </StackPanel>
                 <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="TelephelyCsoportjai" SelectedItem="{Binding Path=SelectedCsoport, Mode=TwoWay}" DisplayMemberPath="Name" />
-                <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                    <Button x:Name="CreateCsoport" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                    <Button x:Name="ModifyCsoport" Background="Green" Foreground="White"  Padding="15" Margin="0,5,5,5">Módosítás</Button>
-                    <Button x:Name="RemoveCsoport" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="0,5,5,5">Törlés</Button>
-                </StackPanel>
+                <Grid Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="CreateCsoport" MinHeight="45" FontSize="16" Grid.Column="0" Background="Green" Foreground="White"   Margin="5 0 5 5">Hozzáadás</Button>
+                    <Button x:Name="ModifyCsoport" MinHeight="45" FontSize="16" Grid.Column="1" Background="Green" Foreground="White"   Margin="0 0 5 5">Módosítás</Button>
+                    <Button x:Name="RemoveCsoport" MinHeight="45" FontSize="16" Grid.Column="2" Background="#FFFB2323" Foreground="White"  Margin="0 0 5 5">Törlés</Button>
+                </Grid>
             </Grid>
             <Grid Grid.Row="0" x:Name="CreationIsVisible">
                 <ContentControl  x:Name="ActiveItem"/>

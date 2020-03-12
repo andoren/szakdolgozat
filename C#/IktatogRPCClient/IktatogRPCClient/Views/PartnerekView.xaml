@@ -23,11 +23,16 @@
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0 5">A Telephely partnerei:</TextBlock>
                 </StackPanel>
                 <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="AvailablePartnerek" SelectedItem="{Binding Path=SelectedPartner}" DisplayMemberPath="Name" />
-                <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                    <Button x:Name="CreatePartner" Background="Green" Foreground="White"  Padding="15" Margin="0 5 5 5">Hozzáadás</Button>
-                    <Button x:Name="ModifyPartner" Background="Green" Foreground="White"  Padding="15" Margin="5,5,5,5">Módosítás</Button>
-                    <Button x:Name="RemovePartner" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5,5,0,5">Törlés</Button>
-                </StackPanel>
+                <Grid Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="CreatePartner" MinHeight="45" FontSize="16" Grid.Column="0" Background="Green" Foreground="White"   Margin="5 0 5 5">Hozzáadás</Button>
+                    <Button x:Name="ModifyPartner" MinHeight="45" FontSize="16" Grid.Column="1" Background="Green" Foreground="White"   Margin="0 0 5 5">Módosítás</Button>
+                    <Button x:Name="RemovePartner" MinHeight="45" FontSize="16" Grid.Column="2" Background="#FFFB2323" Foreground="White"  Margin="0 0 5 5">Törlés</Button>
+                </Grid>
             </Grid>
             <Grid Grid.Row="0" x:Name="CreationIsVisible">
                 <ContentControl  x:Name="ActiveItem"/>

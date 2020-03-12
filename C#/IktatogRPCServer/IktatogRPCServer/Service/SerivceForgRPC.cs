@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Iktato;
@@ -66,9 +67,55 @@ namespace IktatogRPCServer.Service
         {
             return base.DeleteIktatas(request, context);
         }
-        public override Task ListIktatas(FromTo request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
+        public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
-            return base.ListIktatas(request, responseStream, context);
+            Ikonyv konyv = new Ikonyv()
+            {
+                CreatedBy = new User { Id = 1, Username = "misi" },
+                Csoport = new Csoport() { Id = 5, Name = "Kiscica", Shortname = "KC" },
+                Erkezett = "2020.02.15",
+                HatIdo = "2020.02.20",
+                Id = 232,
+                Hivszam = "1234/412Hivszám",
+                Iktatoszam = "B-R/KC/M/2020",
+                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
+                Irany = 0,
+                Partner = new Partner() { Id = 1, Name = "MacskaKonzervGyártó" },
+                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Brachna Anita" },
+                Szoveg = "Éhesek a cicám valamit jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
+                Targy = "Cica éhes",
+                Telephely = new Telephely() { Id = 1, Name = "Rákóczi" }
+
+            };
+            konyv.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy" });
+            Ikonyv konyv2 = new Ikonyv()
+            {
+                CreatedBy = new User { Id = 1, Username = "misi" },
+                Csoport = new Csoport() { Id = 5, Name = "Kiscica", Shortname = "KC" },
+                Erkezett = "2020.02.15",
+                HatIdo = "2020.02.20",
+                Id = 232,
+                Hivszam = "1234/412Hivszám",
+                Iktatoszam = "B-R/KC/M/2020",
+                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
+                Irany = 0,
+                Partner = new Partner() { Id = 1, Name = "MacskaKonzervGyártó2" },
+                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Brachna Anita" },
+                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
+                Targy = "Cica éhes2",
+                Telephely = new Telephely() { Id = 1, Name = "Rákóczi" }
+
+            };
+            konyv2.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy2" });
+            List<Ikonyv> ikonyvek = new List<Ikonyv>() { konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2, 
+                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
+                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
+            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2};
+            foreach (var response in ikonyvek)
+            {
+                await responseStream.WriteAsync(response);
+              
+            }
         }
     }
 }

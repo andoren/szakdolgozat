@@ -16,28 +16,71 @@ namespace IktatogRPCClient.Models.Managers
 {
     class ServerHelperSingleton
     {
+        private ServerHelperSingleton()
+        {
+
+        }
+
+
+
+        #region Singleton props and methods
+        private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
         //TODO THE WHOLE HELPER! :(
         private UserHelperSingleton userHelper;
         private CallOptions calloptions;
-
-        public  BindableCollection<Privilege> GetPrivileges()
+        private IktatoService.IktatoServiceClient client;
+        #endregion
+        public BindableCollection<Privilege> GetPrivileges()
         {
             return new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
         }
-
-        private IktatoService.IktatoServiceClient client;
-
         public Telephely AddTelephely(string telephelyNeve)
         {
             return new Telephely() { Id = new Random().Next(1, 100), Name = telephelyNeve };
         }
+        public static ServerHelperSingleton GetInstance()
+        {
 
+            return serverHelper;
+
+        }
+
+        public BindableCollection<Jelleg> GetJellegekByTelephely(Telephely selectedTelephely)
+        {
+            if (selectedTelephely != null)
+            {
+                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
+                else return new BindableCollection<Jelleg>();
+            }
+            else
+            {
+                return new BindableCollection<Jelleg>();
+            }
+        }
+
+        public bool ModifyUser(User getUser)
+        {
+            return true;
+        }
+
+        public Jelleg AddJellegToTelephely(Telephely selectedTelephely, string jellegNeve)
+        {
+            return new Jelleg() { Id = new Random().Next(1, 40), Name = jellegNeve };
+        }
+
+        public bool RemovePartnerUgyintezo(PartnerUgyintezo selectedUgyintezo)
+        {
+            return true;
+        }
+
+        public bool RemovePartner(Partner selectedPartner)
+        {
+            return true;
+        }
         public bool ModifyTelephely(Telephely telephely)
         {
             return true;
         }
-        #region Singleton props and methods
-        private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
 
         public BindableCollection<Csoport> GetCsoportokByTelephely(Telephely selectedTelephely)
         {
@@ -60,9 +103,9 @@ namespace IktatogRPCClient.Models.Managers
             return true;
         }
 
-        public PartnerUgyintezo AddPartnerUgyintezoToPartner(Partner selectedPartner,string ugyintezoNeve)
+        public PartnerUgyintezo AddPartnerUgyintezoToPartner(Partner selectedPartner, string ugyintezoNeve)
         {
-            return new PartnerUgyintezo() { Id = new Random().Next(1,50),Name = ugyintezoNeve};
+            return new PartnerUgyintezo() { Id = new Random().Next(1, 50), Name = ugyintezoNeve };
         }
 
         public bool ModifyPartner(Partner selectedPartner)
@@ -94,10 +137,14 @@ namespace IktatogRPCClient.Models.Managers
 
         public UserProxy AddUser(string newUsername, string newFullname, string newPassword, Privilege selectedPrivilege, BindableCollection<Telephely> selectedTelephelyek)
         {
-            User user =  new User() { Id = new Random().Next(1,50), Fullname = newFullname, 
-                Password = newPassword, 
-                Privilege = selectedPrivilege, 
-                Username = newUsername};
+            User user = new User()
+            {
+                Id = new Random().Next(1, 50),
+                Fullname = newFullname,
+                Password = newPassword,
+                Privilege = selectedPrivilege,
+                Username = newUsername
+            };
             foreach (var item in selectedTelephelyek)
             {
                 user.Telephelyek.Add(item);
@@ -113,54 +160,6 @@ namespace IktatogRPCClient.Models.Managers
         public bool ModifyCsoport(Csoport modifiedCsoport)
         {
             return true;
-        }
-
-
-
-        public static ServerHelperSingleton GetInstance()
-        {
-  
-                 return serverHelper;
-            
-        }
-
-        public BindableCollection<Jelleg> GetJellegekByTelephely(Telephely selectedTelephely)
-        {
-            if (selectedTelephely != null) {
-                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
-                else return new BindableCollection<Jelleg>();
-            }
-            else {
-                return new BindableCollection<Jelleg>();
-            }
-        }
-
-        public bool ModifyUser(User getUser)
-        {
-            return true;
-        }
-
-        public Jelleg AddJellegToTelephely(Telephely selectedTelephely, string jellegNeve)
-        {
-            return new Jelleg() { Id = new Random().Next(1, 40), Name = jellegNeve };
-        }
-
-        public  bool RemovePartnerUgyintezo(PartnerUgyintezo selectedUgyintezo)
-        {
-            return true;
-        }
-
-        public bool RemovePartner(Partner selectedPartner)
-        {
-            return true;
-        }
-
-
-
-        #endregion
-        private ServerHelperSingleton()
-        {
-            
         }
 
         public bool ModifyUgyintezo(Ugyintezo modifiedUgyintezo)
@@ -275,6 +274,16 @@ namespace IktatogRPCClient.Models.Managers
                 ,
                 new UserProxy(UserHelperSingleton.CurrentUser) 
             };
+        }
+        public async IAsyncEnumerable<Ikonyv> GetIkonyvekAsync(SearchIkonyvData searchData)
+        {
+            
+            var stream = client.ListIktatas(searchData, calloptions);
+            while (await stream.ResponseStream.MoveNext()) {
+                yield return stream.ResponseStream.Current;
+            }
+            
+            
         }
     }
 } 

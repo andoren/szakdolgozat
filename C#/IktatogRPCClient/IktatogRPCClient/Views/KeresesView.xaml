@@ -7,13 +7,15 @@
              mc:Ignorable="d" 
              FontSize="18"
              FontFamily="Roboto"
-             d:DesignHeight="600" d:DesignWidth="1100" Height="auto">
+             SnapsToDevicePixels="True"
+             d:DesignHeight="600" d:DesignWidth="1500" Height="auto">
     <UserControl.Resources>
         <DataTemplate x:Key="Feltoltes">
-            <Button Style="{StaticResource LoginButtons}" Margin="5" VerticalAlignment="Center" Height="35">Feltöltés</Button>
+            <Button Style="{StaticResource LoginButtons}" Margin="5" BorderBrush="Black"  Padding="20 10"  Content="Feltöltés"/>
+            
         </DataTemplate>
         <DataTemplate x:Key="Muvelet">
-            <Button Style="{StaticResource LoginButtons}"  Margin="5" VerticalAlignment="Center" Height="35">Művelet</Button>
+            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Művelet"/>
         </DataTemplate>
         <BooleanToVisibilityConverter x:Key="b2v" />
     </UserControl.Resources>
@@ -21,19 +23,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+       
         <Grid x:Name="ViewLabel" Grid.Row="0" Background="#FF036A9A" Height="auto" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
+
             </Grid.ColumnDefinitions>
-            <ComboBox HorizontalAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="15,10">
+            <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="10,10">
                 <ComboBox.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </ComboBox.Effect>
             </ComboBox>
-            <Grid VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,5">
+            <ComboBox Grid.Column="1" HorizontalContentAlignment="Left" x:Name="AvailabelYears" SelectedItem="{Binding SelectedYear}" Cursor="Hand" Height="40" Margin="15,10">
+                <ComboBox.Effect>
+                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
+                </ComboBox.Effect>
+            </ComboBox>
+            <Grid VerticalAlignment="Center" Grid.Column="2" Margin="10,5,10,5">
                 <Grid Background="White">
                     <Grid.Effect>
                         <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
@@ -44,26 +54,12 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <Image Height="24" Source="/IktatogRPCClient;component/Resources/searchicon.png"></Image>
-                    <TextBox BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
-                    <ComboBox x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"></ComboBox>
+                    <TextBox  BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
+                    <ComboBox  x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"></ComboBox>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="2">
-                <StackPanel Margin="10" HorizontalAlignment="right" Orientation="Horizontal">
-                    <StackPanel.Effect>
-                        <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                    </StackPanel.Effect>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="80" Height="40" Foreground="Black" Content="Előző"/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="1"/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="2"/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="3"/>
-                    <Button Background="White" BorderBrush="LightGray"  Width="40" VerticalContentAlignment="Bottom" Height="40" FontSize="30" Foreground="Black" Content="..."/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="40" Height="40" Foreground="Black" Content="20"/>
-                    <Button Cursor="Hand" Background="White" BorderBrush="LightGray"  Width="80" Height="40" Foreground="Black" Content="Következő"/>
-                </StackPanel>
-            </Grid>
         </Grid>
-        <DataGrid BorderThickness="0" Grid.Row="2" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" >
+        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="FoundIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
                 <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
@@ -99,11 +95,47 @@
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  Width="100" Header="Törlés">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate >
-                            <Button Style="{StaticResource LoginButtons}" Background="Red" BorderBrush="Black"  Margin="5" VerticalAlignment="Center" Height="35" Content="Törlés"/>
+                            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Törlés"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid  Grid.Row="2" Height="45" Background="#FF036A9A" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+          
+            <StackPanel  Orientation="Horizontal">
+
+                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center" x:Name="MaxItemNumber">Iktatások(100)</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel.Effect>
+                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
+                </StackPanel.Effect>
+                <Button   Padding="30 3" BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Első</Button>
+                <Button Padding="30 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Előző</Button>
+                <ItemsControl x:Name="PagingButtons" ItemsSource="{Binding Path=PagingButtons, Mode=TwoWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <Button  Padding="10 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Következő</Button>
+                <Button  Padding="30 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Utolsó</Button>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">Lap mérete:</TextBlock>
+                <ComboBox Margin="5" x:Name="ItemsPerPage" SelectedItem="{Binding Path=SelectedItemsPerPage}">
+     
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+        <local:LoadingSpinnerView x:Name="LoaderIsVisible" Grid.RowSpan="3"></local:LoadingSpinnerView>
     </Grid>
 </UserControl>

@@ -24,44 +24,45 @@ namespace Iktato {
     static IktatoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byIiCgZGcm9tVG8SDAoERnJvbRgBIAEo",
-            "BRIKCgJUbxgCIAEoBSLbAgoGSWtvbnl2EgoKAmlkGAEgASgFEg0KBXRhcmd5",
-            "GAIgASgJEg8KB2hpdnN6YW0YAyABKAkSJAoJVWd5aW50ZXpvGAQgASgLMhEu",
-            "SWt0YXRvLlVneWludGV6bxIgCgdQYXJ0bmVyGAUgASgLMg8uSWt0YXRvLlBh",
-            "cnRuZXISIAoKY3JlYXRlZF9ieRgGIAEoCzIMLklrdGF0by5Vc2VyEiQKCVRl",
-            "bGVwaGVseRgHIAEoCzIRLklrdGF0by5UZWxlcGhlbHkSIAoHQ3NvcG9ydBgI",
-            "IAEoCzIPLklrdGF0by5Dc29wb3J0Eh4KBkplbGxlZxgJIAEoCzIOLklrdGF0",
-            "by5KZWxsZWcSDQoFSXJhbnkYCiABKAUSEAoIRXJrZXpldHQYCyABKAkSDgoG",
-            "SGF0SWRvGAwgASgJEhIKCklrdGF0b3N6YW0YDSABKAkSDgoGc3pvdmVnGA4g",
-            "ASgJIiUKCVVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIlEK",
-            "B1BhcnRuZXISCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCRIsCgpVZ3lpbnRl",
-            "em9rGAMgAygLMhguSWt0YXRvLlBhcnRuZXJVZ3lpbnRlem8iLAoQUGFydG5l",
-            "clVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIiUKCVRlbGVw",
-            "aGVseRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIjYKB0Nzb3BvcnQSCgoC",
-            "aWQYASABKAUSDAoEbmFtZRgCIAEoCRIRCglzaG9ydG5hbWUYAyABKAkiIgoG",
-            "SmVsbGVnEgoKAmlkGAEgASgFEgwKBG5hbWUYAiABKAkiMgoMTG9naW5NZXNz",
-            "YWdlEhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIg4KDEVt",
-            "cHR5TWVzc2FnZSIlCglQcml2aWxlZ2USCgoCaWQYASABKAUSDAoEbmFtZRgC",
-            "IAEoCSIoCgZBbnN3ZXISDQoFZXJyb3IYASABKAgSDwoHbWVzc2FnZRgCIAEo",
-            "CSK8AQoEVXNlchIKCgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIQCghm",
-            "dWxsbmFtZRgDIAEoCRIQCghwYXNzd29yZBgEIAEoCRIkCglwcml2aWxlZ2UY",
-            "BSABKAsyES5Ja3RhdG8uUHJpdmlsZWdlEiQKCUF1dGhUb2tlbhgGIAEoCzIR",
-            "LklrdGF0by5BdXRoVG9rZW4SJgoLVGVsZXBoZWx5ZWsYByADKAsyES5Ja3Rh",
-            "dG8uVGVsZXBoZWx5IhoKCUF1dGhUb2tlbhINCgV0b2tlbhgBIAEoCSIbCg1E",
-            "ZWxldGVNZXNzYWdlEgoKAmlkGAEgASgFMpgDCg1Ja3RhdG9TZXJ2aWNlEisK",
-            "BUxvZ2luEhQuSWt0YXRvLkxvZ2luTWVzc2FnZRoMLklrdGF0by5Vc2VyEi4K",
-            "BkxvZ291dBIULklrdGF0by5FbXB0eU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2Vy",
-            "EigKCFJlZ2lzdGVyEgwuSWt0YXRvLlVzZXIaDi5Ja3RhdG8uQW5zd2VyEiwK",
-            "CkFkZElrdGF0YXMSDi5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRvLkFuc3dlchIv",
-            "Cg1Nb2RpZnlJa3RhdGFzEg4uSWt0YXRvLklrb255dhoOLklrdGF0by5BbnN3",
-            "ZXISOAoOTGlzdGFsbElrdGF0YXMSFC5Ja3RhdG8uRW1wdHlNZXNzYWdlGg4u",
-            "SWt0YXRvLklrb255djABEi8KC0xpc3RJa3RhdGFzEg4uSWt0YXRvLkZyb21U",
-            "bxoOLklrdGF0by5Ja29ueXYwARI2Cg1EZWxldGVJa3RhdGFzEhUuSWt0YXRv",
-            "LkRlbGV0ZU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2VyYgZwcm90bzM="));
+            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byJJChBTZWFyY2hJa29ueXZEYXRhEg0K",
+            "BUlyYW55GAEgASgFEgwKBFllYXIYAiABKAUSDAoERnJvbRgDIAEoBRIKCgJU",
+            "bxgEIAEoBSLbAgoGSWtvbnl2EgoKAmlkGAEgASgFEg0KBXRhcmd5GAIgASgJ",
+            "Eg8KB2hpdnN6YW0YAyABKAkSJAoJVWd5aW50ZXpvGAQgASgLMhEuSWt0YXRv",
+            "LlVneWludGV6bxIgCgdQYXJ0bmVyGAUgASgLMg8uSWt0YXRvLlBhcnRuZXIS",
+            "IAoKY3JlYXRlZF9ieRgGIAEoCzIMLklrdGF0by5Vc2VyEiQKCVRlbGVwaGVs",
+            "eRgHIAEoCzIRLklrdGF0by5UZWxlcGhlbHkSIAoHQ3NvcG9ydBgIIAEoCzIP",
+            "LklrdGF0by5Dc29wb3J0Eh4KBkplbGxlZxgJIAEoCzIOLklrdGF0by5KZWxs",
+            "ZWcSDQoFSXJhbnkYCiABKAUSEAoIRXJrZXpldHQYCyABKAkSDgoGSGF0SWRv",
+            "GAwgASgJEhIKCklrdGF0b3N6YW0YDSABKAkSDgoGc3pvdmVnGA4gASgJIiUK",
+            "CVVneWludGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIlEKB1BhcnRu",
+            "ZXISCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCRIsCgpVZ3lpbnRlem9rGAMg",
+            "AygLMhguSWt0YXRvLlBhcnRuZXJVZ3lpbnRlem8iLAoQUGFydG5lclVneWlu",
+            "dGV6bxIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIiUKCVRlbGVwaGVseRIK",
+            "CgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIjYKB0Nzb3BvcnQSCgoCaWQYASAB",
+            "KAUSDAoEbmFtZRgCIAEoCRIRCglzaG9ydG5hbWUYAyABKAkiIgoGSmVsbGVn",
+            "EgoKAmlkGAEgASgFEgwKBG5hbWUYAiABKAkiMgoMTG9naW5NZXNzYWdlEhAK",
+            "CHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIg4KDEVtcHR5TWVz",
+            "c2FnZSIlCglQcml2aWxlZ2USCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCSIo",
+            "CgZBbnN3ZXISDQoFZXJyb3IYASABKAgSDwoHbWVzc2FnZRgCIAEoCSK8AQoE",
+            "VXNlchIKCgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIQCghmdWxsbmFt",
+            "ZRgDIAEoCRIQCghwYXNzd29yZBgEIAEoCRIkCglwcml2aWxlZ2UYBSABKAsy",
+            "ES5Ja3RhdG8uUHJpdmlsZWdlEiQKCUF1dGhUb2tlbhgGIAEoCzIRLklrdGF0",
+            "by5BdXRoVG9rZW4SJgoLVGVsZXBoZWx5ZWsYByADKAsyES5Ja3RhdG8uVGVs",
+            "ZXBoZWx5IhoKCUF1dGhUb2tlbhINCgV0b2tlbhgBIAEoCSIbCg1EZWxldGVN",
+            "ZXNzYWdlEgoKAmlkGAEgASgFMqIDCg1Ja3RhdG9TZXJ2aWNlEisKBUxvZ2lu",
+            "EhQuSWt0YXRvLkxvZ2luTWVzc2FnZRoMLklrdGF0by5Vc2VyEi4KBkxvZ291",
+            "dBIULklrdGF0by5FbXB0eU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2VyEigKCFJl",
+            "Z2lzdGVyEgwuSWt0YXRvLlVzZXIaDi5Ja3RhdG8uQW5zd2VyEiwKCkFkZElr",
+            "dGF0YXMSDi5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRvLkFuc3dlchIvCg1Nb2Rp",
+            "ZnlJa3RhdGFzEg4uSWt0YXRvLklrb255dhoOLklrdGF0by5BbnN3ZXISOAoO",
+            "TGlzdGFsbElrdGF0YXMSFC5Ja3RhdG8uRW1wdHlNZXNzYWdlGg4uSWt0YXRv",
+            "Lklrb255djABEjkKC0xpc3RJa3RhdGFzEhguSWt0YXRvLlNlYXJjaElrb255",
+            "dkRhdGEaDi5Ja3RhdG8uSWtvbnl2MAESNgoNRGVsZXRlSWt0YXRhcxIVLklr",
+            "dGF0by5EZWxldGVNZXNzYWdlGg4uSWt0YXRvLkFuc3dlcmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.FromTo), global::Iktato.FromTo.Parser, new[]{ "From", "To" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.SearchIkonyvData), global::Iktato.SearchIkonyvData.Parser, new[]{ "Irany", "Year", "From", "To" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Ikonyv), global::Iktato.Ikonyv.Parser, new[]{ "Id", "Targy", "Hivszam", "Ugyintezo", "Partner", "CreatedBy", "Telephely", "Csoport", "Jelleg", "Irany", "Erkezett", "HatIdo", "Iktatoszam", "Szoveg" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Ugyintezo), global::Iktato.Ugyintezo.Parser, new[]{ "Id", "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Partner), global::Iktato.Partner.Parser, new[]{ "Id", "Name", "Ugyintezok" }, null, null, null),
@@ -82,11 +83,11 @@ namespace Iktato {
 
   }
   #region Messages
-  public sealed partial class FromTo : pb::IMessage<FromTo> {
-    private static readonly pb::MessageParser<FromTo> _parser = new pb::MessageParser<FromTo>(() => new FromTo());
+  public sealed partial class SearchIkonyvData : pb::IMessage<SearchIkonyvData> {
+    private static readonly pb::MessageParser<SearchIkonyvData> _parser = new pb::MessageParser<SearchIkonyvData>(() => new SearchIkonyvData());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<FromTo> Parser { get { return _parser; } }
+    public static pb::MessageParser<SearchIkonyvData> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -99,26 +100,50 @@ namespace Iktato {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public FromTo() {
+    public SearchIkonyvData() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public FromTo(FromTo other) : this() {
+    public SearchIkonyvData(SearchIkonyvData other) : this() {
+      irany_ = other.irany_;
+      year_ = other.year_;
       from_ = other.from_;
       to_ = other.to_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public FromTo Clone() {
-      return new FromTo(this);
+    public SearchIkonyvData Clone() {
+      return new SearchIkonyvData(this);
+    }
+
+    /// <summary>Field number for the "Irany" field.</summary>
+    public const int IranyFieldNumber = 1;
+    private int irany_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Irany {
+      get { return irany_; }
+      set {
+        irany_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Year" field.</summary>
+    public const int YearFieldNumber = 2;
+    private int year_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Year {
+      get { return year_; }
+      set {
+        year_ = value;
+      }
     }
 
     /// <summary>Field number for the "From" field.</summary>
-    public const int FromFieldNumber = 1;
+    public const int FromFieldNumber = 3;
     private int from_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int From {
@@ -129,7 +154,7 @@ namespace Iktato {
     }
 
     /// <summary>Field number for the "To" field.</summary>
-    public const int ToFieldNumber = 2;
+    public const int ToFieldNumber = 4;
     private int to_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int To {
@@ -141,17 +166,19 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as FromTo);
+      return Equals(other as SearchIkonyvData);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(FromTo other) {
+    public bool Equals(SearchIkonyvData other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Irany != other.Irany) return false;
+      if (Year != other.Year) return false;
       if (From != other.From) return false;
       if (To != other.To) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -160,6 +187,8 @@ namespace Iktato {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Irany != 0) hash ^= Irany.GetHashCode();
+      if (Year != 0) hash ^= Year.GetHashCode();
       if (From != 0) hash ^= From.GetHashCode();
       if (To != 0) hash ^= To.GetHashCode();
       if (_unknownFields != null) {
@@ -175,12 +204,20 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (From != 0) {
+      if (Irany != 0) {
         output.WriteRawTag(8);
+        output.WriteInt32(Irany);
+      }
+      if (Year != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Year);
+      }
+      if (From != 0) {
+        output.WriteRawTag(24);
         output.WriteInt32(From);
       }
       if (To != 0) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(32);
         output.WriteInt32(To);
       }
       if (_unknownFields != null) {
@@ -191,6 +228,12 @@ namespace Iktato {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Irany != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Irany);
+      }
+      if (Year != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Year);
+      }
       if (From != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(From);
       }
@@ -204,9 +247,15 @@ namespace Iktato {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(FromTo other) {
+    public void MergeFrom(SearchIkonyvData other) {
       if (other == null) {
         return;
+      }
+      if (other.Irany != 0) {
+        Irany = other.Irany;
+      }
+      if (other.Year != 0) {
+        Year = other.Year;
       }
       if (other.From != 0) {
         From = other.From;
@@ -226,10 +275,18 @@ namespace Iktato {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            From = input.ReadInt32();
+            Irany = input.ReadInt32();
             break;
           }
           case 16: {
+            Year = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            From = input.ReadInt32();
+            break;
+          }
+          case 32: {
             To = input.ReadInt32();
             break;
           }

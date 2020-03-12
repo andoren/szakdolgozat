@@ -44,11 +44,11 @@
             </Grid>
         </Border>
         <!--Pages(user controlls)-->
-        <ContentControl Margin="5 5" Grid.Row="1"  x:Name="ActiveItem" >
+        <ContentControl  Grid.Row="1"  x:Name="ActiveItem" >
 
         </ContentControl>
         <!--Information bar-->
-
+<!--
         <Grid Grid.Row="2"  Background="#FF036A9A" Height="20" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -69,6 +69,7 @@
             </StackPanel>
 
         </Grid>
+        -->
         <local:LoadingSpinnerView Grid.RowSpan="5" x:Name="LoaderIsVisible" Visibility="Hidden"></local:LoadingSpinnerView>
     </Grid>
 </Window>

@@ -176,6 +176,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="SearchViewNumberButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#ff2081C3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF2180C2"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF2180C2"/>

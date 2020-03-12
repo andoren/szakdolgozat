@@ -17,7 +17,7 @@ namespace Iktato {
     static readonly grpc::Marshaller<global::Iktato.EmptyMessage> __Marshaller_Iktato_EmptyMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.EmptyMessage.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.Answer> __Marshaller_Iktato_Answer = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Answer.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.Ikonyv> __Marshaller_Iktato_Ikonyv = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Ikonyv.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Iktato.FromTo> __Marshaller_Iktato_FromTo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.FromTo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.SearchIkonyvData> __Marshaller_Iktato_SearchIkonyvData = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.SearchIkonyvData.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.DeleteMessage> __Marshaller_Iktato_DeleteMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DeleteMessage.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Iktato.LoginMessage, global::Iktato.User> __Method_Login = new grpc::Method<global::Iktato.LoginMessage, global::Iktato.User>(
@@ -62,11 +62,11 @@ namespace Iktato {
         __Marshaller_Iktato_EmptyMessage,
         __Marshaller_Iktato_Ikonyv);
 
-    static readonly grpc::Method<global::Iktato.FromTo, global::Iktato.Ikonyv> __Method_ListIktatas = new grpc::Method<global::Iktato.FromTo, global::Iktato.Ikonyv>(
+    static readonly grpc::Method<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv> __Method_ListIktatas = new grpc::Method<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
         "ListIktatas",
-        __Marshaller_Iktato_FromTo,
+        __Marshaller_Iktato_SearchIkonyvData,
         __Marshaller_Iktato_Ikonyv);
 
     static readonly grpc::Method<global::Iktato.DeleteMessage, global::Iktato.Answer> __Method_DeleteIktatas = new grpc::Method<global::Iktato.DeleteMessage, global::Iktato.Answer>(
@@ -116,7 +116,7 @@ namespace Iktato {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task ListIktatas(global::Iktato.FromTo request, grpc::IServerStreamWriter<global::Iktato.Ikonyv> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task ListIktatas(global::Iktato.SearchIkonyvData request, grpc::IServerStreamWriter<global::Iktato.Ikonyv> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -239,11 +239,11 @@ namespace Iktato {
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_ListallIktatas, null, options, request);
       }
-      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.FromTo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.SearchIkonyvData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ListIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.FromTo request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> ListIktatas(global::Iktato.SearchIkonyvData request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_ListIktatas, null, options, request);
       }
@@ -297,7 +297,7 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_AddIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.AddIktatas));
       serviceBinder.AddMethod(__Method_ModifyIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.ModifyIktatas));
       serviceBinder.AddMethod(__Method_ListallIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Ikonyv>(serviceImpl.ListallIktatas));
-      serviceBinder.AddMethod(__Method_ListIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.FromTo, global::Iktato.Ikonyv>(serviceImpl.ListIktatas));
+      serviceBinder.AddMethod(__Method_ListIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(serviceImpl.ListIktatas));
       serviceBinder.AddMethod(__Method_DeleteIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DeleteMessage, global::Iktato.Answer>(serviceImpl.DeleteIktatas));
     }
 
