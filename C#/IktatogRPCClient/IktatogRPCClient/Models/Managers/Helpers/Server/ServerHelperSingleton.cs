@@ -231,33 +231,7 @@ namespace IktatogRPCClient.Models.Managers
         {
             return new BindableCollection<Telephely>() { new Telephely() { Id = 1, Name = "Rákóczi" }, new Telephely() { Id = 2, Name = "Vajda" } };
         }
-
-        public async Task<BindableCollection<Ikonyv>> GetIkonyvsFromToAsync(int from, int to) {
-            Ikonyv konyv = new Ikonyv()
-            {
-                CreatedBy = new User { Id = 1, Username = "misi" },
-                Csoport = new Csoport() { Id = 5, Name = "Kiscica", Shortname = "KC" },
-                Erkezett = "2020.02.15",
-                HatIdo = "2020.02.20",
-                Id = 232,
-                Hivszam = "1234/412Hivszám",
-                Iktatoszam = "B-R/KC/M/2020",
-                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
-                Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "MacskaKonzervGyártó" },
-                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Brachna Anita" },
-                Szoveg = "Éhesek a cicám valamit jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
-                Targy = "Cica éhes",
-                Telephely = new Telephely() { Id = 1, Name = "Rákóczi" }
-
-            };
-            konyv.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy" });
-            return new BindableCollection<Ikonyv>() {
-               konyv
-            };
-           
-        }
-
+  
         public BindableCollection<UserProxy> GetAllUser()
         {
             User user = new User()
@@ -275,14 +249,14 @@ namespace IktatogRPCClient.Models.Managers
                 new UserProxy(UserHelperSingleton.CurrentUser) 
             };
         }
-        public async IAsyncEnumerable<Ikonyv> GetIkonyvekAsync(SearchIkonyvData searchData)
+        public async Task<BindableCollection<Ikonyv>> GetIkonyvekAsync(SearchIkonyvData searchData)
         {
-            
+            BindableCollection<Ikonyv> ikonyvek = new BindableCollection<Ikonyv>();
             var stream = client.ListIktatas(searchData, calloptions);
             while (await stream.ResponseStream.MoveNext()) {
-                yield return stream.ResponseStream.Current;
+                ikonyvek.Add(stream.ResponseStream.Current);
             }
-            
+            return ikonyvek;
             
         }
     }

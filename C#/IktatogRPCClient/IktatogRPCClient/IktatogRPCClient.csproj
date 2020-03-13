@@ -69,6 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Irany.cs" />
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\InvalidCallOperation.cs" />

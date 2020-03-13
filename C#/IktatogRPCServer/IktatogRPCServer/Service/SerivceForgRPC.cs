@@ -107,14 +107,57 @@ namespace IktatogRPCServer.Service
 
             };
             konyv2.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy2" });
-            List<Ikonyv> ikonyvek = new List<Ikonyv>() { konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2, 
+            Ikonyv konyv3 = new Ikonyv()
+            {
+                CreatedBy = new User { Id = 1, Username = "misi" },
+                Csoport = new Csoport() { Id = 5, Name = "Kiscica2", Shortname = "KC2" },
+                Erkezett = "2020.02.15",
+                HatIdo = "2020.02.20",
+                Id = 232,
+                Hivszam = "1234/412Hivszám",
+                Iktatoszam = "Kiscicaikató",
+                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
+                Irany = 0,
+                Partner = new Partner() { Id = 1, Name = "Meow" },
+                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Pekár Mihály" },
+                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
+                Targy = "Ez egy kiktatás",
+                Telephely = new Telephely() { Id = 1, Name = "Vajda" }
+
+            };
+            konyv2.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy3" });
+            Ikonyv konyv0 = new Ikonyv()
+            {
+                CreatedBy = new User { Id = 1, Username = "misi" },
+                Csoport = new Csoport() { Id = 5, Name = "Kutya", Shortname = "WUFF" },
+                Erkezett = "2020.02.15",
+                HatIdo = "2020.02.20",
+                Id = 233,
+                Hivszam = "1234/412Hivszám",
+                Iktatoszam = "Első Iktatás",
+                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
+                Irany = 0,
+                Partner = new Partner() { Id = 1, Name = "Meow" },
+                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Kis Cica" },
+                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
+                Targy = "Ez egy kiktatás",
+                Telephely = new Telephely() { Id = 1, Name = "Vajda" }
+
+            };
+            konyv0.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy0" });
+            List<Ikonyv> ikonyvek = new List<Ikonyv>() {konyv0, konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2, 
                 konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
                 konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2};
+            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
+                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
+                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
+            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
+                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
+                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
+            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv3};
             foreach (var response in ikonyvek)
             {
                 await responseStream.WriteAsync(response);
-              
             }
         }
     }

@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
-            <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" Cursor="Hand" Height="40" Margin="10,10">
+            <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" DisplayMemberPath="Name" Cursor="Hand" Height="40" Margin="10,10">
                 <ComboBox.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </ComboBox.Effect>
@@ -54,12 +54,14 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <Image Height="24" Source="/IktatogRPCClient;component/Resources/searchicon.png"></Image>
-                    <TextBox  BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
+                    <TextBox x:Name="SearchText"  BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
                     <ComboBox  x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"></ComboBox>
                 </Grid>
             </Grid>
         </Grid>
-        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="FoundIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single">
+        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIktatas" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  
+           CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
+          
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
                 <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
@@ -116,8 +118,8 @@
                 <StackPanel.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </StackPanel.Effect>
-                <Button   Padding="30 3" BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Első</Button>
-                <Button Padding="30 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Előző</Button>
+                <Button x:Name="ToFirstPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3" >Első</Button>
+                <Button x:Name="ToPrevPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Előző</Button>
                 <ItemsControl x:Name="PagingButtons" ItemsSource="{Binding Path=PagingButtons, Mode=TwoWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -126,8 +128,8 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
 
-                <Button  Padding="10 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Következő</Button>
-                <Button  Padding="30 3"  BorderBrush="Black" Background="White" Foreground="black" FontSize="22">Utolsó</Button>
+                <Button x:Name="ToNextPage" Style="{StaticResource SearchViewNumberButtonStyle}"  Padding="10 3" >Következő</Button>
+                <Button x:Name="ToLastPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Utolsó</Button>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
                 <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">Lap mérete:</TextBlock>

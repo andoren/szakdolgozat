@@ -177,12 +177,15 @@
         </Setter>
     </Style>
     <Style x:Key="SearchViewNumberButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Width" Value="35"/>
-        <Setter Property="Height" Value="35"/>
         <Setter Property="Background" Value="White"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="22"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="BorderBrush" Value="Black"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="LightGray"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#ff2081C3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF2180C2"/>
@@ -361,7 +364,28 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style TargetType="{x:Type DataGridCell}" x:Key="CellStyle" BasedOn="{StaticResource {x:Type DataGridCell}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border Background="Transparent" BorderThickness="0">
+                        <Border x:Name="border"
+                              BorderBrush="Transparent"
+                              BorderThickness="0"
+                              Background="Transparent"
+                              CornerRadius="0">
+                            <ContentPresenter />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="#66036A9A"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style 
        TargetType="{x:Type  ComboBox}">
         <Setter Property="SnapsToDevicePixels"
