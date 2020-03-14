@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -20,37 +21,39 @@ namespace IktatogRPCClient.ViewModels
 	{
 		public KeresesViewModel()
 		{
-			SearchList = new BindableCollection<string>() { "Iktatószám", "Tárgy", "Partner", "Jelleg", "Ügyintéző", "Csoport", "Hivatkozási szám" };
+		
 			SelectedSearchParameter = SearchList[0];
-			Iranyok = new BindableCollection<Irany>() { new Irany("Bejövő",0),new Irany("Kimenő",1),new Irany("Összes",2) };
 			AvailabelYears = new BindableCollection<int>() { 2020, 2019 };
-			ItemsPerPage = new BindableCollection<int>() { 10, 20, 50, 100, 200, 500 };
 			SelectedItemsPerPage = ItemsPerPage[2];
 		}
-		private string _selectedSearchParameter;
-		private BindableCollection<string> _searchList;
+		#region variables
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
-		private Irany _selectedIranyParameter;
 		private bool _loaderIsVisible = false;
-		private int _currentPage = 1;
-		private BindableCollection<int> _availabelYears;
-		private int _selectedYear;
-		private BindableCollection<Irany> _iranyok;
-		private BindableCollection<int> _itemsPerPage;
-		private BindableCollection<Ikonyv> _allikonyv = new BindableCollection<Ikonyv>();
+		private int _currentPage = 0;
+		private string _searchText;
+		private Ikonyv _selectedIkonyv;
+		private string _selectedSearchParameter;
 		private int _selectedItemsPerPage;
+		private int _selectedYear;
+		private BindableCollection<int> _availabelYears;
+		private Irany _selectedIranyParameter;
 		private ObservableCollection<Button> _pagingButtons = new ObservableCollection<Button>() { };
 		private BindableCollection<Ikonyv> _searchedIkonyvek = new BindableCollection<Ikonyv>();
+		private BindableCollection<Ikonyv> _shownIkonyvek = new BindableCollection<Ikonyv>();
+		private BindableCollection<Irany> _iranyok = new BindableCollection<Irany>() { new Irany("Bejövő", 0), new Irany("Kimenő", 1), new Irany("Összes", 2) };
+		private BindableCollection<Ikonyv> _allikonyv = new BindableCollection<Ikonyv>();
+		private BindableCollection<string> _searchList = new BindableCollection<string>() { "Iktatószám", "Tárgy", "Partner", "Jelleg", "Ügyintéző", "Csoport", "Hivatkozási szám" };
 
-		public BindableCollection<Ikonyv> SearchedIkonyvek
+        #endregion
+        #region Properties
+        public Ikonyv SelectedIkonyv
 		{
-			get { return _searchedIkonyvek; }
-			set { _searchedIkonyvek = value; }
+			get { return _selectedIkonyv; }
+			set { 
+				_selectedIkonyv = value;
+				NotifyOfPropertyChange(()=>SelectedIkonyv);
+			}
 		}
-
-		private BindableCollection<Ikonyv> _shownIktatas = new BindableCollection<Ikonyv>();
-		private string _searchText;
-
 		public string SearchText
 		{
 			get { return _searchText; }
@@ -59,7 +62,11 @@ namespace IktatogRPCClient.ViewModels
 				CurrentPage = 0;
 			}
 		}
-
+		public BindableCollection<Ikonyv> SearchedIkonyvek
+		{
+			get { return _searchedIkonyvek; }
+			set { _searchedIkonyvek = value; }
+		}
 		public string SelectedSearchParameter
 		{
 			get { return _selectedSearchParameter; }
@@ -91,9 +98,10 @@ namespace IktatogRPCClient.ViewModels
 			set {
 				_selectedIranyParameter = value;
 				NotifyOfPropertyChange(() => SelectedIranyParameter);
-				var waiting = GetIkonyvek();
+				GetIkonyvek();
 			}
 		}
+		// Ennek a változása inditja meg a gombok és az ikonyvek megjelenítését a viewban.
 		public int CurrentPage
 		{
 			get { return _currentPage; }
@@ -104,21 +112,21 @@ namespace IktatogRPCClient.ViewModels
 				NotifyOfPropertyChange(() => CanToNextPage);
 				NotifyOfPropertyChange(() => CanToPrevPage);
 				NotifyOfPropertyChange(() => CanToFirstPage);
-				var s = SetVisibleIktatas();
+				SetVisibleIktatas();
 			}
 		}
 		public bool CanToLastPage
 		{
 			get
 			{
-				return CurrentPage != MaxPage;
+				return CurrentPage != MaxPage -1 && MaxPage != 0;
 			}
 		}
 		public bool CanToNextPage
 		{
 			get
 			{
-				return CurrentPage != MaxPage;
+				return CurrentPage != MaxPage -1 && MaxPage !=0;
 			}
 		}
 		public bool CanToPrevPage
@@ -136,11 +144,14 @@ namespace IktatogRPCClient.ViewModels
 				return CurrentPage != 0;
 			}
 		}
+		//Ez a property iratja ki a View-ra a Találatok számát
 		public string MaxItemNumber {
 			get {
-				return $"Találatok száma: {ShownIktatas.Count} db iktatás";
+				return $"Találatok száma: {ShownIkonyvek.Count} db";
 			}
 		}
+		/*Kiszámolja, hogy hány lap kell az iktatások megjelenítéséhez. Ha van Keresési paraméter akkor azoknak a számát nézi ha nincs
+		akkor az összes iktatásét*/
 		public int MaxPage
 		{
 			get {
@@ -154,11 +165,11 @@ namespace IktatogRPCClient.ViewModels
 					count += AllIkonyv.Count / SelectedItemsPerPage;
 				}
 				else {
-					if (ShownIktatas.Count % SelectedItemsPerPage != 0)
+					if (SearchedIkonyvek.Count % SelectedItemsPerPage != 0)
 					{
 						count++;
 					}
-					count += ShownIktatas.Count / SelectedItemsPerPage;
+					count += SearchedIkonyvek.Count / SelectedItemsPerPage;
 				}
 				
 				return count;
@@ -168,7 +179,7 @@ namespace IktatogRPCClient.ViewModels
 		public BindableCollection<int> AvailabelYears
 		{
 			get { return _availabelYears; }
-			set { _availabelYears = value;
+			private set { _availabelYears = value;
 				NotifyOfPropertyChange(() => AvailabelYears);
 			}
 		}
@@ -177,34 +188,30 @@ namespace IktatogRPCClient.ViewModels
 			get { return _selectedYear; }
 			set { _selectedYear = value;
 				NotifyOfPropertyChange(() => SelectedYear);
-				var waiting = GetIkonyvek();
+				GetIkonyvek();
 			}
 		}
+		//keresési lehetőségek
 		public BindableCollection<string> SearchList
 		{
 			get { return _searchList; }
-			set {
+			private set {
 				_searchList = value;
 				NotifyOfPropertyChange(() => SearchList);
 			}
 		}
 
+		// Összes elérhető iktatás a felhasználó számára az irány és az év paraméterével.
 		public BindableCollection<Ikonyv> AllIkonyv
 		{
 			get { return _allikonyv; }
-			set {
+			private set {
 				_allikonyv = value;
 				NotifyOfPropertyChange(() => AllIkonyv);
 			}
 		}
-		public BindableCollection<int> ItemsPerPage
-		{
-			get { return _itemsPerPage; }
-			set { _itemsPerPage = value;
-
-
-			}
-		}
+        public BindableCollection<int> ItemsPerPage { get; set; } = new BindableCollection<int>() { 10, 20, 50, 100, 200, 500 };
+		//Ikonyv/lap
 		public int SelectedItemsPerPage
 		{
 			get { 
@@ -216,24 +223,28 @@ namespace IktatogRPCClient.ViewModels
 				CurrentPage = 0;
 			}
 		}
+		
 		public ObservableCollection<Button> PagingButtons
 		{
 			get { return _pagingButtons; }
-			set { _pagingButtons = value;
+			private set { _pagingButtons = value;
 				NotifyOfPropertyChange(() => PagingButtons);
 			}
 		}
-		public BindableCollection<Ikonyv> ShownIktatas
+		//Datagridben megjelenített Ikönyvek
+		public BindableCollection<Ikonyv> ShownIkonyvek
 		{
-			get { return _shownIktatas; }
+			get { return _shownIkonyvek; }
 			set {
-				_shownIktatas = value;
-				NotifyOfPropertyChange(() => ShownIktatas);
+				_shownIkonyvek = value;
+				NotifyOfPropertyChange(() => ShownIkonyvek);
 				NotifyOfPropertyChange(MaxItemNumber);
 			}
 		}
 
-		public async Task GetIkonyvek() {
+		#endregion
+		//Adatbázisbol szedi le az Ikönyveket
+		public async void GetIkonyvek() {
 			if (SelectedIranyParameter == null || SelectedYear == default) return;
 			else {
 				LoaderIsVisible = true;
@@ -245,40 +256,37 @@ namespace IktatogRPCClient.ViewModels
 				};
 
 				AllIkonyv = await serverHelper.GetIkonyvekAsync(searchData);
-				await SetVisibleIktatas();
+				SetVisibleIktatas();
 				LoaderIsVisible = false;
 			}
 		}
 
-		private async Task SetVisibleIktatas() {
+		/*Meghívja a szűrést(SetSearchData) azutan annak az adataival dolgozik tovább, ahol megnézni, 
+		hogy mennyi dolgot tehet ki a képernyőre végén meghivja a gombok beállítását*/
+		private async void SetVisibleIktatas() {
 			
 			if (AllIkonyv.Count == 0) return;
 			await SetSearchData();
-			ShownIktatas.Clear();
-			if (CurrentPage + SelectedItemsPerPage > SearchedIkonyvek.Count)
+			ShownIkonyvek.Clear();
+			if ((CurrentPage+1) * SelectedItemsPerPage > SearchedIkonyvek.Count)
 				{
-					for (int i = CurrentPage; i < SearchedIkonyvek.Count; i++)
+					for (int i = (CurrentPage ) * SelectedItemsPerPage; i < SearchedIkonyvek.Count; i++)
 					{
-						ShownIktatas.Add(SearchedIkonyvek[i]);
-						NotifyOfPropertyChange(() => ShownIktatas);
+						ShownIkonyvek.Add(SearchedIkonyvek[i]);
+						NotifyOfPropertyChange(() => ShownIkonyvek);
 					}
 				}
 			else {
 				for (int i = CurrentPage * SelectedItemsPerPage; i < CurrentPage * SelectedItemsPerPage + SelectedItemsPerPage; i++)
 				{
-					ShownIktatas.Add(SearchedIkonyvek[i]);
-					NotifyOfPropertyChange(() => ShownIktatas);
+					ShownIkonyvek.Add(SearchedIkonyvek[i]);
+					NotifyOfPropertyChange(() => ShownIkonyvek);
 				}
 				}
-			int buttonCount = 0;
-			if (SearchedIkonyvek.Count % SelectedItemsPerPage != 0)
-			{
-				buttonCount++;
-			}
-			buttonCount += SearchedIkonyvek.Count / SelectedItemsPerPage;
-			SetButtons(buttonCount);
+			SetButtons();
 		}
 
+		// A keresési adok alapján beállíta a ShownIkonyvek változót --- Csak akkor ha a SearchText nem üres.
 		public async Task SetSearchData() {
 			await Task.Run(() =>
 			{
@@ -311,42 +319,60 @@ namespace IktatogRPCClient.ViewModels
 					cv.Filter = null;
 				}
 				SearchedIkonyvek =  new BindableCollection<Ikonyv>(cv.Cast<Ikonyv>().ToList());
+				NotifyOfPropertyChange(MaxItemNumber);
 			});
 		}
-        #region GombokGenerálása és gomb muveletei
-        private void SetButtons(int buttonCount)
+		#region GombokGenerálása és gomb muveletei
+		/// <summary>
+		/// Gombok beállítása a SearchIkonyvekhez mérten.
+		/// </summary>
+
+		private void SetButtons()
 		{
+			if (MaxPage == 0) {
+				PagingButtons.Clear();
+				return;
+			} 
 			PagingButtons.Clear();
-			
-			if (buttonCount == 0) return;
 			int delta = 1;
-			int left = CurrentPage - delta;
-			int right = CurrentPage + delta + 1;
+			int left = CurrentPage+1 - delta;
+			int right = CurrentPage+1 + delta ;
+			//Ne változzon a gombok mennyisége hogyha közel járok az elejéhez
+			if (CurrentPage < 2) right = 3;
+			//Ne változzon a gombok mennyisége hogyha közel járok az végéhez
+			if (CurrentPage > MaxPage-4) left = MaxPage- 2;
+
 			BindableCollection<Button> Buttons = new BindableCollection<Button>();
-			BindableCollection<Button> ButtonsWithDots = new BindableCollection<Button>();
 			Buttons.Add(GenerateButton("1"));
-			if (buttonCount == 1)
+			if (MaxPage == 1)
 			{
 				PagingButtons = Buttons;
 				return;
 			}
+			//Baloldaltól elkezdek iterálni jobboldalig
 			for (int i = left; i <= right; i++)
-			{
-				if (i >= left && i <= right && i > 1 && i < buttonCount)
+			{			
+				
+				if (i >= left && i <= right && i > 1 && i < MaxPage)
 				{
 					Buttons.Add(GenerateButton(i.ToString()));
 				}
 			}
-			Buttons.Add(GenerateButton(buttonCount.ToString()));
-
+			Buttons.Add(GenerateButton(MaxPage.ToString()));
 			if (Buttons.Count > 2)
 			{
-				if (CurrentPage > 3) Buttons.Insert(1, GenerateButton("..."));
-				if (CurrentPage < buttonCount - 2) Buttons.Insert(Buttons.Count - 1, GenerateButton("..."));
-			}
+				if (int.Parse(Buttons[Buttons.Count-2].Content.ToString()) != MaxPage - 1 && CurrentPage <MaxPage-3) Buttons.Insert(Buttons.Count - 1, GenerateButton("..."));
+				if (int.Parse(Buttons[1].Content.ToString()) >2 ) Buttons.Insert(1, GenerateButton("..."));
+		
+			}		
 			PagingButtons = Buttons;
 			NotifyOfPropertyChange(() => PagingButtons);
 		}
+		/// <summary>
+		/// Generálja a gombot a lapozáshoz
+		/// </summary>
+		/// <param name="pageNumber">A gombban megjeleníteni kívánt szöveg aminek számnak vagy "..." kell lennie</param>
+		/// <returns></returns>
 		private Button GenerateButton(string pageNumber)
 		{
 			Style btnStlye;
@@ -358,31 +384,48 @@ namespace IktatogRPCClient.ViewModels
 			btn.Content = pageNumber;
 			btn.Click += (object sender, RoutedEventArgs e) =>
 			{
-				if ((sender as Button).Content.ToString() == "...") return;
+				Button btn = sender as Button;
+				if (btn.Content.ToString() == "...") return;
 				CurrentPage = int.Parse((sender as Button).Content.ToString()) - 1;
-
 			};
+
+			if (pageNumber != "..." && CurrentPage == int.Parse(pageNumber) - 1)
+			{
+				btn.Background = new SolidColorBrush(GetBlueishColor());
+				btn.Foreground = new SolidColorBrush(Colors.White);
+			}
 			return btn;
 		}
-       
+		//Visszaadja a gomb háttér szinét ami megegyezik azzal a kékszinnel amit a viewban hanszálok
+		private Color GetBlueishColor() {
+			Color color = new Color();
+			color.R = 3;
+			color.G = 106;
+			color.B = 154;
+			color.A = 255;
+			return color;
+		}
+
+        #region Viewban lévő static Léptető gombok Clickjei
         public void ToFirstPage() { 
-				CurrentPage = 1;
+				CurrentPage = 0;
+			
 		}
 
 		public void ToPrevPage() {
 				CurrentPage--;
+			
 		}
 	
 		public void ToNextPage() {
-
-				CurrentPage++;
-		
+				CurrentPage++;			
 		}
 
 		public void ToLastPage() {	
-				CurrentPage = MaxPage;
+				CurrentPage = MaxPage -1;
 		}
-		#endregion
-	}
+        #endregion
+        #endregion
+    }
 
 }

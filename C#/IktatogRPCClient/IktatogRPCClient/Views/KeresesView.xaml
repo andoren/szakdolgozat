@@ -9,13 +9,13 @@
              FontFamily="Roboto"
              SnapsToDevicePixels="True"
              d:DesignHeight="600" d:DesignWidth="1500" Height="auto">
+    <!---DataTrigger innen veszi a contentet a DataGrid-be-->
     <UserControl.Resources>
         <DataTemplate x:Key="Feltoltes">
-            <Button Style="{StaticResource LoginButtons}" Margin="5" BorderBrush="Black"  Padding="20 10"  Content="Feltöltés"/>
-            
+            <Button Style="{StaticResource LoginButtons}" x:Name="UploadDoc" Margin="5" BorderBrush="Black"  Padding="20 10"  Content="Feltöltés"/>
         </DataTemplate>
         <DataTemplate x:Key="Muvelet">
-            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Művelet"/>
+            <Button Style="{StaticResource LoginButtons}" x:Name="ShowDocs" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Művelet"/>
         </DataTemplate>
         <BooleanToVisibilityConverter x:Key="b2v" />
     </UserControl.Resources>
@@ -25,24 +25,26 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-       
-        <Grid x:Name="ViewLabel" Grid.Row="0" Background="#FF036A9A" Height="auto" Margin="0">
+        <!--Első sor (Irány combobox, Év combobo, Keresés, Keresőparaméter combobox)-->
+        <Grid  Grid.Row="0" Background="#FF036A9A" Height="auto" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
-
             </Grid.ColumnDefinitions>
+            <!--Irány combobox-->
             <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" DisplayMemberPath="Name" Cursor="Hand" Height="40" Margin="10,10">
                 <ComboBox.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </ComboBox.Effect>
             </ComboBox>
+            <!--Évek combobox-->
             <ComboBox Grid.Column="1" HorizontalContentAlignment="Left" x:Name="AvailabelYears" SelectedItem="{Binding SelectedYear}" Cursor="Hand" Height="40" Margin="15,10">
                 <ComboBox.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </ComboBox.Effect>
             </ComboBox>
+            <!--Keresés és Keresőparaméter combobox-->
             <Grid VerticalAlignment="Center" Grid.Column="2" Margin="10,5,10,5">
                 <Grid Background="White">
                     <Grid.Effect>
@@ -59,20 +61,41 @@
                 </Grid>
             </Grid>
         </Grid>
-        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIktatas" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  
+        <!--Második sor (Iktatások táblázata)-->
+        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
            CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
           
             <DataGrid.Columns>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
-                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
-                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Ügyintéző" Width="1.4*" Binding="{Binding Ugyintezo.Name}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  ElementStyle="{StaticResource DataGridColumnStyle}" Header="Tárgy"   Width="2*" Binding="{Binding Targy}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Érkezett" Width="95" Binding="{Binding Erkezett}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
+                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                     ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                     Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
+                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                     ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                     Header="Ügyintéző" Width="1.4*" Binding="{Binding Ugyintezo.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Tárgy"   Width="2*" Binding="{Binding Targy}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Header="Érkezett" Width="95" Binding="{Binding Erkezett}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
+                <!--Doksi van vagy nincs ha van akkor művelet gomb ha nincs akkor feltöltés gomb-->
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                        MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ContentControl Content="{Binding}">
@@ -94,33 +117,33 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <!--Törlés Gomb-->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  Width="100" Header="Törlés">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate >
-                            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Törlés"/>
+                            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10" x:Name="DeleteIkonyv"  Content="Törlés"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <!--Harmadik sor (Talált iktatások száma,Lapváltó gombok,Iktatás/Lap beállítása)-->
         <Grid  Grid.Row="2" Height="45" Background="#FF036A9A" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-          
-            <StackPanel  Orientation="Horizontal">
-
-                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center" x:Name="MaxItemNumber">Iktatások(100)</TextBlock>
-            </StackPanel>
+            <!--Találatok száma textblock-->
+            <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center" x:Name="MaxItemNumber">Találatok száma: {ShownIkonyvek.Count} db</TextBlock>
+            <!--Irányító gombok, az ItemsControl feltöltése ViewModellen keresztül(ez így jó???)-->
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
                 </StackPanel.Effect>
                 <Button x:Name="ToFirstPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3" >Első</Button>
                 <Button x:Name="ToPrevPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Előző</Button>
-                <ItemsControl x:Name="PagingButtons" ItemsSource="{Binding Path=PagingButtons, Mode=TwoWay}">
+                <ItemsControl x:Name="PagingButtons" ItemsSource="{Binding Path=PagingButtons,Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
@@ -131,13 +154,13 @@
                 <Button x:Name="ToNextPage" Style="{StaticResource SearchViewNumberButtonStyle}"  Padding="10 3" >Következő</Button>
                 <Button x:Name="ToLastPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Utolsó</Button>
             </StackPanel>
+            <!--Iktatások száma az oldalon combobox-->
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">Lap mérete:</TextBlock>
-                <ComboBox Margin="5" x:Name="ItemsPerPage" SelectedItem="{Binding Path=SelectedItemsPerPage}">
-     
-                </ComboBox>
+                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">Iktatás/Oldal:</TextBlock>
+                <ComboBox Margin="5" x:Name="ItemsPerPage" SelectedItem="{Binding Path=SelectedItemsPerPage}"/>
             </StackPanel>
         </Grid>
+        <!--Loader Animation-->
         <local:LoadingSpinnerView x:Name="LoaderIsVisible" Grid.RowSpan="3"></local:LoadingSpinnerView>
     </Grid>
 </UserControl>

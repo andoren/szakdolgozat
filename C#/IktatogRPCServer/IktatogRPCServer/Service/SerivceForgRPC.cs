@@ -158,6 +158,7 @@ namespace IktatogRPCServer.Service
             foreach (var response in ikonyvek)
             {
                 await responseStream.WriteAsync(response);
+                Thread.Sleep(20);
             }
         }
     }
