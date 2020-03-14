@@ -2,6 +2,7 @@
 using Iktato;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ using System.Windows.Media;
 
 namespace IktatogRPCClient.ViewModels
 {
-	class KeresesViewModel : Screen
+	class KeresesViewModel : DocHandlerModel
 	{
 		public KeresesViewModel()
 		{
@@ -26,12 +27,12 @@ namespace IktatogRPCClient.ViewModels
 			AvailabelYears = serverHelper.GetYears();
 			SelectedItemsPerPage = ItemsPerPage[2];
 		}
+
 		#region variables
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
 		private bool _loaderIsVisible = false;
 		private int _currentPage = 0;
 		private string _searchText;
-		private Ikonyv _selectedIkonyv;
 		private string _selectedSearchParameter;
 		private int _selectedItemsPerPage;
 		private Year _selectedYear;
@@ -46,14 +47,7 @@ namespace IktatogRPCClient.ViewModels
 
         #endregion
         #region Properties
-        public Ikonyv SelectedIkonyv
-		{
-			get { return _selectedIkonyv; }
-			set { 
-				_selectedIkonyv = value;
-				NotifyOfPropertyChange(()=>SelectedIkonyv);
-			}
-		}
+
 		public string SearchText
 		{
 			get { return _searchText; }
@@ -245,7 +239,7 @@ namespace IktatogRPCClient.ViewModels
 
 		#endregion
 		//Adatbázisbol szedi le az Ikönyveket
-		public async void GetIkonyvek() {
+		public override async void GetIkonyvek() {
 			if (SelectedIranyParameter == null || SelectedYear == default) return;
 			else {
 				LoaderIsVisible = true;
@@ -324,6 +318,7 @@ namespace IktatogRPCClient.ViewModels
 				NotifyOfPropertyChange(MaxItemNumber);
 			});
 		}
+
 		#region GombokGenerálása és gomb muveletei
 		/// <summary>
 		/// Gombok beállítása a SearchIkonyvekhez mérten.
@@ -426,6 +421,7 @@ namespace IktatogRPCClient.ViewModels
 		public void ToLastPage() {	
 				CurrentPage = MaxPage -1;
 		}
+
         #endregion
         #endregion
     }

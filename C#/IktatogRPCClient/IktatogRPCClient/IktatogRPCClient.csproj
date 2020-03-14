@@ -69,6 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\DocHandlerModel.cs" />
     <Compile Include="Models\Irany.cs" />
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Models\Managers\Scenes\Exceptions\InvalidSceneExeption.cs" />
     <Compile Include="Models\Managers\Scenes\SceneManager.cs" />
     <Compile Include="Models\Managers\Scenes\Scenes.cs" />
+    <Compile Include="Models\PopUpChildModel.cs" />
     <Compile Include="Models\RemovedItem.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
     <Compile Include="Models\UserProxy.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="ViewModels\KeresesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ModifyFelhasznaloViewModel.cs" />
+    <Compile Include="ViewModels\ModifyIkonyvViewModel.cs" />
     <Compile Include="ViewModels\ModifyPartnerUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ModifyPartnerViewModel.cs" />
     <Compile Include="ViewModels\ModifyCsoportViewModel.cs" />
@@ -107,6 +110,7 @@
     <Compile Include="ViewModels\ModifyUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\PartnerekUgyintezoiViewModel.cs" />
     <Compile Include="ViewModels\PartnerekViewModel.cs" />
+    <Compile Include="ViewModels\PopUpViewModel.cs" />
     <Compile Include="ViewModels\TelephelyekViewModel.cs" />
     <Compile Include="ViewModels\TorzsViewModel.cs" />
     <Compile Include="ViewModels\UgyintezokViewModel.cs" />
@@ -164,6 +168,9 @@
     <Compile Include="Views\ModifyFelhasznaloView.xaml.cs">
       <DependentUpon>ModifyFelhasznaloView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ModifyIkonyvView.xaml.cs">
+      <DependentUpon>ModifyIkonyvView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModifyJellegView.xaml.cs">
       <DependentUpon>ModifyJellegView.xaml</DependentUpon>
     </Compile>
@@ -184,6 +191,9 @@
     </Compile>
     <Compile Include="Views\PartnerekView.xaml.cs">
       <DependentUpon>PartnerekView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUpView.xaml.cs">
+      <DependentUpon>PopUpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TelephelyekView.xaml.cs">
       <DependentUpon>TelephelyekView.xaml</DependentUpon>
@@ -319,6 +329,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ModifyIkonyvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ModifyJellegView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PartnerekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

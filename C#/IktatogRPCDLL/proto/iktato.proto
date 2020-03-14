@@ -40,7 +40,8 @@ message Ikonyv{
     string Erkezett = 11;
     string HatIdo = 12;
     string Iktatoszam = 13;
-    string szoveg = 14; 
+    string Szoveg = 14; 
+    bool HasDoc = 15;
 }
 message Ugyintezo{
     int32 id = 1;

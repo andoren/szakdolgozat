@@ -28,9 +28,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="CreateJelleg" MinHeight="45" FontSize="16" Grid.Column="0" Background="Green" Foreground="White"   Margin="5 0 5 5">Hozzáadás</Button>
-                    <Button x:Name="ModifyJelleg" MinHeight="45" FontSize="16" Grid.Column="1" Background="Green" Foreground="White"   Margin="0 0 5 5">Módosítás</Button>
-                    <Button x:Name="RemoveJelleg" MinHeight="45" FontSize="16" Grid.Column="2" Background="#FFFB2323" Foreground="White"  Margin="0 0 5 5">Törlés</Button>
+                    <Button x:Name="CreateJelleg" MinHeight="45" FontSize="16" Grid.Column="0" Style="{StaticResource AddButtonStyle}"    Margin="5 0 5 5">Hozzáadás</Button>
+                    <Button x:Name="ModifyJelleg" MinHeight="45" FontSize="16" Grid.Column="1" Style="{StaticResource AddButtonStyle}"    Margin="0 0 5 5">Módosítás</Button>
+                    <Button x:Name="RemoveJelleg" MinHeight="45" FontSize="16" Grid.Column="2" Style="{StaticResource WarningButtonStyle}"   Margin="0 0 5 5">Törlés</Button>
                 </Grid>
             </Grid>
             <Grid Grid.Row="0" x:Name="CreationIsVisible">

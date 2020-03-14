@@ -10,7 +10,7 @@
         FontSize="18"
         WindowStyle="SingleBorderWindow"
         Icon="/IktatogRPCClient;component/Resources/icon.png"
-        Title="Iktatás" Height="700" Width="1300"  WindowStartupLocation="CenterScreen">
+        Title="Iktatás" Height="700" MinWidth="1200"  WindowStartupLocation="CenterScreen">
     <Grid Background="#FFF7F8FA" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

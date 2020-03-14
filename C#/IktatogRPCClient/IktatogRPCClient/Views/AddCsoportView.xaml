@@ -29,8 +29,8 @@
 
             </StackPanel>
             <StackPanel Margin="5" HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                <Button x:Name="DoAction" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                <Button x:Name="CancelAction" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Mégse</Button>
+                <Button x:Name="DoAction" Style="{StaticResource AddButtonStyle}"  Padding="15" Margin="5">Hozzáadás</Button>
+                <Button x:Name="CancelAction" Style="{StaticResource WarningButtonStyle}"  Padding="30,15" Margin="5">Mégse</Button>
             </StackPanel>
 
         </Grid>

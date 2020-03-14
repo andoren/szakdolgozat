@@ -89,7 +89,7 @@
     <SolidColorBrush x:Key="Login.Button.Disabled.Background" Color="#FFF4F4F4"/>
     <SolidColorBrush x:Key="Login.Button.Disabled.Border" Color="#FFADB2B5"/>
     <SolidColorBrush x:Key="Login.Button.Disabled.Foreground" Color="#FF838383"/>
-    <Style x:Key="LoginButtons" TargetType="{x:Type Button}">
+    <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Login.Button.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Login.Button.Static.Border}"/>
@@ -97,9 +97,6 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="2"/>
-        <Setter Property="Margin" Value="10,20,10,0"/>
-        <Setter Property="Height" Value="50"/>
         <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
@@ -129,6 +126,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="AddButtonStyle" TargetType="Button" BasedOn="{ StaticResource DefaultButtonStyle}">
+        <Setter Property="Background" Value="Green"></Setter>
+    </Style>
+    <Style x:Key="WarningButtonStyle" TargetType="Button" BasedOn="{ StaticResource DefaultButtonStyle}">
+        <Setter Property="Background" Value="red"></Setter>
     </Style>
     <Style x:Key="MenuButton" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -348,7 +351,7 @@
     <Style TargetType="{x:Type DataGridColumnHeader}" x:Key="DataGridHeaderStyle" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
         <Setter Property="Background" Value="#FF036A9A" />
         <Setter Property="Height" Value="60"/>
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="White"/>
@@ -368,13 +371,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
-                    <Border Background="Transparent" BorderThickness="0">
+                    <Border MinHeight="50" Background="Transparent" BorderThickness="0">
                         <Border x:Name="border"
                               BorderBrush="Transparent"
                               BorderThickness="0"
                               Background="Transparent"
                               CornerRadius="0">
-                            <ContentPresenter />
+                            <ContentPresenter  />
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>

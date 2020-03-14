@@ -5,20 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             FontSize="18"
+             FontSize="20"
              FontFamily="Roboto"
              SnapsToDevicePixels="True"
+             xmlns:cal="http://www.caliburnproject.org"
              d:DesignHeight="600" d:DesignWidth="1500" Height="auto">
-    <!---DataTrigger innen veszi a contentet a DataGrid-be-->
-    <UserControl.Resources>
-        <DataTemplate x:Key="Feltoltes">
-            <Button Style="{StaticResource LoginButtons}" x:Name="UploadDoc" Margin="5" BorderBrush="Black"  Padding="20 10"  Content="Feltöltés"/>
-        </DataTemplate>
-        <DataTemplate x:Key="Muvelet">
-            <Button Style="{StaticResource LoginButtons}" x:Name="ShowDocs" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10"  Content="Művelet"/>
-        </DataTemplate>
-        <BooleanToVisibilityConverter x:Key="b2v" />
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -76,8 +68,7 @@
         </Grid>
         <!--Második sor (Iktatások táblázata)-->
         <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
-           CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
-          
+           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}" 
@@ -108,36 +99,27 @@
                                     Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
                 <!--Doksi van vagy nincs ha van akkor művelet gomb ha nincs akkor feltöltés gomb-->
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
-                                        MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
+                                         Width="auto"  Header="Irat?">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ContentControl Content="{Binding}">
+                            <CheckBox HorizontalAlignment="Center" Margin="0" Padding="0" 
+                                      VerticalAlignment="Center" FontSize="22" IsHitTestVisible="False" 
+                                      DataContext="{Binding}">
                                 <ContentControl.Style>
-                                    <Style TargetType="ContentControl">
+                                    <Style TargetType="CheckBox">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Irany}" Value="1">
-                                                <Setter Property="ContentTemplate"
-                                    Value="{StaticResource  Muvelet}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Irany}" Value="0">
-                                                <Setter Property="ContentTemplate"
-                                    Value="{StaticResource Feltoltes}" />
+                                            <DataTrigger Binding="{Binding HasDoc}" Value="True">
+                                                <Setter Property="IsChecked"
+                                    Value="True" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ContentControl.Style>
-                            </ContentControl>
+                            </CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--Törlés Gomb-->
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  Width="100" Header="Törlés">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate >
-                            <Button Style="{StaticResource LoginButtons}" Margin="5" Background="#FFE02D2D" BorderBrush="Black"  Padding="20 10" x:Name="DeleteIkonyv"  Content="Törlés"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <!--Harmadik sor (Talált iktatások száma,Lapváltó gombok,Iktatás/Lap beállítása)-->

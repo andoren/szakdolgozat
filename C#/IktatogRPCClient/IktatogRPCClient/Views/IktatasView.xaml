@@ -6,17 +6,9 @@
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
              FontSize="18"
+             xmlns:cal="http://www.caliburnproject.org"
              FontFamily="Roboto"
              d:DesignHeight="600" d:DesignWidth="1100">
-    <UserControl.Resources>
-        <DataTemplate x:Key="Feltoltes">
-            <Button Style="{StaticResource LoginButtons}" Margin="5" VerticalAlignment="Center" Height="35">Feltöltés</Button>
-        </DataTemplate>
-        <DataTemplate x:Key="Muvelet">
-            <Button Style="{StaticResource LoginButtons}"  Margin="5" VerticalAlignment="Center" Height="35">Művelet</Button>
-        </DataTemplate>
-        <BooleanToVisibilityConverter x:Key="b2v" />
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -129,50 +121,63 @@
    
 
            
-            <Button Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Style="{StaticResource LoginButtons}" Margin="5"   >Iktatás</Button>
+            <Button Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Style="{StaticResource DefaultButtonStyle}" Margin="5"   >Iktatás</Button>
 
             </Grid>
         </Grid>
-        <DataGrid Grid.Row="2" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" >
+        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
+           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
-                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
-                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Ügyintéző" Width="1.4*" Binding="{Binding Ugyintezo.Name}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  ElementStyle="{StaticResource DataGridColumnStyle}" Header="Tárgy"   Width="2*" Binding="{Binding Targy}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Érkezett" Width="95" Binding="{Binding Erkezett}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" ElementStyle="{StaticResource DataGridColumnStyle}" Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" MinWidth="100"  MaxWidth="150" Width="auto"  Header="Dok.">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Iktatószám" Width="auto" Binding="{Binding Iktatoszam}"/>
+                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                     ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                     Header="Partner/Címzett" Width="1.5*" Binding="{Binding Partner.Name}"/>
+                <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                     ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                     Header="Ügyintéző" Width="1.4*" Binding="{Binding Ugyintezo.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Tárgy"   Width="2*" Binding="{Binding Targy}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Header="Érkezett" Width="95" Binding="{Binding Erkezett}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Jellege" Width="0.8*" Binding="{Binding Jelleg.Name}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Hivatkozási szám" Width="1.5*" Binding="{Binding Hivszam}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Határidő" Width="95" Binding="{Binding HatIdo}"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}" 
+                                    Header="Partner Ügyintéző" Width="1*" Binding="{Binding Partner.Ugyintezok[0].Name}"/>
+                <!--Doksi van vagy nincs ha van akkor művelet gomb ha nincs akkor feltöltés gomb-->
+                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
+                                         Width="auto"  Header="Irat?">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ContentControl Content="{Binding}">
+                            <CheckBox HorizontalAlignment="Center" Margin="0" Padding="0" 
+                                      VerticalAlignment="Center" FontSize="22" IsHitTestVisible="False" 
+                                      DataContext="{Binding}">
                                 <ContentControl.Style>
-                                    <Style TargetType="ContentControl">
+                                    <Style TargetType="CheckBox">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Irany}" Value="1">
-                                                <Setter Property="ContentTemplate"
-                                    Value="{StaticResource  Muvelet}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Irany}" Value="0">
-                                                <Setter Property="ContentTemplate"
-                                    Value="{StaticResource Feltoltes}" />
+                                            <DataTrigger Binding="{Binding HasDoc}" Value="True">
+                                                <Setter Property="IsChecked"
+                                    Value="True" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ContentControl.Style>
-                            </ContentControl>
+                            </CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}"  Width="100" Header="Törlés">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate >
-                            <Button Style="{StaticResource LoginButtons}" Background="Red" BorderBrush="Black"  Margin="5" VerticalAlignment="Center" Height="35" Content="Törlés"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

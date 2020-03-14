@@ -35,13 +35,13 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="AddTelephely" Grid.Column="0" Background="Green" Foreground="White"  Padding="15" Margin="0 5 5 0">Telephely hozzáadása</Button>
-                    <Button x:Name="RemoveTelephely" Grid.Column="1" Background="#FFFB2323" Foreground="White" Padding="30 15" Margin="0 5 0 0">Telephely törlése</Button>
+                    <Button x:Name="AddTelephely" Grid.Column="0" Style="{StaticResource AddButtonStyle}"  Padding="15" Margin="0 5 5 0">Telephely hozzáadása</Button>
+                    <Button x:Name="RemoveTelephely" Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Padding="30 15" Margin="0 5 0 0">Telephely törlése</Button>
                 </Grid>
             </StackPanel>
             <StackPanel  HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                <Button x:Name="DoAction" Background="Green" Foreground="White"  Padding="15" Margin="5">Hozzáadás</Button>
-                <Button x:Name="CancelAction" Background="#FFFB2323" Foreground="White" Padding="30,15" Margin="5">Mégse</Button>
+                <Button x:Name="DoAction" Style="{StaticResource AddButtonStyle}"  Padding="15" Margin="5">Hozzáadás</Button>
+                <Button x:Name="CancelAction" Style="{StaticResource WarningButtonStyle}"  Padding="30,15" Margin="5">Mégse</Button>
             </StackPanel>
 
         </Grid>

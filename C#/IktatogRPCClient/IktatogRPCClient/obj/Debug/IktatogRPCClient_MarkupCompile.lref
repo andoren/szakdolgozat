@@ -19,6 +19,7 @@ FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\L
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\LoginView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyCsoportView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyFelhasznaloView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyIkonyvView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyJellegView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyPartnerUgyintezoView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyPartnerView.xaml;;
@@ -26,6 +27,7 @@ FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\M
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\ModifyUgyintezoView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\PartnerekUgyintezoiView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\PartnerekView.xaml;;
+FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\PopUpView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TelephelyekView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\TorzsView.xaml;;
 FE:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Views\UgyintezokView.xaml;;

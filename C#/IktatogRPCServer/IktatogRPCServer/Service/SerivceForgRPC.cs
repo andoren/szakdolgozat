@@ -95,6 +95,7 @@ namespace IktatogRPCServer.Service
                 Erkezett = "2020.02.15",
                 HatIdo = "2020.02.20",
                 Id = 232,
+                HasDoc = true,
                 Hivszam = "1234/412Hivszám",
                 Iktatoszam = "B-R/KC/M/2020",
                 Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
@@ -118,7 +119,7 @@ namespace IktatogRPCServer.Service
                 Iktatoszam = "Kiscicaikató",
                 Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
                 Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "Meow" },
+                Partner = new Partner() { Id = 1, Name = "Beszállító Kiscica" },
                 Ugyintezo = new Ugyintezo() { Id = 1, Name = "Pekár Mihály" },
                 Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
                 Targy = "Ez egy kiktatás",
@@ -158,7 +159,7 @@ namespace IktatogRPCServer.Service
             foreach (var response in ikonyvek)
             {
                 await responseStream.WriteAsync(response);
-                Thread.Sleep(20);
+               
             }
         }
     }

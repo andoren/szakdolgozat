@@ -70,8 +70,8 @@
                     </Grid>
                     <PasswordBox cal:Message.Attach="[Event PasswordChanged] = [Action OnPasswordChanged($source)]" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
                 </Grid>
-                <Button Style="{StaticResource LoginButtons}"   x:Name="LoginButton"  >Bejelentkezés</Button>
-                <Button Style="{StaticResource LoginButtons}"   x:Name="ExitButton"  >Kilépés</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Margin="10" Padding="10"   x:Name="LoginButton"  >Bejelentkezés</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Margin="10 5" Padding="10"  x:Name="ExitButton"  >Kilépés</Button>
 
                 <CheckBox Margin="0,20,0,0" FlowDirection="RightToLeft"  x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Foreground="White" HorizontalAlignment="Center" Content="Felhasználó mentése">
                     
