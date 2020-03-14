@@ -16,12 +16,16 @@ service IktatoService {
 
 message SearchIkonyvData{
     int32 Irany = 1;
-    int32 Year = 2;
+    Year Year = 2;
     int32 From = 3;
     int32 To = 4;
 
 }
-
+message Year{
+    int32 id = 1;
+    int32 Year = 2;
+    bool Active = 3;
+}
 message Ikonyv{
     int32 id = 1;
     string targy = 2;

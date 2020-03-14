@@ -23,7 +23,7 @@ namespace IktatogRPCClient.ViewModels
 		{
 		
 			SelectedSearchParameter = SearchList[0];
-			AvailabelYears = new BindableCollection<int>() { 2020, 2019 };
+			AvailabelYears = serverHelper.GetYears();
 			SelectedItemsPerPage = ItemsPerPage[2];
 		}
 		#region variables
@@ -34,8 +34,8 @@ namespace IktatogRPCClient.ViewModels
 		private Ikonyv _selectedIkonyv;
 		private string _selectedSearchParameter;
 		private int _selectedItemsPerPage;
-		private int _selectedYear;
-		private BindableCollection<int> _availabelYears;
+		private Year _selectedYear;
+		private BindableCollection<Year> _availabelYears;
 		private Irany _selectedIranyParameter;
 		private ObservableCollection<Button> _pagingButtons = new ObservableCollection<Button>() { };
 		private BindableCollection<Ikonyv> _searchedIkonyvek = new BindableCollection<Ikonyv>();
@@ -113,6 +113,7 @@ namespace IktatogRPCClient.ViewModels
 				NotifyOfPropertyChange(() => CanToPrevPage);
 				NotifyOfPropertyChange(() => CanToFirstPage);
 				SetVisibleIktatas();
+				
 			}
 		}
 		public bool CanToLastPage
@@ -147,7 +148,7 @@ namespace IktatogRPCClient.ViewModels
 		//Ez a property iratja ki a View-ra a Találatok számát
 		public string MaxItemNumber {
 			get {
-				return $"Találatok száma: {ShownIkonyvek.Count} db";
+				return $"Találatok száma: {SearchedIkonyvek.Count.ToString()} db";
 			}
 		}
 		/*Kiszámolja, hogy hány lap kell az iktatások megjelenítéséhez. Ha van Keresési paraméter akkor azoknak a számát nézi ha nincs
@@ -176,14 +177,14 @@ namespace IktatogRPCClient.ViewModels
 			}
 
 		}
-		public BindableCollection<int> AvailabelYears
+		public BindableCollection<Year> AvailabelYears
 		{
 			get { return _availabelYears; }
 			private set { _availabelYears = value;
 				NotifyOfPropertyChange(() => AvailabelYears);
 			}
 		}
-		public int SelectedYear
+		public Year SelectedYear
 		{
 			get { return _selectedYear; }
 			set { _selectedYear = value;
@@ -284,6 +285,7 @@ namespace IktatogRPCClient.ViewModels
 				}
 				}
 			SetButtons();
+			NotifyOfPropertyChange(() => MaxItemNumber);
 		}
 
 		// A keresési adok alapján beállíta a ShownIkonyvek változót --- Csak akkor ha a SearchText nem üres.

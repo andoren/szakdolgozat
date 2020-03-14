@@ -33,19 +33,32 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Irány combobox-->
-            <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" SelectedItem="{Binding SelectedIranyParameter}" DisplayMemberPath="Name" Cursor="Hand" Height="40" Margin="10,10">
-                <ComboBox.Effect>
+            <StackPanel Margin="5"   Orientation="Horizontal">
+                <StackPanel.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                </ComboBox.Effect>
-            </ComboBox>
+                </StackPanel.Effect>
+                <TextBlock Margin="10 5"  Foreground="White" FontSize="22" VerticalAlignment="Center">Irány:</TextBlock>
+                <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" 
+                          SelectedItem="{Binding SelectedIranyParameter}" 
+                          DisplayMemberPath="Name" Cursor="Hand" Height="40" >
+                </ComboBox>
+            </StackPanel>
+           
             <!--Évek combobox-->
-            <ComboBox Grid.Column="1" HorizontalContentAlignment="Left" x:Name="AvailabelYears" SelectedItem="{Binding SelectedYear}" Cursor="Hand" Height="40" Margin="15,10">
-                <ComboBox.Effect>
+            <StackPanel Grid.Column="1" Margin="5"  Orientation="Horizontal">
+                <StackPanel.Effect>
                     <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                </ComboBox.Effect>
-            </ComboBox>
+                </StackPanel.Effect>
+                <TextBlock Margin="10 5"  Foreground="White" FontSize="22" VerticalAlignment="Center">Év:</TextBlock>
+                <ComboBox HorizontalContentAlignment="Left" x:Name="AvailabelYears" 
+                      SelectedItem="{Binding SelectedYear}" Cursor="Hand" Height="40" 
+                      DisplayMemberPath="Year_">
+               
+                </ComboBox>
+            </StackPanel>
+
             <!--Keresés és Keresőparaméter combobox-->
-            <Grid VerticalAlignment="Center" Grid.Column="2" Margin="10,5,10,5">
+            <Grid VerticalAlignment="Center" Grid.Column="2" Margin="20,5,10,5">
                 <Grid Background="White">
                     <Grid.Effect>
                         <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
@@ -135,14 +148,23 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--Találatok száma textblock-->
-            <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center" x:Name="MaxItemNumber">Találatok száma: {ShownIkonyvek.Count} db</TextBlock>
+            <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center" x:Name="MaxItemNumber"
+                       >
+                
+            </TextBlock>
             <!--Irányító gombok, az ItemsControl feltöltése ViewModellen keresztül(ez így jó???)-->
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
                 <StackPanel.Effect>
-                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
+                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" 
+                                       BlurRadius="5"/>
                 </StackPanel.Effect>
-                <Button x:Name="ToFirstPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3" >Első</Button>
-                <Button x:Name="ToPrevPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Előző</Button>
+                <Button x:Name="ToFirstPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3">
+                    Első
+                </Button>
+                <Button x:Name="ToPrevPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3">
+                    Előző
+                </Button>
                 <ItemsControl x:Name="PagingButtons" ItemsSource="{Binding Path=PagingButtons,Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -151,12 +173,18 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
 
-                <Button x:Name="ToNextPage" Style="{StaticResource SearchViewNumberButtonStyle}"  Padding="10 3" >Következő</Button>
-                <Button x:Name="ToLastPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3"  >Utolsó</Button>
+                <Button x:Name="ToNextPage" Style="{StaticResource SearchViewNumberButtonStyle}"  Padding="10 3">
+                    Következő
+                </Button>
+                <Button x:Name="ToLastPage" Style="{StaticResource SearchViewNumberButtonStyle}" Padding="30 3">
+                    Utolsó
+                </Button>
             </StackPanel>
             <!--Iktatások száma az oldalon combobox-->
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">Iktatás/Oldal:</TextBlock>
+                <TextBlock Margin="2,2,10,2" Foreground="White" VerticalAlignment="Center">
+                    Iktatás/Oldal:
+                </TextBlock>
                 <ComboBox Margin="5" x:Name="ItemsPerPage" SelectedItem="{Binding Path=SelectedItemsPerPage}"/>
             </StackPanel>
         </Grid>

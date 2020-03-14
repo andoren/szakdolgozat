@@ -25,11 +25,19 @@ namespace IktatogRPCClient.Models.Managers
 
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
+
+
         //TODO THE WHOLE HELPER! :(
         private UserHelperSingleton userHelper;
         private CallOptions calloptions;
         private IktatoService.IktatoServiceClient client;
         #endregion
+
+
+        public BindableCollection<Year> GetYears()
+        {
+            return new BindableCollection<Year>() { new Year() {Id = 3, Year_ = 2020, Active= true }, new Year() { Id = 2, Active= false, Year_ = 2019 } };
+        }
         public BindableCollection<Privilege> GetPrivileges()
         {
             return new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
