@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace IktatogRPCClient.Models
 {
-    public abstract class DocHandlerModel:Screen
+    public abstract class IkonyvHandlerModel:Screen
     {
 		private Ikonyv _selectedIkonyv;
 
@@ -24,6 +24,7 @@ namespace IktatogRPCClient.Models
 			}
 		}
 		public void ModifyIkonyv() {
+			if (SelectedIkonyv == null) return;
 			WindowManager windowManager = new WindowManager();
 			Screen screen = new PopUpViewModel(new ModifyIkonyvViewModel(_selectedIkonyv));
 			var result = windowManager.ShowDialog(screen, null, null);

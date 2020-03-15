@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" Background="White"
-             FontSize="20" Width="800" MinHeight="500">
+             FontSize="18" Width="900" MinHeight="400">
     <Grid >
         <Grid x:Name="ModificationIsVisible">
         <Grid.RowDefinitions>
@@ -31,12 +31,12 @@
                 <TextBlock Margin="5">Tárgy:*</TextBlock>
                 <TextBox x:Name="IkonyvToModify_Targy" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
                 <TextBlock Margin="5">Partner/Címzett:*</TextBlock>
-                    <ComboBox x:Name="AvailablePartners" SelectedIndex="{Binding Path=SelectedPartner, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox x:Name="AvailablePartners" SelectedItem="{Binding Path=SelectedPartner, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Partner ügyintéző:</TextBlock>
-                    <ComboBox x:Name="AvailabelPartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox x:Name="AvailablePartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Hivatkozásiszám:</TextBlock>
                  <TextBox x:Name="IkonyvToModify_Hivszam"  Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
-                    <Button x:Name="AddDocument" Style="{StaticResource DefaultButtonStyle}" Padding="15" Margin="5 10"  >
+                    <Button x:Name="DocumentView" Style="{StaticResource DefaultButtonStyle}" Padding="15" Margin="5 10"  >
                         Dukomentum kezelés
                     </Button>
                 </StackPanel>
@@ -68,11 +68,11 @@
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Grid.Column="1">
                 <Button x:Name="ModifyButton" Style="{StaticResource AddButtonStyle}"  Margin="0 0 20 0" Padding="10"  >Módosítás</Button>
-                <Button x:Name="DeleteButton" Style="{StaticResource WarningButtonStyle}" Margin="0 0 20 0" Padding="30 15">Törlés</Button>
+                <Button x:Name="RemoveButton" Style="{StaticResource WarningButtonStyle}" Margin="0 0 20 0" Padding="30 15">Törlés</Button>
                 <Button x:Name="CancelButton" Style="{StaticResource DefaultButtonStyle}" Padding="30 15">Mégse</Button>
         </StackPanel>
         </Grid>
-        <!--<ContentControl Visibility="{Binding Path=DocsIsVisible}" x:Name="ActiveItem" ></ContentControl>
-        -->
+        <ContentControl Visibility="{Binding Path=DocsIsVisible}" x:Name="ActiveItem" ></ContentControl>
+        
         </Grid>
 </UserControl>

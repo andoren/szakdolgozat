@@ -24,46 +24,54 @@ namespace Iktato {
     static IktatoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byJXChBTZWFyY2hJa29ueXZEYXRhEg0K",
-            "BUlyYW55GAEgASgFEhoKBFllYXIYAiABKAsyDC5Ja3RhdG8uWWVhchIMCgRG",
-            "cm9tGAMgASgFEgoKAlRvGAQgASgFIjAKBFllYXISCgoCaWQYASABKAUSDAoE",
-            "WWVhchgCIAEoBRIOCgZBY3RpdmUYAyABKAgi6wIKBklrb255dhIKCgJpZBgB",
-            "IAEoBRINCgV0YXJneRgCIAEoCRIPCgdoaXZzemFtGAMgASgJEiQKCVVneWlu",
-            "dGV6bxgEIAEoCzIRLklrdGF0by5VZ3lpbnRlem8SIAoHUGFydG5lchgFIAEo",
-            "CzIPLklrdGF0by5QYXJ0bmVyEiAKCmNyZWF0ZWRfYnkYBiABKAsyDC5Ja3Rh",
-            "dG8uVXNlchIkCglUZWxlcGhlbHkYByABKAsyES5Ja3RhdG8uVGVsZXBoZWx5",
-            "EiAKB0Nzb3BvcnQYCCABKAsyDy5Ja3RhdG8uQ3NvcG9ydBIeCgZKZWxsZWcY",
-            "CSABKAsyDi5Ja3RhdG8uSmVsbGVnEg0KBUlyYW55GAogASgFEhAKCEVya2V6",
-            "ZXR0GAsgASgJEg4KBkhhdElkbxgMIAEoCRISCgpJa3RhdG9zemFtGA0gASgJ",
-            "Eg4KBlN6b3ZlZxgOIAEoCRIOCgZIYXNEb2MYDyABKAgiJQoJVWd5aW50ZXpv",
-            "EgoKAmlkGAEgASgFEgwKBG5hbWUYAiABKAkiUQoHUGFydG5lchIKCgJpZBgB",
-            "IAEoBRIMCgRuYW1lGAIgASgJEiwKClVneWludGV6b2sYAyADKAsyGC5Ja3Rh",
-            "dG8uUGFydG5lclVneWludGV6byIsChBQYXJ0bmVyVWd5aW50ZXpvEgoKAmlk",
-            "GAEgASgFEgwKBG5hbWUYAiABKAkiJQoJVGVsZXBoZWx5EgoKAmlkGAEgASgF",
-            "EgwKBG5hbWUYAiABKAkiNgoHQ3NvcG9ydBIKCgJpZBgBIAEoBRIMCgRuYW1l",
-            "GAIgASgJEhEKCXNob3J0bmFtZRgDIAEoCSIiCgZKZWxsZWcSCgoCaWQYASAB",
-            "KAUSDAoEbmFtZRgCIAEoCSIyCgxMb2dpbk1lc3NhZ2USEAoIdXNlcm5hbWUY",
-            "ASABKAkSEAoIcGFzc3dvcmQYAiABKAkiDgoMRW1wdHlNZXNzYWdlIiUKCVBy",
-            "aXZpbGVnZRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJIigKBkFuc3dlchIN",
-            "CgVlcnJvchgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIrwBCgRVc2VyEgoKAmlk",
-            "GAEgASgFEhAKCHVzZXJuYW1lGAIgASgJEhAKCGZ1bGxuYW1lGAMgASgJEhAK",
-            "CHBhc3N3b3JkGAQgASgJEiQKCXByaXZpbGVnZRgFIAEoCzIRLklrdGF0by5Q",
-            "cml2aWxlZ2USJAoJQXV0aFRva2VuGAYgASgLMhEuSWt0YXRvLkF1dGhUb2tl",
-            "bhImCgtUZWxlcGhlbHllaxgHIAMoCzIRLklrdGF0by5UZWxlcGhlbHkiGgoJ",
-            "QXV0aFRva2VuEg0KBXRva2VuGAEgASgJIhsKDURlbGV0ZU1lc3NhZ2USCgoC",
-            "aWQYASABKAUyogMKDUlrdGF0b1NlcnZpY2USKwoFTG9naW4SFC5Ja3RhdG8u",
-            "TG9naW5NZXNzYWdlGgwuSWt0YXRvLlVzZXISLgoGTG9nb3V0EhQuSWt0YXRv",
-            "LkVtcHR5TWVzc2FnZRoOLklrdGF0by5BbnN3ZXISKAoIUmVnaXN0ZXISDC5J",
-            "a3RhdG8uVXNlchoOLklrdGF0by5BbnN3ZXISLAoKQWRkSWt0YXRhcxIOLklr",
-            "dGF0by5Ja29ueXYaDi5Ja3RhdG8uQW5zd2VyEi8KDU1vZGlmeUlrdGF0YXMS",
-            "Di5Ja3RhdG8uSWtvbnl2Gg4uSWt0YXRvLkFuc3dlchI4Cg5MaXN0YWxsSWt0",
-            "YXRhcxIULklrdGF0by5FbXB0eU1lc3NhZ2UaDi5Ja3RhdG8uSWtvbnl2MAES",
-            "OQoLTGlzdElrdGF0YXMSGC5Ja3RhdG8uU2VhcmNoSWtvbnl2RGF0YRoOLklr",
-            "dGF0by5Ja29ueXYwARI2Cg1EZWxldGVJa3RhdGFzEhUuSWt0YXRvLkRlbGV0",
-            "ZU1lc3NhZ2UaDi5Ja3RhdG8uQW5zd2VyYgZwcm90bzM="));
+            "Cgxpa3RhdG8ucHJvdG8SBklrdGF0byIXCghEb2N1bWVudBILCgNkb2MYASAB",
+            "KAwiRAoMRG9jdW1lbnRJbmZvEgoKAklkGAEgASgFEgwKBE5hbWUYAiABKAkS",
+            "DAoEVHlwZRgDIAEoCRIMCgRTaXplGAQgASgBIlcKEFNlYXJjaElrb255dkRh",
+            "dGESDQoFSXJhbnkYASABKAUSGgoEWWVhchgCIAEoCzIMLklrdGF0by5ZZWFy",
+            "EgwKBEZyb20YAyABKAUSCgoCVG8YBCABKAUiMAoEWWVhchIKCgJpZBgBIAEo",
+            "BRIMCgRZZWFyGAIgASgFEg4KBkFjdGl2ZRgDIAEoCCLrAgoGSWtvbnl2EgoK",
+            "AmlkGAEgASgFEg0KBXRhcmd5GAIgASgJEg8KB2hpdnN6YW0YAyABKAkSJAoJ",
+            "VWd5aW50ZXpvGAQgASgLMhEuSWt0YXRvLlVneWludGV6bxIgCgdQYXJ0bmVy",
+            "GAUgASgLMg8uSWt0YXRvLlBhcnRuZXISIAoKY3JlYXRlZF9ieRgGIAEoCzIM",
+            "LklrdGF0by5Vc2VyEiQKCVRlbGVwaGVseRgHIAEoCzIRLklrdGF0by5UZWxl",
+            "cGhlbHkSIAoHQ3NvcG9ydBgIIAEoCzIPLklrdGF0by5Dc29wb3J0Eh4KBkpl",
+            "bGxlZxgJIAEoCzIOLklrdGF0by5KZWxsZWcSDQoFSXJhbnkYCiABKAUSEAoI",
+            "RXJrZXpldHQYCyABKAkSDgoGSGF0SWRvGAwgASgJEhIKCklrdGF0b3N6YW0Y",
+            "DSABKAkSDgoGU3pvdmVnGA4gASgJEg4KBkhhc0RvYxgPIAEoCCIlCglVZ3lp",
+            "bnRlem8SCgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCSJRCgdQYXJ0bmVyEgoK",
+            "AmlkGAEgASgFEgwKBG5hbWUYAiABKAkSLAoKVWd5aW50ZXpvaxgDIAMoCzIY",
+            "LklrdGF0by5QYXJ0bmVyVWd5aW50ZXpvIiwKEFBhcnRuZXJVZ3lpbnRlem8S",
+            "CgoCaWQYASABKAUSDAoEbmFtZRgCIAEoCSIlCglUZWxlcGhlbHkSCgoCaWQY",
+            "ASABKAUSDAoEbmFtZRgCIAEoCSI2CgdDc29wb3J0EgoKAmlkGAEgASgFEgwK",
+            "BG5hbWUYAiABKAkSEQoJc2hvcnRuYW1lGAMgASgJIiIKBkplbGxlZxIKCgJp",
+            "ZBgBIAEoBRIMCgRuYW1lGAIgASgJIjIKDExvZ2luTWVzc2FnZRIQCgh1c2Vy",
+            "bmFtZRgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSIOCgxFbXB0eU1lc3NhZ2Ui",
+            "JQoJUHJpdmlsZWdlEgoKAmlkGAEgASgFEgwKBG5hbWUYAiABKAkiKAoGQW5z",
+            "d2VyEg0KBWVycm9yGAEgASgIEg8KB21lc3NhZ2UYAiABKAkivAEKBFVzZXIS",
+            "CgoCaWQYASABKAUSEAoIdXNlcm5hbWUYAiABKAkSEAoIZnVsbG5hbWUYAyAB",
+            "KAkSEAoIcGFzc3dvcmQYBCABKAkSJAoJcHJpdmlsZWdlGAUgASgLMhEuSWt0",
+            "YXRvLlByaXZpbGVnZRIkCglBdXRoVG9rZW4YBiABKAsyES5Ja3RhdG8uQXV0",
+            "aFRva2VuEiYKC1RlbGVwaGVseWVrGAcgAygLMhEuSWt0YXRvLlRlbGVwaGVs",
+            "eSIaCglBdXRoVG9rZW4SDQoFdG9rZW4YASABKAkiGwoNRGVsZXRlTWVzc2Fn",
+            "ZRIKCgJpZBgBIAEoBTLPBAoNSWt0YXRvU2VydmljZRIrCgVMb2dpbhIULklr",
+            "dGF0by5Mb2dpbk1lc3NhZ2UaDC5Ja3RhdG8uVXNlchIuCgZMb2dvdXQSFC5J",
+            "a3RhdG8uRW1wdHlNZXNzYWdlGg4uSWt0YXRvLkFuc3dlchIoCghSZWdpc3Rl",
+            "chIMLklrdGF0by5Vc2VyGg4uSWt0YXRvLkFuc3dlchIsCgpBZGRJa3RhdGFz",
+            "Eg4uSWt0YXRvLklrb255dhoOLklrdGF0by5BbnN3ZXISLwoNTW9kaWZ5SWt0",
+            "YXRhcxIOLklrdGF0by5Ja29ueXYaDi5Ja3RhdG8uQW5zd2VyEjgKDkxpc3Rh",
+            "bGxJa3RhdGFzEhQuSWt0YXRvLkVtcHR5TWVzc2FnZRoOLklrdGF0by5Ja29u",
+            "eXYwARI5CgtMaXN0SWt0YXRhcxIYLklrdGF0by5TZWFyY2hJa29ueXZEYXRh",
+            "Gg4uSWt0YXRvLklrb255djABEjYKDURlbGV0ZUlrdGF0YXMSFS5Ja3RhdG8u",
+            "RGVsZXRlTWVzc2FnZRoOLklrdGF0by5BbnN3ZXISOQoPR2V0RG9jdW1lbnRC",
+            "eUlkEhQuSWt0YXRvLkRvY3VtZW50SW5mbxoQLklrdGF0by5Eb2N1bWVudBI4",
+            "Cg5VcGxvYWREb2N1bWVudBIQLklrdGF0by5Eb2N1bWVudBoULklrdGF0by5E",
+            "b2N1bWVudEluZm8SNgoOUmVtb3ZlZG9jdW1lbnQSFC5Ja3RhdG8uRG9jdW1l",
+            "bnRJbmZvGg4uSWt0YXRvLkFuc3dlcmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Document), global::Iktato.Document.Parser, new[]{ "Doc" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.DocumentInfo), global::Iktato.DocumentInfo.Parser, new[]{ "Id", "Name", "Type", "Size" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.SearchIkonyvData), global::Iktato.SearchIkonyvData.Parser, new[]{ "Irany", "Year", "From", "To" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Year), global::Iktato.Year.Parser, new[]{ "Id", "Year_", "Active" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Iktato.Ikonyv), global::Iktato.Ikonyv.Parser, new[]{ "Id", "Targy", "Hivszam", "Ugyintezo", "Partner", "CreatedBy", "Telephely", "Csoport", "Jelleg", "Irany", "Erkezett", "HatIdo", "Iktatoszam", "Szoveg", "HasDoc" }, null, null, null),
@@ -86,6 +94,348 @@ namespace Iktato {
 
   }
   #region Messages
+  public sealed partial class Document : pb::IMessage<Document> {
+    private static readonly pb::MessageParser<Document> _parser = new pb::MessageParser<Document>(() => new Document());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Document> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Document() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Document(Document other) : this() {
+      doc_ = other.doc_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Document Clone() {
+      return new Document(this);
+    }
+
+    /// <summary>Field number for the "doc" field.</summary>
+    public const int DocFieldNumber = 1;
+    private pb::ByteString doc_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Doc {
+      get { return doc_; }
+      set {
+        doc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Document);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Document other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Doc != other.Doc) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Doc.Length != 0) hash ^= Doc.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Doc.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteBytes(Doc);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Doc.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Doc);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Document other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Doc.Length != 0) {
+        Doc = other.Doc;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Doc = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DocumentInfo : pb::IMessage<DocumentInfo> {
+    private static readonly pb::MessageParser<DocumentInfo> _parser = new pb::MessageParser<DocumentInfo>(() => new DocumentInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DocumentInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DocumentInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DocumentInfo(DocumentInfo other) : this() {
+      id_ = other.id_;
+      name_ = other.name_;
+      type_ = other.type_;
+      size_ = other.size_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DocumentInfo Clone() {
+      return new DocumentInfo(this);
+    }
+
+    /// <summary>Field number for the "Id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Type" field.</summary>
+    public const int TypeFieldNumber = 3;
+    private string type_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Size" field.</summary>
+    public const int SizeFieldNumber = 4;
+    private double size_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public double Size {
+      get { return size_; }
+      set {
+        size_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as DocumentInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(DocumentInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      if (Type != other.Type) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Size, other.Size)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Size != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Size);
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Type);
+      }
+      if (Size != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(Size);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Size != 0D) {
+        size += 1 + 8;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(DocumentInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.Size != 0D) {
+        Size = other.Size;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            Type = input.ReadString();
+            break;
+          }
+          case 33: {
+            Size = input.ReadDouble();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class SearchIkonyvData : pb::IMessage<SearchIkonyvData> {
     private static readonly pb::MessageParser<SearchIkonyvData> _parser = new pb::MessageParser<SearchIkonyvData>(() => new SearchIkonyvData());
     private pb::UnknownFieldSet _unknownFields;
@@ -94,7 +444,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -313,7 +663,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -498,7 +848,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1055,7 +1405,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1212,7 +1562,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1389,7 +1739,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1546,7 +1896,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1703,7 +2053,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1888,7 +2238,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2045,7 +2395,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2202,7 +2552,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2303,7 +2653,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2460,7 +2810,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2617,7 +2967,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2918,7 +3268,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3047,7 +3397,7 @@ namespace Iktato {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Iktato.IktatoReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

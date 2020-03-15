@@ -70,6 +70,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DocHandlerModel.cs" />
+    <Compile Include="Models\DocumentHandlerClosed.cs" />
     <Compile Include="Models\Irany.cs" />
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="ViewModels\AddUgyintezoViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\CsoportokViewModel.cs" />
+    <Compile Include="ViewModels\DocumentHandlerViewModel.cs" />
     <Compile Include="ViewModels\FelhasznalokViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
@@ -140,6 +142,9 @@
     </Compile>
     <Compile Include="Views\CsoportokView.xaml.cs">
       <DependentUpon>CsoportokView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DocumentHandlerView.xaml.cs">
+      <DependentUpon>DocumentHandlerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FelhasznalokView.xaml.cs">
       <DependentUpon>FelhasznalokView.xaml</DependentUpon>
@@ -290,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CsoportokView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DocumentHandlerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

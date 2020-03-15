@@ -19,6 +19,8 @@ namespace Iktato {
     static readonly grpc::Marshaller<global::Iktato.Ikonyv> __Marshaller_Iktato_Ikonyv = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Ikonyv.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.SearchIkonyvData> __Marshaller_Iktato_SearchIkonyvData = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.SearchIkonyvData.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.DeleteMessage> __Marshaller_Iktato_DeleteMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DeleteMessage.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.DocumentInfo> __Marshaller_Iktato_DocumentInfo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DocumentInfo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Document> __Marshaller_Iktato_Document = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Document.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Iktato.LoginMessage, global::Iktato.User> __Method_Login = new grpc::Method<global::Iktato.LoginMessage, global::Iktato.User>(
         grpc::MethodType.Unary,
@@ -76,6 +78,27 @@ namespace Iktato {
         __Marshaller_Iktato_DeleteMessage,
         __Marshaller_Iktato_Answer);
 
+    static readonly grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document> __Method_GetDocumentById = new grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetDocumentById",
+        __Marshaller_Iktato_DocumentInfo,
+        __Marshaller_Iktato_Document);
+
+    static readonly grpc::Method<global::Iktato.Document, global::Iktato.DocumentInfo> __Method_UploadDocument = new grpc::Method<global::Iktato.Document, global::Iktato.DocumentInfo>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UploadDocument",
+        __Marshaller_Iktato_Document,
+        __Marshaller_Iktato_DocumentInfo);
+
+    static readonly grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Answer> __Method_Removedocument = new grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Removedocument",
+        __Marshaller_Iktato_DocumentInfo,
+        __Marshaller_Iktato_Answer);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -122,6 +145,21 @@ namespace Iktato {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> DeleteIktatas(global::Iktato.DeleteMessage request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Document> GetDocumentById(global::Iktato.DocumentInfo request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.DocumentInfo> UploadDocument(global::Iktato.Document request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> Removedocument(global::Iktato.DocumentInfo request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -263,6 +301,54 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteIktatas, null, options, request);
       }
+      public virtual global::Iktato.Document GetDocumentById(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetDocumentById(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Document GetDocumentById(global::Iktato.DocumentInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetDocumentById, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Document> GetDocumentByIdAsync(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetDocumentByIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Document> GetDocumentByIdAsync(global::Iktato.DocumentInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetDocumentById, null, options, request);
+      }
+      public virtual global::Iktato.DocumentInfo UploadDocument(global::Iktato.Document request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UploadDocument(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.DocumentInfo UploadDocument(global::Iktato.Document request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UploadDocument, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.DocumentInfo> UploadDocumentAsync(global::Iktato.Document request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UploadDocumentAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.DocumentInfo> UploadDocumentAsync(global::Iktato.Document request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UploadDocument, null, options, request);
+      }
+      public virtual global::Iktato.Answer Removedocument(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Removedocument(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer Removedocument(global::Iktato.DocumentInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Removedocument, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovedocumentAsync(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemovedocumentAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovedocumentAsync(global::Iktato.DocumentInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Removedocument, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override IktatoServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -282,7 +368,10 @@ namespace Iktato {
           .AddMethod(__Method_ModifyIktatas, serviceImpl.ModifyIktatas)
           .AddMethod(__Method_ListallIktatas, serviceImpl.ListallIktatas)
           .AddMethod(__Method_ListIktatas, serviceImpl.ListIktatas)
-          .AddMethod(__Method_DeleteIktatas, serviceImpl.DeleteIktatas).Build();
+          .AddMethod(__Method_DeleteIktatas, serviceImpl.DeleteIktatas)
+          .AddMethod(__Method_GetDocumentById, serviceImpl.GetDocumentById)
+          .AddMethod(__Method_UploadDocument, serviceImpl.UploadDocument)
+          .AddMethod(__Method_Removedocument, serviceImpl.Removedocument).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -299,6 +388,9 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_ListallIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Ikonyv>(serviceImpl.ListallIktatas));
       serviceBinder.AddMethod(__Method_ListIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(serviceImpl.ListIktatas));
       serviceBinder.AddMethod(__Method_DeleteIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DeleteMessage, global::Iktato.Answer>(serviceImpl.DeleteIktatas));
+      serviceBinder.AddMethod(__Method_GetDocumentById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Document>(serviceImpl.GetDocumentById));
+      serviceBinder.AddMethod(__Method_UploadDocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Document, global::Iktato.DocumentInfo>(serviceImpl.UploadDocument));
+      serviceBinder.AddMethod(__Method_Removedocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Answer>(serviceImpl.Removedocument));
     }
 
   }

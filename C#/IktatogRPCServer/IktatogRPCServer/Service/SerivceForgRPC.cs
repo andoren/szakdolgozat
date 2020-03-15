@@ -162,5 +162,26 @@ namespace IktatogRPCServer.Service
                
             }
         }
+        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        {
+            
+            return await Task.Run(()=> {
+                Thread.Sleep(1450);
+                return new Document(); 
+            });
+        }
+        public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
+        {
+            return await Task.Run(() => {
+                Thread.Sleep(1450);
+                return new DocumentInfo() { Id = 2, Name = "FEöltötött dokumentum", Size = 4.5, Type = "Feöltött tipuss" };
+            });
+          
+        }
+        public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
+        {
+            return Task.Run(() => { return new Answer() { Error=false, Message="A törlés sikeres volt." }; });
+        }
+
     }
 }

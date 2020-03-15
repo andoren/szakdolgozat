@@ -141,6 +141,7 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyFelhasznaloViewModel();
                         break;
                     }
+ 
                 default:
                     throw new InvalidSceneExeption();
                     

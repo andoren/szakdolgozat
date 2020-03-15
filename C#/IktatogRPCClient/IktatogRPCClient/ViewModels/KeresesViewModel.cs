@@ -18,7 +18,7 @@ using System.Windows.Media;
 
 namespace IktatogRPCClient.ViewModels
 {
-	class KeresesViewModel : DocHandlerModel
+	class KeresesViewModel : IkonyvHandlerModel
 	{
 		public KeresesViewModel()
 		{

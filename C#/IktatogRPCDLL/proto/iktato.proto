@@ -11,7 +11,18 @@ service IktatoService {
   rpc ListallIktatas(EmptyMessage) returns (stream Ikonyv);
   rpc ListIktatas(SearchIkonyvData) returns (stream Ikonyv);
   rpc DeleteIktatas(DeleteMessage) returns (Answer);
-
+  rpc GetDocumentById(DocumentInfo)returns (Document);
+  rpc UploadDocument(Document)returns(DocumentInfo);
+  rpc Removedocument(DocumentInfo)returns(Answer);
+}
+message Document{
+    bytes doc = 1;
+}
+message DocumentInfo{
+    int32 Id = 1;
+    string Name = 2;
+    string Type = 3;
+    double Size = 4;
 }
 
 message SearchIkonyvData{

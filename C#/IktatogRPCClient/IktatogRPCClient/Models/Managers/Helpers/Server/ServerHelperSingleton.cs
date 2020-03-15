@@ -11,6 +11,7 @@ using System.Threading;
 using System.Windows;
 using Caliburn.Micro;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
+using Google.Protobuf;
 
 namespace IktatogRPCClient.Models.Managers
 {
@@ -31,6 +32,12 @@ namespace IktatogRPCClient.Models.Managers
         private UserHelperSingleton userHelper;
         private CallOptions calloptions;
         private IktatoService.IktatoServiceClient client;
+        public static ServerHelperSingleton GetInstance()
+        {
+
+            return serverHelper;
+
+        }
         #endregion
 
 
@@ -38,20 +45,48 @@ namespace IktatogRPCClient.Models.Managers
         {
             return new BindableCollection<Year>() { new Year() {Id = 3, Year_ = 2020, Active= true }, new Year() { Id = 2, Active= false, Year_ = 2019 } };
         }
+
+        public BindableCollection<PartnerUgyintezo> GetPartnerUgyintezoByPartner(Partner selectedPartner)
+        {
+            return new BindableCollection<PartnerUgyintezo>();
+        }
+
         public BindableCollection<Privilege> GetPrivileges()
         {
             return new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
         }
+
+        public bool RemoveDocument(DocumentInfo selectedDocument)
+        {
+            try
+            {
+                Answer answer = client.Removedocument(selectedDocument, calloptions);
+                if (answer.Error == false)
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+  
+            return false;
+
+        }
+
+
         public Telephely AddTelephely(string telephelyNeve)
         {
             return new Telephely() { Id = new Random().Next(1, 100), Name = telephelyNeve };
         }
-        public static ServerHelperSingleton GetInstance()
+
+        public async Task<Document> GetDocumentById(DocumentInfo info)
         {
-
-            return serverHelper;
-
+            return await client.GetDocumentByIdAsync(info);
         }
+
+  
 
         public BindableCollection<Jelleg> GetJellegekByTelephely(Telephely selectedTelephely)
         {
@@ -64,6 +99,11 @@ namespace IktatogRPCClient.Models.Managers
             {
                 return new BindableCollection<Jelleg>();
             }
+        }
+
+        public async Task<DocumentInfo> UploadDocument(byte[] v)
+        {
+            return await client.UploadDocumentAsync(new Document() { Doc = ByteString.CopyFrom(v) }, calloptions);
         }
 
         public bool ModifyUser(User getUser)
@@ -158,6 +198,11 @@ namespace IktatogRPCClient.Models.Managers
                 user.Telephelyek.Add(item);
             }
             return new UserProxy(user);
+        }
+
+        public bool RemoveIkonyvById(int id)
+        {
+            return true;
         }
 
         public bool ModifyJelleg(Jelleg modifiedJelleg)
@@ -266,6 +311,11 @@ namespace IktatogRPCClient.Models.Managers
             }
             return ikonyvek;
             
+        }
+
+        public BindableCollection<DocumentInfo> GetDocumentInfoByIkonyvId(int ikonyvId)
+        {
+            return new BindableCollection<DocumentInfo>() { new DocumentInfo {Id = 1, Name = "KiscicaIktatás", Size = 3.54, Type = "PDF" } };
         }
     }
 } 
