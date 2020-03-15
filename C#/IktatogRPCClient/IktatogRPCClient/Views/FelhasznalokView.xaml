@@ -17,7 +17,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Felhasználók</TextBlock>
-                <ListBox Margin="5" Grid.Row="1" MinHeight="350" x:Name="AvailabelUsers" SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}" DisplayMemberPath="DisplayName" />
+                <ListBox Margin="5" Grid.Row="1"  MinHeight="100" MaxHeight="300" x:Name="AvailabelUsers" SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}" DisplayMemberPath="DisplayName" />
                 <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

@@ -22,7 +22,7 @@
                     <ComboBox Margin="5 0" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="5 0">Ügyintézők a telephelyen</TextBlock>
                 </StackPanel>
-                <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="TelephelyUgyintezoi" SelectedItem="{Binding Path=ValasztottUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" />
+                <ListBox Margin="5" Grid.Row="1" MinHeight="100" MaxHeight="300" x:Name="TelephelyUgyintezoi" SelectedItem="{Binding Path=ValasztottUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" />
                 <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

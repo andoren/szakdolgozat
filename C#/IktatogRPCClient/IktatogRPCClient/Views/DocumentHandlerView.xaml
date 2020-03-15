@@ -32,7 +32,7 @@
                                      ElementStyle="{StaticResource DataGridColumnStyle}" 
                                      Header="Mérete" Width="auto" Binding="{Binding Size}"/>
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
-                                         Width="auto"  Header="Törlés">
+                                         Width="100"  Header="Törlés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button cal:Message.Attach="[Event Click]= [Action RemoveDocument]" Style="{StaticResource WarningButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5 0">X</Button>

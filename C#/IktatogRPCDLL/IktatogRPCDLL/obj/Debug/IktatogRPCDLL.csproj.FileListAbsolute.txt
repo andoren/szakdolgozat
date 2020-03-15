@@ -28,10 +28,10 @@ E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csp
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csproj.CopyComplete
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.dll
 E:\Repos\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x64.so
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\grpc_csharp_ext.x86.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\grpc_csharp_ext.x64.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x86.so
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x64.so
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x86.dylib
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\libgrpc_csharp_ext.x64.dylib
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\IktatogRPCDLL.dll.config

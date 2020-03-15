@@ -22,7 +22,7 @@
                     <ComboBox Margin="5 0" x:Name="AvailableTelephelyek" SelectedItem="{Binding Path = SelectedTelephely}" DisplayMemberPath="Name"></ComboBox>
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0 5">A Telephely partnerei:</TextBlock>
                 </StackPanel>
-                <ListBox Margin="5" Grid.Row="1" MinHeight="200" x:Name="AvailablePartnerek" SelectedItem="{Binding Path=SelectedPartner}" DisplayMemberPath="Name" />
+                <ListBox Margin="5" Grid.Row="1"  MinHeight="100" MaxHeight="300" x:Name="AvailablePartnerek" SelectedItem="{Binding Path=SelectedPartner}" DisplayMemberPath="Name" />
                 <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

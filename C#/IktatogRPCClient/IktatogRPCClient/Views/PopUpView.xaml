@@ -8,8 +8,9 @@
         AllowsTransparency="True"
         FontFamily="Robot"
         FontSize="22"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStyle="None" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight" >
-    <Border BorderBrush="#FF036A9A" Background="White" BorderThickness="3">
+    <Border BorderBrush="Black" Background="White" BorderThickness="2">
         <Grid>
             <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ActiveItem"></ContentControl>
         </Grid>

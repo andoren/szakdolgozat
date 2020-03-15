@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             FontSize="18"
+             FontSize="20"
              xmlns:cal="http://www.caliburnproject.org"
-             FontFamily="Roboto"
-             d:DesignHeight="600" d:DesignWidth="1100">
+             FontFamily="Roboto" 
+             MinHeight="650" d:DesignWidth="1100">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Background="White"  Grid.Row="1">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -23,109 +23,93 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <!--1. oszlop adatfeltöltésnél-->
-            <Grid Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+            <StackPanel Margin="5" Orientation="Vertical">
 
-                </Grid.RowDefinitions>
-                <!--1. oszlop Labels-->
-                <TextBlock  Style="{StaticResource TextBlockForIktatas}">Telephely:</TextBlock>
-                <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Iktatási csoport:</TextBlock>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Telephely:*</TextBlock>
+                <ComboBox x:Name="AvailableTelephelyek" SelectedItem="{Binding Path=SelectedTelephely}" 
+                          BorderThickness="1"  BorderBrush="#FF036A9A" 
+                          Height="40" Margin="5 0"  DisplayMemberPath="Name"></ComboBox>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Iránya:</TextBlock>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A" 
+                          Height="40" Margin="5 0"  DisplayMemberPath="Name"
+                          x:Name="Iranyok" SelectedItem="{Binding Path=SelectedIrany}"
+                          />
+                <TextBlock Margin="5"  Style="{StaticResource TextBlockForIktatas}">
+                    Iktatási csoport:*</TextBlock>
+                <ComboBox x:Name="AvailableCsoportok" SelectedItem="{Binding Path=SelectedCsoport}"  
+                          BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="1" Grid.Column="1" 
+                          Height="40" Margin="5 0" DisplayMemberPath="Name"></ComboBox>
+                <TextBlock Margin="5"  Style="{StaticResource TextBlockForIktatas}">Jelleg:*</TextBlock>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="0" Grid.Column="1"  
+                          Height="40"  Margin="5 0" 
+                          x:Name="AvailableJellegek" SelectedItem="{Binding Path=SelectedJelleg}"
+                          DisplayMemberPath="Name"
+                          />
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Tárgy:*</TextBlock>
+                <TextBox x:Name="Targy" Height="40" FontSize="22" Style="{StaticResource loginTextBox}" 
+                         VerticalAlignment="Center" Margin="5 5 10 0" ></TextBox>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">
+                    Partner/Címzett:*</TextBlock>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"
+                          FontSize="22" Height="40" VerticalAlignment="Center" Margin=" 5 0 10 0" 
+                          x:Name="AvailablePartnerek" SelectedItem="{Binding Path=SelectedPartner}" DisplayMemberPath="Name"/>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Partner ügyintéző:</TextBlock>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  
+                          FontSize="22" Height="40"  VerticalAlignment="Center" Margin="5 0 10 0" 
+                          x:Name="AvailablePartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo}" DisplayMemberPath="Name"/>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Ügyintéző:*</TextBlock>
+                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  
+                           Height="40"   Margin="5 0 10 0" 
+                          x:Name="AvailableUgyintezok" SelectedItem="{Binding Path=SelectedUgyintezo}" 
+                          DisplayMemberPath="Name"
+                          />
+            </StackPanel>
+            <StackPanel x:Name="ButtonContainer" Grid.Column="2">
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Hivatkozásiszám:</TextBlock>
+                <TextBox x:Name="Hivatkozasiszam" Height="40" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 5 10 5" ></TextBox>
+                <StackPanel Margin="5 0 0 5" Orientation="Horizontal">
+                    <TextBlock Margin="5 0"  VerticalAlignment="Center">Válasz?</TextBlock>
+                    <CheckBox  x:Name="ValaszIsChecked" VerticalAlignment="Center" ></CheckBox>
+                </StackPanel>
+                <ComboBox  
+                          Margin="5 0 10 0" Height="40"
+                          IsEnabled="{Binding ValaszIsChecked}"
+                          SelectedItem="{Binding Path=SelectedIktSzam}"
+                          x:Name="IktSzamok"
+                          BorderThickness="1"  BorderBrush="#FF036A9A"  
+                          DisplayMemberPath="Iktatoszam"
+                          />
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Érkezett:*</TextBlock>
+                <DatePicker x:Name="ErkezettDatum" Height="40"
+                            BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5 0 10 0" ></DatePicker>
+                <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Határidő:*</TextBlock>
+                <DatePicker x:Name="HatidoDatum" Height="40"  
+                            BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5 0 10 0" ></DatePicker>
+                <Button x:Name="IktatButton" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="{Binding ElementName=ButtonContainer, Path=ActualWidth}"  Margin="7 10 10 5"  Style="{StaticResource DefaultButtonStyle}"   >Iktatás</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="5 -30 5 5" Grid.ColumnSpan="3" >
+                <Grid>
+                    <TextBlock Margin="5 0 0 10" VerticalAlignment="Bottom" Style="{StaticResource TextBlockForIktatas}">Megjegyzés:</TextBlock>
 
-                <!--1. oszlop adatbeviteli mezők-->
-                <ComboBox  BorderThickness="1"  BorderBrush="#FF036A9A" Grid.Row="0" Grid.Column="1" Height="30"  Margin="5,10" ></ComboBox>
-                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="1" Grid.Column="1" Height="30"    Margin="5,10" ></ComboBox>
-
-                <!--1. oszlop iktatás gomb-->
-                <Grid Margin="5" Grid.Row="2" Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Margin="0"  Style="{StaticResource TextBlockForIktatas}">Megjegyzés:</TextBlock>
-                    <TextBox TextWrapping="Wrap"
+                </Grid>
+                <TextBox TextWrapping="Wrap" Grid.Row="1"
                              AcceptsReturn="True"
                              VerticalContentAlignment="Top"
                              HorizontalScrollBarVisibility="Disabled"
                              VerticalScrollBarVisibility="Auto" 
-                             Margin="0,0,0,5" 
-                             Grid.Row="1" 
+                             Margin="5 0 5 5" 
                              VerticalAlignment="Stretch" 
                              SpellCheck.IsEnabled="True"
-                             MaxHeight="123"
+                             MinHeight="100"
                              Style="{StaticResource loginTextBox}"  ></TextBox>
-                </Grid>
-                
-            </Grid>
-            <!--2. oszlop adatfeltöltésnél-->
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <!--2. oszlop Labels-->
-                <TextBlock Grid.Row="0" Style="{StaticResource TextBlockForIktatas}">Tárgy:</TextBlock>
-                <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Partner/Címzett:</TextBlock>
-                <TextBlock Grid.Row="2" Style="{StaticResource TextBlockForIktatas}">Partner ügyintéző:</TextBlock>
-                <TextBlock Grid.Row="3" Style="{StaticResource TextBlockForIktatas}">Hivatkozásiszám:</TextBlock>
-                <StackPanel Grid.Row="4" Orientation="Horizontal">
-                    <TextBlock Margin="5,0" VerticalAlignment="Center">Válasz?</TextBlock>
-                    <CheckBox Margin="5,0" x:Name="ValaszIsChecked" VerticalAlignment="Center" ></CheckBox></StackPanel>
-                <!--2. oszlop adatbeviteli mezők-->
-                <TextBox Grid.Row="0" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="1" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5,10" ></TextBox>
-                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="4" Grid.Column="1" Margin="5,0" Height="30"   IsEnabled="{Binding ValaszIsChecked }" x:Name="IktSzamok"/>
-            </Grid>
-            <!--3. oszlop adatfeltöltésnél-->
-            <Grid Grid.Column="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <!--3. oszlop Labels-->
-                <TextBlock Grid.Row="0"  Style="{StaticResource TextBlockForIktatas}">Jelleg:</TextBlock>
-                <TextBlock Grid.Row="1" Style="{StaticResource TextBlockForIktatas}">Ügyintéző:</TextBlock>
-                <TextBlock Grid.Row="2" Style="{StaticResource TextBlockForIktatas}">Érkezett:</TextBlock>
-                <TextBlock Grid.Row="3" Style="{StaticResource TextBlockForIktatas}">Határidő:</TextBlock>
-                <!--3. oszlop adatbeviteli mezők-->
-                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="0" Grid.Column="1"  Height="30"  Margin="5,10" ></ComboBox>
-                <ComboBox BorderThickness="1"  BorderBrush="#FF036A9A"  Grid.Row="1" Grid.Column="1"  Height="30"   Margin="5,10" ></ComboBox>
-                <DatePicker Grid.Row="2" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
-                <DatePicker Grid.Row="3" Grid.Column="1"   BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5,10" ></DatePicker>
-                <!--3. oszlop iktatás gomb-->
-   
-
-           
-            <Button Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Style="{StaticResource DefaultButtonStyle}" Margin="5"   >Iktatás</Button>
-
-            </Grid>
+            </StackPanel>
         </Grid>
-        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
+        <DataGrid MinHeight="10" BorderThickness="0" Grid.Row="2" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
            CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
@@ -180,5 +164,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <local:LoadingSpinnerView x:Name="LoaderIsVisible" Grid.RowSpan="3"></local:LoadingSpinnerView>
     </Grid>
 </UserControl>

@@ -93,7 +93,7 @@ namespace IktatogRPCClient.Models.Managers
             if (selectedTelephely != null)
             {
                 if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
-                else return new BindableCollection<Jelleg>();
+                else return new BindableCollection<Jelleg>() { new Jelleg() { Id = 1, Name = "Levél" } };
             }
             else
             {
@@ -210,6 +210,11 @@ namespace IktatogRPCClient.Models.Managers
             return true;
         }
 
+        public BindableCollection<RovidIkonyv> GetShortIktSzamokByTelephely(Telephely selectedTelephely)
+        {
+            return new BindableCollection<RovidIkonyv>() { new RovidIkonyv() { Id=1,Iktatoszam="RövidIktatószám1" }, new RovidIkonyv() { Id = 2, Iktatoszam = "RövidIktatószám2" }, new RovidIkonyv() { Id = 3, Iktatoszam = "RövidIktatószám3" } };
+        }
+
         public bool ModifyCsoport(Csoport modifiedCsoport)
         {
             return true;
@@ -226,6 +231,12 @@ namespace IktatogRPCClient.Models.Managers
             userHelper = UserHelperSingleton.GetInstance();
             calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
         }
+
+        public async Task<RovidIkonyv> AddIktatas(Ikonyv newIkonyv)
+        {
+            return await client.AddIktatasAsync(newIkonyv,calloptions);
+        }
+
         public Channel GetChannel() {
             string hostname = ConfigurationManager.AppSettings["Hostname"];
             string hostport = ConfigurationManager.AppSettings["Port"];
@@ -274,7 +285,7 @@ namespace IktatogRPCClient.Models.Managers
             if (valasztottTelephely != null)
             {
                 if (valasztottTelephely.Name == "Rákóczi")
-                    return new BindableCollection<Ugyintezo>() { new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" } };
+                    return new BindableCollection<Ugyintezo>() { new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" } };
                 else return new BindableCollection<Ugyintezo>() { new Ugyintezo() { Id = 10, Name = "Csík Attila" }, new Ugyintezo() { Id = 1, Name = "Bulla Viktor" } };
             }
             else return new BindableCollection<Ugyintezo>();

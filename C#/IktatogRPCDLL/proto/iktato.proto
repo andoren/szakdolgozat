@@ -6,7 +6,7 @@ service IktatoService {
   rpc Login (LoginMessage) returns (User);
   rpc Logout (EmptyMessage) returns (Answer);
   rpc Register (User) returns (Answer);
-  rpc AddIktatas(Ikonyv) returns (Answer);
+  rpc AddIktatas(Ikonyv) returns (RovidIkonyv);
   rpc ModifyIktatas(Ikonyv) returns (Answer);
   rpc ListallIktatas(EmptyMessage) returns (stream Ikonyv);
   rpc ListIktatas(SearchIkonyvData) returns (stream Ikonyv);
@@ -14,6 +14,10 @@ service IktatoService {
   rpc GetDocumentById(DocumentInfo)returns (Document);
   rpc UploadDocument(Document)returns(DocumentInfo);
   rpc Removedocument(DocumentInfo)returns(Answer);
+}
+message RovidIkonyv{
+    int32 Id = 1;
+    string Iktatoszam = 2;
 }
 message Document{
     bytes doc = 1;

@@ -51,10 +51,15 @@ namespace IktatogRPCServer.Service
 
             return base.Register(request, context);
         }
-        public override Task<Answer> AddIktatas(Ikonyv request, ServerCallContext context)
+        public override async Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
         {
-            return base.AddIktatas(request, context);
+            return await Task.Run(()=> {
+                Thread.Sleep(1000);
+                return new RovidIkonyv() { Id = new Random().Next(1,400),Iktatoszam="Added SZám"} ;
+                
+            });
         }
+       
         public override Task ListallIktatas(EmptyMessage request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
             return base.ListallIktatas(request, responseStream, context);
@@ -166,14 +171,14 @@ namespace IktatogRPCServer.Service
         {
             
             return await Task.Run(()=> {
-                Thread.Sleep(1450);
+                
                 return new Document(); 
             });
         }
         public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
         {
             return await Task.Run(() => {
-                Thread.Sleep(1450);
+                
                 return new DocumentInfo() { Id = 2, Name = "FEöltötött dokumentum", Size = 4.5, Type = "Feöltött tipuss" };
             });
           

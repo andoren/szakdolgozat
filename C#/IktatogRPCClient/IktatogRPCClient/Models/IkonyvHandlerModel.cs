@@ -12,7 +12,7 @@ using System.Windows;
 namespace IktatogRPCClient.Models
 {
     public abstract class IkonyvHandlerModel:Screen
-    {
+	{
 		private Ikonyv _selectedIkonyv;
 
 		public Ikonyv SelectedIkonyv
