@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Iktato;
 using IktatogRPCClient.Models;
 using System;
 using System.Collections;
@@ -28,12 +29,14 @@ namespace IktatogRPCClient.ViewModels
             get { return _screenToShow; }
             set { _screenToShow = value; }
         }
-        public void CloseScreen(Screen screen, bool result) {
+        public void CloseScreen(Screen screen, bool? result) {
             ChildResult = result;
-            DeactivateItem(screen,result);
+            DeactivateItem(screen,(bool)result);
             TryClose(ChildResult);
         }
-        public bool ChildResult { get; set; }
+
+ 
+        public bool? ChildResult { get; set; }
         //public async Task CloseMySelf() { 
         //    await Task.Run(()=> {
         //        while (ActiveItem != null) {

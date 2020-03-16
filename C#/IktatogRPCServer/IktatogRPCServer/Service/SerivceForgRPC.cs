@@ -6,13 +6,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Iktato;
+using IktatogRPCServer.Database;
 using IktatogRPCServer.Database.Mysql;
+using IktatogRPCServer.Database.Mysql.Abstract;
 
 namespace IktatogRPCServer.Service
 {
     class SerivceForgRPC:IktatoService.IktatoServiceBase
     {
         readonly TokenSerivce TokenManager = new TokenSerivce();
+        readonly ConnectionManager connectionManager = new ConnectionManager();
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
             UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
@@ -54,7 +57,7 @@ namespace IktatogRPCServer.Service
         public override async Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
         {
             return await Task.Run(()=> {
-                Thread.Sleep(1000);
+               
                 return new RovidIkonyv() { Id = new Random().Next(1,400),Iktatoszam="Added SZám"} ;
                 
             });
@@ -171,15 +174,16 @@ namespace IktatogRPCServer.Service
         {
             
             return await Task.Run(()=> {
-                
-                return new Document(); 
+                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
+                Document document = databaseManager.GetDataById(request.Id);
+                return document; 
             });
         }
         public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
         {
             return await Task.Run(() => {
                 
-                return new DocumentInfo() { Id = 2, Name = "FEöltötött dokumentum", Size = 4.5, Type = "Feöltött tipuss" };
+                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length/(double)1024)/1024, Type = request.Type };
             });
           
         }

@@ -26,9 +26,11 @@ namespace IktatogRPCClient.ViewModels
 			SelectedSearchParameter = SearchList[0];
 			AvailabelYears = serverHelper.GetYears();
 			SelectedItemsPerPage = ItemsPerPage[2];
+			eventAggregator.Subscribe(this);
 		}
 
 		#region variables
+		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
 		private bool _loaderIsVisible = false;
 		private int _currentPage = 0;
@@ -43,7 +45,7 @@ namespace IktatogRPCClient.ViewModels
 		private BindableCollection<Ikonyv> _shownIkonyvek = new BindableCollection<Ikonyv>();
 		private BindableCollection<Irany> _iranyok = new BindableCollection<Irany>() { new Irany("Bejövő", 0), new Irany("Kimenő", 1), new Irany("Összes", 2) };
 		private BindableCollection<Ikonyv> _allikonyv = new BindableCollection<Ikonyv>();
-		private BindableCollection<string> _searchList = new BindableCollection<string>() { "Iktatószám", "Tárgy", "Partner", "Jelleg", "Ügyintéző", "Csoport", "Hivatkozási szám" };
+		private BindableCollection<string> _searchList = new BindableCollection<string>() { "Iktatószám", "Tárgy", "Partner", "Jelleg", "Ügyintéző", "Csoport", "Hivatkozásiszám" };
 
         #endregion
         #region Properties
@@ -239,7 +241,7 @@ namespace IktatogRPCClient.ViewModels
 
 		#endregion
 		//Adatbázisbol szedi le az Ikönyveket
-		public override async void GetIkonyvek() {
+		public  async void GetIkonyvek() {
 			if (SelectedIranyParameter == null || SelectedYear == default) return;
 			else {
 				LoaderIsVisible = true;
@@ -250,7 +252,7 @@ namespace IktatogRPCClient.ViewModels
 					Year = SelectedYear
 				};
 
-				AllIkonyv = await serverHelper.GetIkonyvekAsync(searchData);
+				AllIkonyv = new BindableCollection<Ikonyv>(await serverHelper.GetIkonyvekAsync(searchData));
 				SetVisibleIktatas();
 				LoaderIsVisible = false;
 			}
@@ -286,7 +288,7 @@ namespace IktatogRPCClient.ViewModels
 		public async Task SetSearchData() {
 			await Task.Run(() =>
 			{
-				ICollectionView cv = CollectionViewSource.GetDefaultView(AllIkonyv);
+				ICollectionView cv = CollectionViewSource.GetDefaultView(new BindableCollection<Ikonyv>(AllIkonyv));
 				SearchedIkonyvek.Clear();
 				if (!string.IsNullOrEmpty(SearchText))
 				{
@@ -314,7 +316,9 @@ namespace IktatogRPCClient.ViewModels
 				{
 					cv.Filter = null;
 				}
+				
 				SearchedIkonyvek =  new BindableCollection<Ikonyv>(cv.Cast<Ikonyv>().ToList());
+				cv = CollectionViewSource.GetDefaultView(null);
 				NotifyOfPropertyChange(MaxItemNumber);
 			});
 		}
@@ -422,8 +426,37 @@ namespace IktatogRPCClient.ViewModels
 				CurrentPage = MaxPage -1;
 		}
 
-        #endregion
-        #endregion
-    }
+
+
+		#endregion
+		#endregion
+		public override void Handle(RemovedItem message)
+		{
+			if (message.Item is Ikonyv) {
+				AllIkonyv.Remove(SelectedIkonyv);
+				SearchedIkonyvek.Remove(SelectedIkonyv);
+				ShownIkonyvek.Remove(SelectedIkonyv);
+				NotifyOfPropertyChange(()=>AllIkonyv);
+				NotifyOfPropertyChange(() => SearchedIkonyvek);
+				NotifyOfPropertyChange(() => ShownIkonyvek);
+			}
+			
+		}
+
+		public override void Handle(Ikonyv message)
+		{
+				int index = AllIkonyv.IndexOf(SelectedIkonyv);
+				AllIkonyv.Remove(SelectedIkonyv) ;
+				SearchedIkonyvek.Remove(SelectedIkonyv);
+				ShownIkonyvek.Remove(SelectedIkonyv);	
+				SearchedIkonyvek.Insert(index,message);
+				ShownIkonyvek.Insert(index, message);
+				AllIkonyv.Insert(index, message);
+				NotifyOfPropertyChange(() => SearchedIkonyvek);
+				NotifyOfPropertyChange(() => ShownIkonyvek);
+			
+
+		}
+	}
 
 }

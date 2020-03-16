@@ -17,15 +17,18 @@ namespace IktatogRPCClient.ViewModels
     {
         public ModifyIkonyvViewModel(Ikonyv IkonyvToModify)
         {
-            
+
+            InitializeData(IkonyvToModify);
+        }
+        private void InitializeData(Ikonyv IkonyvToModify) {
             this.IkonyvToModify = new Ikonyv(IkonyvToModify);
             AvailablePartners = serverHelper.GetPartnerekByTelephely(IkonyvToModify.Telephely);
-            SelectedPartner = AvailablePartners.Count >0?AvailablePartners[0]:new Partner();
+            SelectedPartner = AvailablePartners.Count > 0 ? AvailablePartners[0] : new Partner();
             AvailableJellegek = serverHelper.GetJellegekByTelephely(IkonyvToModify.Telephely);
             AvailableUgyintezok = serverHelper.GetUgyintezokByTelephely(IkonyvToModify.Telephely);
             AvailablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
             SelectedJelleg = IkonyvToModify.Jelleg;
-            SelectedPartnerUgyintezo = IkonyvToModify.Partner.Ugyintezok.Count > 0?IkonyvToModify.Partner.Ugyintezok[0]:null;
+            SelectedPartnerUgyintezo = IkonyvToModify.Partner.Ugyintezok.Count > 0 ? IkonyvToModify.Partner.Ugyintezok[0] : null;
             SelectedUgyintezo = IkonyvToModify.Ugyintezo;
             IkonyvHasDocument = IkonyvToModify.HasDoc;
             eventAggregator.Subscribe(this);
@@ -42,6 +45,52 @@ namespace IktatogRPCClient.ViewModels
         private BindableCollection<Ugyintezo> _availableUgyintezok;
         private bool _modificationHappend = false;
         private bool _modificationIsVisible = true;
+        public string Szoveg { get {
+                return IkonyvToModify.Szoveg;
+            } 
+            set {
+                IkonyvToModify.Szoveg = value;
+            } 
+        }
+        public string Targy
+        {
+            get { return IkonyvToModify.Targy; }
+            set
+            {
+                IkonyvToModify.Targy = value;
+                NotifyOfPropertyChange(()=>Targy);
+                NotifyOfPropertyChange(()=>CanModifyButton);
+            }
+        }
+        public string Hivszam
+        {
+            get { return IkonyvToModify.Hivszam; }
+            set
+            {
+                if(value!= null)IkonyvToModify.Hivszam = value;
+                NotifyOfPropertyChange(()=>Hivszam);
+                NotifyOfPropertyChange(() => CanModifyButton);
+            }
+        }
+        public string Hatido
+        {
+            get { return IkonyvToModify.HatIdo; }
+            set
+            {
+                if (value != null) IkonyvToModify.HatIdo = DateTime.Parse(value).ToShortDateString();
+                NotifyOfPropertyChange(()=>Hatido);
+                NotifyOfPropertyChange(() => CanModifyButton);
+            }
+        }
+        public string Erkezett
+        {
+            get { return IkonyvToModify.Erkezett; }
+            set {
+                IkonyvToModify.Erkezett = DateTime.Parse(value).ToShortDateString(); 
+                NotifyOfPropertyChange(()=>Erkezett);
+                NotifyOfPropertyChange(() => CanModifyButton);
+            }
+        }
 
         public bool ModificationIsVisible
         {
@@ -161,15 +210,40 @@ namespace IktatogRPCClient.ViewModels
             IkonyvToModify.Partner.Ugyintezok.Add(SelectedPartnerUgyintezo);
             IkonyvToModify.Ugyintezo = SelectedUgyintezo;
             IkonyvToModify.HasDoc = IkonyvHasDocument;
+            IkonyvToModify.Szoveg = Szoveg;
             eventAggregator.PublishOnUIThread(IkonyvToModify);
             ModificationHappend = true;
             MyParent.CloseScreen(this, ModificationHappend);
+        }
+        public bool CanModifyButton {
+            get {
+                return DataValidation();
+            }
+        }
+        private bool DataValidation() {
+            bool IsValid = true;
+            if (string.IsNullOrWhiteSpace(IkonyvToModify.Targy) ||
+                string.IsNullOrWhiteSpace(IkonyvToModify.Erkezett) ||
+                string.IsNullOrWhiteSpace(IkonyvToModify.HatIdo))
+            {
+                IsValid = false;
+            }
+            else if (SelectedJelleg == null ||
+                SelectedPartner == null ||
+                SelectedJelleg == null ||
+                SelectedUgyintezo == null)
+            {
+                IsValid = false;
+            }
+            else if (IkonyvToModify.Targy.Length < 4 ||IkonyvToModify.Targy.Length> 100) IsValid = false;
+            return IsValid;
         }
         public void RemoveButton() {
             ModificationHappend = true;
             if (serverHelper.RemoveIkonyvById(IkonyvToModify.Id)) {
                 ModificationHappend = true;
             }
+            eventAggregator.PublishOnUIThread(new RemovedItem(IkonyvToModify));
             MyParent.CloseScreen(this, ModificationHappend);
         }
         public bool CanRemoveButton {

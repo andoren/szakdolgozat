@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace IktatogRPCClient.Models
 {
-    public abstract class IkonyvHandlerModel:Screen
+    public abstract class IkonyvHandlerModel:Screen,IHandle<RemovedItem>,IHandle<Ikonyv>
 	{
 		private Ikonyv _selectedIkonyv;
 
@@ -23,18 +23,17 @@ namespace IktatogRPCClient.Models
 				NotifyOfPropertyChange(()=>SelectedIkonyv);
 			}
 		}
+
+		public abstract void Handle(RemovedItem message);
+
+
+		public abstract void Handle(Ikonyv message);
+	
 		public void ModifyIkonyv() {
 			if (SelectedIkonyv == null) return;
 			WindowManager windowManager = new WindowManager();
 			Screen screen = new PopUpViewModel(new ModifyIkonyvViewModel(_selectedIkonyv));
-			var result = windowManager.ShowDialog(screen, null, null);
-			if ((bool)result == true)
-			{
-				GetIkonyvek();
-			}
-	
-
+			windowManager.ShowDialog(screen, null, null);	
 		}
-		public abstract void GetIkonyvek();
 	}
 }

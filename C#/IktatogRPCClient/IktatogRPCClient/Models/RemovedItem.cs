@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.Models
 {
-    class RemovedItem
+    public class RemovedItem
     {
         public RemovedItem(object Item)
         {

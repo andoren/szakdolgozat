@@ -405,6 +405,8 @@
           Value="120" />
         <Setter Property="MinHeight"
           Value="20" />
+        <Setter Property="BorderBrush" Value="#FF036A9A"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">

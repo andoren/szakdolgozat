@@ -5,14 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" MinHeight="300" MinWidth="600"
              >
     <Grid>
-        <Grid.ColumnDefinitions>
-           
-            <ColumnDefinition Width="*"/>
-            
-        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             
             <RowDefinition Height="*"/>
@@ -20,7 +16,7 @@
           
         </Grid.RowDefinitions>
         <DataGrid BorderThickness="0" Grid.Row="0" MinHeight="300" MinWidth="600" x:Name="IkonyvDocuments" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedDocument}"
-           CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
+           CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5"  SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}" 

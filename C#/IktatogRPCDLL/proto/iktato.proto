@@ -20,7 +20,9 @@ message RovidIkonyv{
     string Iktatoszam = 2;
 }
 message Document{
-    bytes doc = 1;
+    bytes Doc = 1;
+    string Name = 2;
+    string Type  = 3;
 }
 message DocumentInfo{
     int32 Id = 1;

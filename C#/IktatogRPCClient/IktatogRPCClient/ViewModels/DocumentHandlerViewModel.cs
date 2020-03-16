@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Google.Protobuf;
 using Iktato;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
@@ -70,21 +71,35 @@ namespace IktatogRPCClient.ViewModels
 		
 			LoaderIsVisible = true;
 			Document rawdata = await serverHelper.GetDocumentById(SelectedDocument);
+			byte[] bytes = rawdata.Doc.ToByteArray();
+			string temppath = System.IO.Path.GetTempPath();
+			string fullpath = $"{temppath}{rawdata.Name}.{rawdata.Type}";
+			if (File.Exists(fullpath))
+			{
+				File.Delete(fullpath);
+				File.WriteAllBytes(fullpath, bytes);
+			}
+			else File.WriteAllBytes(fullpath, bytes);
+		
 			try
 			{
-				Process.Start(@"C:\Users\Misi\Desktop\1.pdf");
+				Process.Start(fullpath);
 			}
-			catch (Exception )
+			catch (Exception ex)
 			{
 				
 			}
 			LoaderIsVisible = false;
 		}
 		public async Task UploadDocument() {
-			string documentPath = ChooseDataToUpload();
-			if (documentPath == "") return;
+			string[] FileInfo = ChooseDataToUpload();
+			if (FileInfo[2] == "") return;
 			LoaderIsVisible = true;
-			DocumentInfo uploadedDocument = await serverHelper.UploadDocument(GetBytesFromFile(documentPath));
+			Document document = new Document();
+			document.Name = FileInfo[0];
+			document.Type = FileInfo[1];
+			document.Doc = ByteString.CopyFrom(GetBytesFromFile(FileInfo[2]));
+			DocumentInfo uploadedDocument = await serverHelper.UploadDocument(document);
 			IkonyvDocuments.Add(uploadedDocument);
 			NotifyOfPropertyChange(()=>IkonyvDocuments);
 			LoaderIsVisible = false;
@@ -94,7 +109,8 @@ namespace IktatogRPCClient.ViewModels
 			eventAggregator.PublishOnUIThread(new DocumentHandlerClosed(ModificationHappend, IkonyvDocuments.Count > 0));
 			TryClose();
 		}
-		private string ChooseDataToUpload() {
+		private string[] ChooseDataToUpload() {
+			string[] fileInfo = new string[3];
 			OpenFileDialog dialog = new OpenFileDialog();
 			dialog.Title = "Válaszd ki a dokumentumot.";
 			dialog.FileName = "";
@@ -103,10 +119,15 @@ namespace IktatogRPCClient.ViewModels
 			dialog.ReadOnlyChecked = true;
 			if (dialog.ShowDialog() == true)
 			{
-				return dialog.FileName;
+				
+ 				string[] fileName = dialog.SafeFileName.Split('.');
+				fileInfo[0] = fileName[0];
+				fileInfo[1] = fileName[1];
+				fileInfo[2] =  dialog.FileName;
+				return fileInfo;
 			}
 			else
-				return "";
+				return fileInfo;
 
 	}
 		private byte[] GetBytesFromFile(string FileName) {

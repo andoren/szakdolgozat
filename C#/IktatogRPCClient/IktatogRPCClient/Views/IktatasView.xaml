@@ -85,10 +85,10 @@
                           DisplayMemberPath="Iktatoszam"
                           />
                 <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Érkezett:*</TextBlock>
-                <DatePicker x:Name="ErkezettDatum" Height="40"
+                <DatePicker Background="White" x:Name="ErkezettDatum" Height="40" VerticalContentAlignment="Center"
                             BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5 0 10 0" ></DatePicker>
                 <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Határidő:*</TextBlock>
-                <DatePicker x:Name="HatidoDatum" Height="40"  
+                <DatePicker Background="White" x:Name="HatidoDatum" VerticalContentAlignment="Center" Height="40"  
                             BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5 0 10 0" ></DatePicker>
                 <Button x:Name="IktatButton" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="{Binding ElementName=ButtonContainer, Path=ActualWidth}"  Margin="7 10 10 5"  Style="{StaticResource DefaultButtonStyle}"   >Iktatás</Button>
             </StackPanel>
@@ -97,7 +97,7 @@
                     <TextBlock Margin="5 0 0 10" VerticalAlignment="Bottom" Style="{StaticResource TextBlockForIktatas}">Megjegyzés:</TextBlock>
 
                 </Grid>
-                <TextBox TextWrapping="Wrap" Grid.Row="1"
+                <TextBox x:Name="Szoveg" TextWrapping="Wrap" Grid.Row="1"
                              AcceptsReturn="True"
                              VerticalContentAlignment="Top"
                              HorizontalScrollBarVisibility="Disabled"
@@ -110,7 +110,7 @@
             </StackPanel>
         </Grid>
         <DataGrid MinHeight="10" BorderThickness="0" Grid.Row="2" x:Name="RecentlyAddedIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
-           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
+           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5"  SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}" 

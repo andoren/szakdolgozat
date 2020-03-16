@@ -115,6 +115,7 @@
     <Compile Include="Database\Abstract\DatabaseManager.cs" />
     <Compile Include="Database\ConnectionManager.cs" />
     <Compile Include="Database\Mysql\Abstract\MysqlDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\DocumentDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
     <Compile Include="Service\SerivceForgRPC.cs" />
     <Compile Include="Service\TokenSerivce.cs" />
@@ -160,6 +161,9 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Upload\December.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -25,31 +25,31 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <TextBlock Margin="5">Tárgy:*</TextBlock>
-                <TextBox x:Name="IkonyvToModify_Targy" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
+                <TextBox Height="30" x:Name="Targy" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
                 <TextBlock Margin="5">Partner/Címzett:*</TextBlock>
-                    <ComboBox x:Name="AvailablePartners" SelectedItem="{Binding Path=SelectedPartner, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox Height="30"  x:Name="AvailablePartners" SelectedItem="{Binding Path=SelectedPartner, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Partner ügyintéző:</TextBlock>
-                    <ComboBox x:Name="AvailablePartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox Height="30"  x:Name="AvailablePartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Hivatkozásiszám:</TextBlock>
-                 <TextBox x:Name="IkonyvToModify_Hivszam"  Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
+                    <TextBox Height="30"  x:Name="Hivszam"  Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
                     <Button x:Name="DocumentView" Style="{StaticResource DefaultButtonStyle}" Padding="15" Margin="5 10"  >
                         Dukomentum kezelés
                     </Button>
                 </StackPanel>
             <StackPanel  Grid.Column="1">
                 <TextBlock Margin="5">Jellege:*</TextBlock>
-                <ComboBox x:Name="AvailableJellegek" SelectedItem="{Binding Path=SelectedJelleg, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox Height="30"  x:Name="AvailableJellegek" SelectedItem="{Binding Path=SelectedJelleg, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Ügyintéző:*</TextBlock>
-                    <ComboBox x:Name="AvailableUgyintezok" SelectedItem="{Binding Path=SelectedUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
+                    <ComboBox Height="30"  x:Name="AvailableUgyintezok" SelectedItem="{Binding Path=SelectedUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Érkezett:*</TextBlock>
-                <DatePicker x:Name="IkonyvToModify_Erkezett" FontSize="19"   BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" ></DatePicker>
-                <TextBlock Margin="5">Határídő:*</TextBlock>
-                <DatePicker x:Name="IkonyvToModify_HatIdo" FontSize="19"  BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" ></DatePicker>
+                    <DatePicker Height="30"  Background="White" x:Name="Erkezett" FontSize="20"   BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" VerticalContentAlignment="Center" ></DatePicker>
+                <TextBlock Margin="5">Határidő:*</TextBlock>
+                    <DatePicker Height="30"  Background="White" x:Name="Hatido" FontSize="20"  BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" VerticalContentAlignment="Center" ></DatePicker>
             </StackPanel>
             <StackPanel Margin="5" Grid.Column="2">
-                <TextBlock Margin="5">Megjegyzés:</TextBlock>
+                <TextBlock Margin="0 0 5 5">Megjegyzés:</TextBlock>
 
-                    <TextBox x:Name="IkonyvToModify_Szoveg"  TextWrapping="Wrap"
+                    <TextBox x:Name="Szoveg"  TextWrapping="Wrap"
                              AcceptsReturn="True"
                              VerticalContentAlignment="Top"
                              HorizontalScrollBarVisibility="Disabled"

@@ -10,14 +10,16 @@ using IktatogRPCClient.Models.Managers;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class IktatasViewModel:IkonyvHandlerModel
+    class IktatasViewModel:IkonyvHandlerModel,IHandle<RemovedItem>,IHandle<Ikonyv>
     {
 		public IktatasViewModel()
 		{
             AvailableTelephelyek = serverHelper.GetTelephelyek();
             SelectedTelephely = AvailableTelephelyek[0];
-            GetIkonyvek();
+            eventAggregator.Subscribe(this);
+          
         }
+        private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         private static BindableCollection<Ikonyv> _recentlyAddedIkonyvek = new BindableCollection<Ikonyv>();
         private BindableCollection<Telephely> _availableTelephelyek;
         private Telephely _selectedTelephely;
@@ -67,7 +69,9 @@ namespace IktatogRPCClient.ViewModels
         public string Szoveg
         {
             get { return _szoveg; }
-            set { _szoveg = value; }
+            set { _szoveg = value;
+                NotifyOfPropertyChange(()=>Szoveg);
+            }
         }
 
         public RovidIkonyv SelectedIktSzam
@@ -260,7 +264,7 @@ namespace IktatogRPCClient.ViewModels
         }
 
 
-        public async void IktatButton(string targy,string erkezettDatum,string hatidoDatum)
+        public async void IktatButton(string targy,string erkezettDatum,string hatidoDatum, string hivatkozasiszam, string szoveg)
         {
             LoaderIsVisible = true;
             Ikonyv newIkonyv = new Ikonyv()
@@ -268,11 +272,11 @@ namespace IktatogRPCClient.ViewModels
                 Csoport = SelectedCsoport,
                 Erkezett = erkezettDatum,
                 HatIdo = hatidoDatum,
-                Hivszam = Hivatkozasiszam,
+                Hivszam = hivatkozasiszam,
                 Irany = SelectedIrany.Way,
                 Jelleg = SelectedJelleg,
                 Partner = SelectedPartner,
-                Szoveg = Szoveg,
+                Szoveg = szoveg,
                 Targy = targy,
                 Telephely = SelectedTelephely,
                 Ugyintezo = SelectedUgyintezo
@@ -283,16 +287,29 @@ namespace IktatogRPCClient.ViewModels
             _recentlyAddedIkonyvek.Add(newIkonyv);
             LoaderIsVisible = false;
         }
-        public bool CanIktatButton(string targy, string erkezettDatum, string hatidoDatum) {
+        public bool CanIktatButton(string targy, string erkezettDatum, string hatidoDatum, string hivatkozasiszam, string szoveg) {
             if(string.IsNullOrWhiteSpace(targy) 
                 || string.IsNullOrWhiteSpace(erkezettDatum)
                 || string.IsNullOrWhiteSpace(hatidoDatum)) return false;
             return true;
         }
 
-        public override void GetIkonyvek()
-        {
 
+        public override void Handle(RemovedItem message)
+        {
+            if (message.Item is Ikonyv)
+            {
+                _recentlyAddedIkonyvek.Remove(message.Item as Ikonyv);
+                NotifyOfPropertyChange(() => RecentlyAddedIkonyvek);
+            }
+            
+        }
+
+        public override void Handle(Ikonyv message)
+        {
+            _recentlyAddedIkonyvek.Remove(SelectedIkonyv);
+            _recentlyAddedIkonyvek.Add(message);
+            NotifyOfPropertyChange(()=>message);
         }
     }
 }

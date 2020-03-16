@@ -58,17 +58,17 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <Image Height="24" Source="/IktatogRPCClient;component/Resources/searchicon.png"></Image>
                     <TextBox x:Name="SearchText"  BorderBrush="Transparent" Height="40" Grid.Column="1" Cursor="IBeam" Style="{StaticResource SearchTextBox}" Background="White"></TextBox>
-                    <ComboBox  x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}"></ComboBox>
+                    <ComboBox   x:Name="SearchList"  Grid.Column="2" Cursor="Hand" SelectedItem="{Binding Path=SelectedSearchParameter}" ></ComboBox>
                 </Grid>
             </Grid>
         </Grid>
         <!--Második sor (Iktatások táblázata)-->
         <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
-           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5" Background="White" SelectionMode="Single" SelectionUnit="FullRow" >
+           CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5"  SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}" 

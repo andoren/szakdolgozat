@@ -101,9 +101,9 @@ namespace IktatogRPCClient.Models.Managers
             }
         }
 
-        public async Task<DocumentInfo> UploadDocument(byte[] v)
+        public async Task<DocumentInfo> UploadDocument(Document doc)
         {
-            return await client.UploadDocumentAsync(new Document() { Doc = ByteString.CopyFrom(v) }, calloptions);
+            return await client.UploadDocumentAsync(doc, calloptions);
         }
 
         public bool ModifyUser(User getUser)
