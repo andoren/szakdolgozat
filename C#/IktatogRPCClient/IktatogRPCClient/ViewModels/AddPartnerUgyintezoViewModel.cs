@@ -44,9 +44,9 @@ namespace IktatogRPCClient.ViewModels
             }
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
-            PartnerUgyintezo partner = serverHelper.AddPartnerUgyintezoToPartner(SelectedPartner,UgyintezoNeve);
+            PartnerUgyintezo partner = await serverHelper.AddPartnerUgyintezoToPartnerAsync(SelectedPartner,UgyintezoNeve);
             eventAggregator.PublishOnUIThread((SelectedPartner, partner));
             TryClose();
         }

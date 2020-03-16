@@ -48,9 +48,9 @@ namespace IktatogRPCClient.ViewModels
                 return SelectedTelephely != null;
             }
         }
-        public override void DoAction()
+        public async override void DoAction()
         {
-            Partner partner = serverHelper.AddPartnerToTelephely(SelectedTelephely,PartnerNeve) ;
+            Partner partner = await serverHelper.AddPartnerToTelephelyAsync(SelectedTelephely,PartnerNeve) ;
             eventAggregator.BeginPublishOnUIThread((SelectedTelephely,partner));
             TryClose();
         }

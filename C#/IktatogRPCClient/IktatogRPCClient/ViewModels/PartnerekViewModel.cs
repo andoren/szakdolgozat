@@ -18,12 +18,12 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private void LoadData()
+        private async void LoadData()
         {
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
+            AvailableTelephelyek =  await serverHelper.GetTelephelyekAsync();
             SelectedTelephely = AvailableTelephelyek.First();
         }
         private bool _partnerekIsVisible=true;
@@ -61,7 +61,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(() => SelectedTelephely);
-                AvailablePartnerek = serverHelper.GetPartnerekByTelephely(SelectedTelephely);
+                AvailablePartnerek = serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely).Result;
             }
         }
 
@@ -115,8 +115,8 @@ namespace IktatogRPCClient.ViewModels
             eventAggregator.Subscribe(createScreen);
             eventAggregator.PublishOnUIThread(AvailableTelephelyek);
         }
-        public void RemovePartner() {
-            if (serverHelper.RemovePartner(SelectedPartner)) {
+        public async void RemovePartner() {
+            if (await serverHelper.RemovePartnerAsync(SelectedPartner)) {
                 
                 eventAggregator.PublishOnUIThread(new RemovedItem(SelectedPartner));
                 AvailablePartnerek.Remove(SelectedPartner);

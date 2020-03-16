@@ -43,10 +43,10 @@ namespace IktatogRPCClient.ViewModels
             NewName = message.Name;
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
             Jelleg modifiedJelleg= new Jelleg() { Id = ModifiedJelleg.Id, Name = NewName };
-            if (serverHelper.ModifyJelleg(modifiedJelleg))
+            if ( await serverHelper.ModifyJellegAsync(modifiedJelleg))
             {
                 eventAggregator.PublishOnUIThread(modifiedJelleg);
                 TryClose();

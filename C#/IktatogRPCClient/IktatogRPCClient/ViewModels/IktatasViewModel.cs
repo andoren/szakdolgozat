@@ -14,7 +14,7 @@ namespace IktatogRPCClient.ViewModels
     {
 		public IktatasViewModel()
 		{
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
+            AvailableTelephelyek = serverHelper.GetTelephelyekAsync().Result;
             SelectedTelephely = AvailableTelephelyek[0];
             eventAggregator.Subscribe(this);
           
@@ -215,10 +215,10 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
-                AvailableCsoportok = serverHelper.GetCsoportokByTelephely(SelectedTelephely);
-                AvailablePartnerek = serverHelper.GetPartnerekByTelephely(SelectedTelephely);
-                AvailableJellegek = serverHelper.GetJellegekByTelephely(SelectedTelephely);
-                AvailableUgyintezok = serverHelper.GetUgyintezokByTelephely(SelectedTelephely);
+                AvailableCsoportok = serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely).Result;
+                AvailablePartnerek = serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely).Result;
+                AvailableJellegek = serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely).Result;
+                AvailableUgyintezok = serverHelper.GetUgyintezokByTelephelyAsync(SelectedTelephely).Result;
             }
         }
 
@@ -256,7 +256,7 @@ namespace IktatogRPCClient.ViewModels
             set { _valaszIsChecked = value;
                 NotifyOfPropertyChange(() => ValaszIsChecked);
                 if (value) { 
-                    IktSzamok = serverHelper.GetShortIktSzamokByTelephely(SelectedTelephely);
+                    IktSzamok = serverHelper.GetShortIktSzamokByTelephelyAsync(SelectedTelephely).Result;
                     if (IktSzamok.Count > 0) SelectedIktSzam = IktSzamok[0];
                 }
                 else { IktSzamok.Clear(); }
@@ -281,7 +281,19 @@ namespace IktatogRPCClient.ViewModels
                 Telephely = SelectedTelephely,
                 Ugyintezo = SelectedUgyintezo
             };
-            RovidIkonyv rovidIkonyv = await serverHelper.AddIktatas(newIkonyv);
+            RovidIkonyv rovidIkonyv;
+            if (ValaszIsChecked)
+            {
+                newIkonyv.ValaszId = SelectedIktSzam.Id;
+                rovidIkonyv = await serverHelper.AddIktatasWithValaszAsync(newIkonyv);
+            }
+            else {
+                rovidIkonyv = await serverHelper.AddIktatas(newIkonyv);
+            }
+            if (rovidIkonyv.Id == 0) {
+                LoaderIsVisible = false;
+                return;
+            } 
             newIkonyv.Id = rovidIkonyv.Id;
             newIkonyv.Iktatoszam = rovidIkonyv.Iktatoszam;
             _recentlyAddedIkonyvek.Add(newIkonyv);

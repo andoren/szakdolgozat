@@ -64,8 +64,8 @@ namespace IktatogRPCClient.ViewModels
             else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 100) isValid = false;
             return isValid;
         }
-        public override void DoAction() {
-            Ugyintezo NewUgyintezo = serverHelper.AddUgyintezoToTelephely(ValasztottTelephely,UgyintezoNeve);
+        public async override void DoAction() {
+            Ugyintezo NewUgyintezo = await serverHelper.AddUgyintezoToTelephelyAsync(ValasztottTelephely,UgyintezoNeve);
             eventAggregator.PublishOnUIThread((ValasztottTelephely,NewUgyintezo));
             TryClose();
         }

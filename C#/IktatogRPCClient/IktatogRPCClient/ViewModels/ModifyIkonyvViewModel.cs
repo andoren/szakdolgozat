@@ -22,10 +22,10 @@ namespace IktatogRPCClient.ViewModels
         }
         private void InitializeData(Ikonyv IkonyvToModify) {
             this.IkonyvToModify = new Ikonyv(IkonyvToModify);
-            AvailablePartners = serverHelper.GetPartnerekByTelephely(IkonyvToModify.Telephely);
+            AvailablePartners = serverHelper.GetPartnerekByTelephelyAsync(IkonyvToModify.Telephely).Result;
             SelectedPartner = AvailablePartners.Count > 0 ? AvailablePartners[0] : new Partner();
-            AvailableJellegek = serverHelper.GetJellegekByTelephely(IkonyvToModify.Telephely);
-            AvailableUgyintezok = serverHelper.GetUgyintezokByTelephely(IkonyvToModify.Telephely);
+            AvailableJellegek = serverHelper.GetJellegekByTelephelyAsync(IkonyvToModify.Telephely).Result;
+            AvailableUgyintezok = serverHelper.GetUgyintezokByTelephelyAsync(IkonyvToModify.Telephely).Result;
             AvailablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
             SelectedJelleg = IkonyvToModify.Jelleg;
             SelectedPartnerUgyintezo = IkonyvToModify.Partner.Ugyintezok.Count > 0 ? IkonyvToModify.Partner.Ugyintezok[0] : null;
@@ -238,9 +238,9 @@ namespace IktatogRPCClient.ViewModels
             else if (IkonyvToModify.Targy.Length < 4 ||IkonyvToModify.Targy.Length> 100) IsValid = false;
             return IsValid;
         }
-        public void RemoveButton() {
+        public async void RemoveButton() {
             ModificationHappend = true;
-            if (serverHelper.RemoveIkonyvById(IkonyvToModify.Id)) {
+            if (await serverHelper.RemoveIkonyvByIdAsync(IkonyvToModify.Id)) {
                 ModificationHappend = true;
             }
             eventAggregator.PublishOnUIThread(new RemovedItem(IkonyvToModify));

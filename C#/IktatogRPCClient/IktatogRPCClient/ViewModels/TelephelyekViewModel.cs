@@ -18,8 +18,8 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private  void LoadData() {
-            Telephelyek = serverHelper.GetTelephelyek();
+        private async void LoadData() {
+            Telephelyek = await serverHelper.GetTelephelyekAsync();
             eventAggregator.Subscribe(this);
         }
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
@@ -85,8 +85,8 @@ namespace IktatogRPCClient.ViewModels
         }
  
 
-        public void RemoveTelephely() {
-            if (serverHelper.RemoveTelephely(SelectedTelephely)) {
+        public async void RemoveTelephely() {
+            if ( await serverHelper.RemoveTelephelyAsync(SelectedTelephely)) {
                 eventAggregator.PublishOnUIThread(new RemovedItem(SelectedTelephely));
                 Telephelyek.Remove(SelectedTelephely);
                 NotifyOfPropertyChange(()=>Telephelyek);

@@ -67,9 +67,9 @@ namespace IktatogRPCClient.ViewModels
             else if (JellegNeve.Length < 5 || JellegNeve.Length > 100) isValid = false;
             return isValid;
         }
-        public override void DoAction()
+        public async override void DoAction()
         {
-            Jelleg NewJelleg = serverHelper.AddJellegToTelephely(SelectedTelephely, JellegNeve);
+            Jelleg NewJelleg = await serverHelper.AddJellegToTelephelyAsync(SelectedTelephely, JellegNeve);
             eventAggregator.PublishOnUIThread((SelectedTelephely, NewJelleg));
             TryClose();
         }

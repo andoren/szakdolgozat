@@ -24,7 +24,7 @@ namespace IktatogRPCClient.ViewModels
 		{
 		
 			SelectedSearchParameter = SearchList[0];
-			AvailabelYears = serverHelper.GetYears();
+			AvailabelYears = serverHelper.GetYearsAsync().Result;
 			SelectedItemsPerPage = ItemsPerPage[2];
 			eventAggregator.Subscribe(this);
 		}

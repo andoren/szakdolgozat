@@ -6,14 +6,56 @@ service IktatoService {
   rpc Login (LoginMessage) returns (User);
   rpc Logout (EmptyMessage) returns (Answer);
   rpc Register (User) returns (Answer);
-  rpc AddIktatas(Ikonyv) returns (RovidIkonyv);
-  rpc ModifyIktatas(Ikonyv) returns (Answer);
-  rpc ListallIktatas(EmptyMessage) returns (stream Ikonyv);
-  rpc ListIktatas(SearchIkonyvData) returns (stream Ikonyv);
-  rpc DeleteIktatas(DeleteMessage) returns (Answer);
-  rpc GetDocumentById(DocumentInfo)returns (Document);
-  rpc UploadDocument(Document)returns(DocumentInfo);
-  rpc Removedocument(DocumentInfo)returns(Answer);
+  rpc AddIktatas (Ikonyv) returns (RovidIkonyv);
+  rpc AddIktatasWithValasz (Ikonyv)returns (RovidIkonyv);
+  rpc ModifyIktatas (Ikonyv) returns (Answer);
+  rpc ListallIktatas (EmptyMessage) returns (stream Ikonyv);
+  rpc ListIktatas (SearchIkonyvData) returns (stream Ikonyv);
+  rpc DeleteIktatas (DeleteMessage) returns (Answer);
+  rpc GetYears (EmptyMessage) returns (stream Year);
+  rpc GetPartnerUgyintezoByPartner (Partner) returns (stream PartnerUgyintezo);
+  rpc GetPrivileges (EmptyMessage) returns (stream Privilege);
+  rpc GetJellegekByTelephely (Telephely) returns (stream Jelleg);
+  rpc GetCsoportokByTelephely (Telephely) returns (stream Csoport);
+  rpc GetPartnerekByTelephely (Telephely) returns (stream Partner);
+  rpc GetShortIktSzamokByTelephely (Telephely) returns (stream RovidIkonyv);
+  rpc GetUgyintezokByTelephely (Telephely) returns (stream Ugyintezo);
+  rpc GetTelephelyek (EmptyMessage) returns ( stream Telephely);
+  rpc GetAllUser (EmptyMessage) returns (stream User);
+  rpc GetIkonyvek (SearchIkonyvData) returns (stream Ikonyv);
+  rpc GetDocumentInfoByIkonyv (Ikonyv) returns (stream DocumentInfo);
+  rpc AddTelephely (Telephely) returns (Telephely);
+  rpc AddJellegToTelephely (NewTorzsData) returns (Jelleg);
+  rpc AddPartnerUgyintezoToPartner (NewTorzsData) returns (PartnerUgyintezo);
+  rpc AddPartnerToTelephely (NewTorzsData) returns (Partner);
+  rpc AddUser (User) returns (User);
+  rpc AddCsoportToTelephely (NewTorzsData) returns (Csoport);
+  rpc AddUgyintezoToTelephely (NewTorzsData) returns (Ugyintezo);
+  rpc ModifyUser (User) returns (Answer);
+  rpc ModifyTelephely (Telephely) returns (Answer);
+  rpc ModifyPartnerUgyintezo (PartnerUgyintezo) returns (Answer);
+  rpc ModifyPartner (Partner) returns (Answer);
+  rpc ModifyJelleg (Jelleg) returns (Answer);
+  rpc ModifyCsoport (Csoport) returns (Answer);
+  rpc ModifyUgyintezo (Ugyintezo) returns (Answer);
+  rpc RemovePartnerUgyintezo (PartnerUgyintezo) returns (Answer);
+  rpc RemovePartner (Partner) returns (Answer);
+  rpc DisableUser (User) returns (Answer);
+  rpc RemoveIkonyv (Ikonyv) returns (Answer);
+  rpc RemoveJelleg (Jelleg) returns (Answer);
+  rpc RemoveTelephely (Telephely) returns (Answer);
+  rpc RemoveCsoport (Csoport) returns (Answer);
+  rpc RemoveUgyintezoFromTelephely (Ugyintezo) returns (Answer);
+  rpc GetDocumentById (DocumentInfo)returns (Document);
+  rpc UploadDocument (Document) returns (DocumentInfo);
+  rpc Removedocument (DocumentInfo) returns (Answer);
+
+}
+message NewTorzsData{
+    Partner Partner = 1;
+    Telephely Telephely = 2;
+    string Name = 3;
+    string Shorname = 4;
 }
 message RovidIkonyv{
     int32 Id = 1;
@@ -59,6 +101,7 @@ message Ikonyv{
     string Iktatoszam = 13;
     string Szoveg = 14; 
     bool HasDoc = 15;
+    int32 ValaszId = 16;
 }
 message Ugyintezo{
     int32 id = 1;

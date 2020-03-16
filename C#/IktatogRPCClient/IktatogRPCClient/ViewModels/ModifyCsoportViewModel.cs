@@ -42,10 +42,10 @@ namespace IktatogRPCClient.ViewModels
             }
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
             Csoport modifiedCsoport = new Csoport() { Id = ModifiedCsoport.Id, Name = NewName, Shortname = NewKod };
-            if (serverHelper.ModifyCsoport(modifiedCsoport))
+            if (await serverHelper.ModifyCsoportAsync(modifiedCsoport))
             {
                 eventAggregator.PublishOnUIThread(modifiedCsoport);
                 TryClose();

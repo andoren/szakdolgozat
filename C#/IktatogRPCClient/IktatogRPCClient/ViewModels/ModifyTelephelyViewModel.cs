@@ -31,10 +31,10 @@ namespace IktatogRPCClient.ViewModels
             }
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
             Telephely.Name = TelephelyNeve;
-            bool success = serverHelper.ModifyTelephely(Telephely);
+            bool success = await serverHelper.ModifyTelephelyAsync(Telephely);
             eventAggregator.PublishOnUIThread(Telephely);
             TryClose();
         }

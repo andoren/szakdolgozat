@@ -47,10 +47,10 @@ namespace IktatogRPCClient.ViewModels
             NewName = message.Name ;
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
             Ugyintezo modifiedUgyintezo = new Ugyintezo() { Id = ModifiedUgyintezo.Id, Name = NewName };
-            if (serverHelper.ModifyUgyintezo(modifiedUgyintezo)) {
+            if (await serverHelper.ModifyUgyintezoAsync(modifiedUgyintezo)) {
                 eventAggregator.PublishOnUIThread(modifiedUgyintezo);
                 TryClose();
             }

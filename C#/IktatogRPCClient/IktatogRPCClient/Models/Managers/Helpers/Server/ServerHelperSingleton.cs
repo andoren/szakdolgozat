@@ -38,206 +38,9 @@ namespace IktatogRPCClient.Models.Managers
             return serverHelper;
 
         }
-        #endregion
 
-
-        public BindableCollection<Year> GetYears()
+        public Channel GetChannel()
         {
-            return new BindableCollection<Year>() { new Year() {Id = 3, Year_ = 2020, Active= true }, new Year() { Id = 2, Active= false, Year_ = 2019 } };
-        }
-
-        public BindableCollection<PartnerUgyintezo> GetPartnerUgyintezoByPartner(Partner selectedPartner)
-        {
-            return new BindableCollection<PartnerUgyintezo>();
-        }
-
-        public BindableCollection<Privilege> GetPrivileges()
-        {
-            return new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
-        }
-
-        public bool RemoveDocument(DocumentInfo selectedDocument)
-        {
-            try
-            {
-                Answer answer = client.Removedocument(selectedDocument, calloptions);
-                if (answer.Error == false)
-                {
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-  
-            return false;
-
-        }
-
-
-        public Telephely AddTelephely(string telephelyNeve)
-        {
-            return new Telephely() { Id = new Random().Next(1, 100), Name = telephelyNeve };
-        }
-
-        public async Task<Document> GetDocumentById(DocumentInfo info)
-        {
-            return await client.GetDocumentByIdAsync(info);
-        }
-
-  
-
-        public BindableCollection<Jelleg> GetJellegekByTelephely(Telephely selectedTelephely)
-        {
-            if (selectedTelephely != null)
-            {
-                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
-                else return new BindableCollection<Jelleg>() { new Jelleg() { Id = 1, Name = "Levél" } };
-            }
-            else
-            {
-                return new BindableCollection<Jelleg>();
-            }
-        }
-
-        public async Task<DocumentInfo> UploadDocument(Document doc)
-        {
-            return await client.UploadDocumentAsync(doc, calloptions);
-        }
-
-        public bool ModifyUser(User getUser)
-        {
-            return true;
-        }
-
-        public Jelleg AddJellegToTelephely(Telephely selectedTelephely, string jellegNeve)
-        {
-            return new Jelleg() { Id = new Random().Next(1, 40), Name = jellegNeve };
-        }
-
-        public bool RemovePartnerUgyintezo(PartnerUgyintezo selectedUgyintezo)
-        {
-            return true;
-        }
-
-        public bool RemovePartner(Partner selectedPartner)
-        {
-            return true;
-        }
-        public bool ModifyTelephely(Telephely telephely)
-        {
-            return true;
-        }
-
-        public BindableCollection<Csoport> GetCsoportokByTelephely(Telephely selectedTelephely)
-        {
-            if (selectedTelephely != null)
-            {
-                if (selectedTelephely.Name == "Rákóczi")
-                    return new BindableCollection<Csoport>() { new Csoport() { Id = 3, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" }, new Csoport() { Id = 1, Name = "Konyha", Shortname = "K" } };
-                else return new BindableCollection<Csoport>() { new Csoport() { Id = 10, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" } };
-            }
-            else return new BindableCollection<Csoport>();
-        }
-
-        public bool ModifyPartnerUgyintezo(PartnerUgyintezo selectedPartnerUgyintezo, string ugyintezoNeve)
-        {
-            return true;
-        }
-
-        public bool DisableUser(User getUser)
-        {
-            return true;
-        }
-
-        public PartnerUgyintezo AddPartnerUgyintezoToPartner(Partner selectedPartner, string ugyintezoNeve)
-        {
-            return new PartnerUgyintezo() { Id = new Random().Next(1, 50), Name = ugyintezoNeve };
-        }
-
-        public bool ModifyPartner(Partner selectedPartner)
-        {
-            return true;
-        }
-
-        public Partner AddPartnerToTelephely(Telephely selectedTelephely, string partnerNeve)
-        {
-            return new Partner() { Id = new Random().Next(1, 50), Name = partnerNeve };
-        }
-
-        public BindableCollection<Partner> GetPartnerekByTelephely(Telephely selectedTelephely)
-        {
-            if (selectedTelephely != null)
-            {
-                Partner partner1 = new Partner() { Id = new Random().Next(1, 4), Name = "Beszállító cica" };
-                Partner partner2 = new Partner() { Id = new Random().Next(5, 9), Name = "KutyaPartner" };
-                Partner partner3 = new Partner() { Id = new Random().Next(5, 9), Name = "E-on" };
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "Cili" });
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 2, Name = "Marci" });
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 3, Name = "Elemér" });
-                partner2.Ugyintezok.Add(new PartnerUgyintezo() { Id = 4, Name = "Bodri" });
-                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Partner>() { partner1, partner2 };
-                else return new BindableCollection<Partner>() { partner3 };
-            }
-            else return new BindableCollection<Partner>();
-        }
-
-        public UserProxy AddUser(string newUsername, string newFullname, string newPassword, Privilege selectedPrivilege, BindableCollection<Telephely> selectedTelephelyek)
-        {
-            User user = new User()
-            {
-                Id = new Random().Next(1, 50),
-                Fullname = newFullname,
-                Password = newPassword,
-                Privilege = selectedPrivilege,
-                Username = newUsername
-            };
-            foreach (var item in selectedTelephelyek)
-            {
-                user.Telephelyek.Add(item);
-            }
-            return new UserProxy(user);
-        }
-
-        public bool RemoveIkonyvById(int id)
-        {
-            return true;
-        }
-
-        public bool ModifyJelleg(Jelleg modifiedJelleg)
-        {
-            return true;
-        }
-
-        public BindableCollection<RovidIkonyv> GetShortIktSzamokByTelephely(Telephely selectedTelephely)
-        {
-            return new BindableCollection<RovidIkonyv>() { new RovidIkonyv() { Id=1,Iktatoszam="RövidIktatószám1" }, new RovidIkonyv() { Id = 2, Iktatoszam = "RövidIktatószám2" }, new RovidIkonyv() { Id = 3, Iktatoszam = "RövidIktatószám3" } };
-        }
-
-        public bool ModifyCsoport(Csoport modifiedCsoport)
-        {
-            return true;
-        }
-
-        public bool ModifyUgyintezo(Ugyintezo modifiedUgyintezo)
-        {
-            return true;
-        }
-
-        public void InitializeConnection() {
-
-            client = new IktatoService.IktatoServiceClient(GetChannel());    
-            userHelper = UserHelperSingleton.GetInstance();
-            calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
-        }
-
-        public async Task<RovidIkonyv> AddIktatas(Ikonyv newIkonyv)
-        {
-            return await client.AddIktatasAsync(newIkonyv,calloptions);
-        }
-
-        public Channel GetChannel() {
             string hostname = ConfigurationManager.AppSettings["Hostname"];
             string hostport = ConfigurationManager.AppSettings["Port"];
             string csatinfo = $"{hostname}:{hostport}";
@@ -247,86 +50,877 @@ namespace IktatogRPCClient.Models.Managers
             return channel;
         }
 
-        public bool RemoveJelleg(Jelleg selectedJelleg)
+        public void InitializeConnection()
         {
-            return true;
+
+            client = new IktatoService.IktatoServiceClient(GetChannel());
+            userHelper = UserHelperSingleton.GetInstance();
+            calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
         }
 
-        public Csoport AddCsoportToTelephely(Telephely valasztottTelephely, string csoportName, string csoportKod)
-        {
-            return new Csoport() { Id = new Random().Next(1,200), Name=csoportName , Shortname = csoportKod};
-        }
+        #endregion
 
-        public bool RemoveTelephely(Telephely selectedTelephely)
+        #region Getters
+        public async Task<BindableCollection<Year>> GetYearsAsync()
         {
-            return true;
-        }
-
-        public async void Logout() {
-            await client.LogoutAsync(new EmptyMessage(), calloptions);
-        }
-
-        public Ugyintezo AddUgyintezoToTelephely(Telephely valasztottTelephely, string ugyintezoNeve)
-        {
-            return new Ugyintezo() {Id = new Random().Next(1,100),Name = ugyintezoNeve };
-        }
-
-        public bool RemoveCsoport(Csoport selectedCsoport)
-        {
-            return true;
-        }
-
-        public bool RemoveUgyintezoFromTelephely(Ugyintezo valasztottUgyintezo)
-        {
-            return true;
-        }
-        public BindableCollection<Ugyintezo> GetUgyintezokByTelephely(Telephely valasztottTelephely)
-        {
-            if (valasztottTelephely != null)
+            BindableCollection<Year> years = new BindableCollection<Year>();
+            //new BindableCollection<Year>() { new Year() {Id = 3, Year_ = 2020, Active= true }, new Year() { Id = 2, Active= false, Year_ = 2019 } };
+            try
             {
-                if (valasztottTelephely.Name == "Rákóczi")
-                    return new BindableCollection<Ugyintezo>() { new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" }, new Ugyintezo() { Id = 3, Name = "Pekár Mihály" }, new Ugyintezo() { Id = 1, Name = "Brachna Anita" } };
-                else return new BindableCollection<Ugyintezo>() { new Ugyintezo() { Id = 10, Name = "Csík Attila" }, new Ugyintezo() { Id = 1, Name = "Bulla Viktor" } };
+                var stream = client.GetYears(new EmptyMessage(), calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    years.Add(stream.ResponseStream.Current);
+                }
+                
             }
-            else return new BindableCollection<Ugyintezo>();
-        }
-
-        public BindableCollection<Telephely> GetTelephelyek()
-        {
-            return new BindableCollection<Telephely>() { new Telephely() { Id = 1, Name = "Rákóczi" }, new Telephely() { Id = 2, Name = "Vajda" } };
-        }
-  
-        public BindableCollection<UserProxy> GetAllUser()
-        {
-            User user = new User()
+            catch (Exception)
             {
-                Id = 4,
-                Fullname = "Brachna Anita",
-                Username = "banita",
-                Password = "Gerike a kedvencem2019",
-                Privilege = new Privilege() { Id = 2, Name = "User" }
-            };
-            user.Telephelyek.Add(new Telephely() { Id = 1,Name = "Rákóczi"});
-            return new BindableCollection<UserProxy>() {
-                new UserProxy(user)
-                ,
-                new UserProxy(UserHelperSingleton.CurrentUser) 
-            };
+
+                throw;
+            }
+            return years;
+        }
+        public async Task<BindableCollection<PartnerUgyintezo>> GetPartnerUgyintezoByPartnerAsync(Partner selectedPartner)
+        {
+            BindableCollection<PartnerUgyintezo> ugyintezok = new BindableCollection<PartnerUgyintezo>();
+            try
+            {
+                var stream = client.GetPartnerUgyintezoByPartner(selectedPartner, calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    ugyintezok.Add(stream.ResponseStream.Current);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return ugyintezok;
+        }
+        public async Task<BindableCollection<Privilege>> GetPrivilegesAsync()
+        {
+            //new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
+            BindableCollection<Privilege> privileges = new BindableCollection<Privilege>();
+            try
+            {
+                var stream = client.GetPrivileges(new EmptyMessage(), calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    privileges.Add(stream.ResponseStream.Current);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return privileges;
+        }
+        public async Task<Document> GetDocumentByIdAsync(DocumentInfo info)
+        {
+            Document document = new Document() { Name = "" };
+            try
+            {
+                document = await client.GetDocumentByIdAsync(info, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return document;
+        }
+        public async Task<BindableCollection<Jelleg>> GetJellegekByTelephelyAsync(Telephely selectedTelephely)
+        {
+            /*
+             if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
+                else return new BindableCollection<Jelleg>() { new Jelleg() { Id = 1, Name = "Levél" } };
+             */
+            BindableCollection<Jelleg> jellegek = new BindableCollection<Jelleg>();
+            try
+            {
+                if (selectedTelephely != null)
+                {
+                    var stream = client.GetJellegekByTelephely(selectedTelephely, calloptions);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        jellegek.Add(stream.ResponseStream.Current);
+                    }
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return jellegek;
+
+        }
+        public async Task<BindableCollection<Csoport>> GetCsoportokByTelephelyAsync(Telephely selectedTelephely)
+        {
+            /*
+             *  if (selectedTelephely.Name == "Rákóczi")
+                    return new BindableCollection<Csoport>() { new Csoport() { Id = 3, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" }, new Csoport() { Id = 1, Name = "Konyha", Shortname = "K" } };
+                else return new BindableCollection<Csoport>() { new Csoport() { Id = 10, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" } };
+             */
+            BindableCollection<Csoport> csoportok = new BindableCollection<Csoport>();
+            try
+            {
+                if (selectedTelephely != null)
+                {
+                    var stream = client.GetCsoportokByTelephely(selectedTelephely, calloptions);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        csoportok.Add(stream.ResponseStream.Current);
+                    }
+                  
+                }
+
+            }
+            catch (Exception )
+            {
+                throw;
+            }
+            return csoportok;
+        }
+        public async Task<BindableCollection<Partner>> GetPartnerekByTelephelyAsync(Telephely selectedTelephely)
+        {
+            /*
+                Partner partner1 = new Partner() { Id = new Random().Next(1, 4), Name = "Beszállító cica" };
+                Partner partner2 = new Partner() { Id = new Random().Next(5, 9), Name = "KutyaPartner" };
+                Partner partner3 = new Partner() { Id = new Random().Next(5, 9), Name = "E-on" };
+                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "Cili" });
+                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 2, Name = "Marci" });
+                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 3, Name = "Elemér" });
+                partner2.Ugyintezok.Add(new PartnerUgyintezo() { Id = 4, Name = "Bodri" });
+                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Partner>() { partner1, partner2 };
+                else return new BindableCollection<Partner>() { partner3 };
+             */
+            BindableCollection<Partner> partnerek = new BindableCollection<Partner>();
+            try
+            {
+                if (selectedTelephely != null)
+                {
+                    var stream = client.GetPartnerekByTelephely(selectedTelephely, calloptions);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        partnerek.Add(stream.ResponseStream.Current);
+                    }  
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return partnerek;
+        }
+        public async Task<BindableCollection<RovidIkonyv>> GetShortIktSzamokByTelephelyAsync(Telephely selectedTelephely)
+        {
+            /*new BindableCollection<RovidIkonyv>() { new RovidIkonyv() { Id=1,Iktatoszam="RövidIktatószám1" }, new RovidIkonyv() { Id = 2, Iktatoszam = "RövidIktatószám2" }, new RovidIkonyv() { Id = 3, Iktatoszam = "RövidIktatószám3" } };
+             */
+            BindableCollection<RovidIkonyv> rovidIkonyvs = new BindableCollection<RovidIkonyv>();
+            try
+            {
+                var stream = client.GetShortIktSzamokByTelephely(selectedTelephely, calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    rovidIkonyvs.Add(stream.ResponseStream.Current);
+                }
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return rovidIkonyvs;
+        }
+        public async Task<bool> LogoutAsync()
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.LogoutAsync(new EmptyMessage(), calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception )
+            {
+                throw;
+
+            }
+
+
+            return success;
+        }
+        public async Task<BindableCollection<Ugyintezo>> GetUgyintezokByTelephelyAsync(Telephely valasztottTelephely)
+        {
+            BindableCollection<Ugyintezo> ugyintezok = new BindableCollection<Ugyintezo>();
+            try
+            {
+                if (valasztottTelephely != null)
+                {
+                    var stream = client.GetUgyintezokByTelephely(valasztottTelephely, calloptions);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        ugyintezok.Add(stream.ResponseStream.Current);
+                    }
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return ugyintezok;
+        }
+        public async Task<BindableCollection<Telephely>> GetTelephelyekAsync()
+        {
+            //return new BindableCollection<Telephely>() { new Telephely() { Id = 1, Name = "Rákóczi" }, new Telephely() { Id = 2, Name = "Vajda" } };
+            BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
+            try
+            {
+                var stream = client.GetTelephelyek(new EmptyMessage(), calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    telephelyek.Add(stream.ResponseStream.Current);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return telephelyek;
+        }
+        public async Task<BindableCollection<UserProxy>> GetAllUserAsync()
+        {
+            BindableCollection<UserProxy> userProxies = new BindableCollection<UserProxy>();
+            try
+            {
+                
+                var stream = client.GetAllUser(new EmptyMessage(), calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    userProxies.Add(new UserProxy(stream.ResponseStream.Current));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return userProxies;
         }
         public async Task<BindableCollection<Ikonyv>> GetIkonyvekAsync(SearchIkonyvData searchData)
         {
             BindableCollection<Ikonyv> ikonyvek = new BindableCollection<Ikonyv>();
-            var stream = client.ListIktatas(searchData, calloptions);
-            while (await stream.ResponseStream.MoveNext()) {
-                ikonyvek.Add(stream.ResponseStream.Current);
+            try
+            {
+                var stream = client.ListIktatas(searchData, calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    ikonyvek.Add(stream.ResponseStream.Current);
+                }
             }
-            return ikonyvek;
-            
-        }
+            catch (Exception)
+            {
 
-        public BindableCollection<DocumentInfo> GetDocumentInfoByIkonyvId(int ikonyvId)
-        {
-            return new BindableCollection<DocumentInfo>() { new DocumentInfo {Id = 1, Name = "KiscicaIktatás", Size = 3.54, Type = "PDF" } };
+                throw;
+            }
+       
+            return ikonyvek;
+
         }
+        public async Task<BindableCollection<DocumentInfo>> GetDocumentInfoByIkonyvIdAsync(int ikonyvId)
+        {
+            // return new BindableCollection<DocumentInfo>() { new DocumentInfo {Id = 1, Name = "KiscicaIktatás", Size = 3.54, Type = "PDF" } };
+            BindableCollection<DocumentInfo> documentInfos = new BindableCollection<DocumentInfo>();
+            try
+            {
+                var stream = client.GetDocumentInfoByIkonyv(new Ikonyv() { Id = ikonyvId }, calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    documentInfos.Add(stream.ResponseStream.Current);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return documentInfos;
+        }
+        #endregion
+
+        #region Additions
+        public async Task<Telephely> AddTelephelyAsync(string telephelyNeve)
+        {
+            Telephely telephely = new Telephely() { Id = 0 };
+            try
+            {
+                telephely = await client.AddTelephelyAsync(telephely, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return telephely;
+        }
+        public async Task<DocumentInfo> UploadDocumentAsync(Document doc)
+        {
+            DocumentInfo documentInfo = new DocumentInfo() { Id = 0 };
+            try
+            {
+                documentInfo = await client.UploadDocumentAsync(doc, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return documentInfo;
+        }
+        public async Task<Jelleg> AddJellegToTelephelyAsync(Telephely selectedTelephely, string jellegNeve)
+        {
+            Jelleg jelleg = new Jelleg() { Id = 0 };
+            try
+            {
+                NewTorzsData newJelleg = new NewTorzsData(){ Telephely = selectedTelephely, Name = jellegNeve};
+                jelleg = await client.AddJellegToTelephelyAsync(newJelleg, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return jelleg;
+        }
+        public async Task<PartnerUgyintezo> AddPartnerUgyintezoToPartnerAsync(Partner selectedPartner, string ugyintezoNeve)
+        {
+            PartnerUgyintezo partnerUgyintezo = new PartnerUgyintezo() { Id = 0 };
+            try
+            {
+                NewTorzsData newUgyintezo = new NewTorzsData(){ Partner = selectedPartner, Name = ugyintezoNeve };
+                partnerUgyintezo = await client.AddPartnerUgyintezoToPartnerAsync(newUgyintezo, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return partnerUgyintezo;
+        }
+        public async Task<Partner> AddPartnerToTelephelyAsync(Telephely selectedTelephely, string partnerNeve)
+        {
+            Partner partner = new Partner() { Id = 0 };
+            try
+            {
+                NewTorzsData newPartner = new NewTorzsData(){ Telephely = selectedTelephely, Name = partnerNeve};
+                partner = await client.AddPartnerToTelephelyAsync(newPartner, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return partner;
+        }
+        public async Task<UserProxy> AddUserAsync(string newUsername, string newFullname, string newPassword, Privilege selectedPrivilege, BindableCollection<Telephely> selectedTelephelyek)
+        {
+            User user = new User()
+            {
+                Id = 0,
+                Fullname = newFullname,
+                Password = newPassword,
+                Privilege = selectedPrivilege,
+                Username = newUsername
+            };
+
+            foreach (var item in selectedTelephelyek)
+            {
+                user.Telephelyek.Add(item);
+            }
+            UserProxy proxy = new UserProxy(user);
+            try
+            {
+                proxy = new UserProxy(await client.AddUserAsync(user, calloptions));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return proxy;
+        }
+        public async Task<RovidIkonyv> AddIktatas(Ikonyv newIkonyv)
+        {
+            RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
+            try
+            {
+                rovidIkonyv = await client.AddIktatasAsync(newIkonyv, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return rovidIkonyv;
+        }
+        public async Task<Csoport> AddCsoportToTelephelyAsync(Telephely valasztottTelephely, string csoportName, string csoportKod)
+        {
+            //new Csoport() { Id = new Random().Next(1,200), Name=csoportName , Shortname = csoportKod};
+            Csoport csoport = new Csoport() { Id = 0 };
+            try
+            {
+                NewTorzsData newCsoport = new NewTorzsData(){ Telephely = valasztottTelephely, Name = csoportName, Shorname = csoportKod};
+                csoport = await client.AddCsoportToTelephelyAsync(newCsoport, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return csoport;
+        }
+        public async Task<RovidIkonyv> AddIktatasWithValaszAsync(Ikonyv newIkonyv)
+        {
+            RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
+            try
+            {
+                rovidIkonyv = await client.AddIktatasWithValaszAsync(newIkonyv);
+
+            }
+            catch (Exception )
+            {
+
+                throw;
+            }
+            return rovidIkonyv;
+        }
+        public async Task<Ugyintezo> AddUgyintezoToTelephelyAsync(Telephely valasztottTelephely, string ugyintezoNeve)
+        {
+            //return new Ugyintezo() {Id = new Random().Next(1,100),Name = ugyintezoNeve };
+            Ugyintezo ugyintezo = new Ugyintezo() { Id = 0 };
+            try
+            {
+                NewTorzsData newUgyintezo = new NewTorzsData(){ Telephely = valasztottTelephely, Name = ugyintezoNeve};
+                ugyintezo = await client.AddUgyintezoToTelephelyAsync(newUgyintezo, calloptions);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return ugyintezo;
+        }
+        #endregion
+        #region Modifications
+        public async Task<bool> ModifyUserAsync(User user)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyUserAsync(user, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return success;
+        }
+        public async Task<bool> ModifyTelephelyAsync(Telephely telephely)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyTelephelyAsync(telephely, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyPartnerUgyintezoAsync(PartnerUgyintezo selectedPartnerUgyintezo, string ugyintezoNeve)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyPartnerUgyintezoAsync(selectedPartnerUgyintezo, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyPartnerAsync(Partner selectedPartner)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyPartnerAsync(selectedPartner, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyJellegAsync(Jelleg modifiedJelleg)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyJellegAsync(modifiedJelleg, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyCsoportAsync(Csoport modifiedCsoport)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyCsoportAsync(modifiedCsoport, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyUgyintezoAsync(Ugyintezo modifiedUgyintezo)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyUgyintezoAsync(modifiedUgyintezo, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        #endregion
+        #region Removes
+        public async Task<bool> RemoveDocumentAsync(DocumentInfo selectedDocument)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemovedocumentAsync(selectedDocument, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+
+        }
+        public async Task<bool> RemovePartnerUgyintezoAsync(PartnerUgyintezo selectedUgyintezo)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemovePartnerUgyintezoAsync(selectedUgyintezo, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemovePartnerAsync(Partner selectedPartner)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemovePartnerAsync(selectedPartner, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> DisableUserAsync(User user)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.DisableUserAsync(user, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemoveIkonyvByIdAsync(int id)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemoveIkonyvAsync(new Ikonyv() { Id = id }, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemoveJellegAsync(Jelleg selectedJelleg)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemoveJellegAsync(selectedJelleg, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemoveTelephelyAsync(Telephely selectedTelephely)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemoveTelephelyAsync(selectedTelephely, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemoveCsoportAsync(Csoport selectedCsoport)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemoveCsoportAsync(selectedCsoport, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> RemoveUgyintezoFromTelephelyAsync(Ugyintezo valasztottUgyintezo)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.RemoveUgyintezoFromTelephelyAsync(valasztottUgyintezo, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
     }
 } 

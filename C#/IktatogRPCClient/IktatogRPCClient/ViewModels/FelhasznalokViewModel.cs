@@ -12,12 +12,15 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class FelhasznalokViewModel:Conductor<Screen>,IHandle<UserProxy>
-    {
+	class FelhasznalokViewModel : Conductor<Screen>, IHandle<UserProxy>
+	{
 
 		public FelhasznalokViewModel()
 		{
-			AvailabelUsers = serverHelper.GetAllUser();
+			LoadData();
+		}
+		private async void LoadData() {
+			AvailabelUsers = await serverHelper.GetAllUserAsync();
 			eventAggregator.Subscribe(this);
 		}
 		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
@@ -78,8 +81,8 @@ namespace IktatogRPCClient.ViewModels
 			ActivateItem(modifyScreen);
 			eventAggregator.PublishOnUIThread(SelectedUser);
 		}
-		public void DisableUser() {
-			if (serverHelper.DisableUser(SelectedUser.GetUser)) {
+		public async void DisableUser() {
+			if ( await serverHelper.DisableUserAsync(SelectedUser.GetUser)) {
 				AvailabelUsers.Remove(SelectedUser);
 				NotifyOfPropertyChange(() => AvailabelUsers);
 				NotifyOfPropertyChange(()=>SelectedUser);

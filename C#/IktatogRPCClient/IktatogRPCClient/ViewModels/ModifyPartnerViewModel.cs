@@ -36,10 +36,10 @@ namespace IktatogRPCClient.ViewModels
             set { _selectedTelephely = value; }
         }
 
-        public override void DoAction()
+        public async override void DoAction()
         {
             SelectedPartner.Name = NewName;
-            bool success = serverHelper.ModifyPartner(SelectedPartner);
+            bool success = await serverHelper.ModifyPartnerAsync(SelectedPartner);
             eventAggregator.BeginPublishOnUIThread((SelectedTelephely,SelectedPartner));
             TryClose();
         }

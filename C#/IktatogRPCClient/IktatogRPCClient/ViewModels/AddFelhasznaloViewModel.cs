@@ -16,9 +16,9 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private void LoadData() {
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
-            AvailablePrivileges = serverHelper.GetPrivileges();
+        private async void LoadData() {
+            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
+            AvailablePrivileges = await serverHelper.GetPrivilegesAsync();
         }
         private string _newUsername;
         private string _newFullname;
@@ -130,9 +130,9 @@ namespace IktatogRPCClient.ViewModels
         {
             get { return SelectedTelephelyToAdd != null; }
         }
-        public override void DoAction()
+        public async override void DoAction()
         {
-            UserProxy NewUser = serverHelper.AddUser(NewUsername,NewFullname,NewPassword,SelectedPrivilege,SelectedTelephelyek);
+            UserProxy NewUser = await serverHelper.AddUserAsync(NewUsername,NewFullname,NewPassword,SelectedPrivilege,SelectedTelephelyek);
             eventAggregator.PublishOnUIThread(NewUser);
             TryClose();
         }

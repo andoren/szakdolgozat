@@ -20,7 +20,16 @@ namespace Iktato {
     static readonly grpc::Marshaller<global::Iktato.RovidIkonyv> __Marshaller_Iktato_RovidIkonyv = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.RovidIkonyv.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.SearchIkonyvData> __Marshaller_Iktato_SearchIkonyvData = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.SearchIkonyvData.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.DeleteMessage> __Marshaller_Iktato_DeleteMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DeleteMessage.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Year> __Marshaller_Iktato_Year = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Year.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Partner> __Marshaller_Iktato_Partner = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Partner.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.PartnerUgyintezo> __Marshaller_Iktato_PartnerUgyintezo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.PartnerUgyintezo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Privilege> __Marshaller_Iktato_Privilege = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Privilege.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Telephely> __Marshaller_Iktato_Telephely = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Telephely.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Jelleg> __Marshaller_Iktato_Jelleg = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Jelleg.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Csoport> __Marshaller_Iktato_Csoport = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Csoport.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.Ugyintezo> __Marshaller_Iktato_Ugyintezo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Ugyintezo.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.DocumentInfo> __Marshaller_Iktato_DocumentInfo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.DocumentInfo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Iktato.NewTorzsData> __Marshaller_Iktato_NewTorzsData = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.NewTorzsData.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Iktato.Document> __Marshaller_Iktato_Document = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Iktato.Document.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Iktato.LoginMessage, global::Iktato.User> __Method_Login = new grpc::Method<global::Iktato.LoginMessage, global::Iktato.User>(
@@ -51,6 +60,13 @@ namespace Iktato {
         __Marshaller_Iktato_Ikonyv,
         __Marshaller_Iktato_RovidIkonyv);
 
+    static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.RovidIkonyv> __Method_AddIktatasWithValasz = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.RovidIkonyv>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddIktatasWithValasz",
+        __Marshaller_Iktato_Ikonyv,
+        __Marshaller_Iktato_RovidIkonyv);
+
     static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer> __Method_ModifyIktatas = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -77,6 +93,244 @@ namespace Iktato {
         __ServiceName,
         "DeleteIktatas",
         __Marshaller_Iktato_DeleteMessage,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Year> __Method_GetYears = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Year>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetYears",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_Year);
+
+    static readonly grpc::Method<global::Iktato.Partner, global::Iktato.PartnerUgyintezo> __Method_GetPartnerUgyintezoByPartner = new grpc::Method<global::Iktato.Partner, global::Iktato.PartnerUgyintezo>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetPartnerUgyintezoByPartner",
+        __Marshaller_Iktato_Partner,
+        __Marshaller_Iktato_PartnerUgyintezo);
+
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Privilege> __Method_GetPrivileges = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Privilege>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetPrivileges",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_Privilege);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Jelleg> __Method_GetJellegekByTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Jelleg>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetJellegekByTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Jelleg);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Csoport> __Method_GetCsoportokByTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Csoport>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetCsoportokByTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Csoport);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Partner> __Method_GetPartnerekByTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Partner>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetPartnerekByTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Partner);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.RovidIkonyv> __Method_GetShortIktSzamokByTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.RovidIkonyv>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetShortIktSzamokByTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_RovidIkonyv);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Ugyintezo> __Method_GetUgyintezokByTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Ugyintezo>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetUgyintezokByTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Ugyintezo);
+
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Telephely> __Method_GetTelephelyek = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Telephely>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetTelephelyek",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_Telephely);
+
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.User> __Method_GetAllUser = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.User>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAllUser",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_User);
+
+    static readonly grpc::Method<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv> __Method_GetIkonyvek = new grpc::Method<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetIkonyvek",
+        __Marshaller_Iktato_SearchIkonyvData,
+        __Marshaller_Iktato_Ikonyv);
+
+    static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.DocumentInfo> __Method_GetDocumentInfoByIkonyv = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.DocumentInfo>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetDocumentInfoByIkonyv",
+        __Marshaller_Iktato_Ikonyv,
+        __Marshaller_Iktato_DocumentInfo);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Telephely> __Method_AddTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Telephely>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Telephely);
+
+    static readonly grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Jelleg> __Method_AddJellegToTelephely = new grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Jelleg>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddJellegToTelephely",
+        __Marshaller_Iktato_NewTorzsData,
+        __Marshaller_Iktato_Jelleg);
+
+    static readonly grpc::Method<global::Iktato.NewTorzsData, global::Iktato.PartnerUgyintezo> __Method_AddPartnerUgyintezoToPartner = new grpc::Method<global::Iktato.NewTorzsData, global::Iktato.PartnerUgyintezo>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddPartnerUgyintezoToPartner",
+        __Marshaller_Iktato_NewTorzsData,
+        __Marshaller_Iktato_PartnerUgyintezo);
+
+    static readonly grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Partner> __Method_AddPartnerToTelephely = new grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Partner>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddPartnerToTelephely",
+        __Marshaller_Iktato_NewTorzsData,
+        __Marshaller_Iktato_Partner);
+
+    static readonly grpc::Method<global::Iktato.User, global::Iktato.User> __Method_AddUser = new grpc::Method<global::Iktato.User, global::Iktato.User>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddUser",
+        __Marshaller_Iktato_User,
+        __Marshaller_Iktato_User);
+
+    static readonly grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Csoport> __Method_AddCsoportToTelephely = new grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Csoport>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddCsoportToTelephely",
+        __Marshaller_Iktato_NewTorzsData,
+        __Marshaller_Iktato_Csoport);
+
+    static readonly grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Ugyintezo> __Method_AddUgyintezoToTelephely = new grpc::Method<global::Iktato.NewTorzsData, global::Iktato.Ugyintezo>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddUgyintezoToTelephely",
+        __Marshaller_Iktato_NewTorzsData,
+        __Marshaller_Iktato_Ugyintezo);
+
+    static readonly grpc::Method<global::Iktato.User, global::Iktato.Answer> __Method_ModifyUser = new grpc::Method<global::Iktato.User, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyUser",
+        __Marshaller_Iktato_User,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Answer> __Method_ModifyTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.PartnerUgyintezo, global::Iktato.Answer> __Method_ModifyPartnerUgyintezo = new grpc::Method<global::Iktato.PartnerUgyintezo, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyPartnerUgyintezo",
+        __Marshaller_Iktato_PartnerUgyintezo,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Partner, global::Iktato.Answer> __Method_ModifyPartner = new grpc::Method<global::Iktato.Partner, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyPartner",
+        __Marshaller_Iktato_Partner,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Jelleg, global::Iktato.Answer> __Method_ModifyJelleg = new grpc::Method<global::Iktato.Jelleg, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyJelleg",
+        __Marshaller_Iktato_Jelleg,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Csoport, global::Iktato.Answer> __Method_ModifyCsoport = new grpc::Method<global::Iktato.Csoport, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyCsoport",
+        __Marshaller_Iktato_Csoport,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Ugyintezo, global::Iktato.Answer> __Method_ModifyUgyintezo = new grpc::Method<global::Iktato.Ugyintezo, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ModifyUgyintezo",
+        __Marshaller_Iktato_Ugyintezo,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.PartnerUgyintezo, global::Iktato.Answer> __Method_RemovePartnerUgyintezo = new grpc::Method<global::Iktato.PartnerUgyintezo, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemovePartnerUgyintezo",
+        __Marshaller_Iktato_PartnerUgyintezo,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Partner, global::Iktato.Answer> __Method_RemovePartner = new grpc::Method<global::Iktato.Partner, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemovePartner",
+        __Marshaller_Iktato_Partner,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.User, global::Iktato.Answer> __Method_DisableUser = new grpc::Method<global::Iktato.User, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DisableUser",
+        __Marshaller_Iktato_User,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer> __Method_RemoveIkonyv = new grpc::Method<global::Iktato.Ikonyv, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemoveIkonyv",
+        __Marshaller_Iktato_Ikonyv,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Jelleg, global::Iktato.Answer> __Method_RemoveJelleg = new grpc::Method<global::Iktato.Jelleg, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemoveJelleg",
+        __Marshaller_Iktato_Jelleg,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Telephely, global::Iktato.Answer> __Method_RemoveTelephely = new grpc::Method<global::Iktato.Telephely, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemoveTelephely",
+        __Marshaller_Iktato_Telephely,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Csoport, global::Iktato.Answer> __Method_RemoveCsoport = new grpc::Method<global::Iktato.Csoport, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemoveCsoport",
+        __Marshaller_Iktato_Csoport,
+        __Marshaller_Iktato_Answer);
+
+    static readonly grpc::Method<global::Iktato.Ugyintezo, global::Iktato.Answer> __Method_RemoveUgyintezoFromTelephely = new grpc::Method<global::Iktato.Ugyintezo, global::Iktato.Answer>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RemoveUgyintezoFromTelephely",
+        __Marshaller_Iktato_Ugyintezo,
         __Marshaller_Iktato_Answer);
 
     static readonly grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document> __Method_GetDocumentById = new grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document>(
@@ -130,6 +384,11 @@ namespace Iktato {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.RovidIkonyv> AddIktatasWithValasz(global::Iktato.Ikonyv request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
       public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyIktatas(global::Iktato.Ikonyv request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
@@ -146,6 +405,176 @@ namespace Iktato {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> DeleteIktatas(global::Iktato.DeleteMessage request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetYears(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.Year> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetPartnerUgyintezoByPartner(global::Iktato.Partner request, grpc::IServerStreamWriter<global::Iktato.PartnerUgyintezo> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetPrivileges(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.Privilege> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetJellegekByTelephely(global::Iktato.Telephely request, grpc::IServerStreamWriter<global::Iktato.Jelleg> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetCsoportokByTelephely(global::Iktato.Telephely request, grpc::IServerStreamWriter<global::Iktato.Csoport> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetPartnerekByTelephely(global::Iktato.Telephely request, grpc::IServerStreamWriter<global::Iktato.Partner> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetShortIktSzamokByTelephely(global::Iktato.Telephely request, grpc::IServerStreamWriter<global::Iktato.RovidIkonyv> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetUgyintezokByTelephely(global::Iktato.Telephely request, grpc::IServerStreamWriter<global::Iktato.Ugyintezo> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetTelephelyek(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.Telephely> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAllUser(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.User> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetIkonyvek(global::Iktato.SearchIkonyvData request, grpc::IServerStreamWriter<global::Iktato.Ikonyv> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetDocumentInfoByIkonyv(global::Iktato.Ikonyv request, grpc::IServerStreamWriter<global::Iktato.DocumentInfo> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Telephely> AddTelephely(global::Iktato.Telephely request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Jelleg> AddJellegToTelephely(global::Iktato.NewTorzsData request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.PartnerUgyintezo> AddPartnerUgyintezoToPartner(global::Iktato.NewTorzsData request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Partner> AddPartnerToTelephely(global::Iktato.NewTorzsData request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.User> AddUser(global::Iktato.User request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Csoport> AddCsoportToTelephely(global::Iktato.NewTorzsData request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Ugyintezo> AddUgyintezoToTelephely(global::Iktato.NewTorzsData request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyUser(global::Iktato.User request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyTelephely(global::Iktato.Telephely request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyPartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyPartner(global::Iktato.Partner request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyJelleg(global::Iktato.Jelleg request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyCsoport(global::Iktato.Csoport request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> ModifyUgyintezo(global::Iktato.Ugyintezo request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemovePartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemovePartner(global::Iktato.Partner request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> DisableUser(global::Iktato.User request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemoveIkonyv(global::Iktato.Ikonyv request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemoveJelleg(global::Iktato.Jelleg request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemoveTelephely(global::Iktato.Telephely request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemoveCsoport(global::Iktato.Csoport request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> RemoveUgyintezoFromTelephely(global::Iktato.Ugyintezo request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -254,6 +683,22 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_AddIktatas, null, options, request);
       }
+      public virtual global::Iktato.RovidIkonyv AddIktatasWithValasz(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddIktatasWithValasz(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.RovidIkonyv AddIktatasWithValasz(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddIktatasWithValasz, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.RovidIkonyv> AddIktatasWithValaszAsync(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddIktatasWithValaszAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.RovidIkonyv> AddIktatasWithValaszAsync(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddIktatasWithValasz, null, options, request);
+      }
       public virtual global::Iktato.Answer ModifyIktatas(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ModifyIktatas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -301,6 +746,454 @@ namespace Iktato {
       public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> DeleteIktatasAsync(global::Iktato.DeleteMessage request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteIktatas, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Year> GetYears(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetYears(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Year> GetYears(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetYears, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.PartnerUgyintezo> GetPartnerUgyintezoByPartner(global::Iktato.Partner request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPartnerUgyintezoByPartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.PartnerUgyintezo> GetPartnerUgyintezoByPartner(global::Iktato.Partner request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetPartnerUgyintezoByPartner, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Privilege> GetPrivileges(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPrivileges(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Privilege> GetPrivileges(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetPrivileges, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Jelleg> GetJellegekByTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetJellegekByTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Jelleg> GetJellegekByTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetJellegekByTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Csoport> GetCsoportokByTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetCsoportokByTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Csoport> GetCsoportokByTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetCsoportokByTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Partner> GetPartnerekByTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPartnerekByTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Partner> GetPartnerekByTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetPartnerekByTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.RovidIkonyv> GetShortIktSzamokByTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetShortIktSzamokByTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.RovidIkonyv> GetShortIktSzamokByTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetShortIktSzamokByTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ugyintezo> GetUgyintezokByTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetUgyintezokByTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ugyintezo> GetUgyintezokByTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetUgyintezokByTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Telephely> GetTelephelyek(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetTelephelyek(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Telephely> GetTelephelyek(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetTelephelyek, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.User> GetAllUser(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.User> GetAllUser(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAllUser, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> GetIkonyvek(global::Iktato.SearchIkonyvData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetIkonyvek(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Ikonyv> GetIkonyvek(global::Iktato.SearchIkonyvData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetIkonyvek, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.DocumentInfo> GetDocumentInfoByIkonyv(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetDocumentInfoByIkonyv(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.DocumentInfo> GetDocumentInfoByIkonyv(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetDocumentInfoByIkonyv, null, options, request);
+      }
+      public virtual global::Iktato.Telephely AddTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Telephely AddTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Telephely> AddTelephelyAsync(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Telephely> AddTelephelyAsync(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddTelephely, null, options, request);
+      }
+      public virtual global::Iktato.Jelleg AddJellegToTelephely(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddJellegToTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Jelleg AddJellegToTelephely(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddJellegToTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Jelleg> AddJellegToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddJellegToTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Jelleg> AddJellegToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddJellegToTelephely, null, options, request);
+      }
+      public virtual global::Iktato.PartnerUgyintezo AddPartnerUgyintezoToPartner(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddPartnerUgyintezoToPartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.PartnerUgyintezo AddPartnerUgyintezoToPartner(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddPartnerUgyintezoToPartner, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.PartnerUgyintezo> AddPartnerUgyintezoToPartnerAsync(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddPartnerUgyintezoToPartnerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.PartnerUgyintezo> AddPartnerUgyintezoToPartnerAsync(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddPartnerUgyintezoToPartner, null, options, request);
+      }
+      public virtual global::Iktato.Partner AddPartnerToTelephely(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddPartnerToTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Partner AddPartnerToTelephely(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddPartnerToTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Partner> AddPartnerToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddPartnerToTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Partner> AddPartnerToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddPartnerToTelephely, null, options, request);
+      }
+      public virtual global::Iktato.User AddUser(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.User AddUser(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddUser, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.User> AddUserAsync(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.User> AddUserAsync(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddUser, null, options, request);
+      }
+      public virtual global::Iktato.Csoport AddCsoportToTelephely(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddCsoportToTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Csoport AddCsoportToTelephely(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddCsoportToTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Csoport> AddCsoportToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddCsoportToTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Csoport> AddCsoportToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddCsoportToTelephely, null, options, request);
+      }
+      public virtual global::Iktato.Ugyintezo AddUgyintezoToTelephely(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddUgyintezoToTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Ugyintezo AddUgyintezoToTelephely(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddUgyintezoToTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Ugyintezo> AddUgyintezoToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddUgyintezoToTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Ugyintezo> AddUgyintezoToTelephelyAsync(global::Iktato.NewTorzsData request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddUgyintezoToTelephely, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyUser(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyUser(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyUser, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUserAsync(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUserAsync(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyUser, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyTelephelyAsync(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyTelephelyAsync(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyTelephely, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyPartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyPartnerUgyintezo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyPartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyPartnerUgyintezo, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyPartnerUgyintezoAsync(global::Iktato.PartnerUgyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyPartnerUgyintezoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyPartnerUgyintezoAsync(global::Iktato.PartnerUgyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyPartnerUgyintezo, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyPartner(global::Iktato.Partner request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyPartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyPartner(global::Iktato.Partner request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyPartner, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyPartnerAsync(global::Iktato.Partner request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyPartnerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyPartnerAsync(global::Iktato.Partner request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyPartner, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyJelleg(global::Iktato.Jelleg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyJelleg(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyJelleg(global::Iktato.Jelleg request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyJelleg, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyJellegAsync(global::Iktato.Jelleg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyJellegAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyJellegAsync(global::Iktato.Jelleg request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyJelleg, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyCsoport(global::Iktato.Csoport request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyCsoport(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyCsoport(global::Iktato.Csoport request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyCsoport, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyCsoportAsync(global::Iktato.Csoport request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyCsoportAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyCsoportAsync(global::Iktato.Csoport request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyCsoport, null, options, request);
+      }
+      public virtual global::Iktato.Answer ModifyUgyintezo(global::Iktato.Ugyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyUgyintezo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer ModifyUgyintezo(global::Iktato.Ugyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ModifyUgyintezo, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUgyintezoAsync(global::Iktato.Ugyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ModifyUgyintezoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> ModifyUgyintezoAsync(global::Iktato.Ugyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ModifyUgyintezo, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemovePartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemovePartnerUgyintezo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemovePartnerUgyintezo(global::Iktato.PartnerUgyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemovePartnerUgyintezo, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovePartnerUgyintezoAsync(global::Iktato.PartnerUgyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemovePartnerUgyintezoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovePartnerUgyintezoAsync(global::Iktato.PartnerUgyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemovePartnerUgyintezo, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemovePartner(global::Iktato.Partner request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemovePartner(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemovePartner(global::Iktato.Partner request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemovePartner, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovePartnerAsync(global::Iktato.Partner request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemovePartnerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemovePartnerAsync(global::Iktato.Partner request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemovePartner, null, options, request);
+      }
+      public virtual global::Iktato.Answer DisableUser(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DisableUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer DisableUser(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DisableUser, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> DisableUserAsync(global::Iktato.User request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DisableUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> DisableUserAsync(global::Iktato.User request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DisableUser, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemoveIkonyv(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveIkonyv(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemoveIkonyv(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemoveIkonyv, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveIkonyvAsync(global::Iktato.Ikonyv request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveIkonyvAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveIkonyvAsync(global::Iktato.Ikonyv request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemoveIkonyv, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemoveJelleg(global::Iktato.Jelleg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveJelleg(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemoveJelleg(global::Iktato.Jelleg request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemoveJelleg, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveJellegAsync(global::Iktato.Jelleg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveJellegAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveJellegAsync(global::Iktato.Jelleg request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemoveJelleg, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemoveTelephely(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemoveTelephely(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemoveTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveTelephelyAsync(global::Iktato.Telephely request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveTelephelyAsync(global::Iktato.Telephely request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemoveTelephely, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemoveCsoport(global::Iktato.Csoport request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveCsoport(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemoveCsoport(global::Iktato.Csoport request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemoveCsoport, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveCsoportAsync(global::Iktato.Csoport request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveCsoportAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveCsoportAsync(global::Iktato.Csoport request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemoveCsoport, null, options, request);
+      }
+      public virtual global::Iktato.Answer RemoveUgyintezoFromTelephely(global::Iktato.Ugyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveUgyintezoFromTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Iktato.Answer RemoveUgyintezoFromTelephely(global::Iktato.Ugyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RemoveUgyintezoFromTelephely, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveUgyintezoFromTelephelyAsync(global::Iktato.Ugyintezo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RemoveUgyintezoFromTelephelyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Iktato.Answer> RemoveUgyintezoFromTelephelyAsync(global::Iktato.Ugyintezo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RemoveUgyintezoFromTelephely, null, options, request);
       }
       public virtual global::Iktato.Document GetDocumentById(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -366,10 +1259,45 @@ namespace Iktato {
           .AddMethod(__Method_Logout, serviceImpl.Logout)
           .AddMethod(__Method_Register, serviceImpl.Register)
           .AddMethod(__Method_AddIktatas, serviceImpl.AddIktatas)
+          .AddMethod(__Method_AddIktatasWithValasz, serviceImpl.AddIktatasWithValasz)
           .AddMethod(__Method_ModifyIktatas, serviceImpl.ModifyIktatas)
           .AddMethod(__Method_ListallIktatas, serviceImpl.ListallIktatas)
           .AddMethod(__Method_ListIktatas, serviceImpl.ListIktatas)
           .AddMethod(__Method_DeleteIktatas, serviceImpl.DeleteIktatas)
+          .AddMethod(__Method_GetYears, serviceImpl.GetYears)
+          .AddMethod(__Method_GetPartnerUgyintezoByPartner, serviceImpl.GetPartnerUgyintezoByPartner)
+          .AddMethod(__Method_GetPrivileges, serviceImpl.GetPrivileges)
+          .AddMethod(__Method_GetJellegekByTelephely, serviceImpl.GetJellegekByTelephely)
+          .AddMethod(__Method_GetCsoportokByTelephely, serviceImpl.GetCsoportokByTelephely)
+          .AddMethod(__Method_GetPartnerekByTelephely, serviceImpl.GetPartnerekByTelephely)
+          .AddMethod(__Method_GetShortIktSzamokByTelephely, serviceImpl.GetShortIktSzamokByTelephely)
+          .AddMethod(__Method_GetUgyintezokByTelephely, serviceImpl.GetUgyintezokByTelephely)
+          .AddMethod(__Method_GetTelephelyek, serviceImpl.GetTelephelyek)
+          .AddMethod(__Method_GetAllUser, serviceImpl.GetAllUser)
+          .AddMethod(__Method_GetIkonyvek, serviceImpl.GetIkonyvek)
+          .AddMethod(__Method_GetDocumentInfoByIkonyv, serviceImpl.GetDocumentInfoByIkonyv)
+          .AddMethod(__Method_AddTelephely, serviceImpl.AddTelephely)
+          .AddMethod(__Method_AddJellegToTelephely, serviceImpl.AddJellegToTelephely)
+          .AddMethod(__Method_AddPartnerUgyintezoToPartner, serviceImpl.AddPartnerUgyintezoToPartner)
+          .AddMethod(__Method_AddPartnerToTelephely, serviceImpl.AddPartnerToTelephely)
+          .AddMethod(__Method_AddUser, serviceImpl.AddUser)
+          .AddMethod(__Method_AddCsoportToTelephely, serviceImpl.AddCsoportToTelephely)
+          .AddMethod(__Method_AddUgyintezoToTelephely, serviceImpl.AddUgyintezoToTelephely)
+          .AddMethod(__Method_ModifyUser, serviceImpl.ModifyUser)
+          .AddMethod(__Method_ModifyTelephely, serviceImpl.ModifyTelephely)
+          .AddMethod(__Method_ModifyPartnerUgyintezo, serviceImpl.ModifyPartnerUgyintezo)
+          .AddMethod(__Method_ModifyPartner, serviceImpl.ModifyPartner)
+          .AddMethod(__Method_ModifyJelleg, serviceImpl.ModifyJelleg)
+          .AddMethod(__Method_ModifyCsoport, serviceImpl.ModifyCsoport)
+          .AddMethod(__Method_ModifyUgyintezo, serviceImpl.ModifyUgyintezo)
+          .AddMethod(__Method_RemovePartnerUgyintezo, serviceImpl.RemovePartnerUgyintezo)
+          .AddMethod(__Method_RemovePartner, serviceImpl.RemovePartner)
+          .AddMethod(__Method_DisableUser, serviceImpl.DisableUser)
+          .AddMethod(__Method_RemoveIkonyv, serviceImpl.RemoveIkonyv)
+          .AddMethod(__Method_RemoveJelleg, serviceImpl.RemoveJelleg)
+          .AddMethod(__Method_RemoveTelephely, serviceImpl.RemoveTelephely)
+          .AddMethod(__Method_RemoveCsoport, serviceImpl.RemoveCsoport)
+          .AddMethod(__Method_RemoveUgyintezoFromTelephely, serviceImpl.RemoveUgyintezoFromTelephely)
           .AddMethod(__Method_GetDocumentById, serviceImpl.GetDocumentById)
           .AddMethod(__Method_UploadDocument, serviceImpl.UploadDocument)
           .AddMethod(__Method_Removedocument, serviceImpl.Removedocument).Build();
@@ -385,10 +1313,45 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_Logout, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.EmptyMessage, global::Iktato.Answer>(serviceImpl.Logout));
       serviceBinder.AddMethod(__Method_Register, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.User, global::Iktato.Answer>(serviceImpl.Register));
       serviceBinder.AddMethod(__Method_AddIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.RovidIkonyv>(serviceImpl.AddIktatas));
+      serviceBinder.AddMethod(__Method_AddIktatasWithValasz, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.RovidIkonyv>(serviceImpl.AddIktatasWithValasz));
       serviceBinder.AddMethod(__Method_ModifyIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.ModifyIktatas));
       serviceBinder.AddMethod(__Method_ListallIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Ikonyv>(serviceImpl.ListallIktatas));
       serviceBinder.AddMethod(__Method_ListIktatas, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(serviceImpl.ListIktatas));
       serviceBinder.AddMethod(__Method_DeleteIktatas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DeleteMessage, global::Iktato.Answer>(serviceImpl.DeleteIktatas));
+      serviceBinder.AddMethod(__Method_GetYears, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Year>(serviceImpl.GetYears));
+      serviceBinder.AddMethod(__Method_GetPartnerUgyintezoByPartner, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Partner, global::Iktato.PartnerUgyintezo>(serviceImpl.GetPartnerUgyintezoByPartner));
+      serviceBinder.AddMethod(__Method_GetPrivileges, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Privilege>(serviceImpl.GetPrivileges));
+      serviceBinder.AddMethod(__Method_GetJellegekByTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Telephely, global::Iktato.Jelleg>(serviceImpl.GetJellegekByTelephely));
+      serviceBinder.AddMethod(__Method_GetCsoportokByTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Telephely, global::Iktato.Csoport>(serviceImpl.GetCsoportokByTelephely));
+      serviceBinder.AddMethod(__Method_GetPartnerekByTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Telephely, global::Iktato.Partner>(serviceImpl.GetPartnerekByTelephely));
+      serviceBinder.AddMethod(__Method_GetShortIktSzamokByTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Telephely, global::Iktato.RovidIkonyv>(serviceImpl.GetShortIktSzamokByTelephely));
+      serviceBinder.AddMethod(__Method_GetUgyintezokByTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Telephely, global::Iktato.Ugyintezo>(serviceImpl.GetUgyintezokByTelephely));
+      serviceBinder.AddMethod(__Method_GetTelephelyek, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Telephely>(serviceImpl.GetTelephelyek));
+      serviceBinder.AddMethod(__Method_GetAllUser, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.User>(serviceImpl.GetAllUser));
+      serviceBinder.AddMethod(__Method_GetIkonyvek, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.SearchIkonyvData, global::Iktato.Ikonyv>(serviceImpl.GetIkonyvek));
+      serviceBinder.AddMethod(__Method_GetDocumentInfoByIkonyv, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.Ikonyv, global::Iktato.DocumentInfo>(serviceImpl.GetDocumentInfoByIkonyv));
+      serviceBinder.AddMethod(__Method_AddTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Telephely, global::Iktato.Telephely>(serviceImpl.AddTelephely));
+      serviceBinder.AddMethod(__Method_AddJellegToTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.NewTorzsData, global::Iktato.Jelleg>(serviceImpl.AddJellegToTelephely));
+      serviceBinder.AddMethod(__Method_AddPartnerUgyintezoToPartner, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.NewTorzsData, global::Iktato.PartnerUgyintezo>(serviceImpl.AddPartnerUgyintezoToPartner));
+      serviceBinder.AddMethod(__Method_AddPartnerToTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.NewTorzsData, global::Iktato.Partner>(serviceImpl.AddPartnerToTelephely));
+      serviceBinder.AddMethod(__Method_AddUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.User, global::Iktato.User>(serviceImpl.AddUser));
+      serviceBinder.AddMethod(__Method_AddCsoportToTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.NewTorzsData, global::Iktato.Csoport>(serviceImpl.AddCsoportToTelephely));
+      serviceBinder.AddMethod(__Method_AddUgyintezoToTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.NewTorzsData, global::Iktato.Ugyintezo>(serviceImpl.AddUgyintezoToTelephely));
+      serviceBinder.AddMethod(__Method_ModifyUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.User, global::Iktato.Answer>(serviceImpl.ModifyUser));
+      serviceBinder.AddMethod(__Method_ModifyTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Telephely, global::Iktato.Answer>(serviceImpl.ModifyTelephely));
+      serviceBinder.AddMethod(__Method_ModifyPartnerUgyintezo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.PartnerUgyintezo, global::Iktato.Answer>(serviceImpl.ModifyPartnerUgyintezo));
+      serviceBinder.AddMethod(__Method_ModifyPartner, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Partner, global::Iktato.Answer>(serviceImpl.ModifyPartner));
+      serviceBinder.AddMethod(__Method_ModifyJelleg, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Jelleg, global::Iktato.Answer>(serviceImpl.ModifyJelleg));
+      serviceBinder.AddMethod(__Method_ModifyCsoport, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Csoport, global::Iktato.Answer>(serviceImpl.ModifyCsoport));
+      serviceBinder.AddMethod(__Method_ModifyUgyintezo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ugyintezo, global::Iktato.Answer>(serviceImpl.ModifyUgyintezo));
+      serviceBinder.AddMethod(__Method_RemovePartnerUgyintezo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.PartnerUgyintezo, global::Iktato.Answer>(serviceImpl.RemovePartnerUgyintezo));
+      serviceBinder.AddMethod(__Method_RemovePartner, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Partner, global::Iktato.Answer>(serviceImpl.RemovePartner));
+      serviceBinder.AddMethod(__Method_DisableUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.User, global::Iktato.Answer>(serviceImpl.DisableUser));
+      serviceBinder.AddMethod(__Method_RemoveIkonyv, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ikonyv, global::Iktato.Answer>(serviceImpl.RemoveIkonyv));
+      serviceBinder.AddMethod(__Method_RemoveJelleg, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Jelleg, global::Iktato.Answer>(serviceImpl.RemoveJelleg));
+      serviceBinder.AddMethod(__Method_RemoveTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Telephely, global::Iktato.Answer>(serviceImpl.RemoveTelephely));
+      serviceBinder.AddMethod(__Method_RemoveCsoport, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Csoport, global::Iktato.Answer>(serviceImpl.RemoveCsoport));
+      serviceBinder.AddMethod(__Method_RemoveUgyintezoFromTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ugyintezo, global::Iktato.Answer>(serviceImpl.RemoveUgyintezoFromTelephely));
       serviceBinder.AddMethod(__Method_GetDocumentById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Document>(serviceImpl.GetDocumentById));
       serviceBinder.AddMethod(__Method_UploadDocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Document, global::Iktato.DocumentInfo>(serviceImpl.UploadDocument));
       serviceBinder.AddMethod(__Method_Removedocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Answer>(serviceImpl.Removedocument));

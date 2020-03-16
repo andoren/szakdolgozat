@@ -50,9 +50,9 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => CanDoAction);
             }
         }
-        public override void DoAction()
+        public async override void DoAction()
         {
-            bool success = serverHelper.ModifyPartnerUgyintezo(SelectedPartnerUgyintezo, UgyintezoNeve);
+            bool success =  await serverHelper.ModifyPartnerUgyintezoAsync(SelectedPartnerUgyintezo, UgyintezoNeve);
             PartnerUgyintezo NewUgyintezo = new PartnerUgyintezo() { Id = SelectedPartnerUgyintezo.Id,Name = UgyintezoNeve};
             eventAggregator.PublishOnUIThread((SelectedTelephely,SelectedPartner,NewUgyintezo));
         }

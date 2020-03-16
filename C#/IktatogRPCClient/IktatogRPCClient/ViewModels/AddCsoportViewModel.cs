@@ -71,9 +71,9 @@ namespace IktatogRPCClient.ViewModels
             if (CsoportName.Length < 5 || CsoportName.Length > 100 || CsoportKod.Length < 1 || CsoportKod.Length > 3) isValid = false;
             return isValid;
         }
-        public override void DoAction()
+        public async override void DoAction()
         {
-            Csoport NewCsoport = serverHelper.AddCsoportToTelephely(ValasztottTelephely, CsoportName, CsoportKod);
+            Csoport NewCsoport = await serverHelper.AddCsoportToTelephelyAsync(ValasztottTelephely, CsoportName, CsoportKod);
             eventAggregator.PublishOnUIThread((ValasztottTelephely, NewCsoport));
             TryClose();
         }

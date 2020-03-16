@@ -19,7 +19,7 @@ namespace IktatogRPCClient.ViewModels
     {
 		public DocumentHandlerViewModel(int IkonyvId)
 		{
-			IkonyvDocuments = serverHelper.GetDocumentInfoByIkonyvId(IkonyvId);
+			IkonyvDocuments = serverHelper.GetDocumentInfoByIkonyvIdAsync(IkonyvId).Result;
 		}
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
@@ -54,8 +54,8 @@ namespace IktatogRPCClient.ViewModels
 			}
 		}
 
-		public void RemoveDocument() {
-			if (serverHelper.RemoveDocument(SelectedDocument))
+		public async void RemoveDocument() {
+			if ( await serverHelper.RemoveDocumentAsync(SelectedDocument))
 			{
 				ModificationHappend = true;
 				IkonyvDocuments.Remove(SelectedDocument);
@@ -70,7 +70,7 @@ namespace IktatogRPCClient.ViewModels
 		public async Task DownloadDocument() {
 		
 			LoaderIsVisible = true;
-			Document rawdata = await serverHelper.GetDocumentById(SelectedDocument);
+			Document rawdata = await serverHelper.GetDocumentByIdAsync(SelectedDocument);
 			byte[] bytes = rawdata.Doc.ToByteArray();
 			string temppath = System.IO.Path.GetTempPath();
 			string fullpath = $"{temppath}{rawdata.Name}.{rawdata.Type}";
@@ -85,9 +85,9 @@ namespace IktatogRPCClient.ViewModels
 			{
 				Process.Start(fullpath);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				
+				throw;
 			}
 			LoaderIsVisible = false;
 		}
@@ -99,7 +99,7 @@ namespace IktatogRPCClient.ViewModels
 			document.Name = FileInfo[0];
 			document.Type = FileInfo[1];
 			document.Doc = ByteString.CopyFrom(GetBytesFromFile(FileInfo[2]));
-			DocumentInfo uploadedDocument = await serverHelper.UploadDocument(document);
+			DocumentInfo uploadedDocument = await serverHelper.UploadDocumentAsync(document);
 			IkonyvDocuments.Add(uploadedDocument);
 			NotifyOfPropertyChange(()=>IkonyvDocuments);
 			LoaderIsVisible = false;

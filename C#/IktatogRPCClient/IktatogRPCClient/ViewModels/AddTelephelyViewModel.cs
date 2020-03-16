@@ -23,9 +23,9 @@ namespace IktatogRPCClient.ViewModels
         }
 
 
-        public override void DoAction()
+        public async override void DoAction()
         {
-            Telephely newTelephely = serverHelper.AddTelephely(TelephelyNeve);
+            Telephely newTelephely = await serverHelper.AddTelephelyAsync(TelephelyNeve);
             eventAggregator.PublishOnUIThread(newTelephely);
             TryClose();
         }
