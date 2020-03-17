@@ -1,3 +1,4 @@
+call getikonyvek(1);
 call getjelleg(1);
 call getpartners(1);
 insert into partner(name,telephely,created_by)value("E-on",1,1);
@@ -13,3 +14,12 @@ select * from felh_telephely;
 call getugyintezok(1);
 select * from telephely;
 call getusers(1);
+call addgroup("kiscica","k",2,1, @v);
+SELECT @v;
+select * from csoport;
+call addkind("kiscica",2,1, @v);
+select @v;
+select * from jelleg;
+call addpartner(1,2,"EKE",@v);
+select @v;
+select * from partner;

@@ -16,7 +16,84 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override PartnerUgyintezo Add(PartnerUgyintezo newObjet)
+
+        public override PartnerUgyintezo Add(NewTorzsData newObject, User user)
+        {//in name_b varchar(250),in created_by_b int,in partner_b int, out newid_b int
+            PartnerUgyintezo ugyintezo = new PartnerUgyintezo()
+            {
+                Name = newObject.Name,
+                
+            };
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "addpartnerugyintezo";
+            //IN PARAMETERS
+            MySqlParameter partnerp = new MySqlParameter()
+            {
+                ParameterName = "@partner_b",
+                DbType = System.Data.DbType.Int32,
+                Value = newObject.Partner.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter namep = new MySqlParameter()
+            {
+                ParameterName = "@name_b",
+                DbType = System.Data.DbType.String,
+                Value = newObject.Name,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            
+            MySqlParameter userp = new MySqlParameter()
+            {
+                ParameterName = "@created_by_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(partnerp);
+            command.Parameters.Add(namep);
+            command.Parameters.Add(userp);
+            //OUTPARAMETER
+            MySqlParameter newPartnerId = new MySqlParameter()
+            {
+                ParameterName = "@newid_b",
+                DbType = System.Data.DbType.Int32,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            command.Parameters.Add(newPartnerId);
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    ugyintezo.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+
+            return ugyintezo;
+        }
+
+        public override PartnerUgyintezo Add(PartnerUgyintezo newObject, User user)
         {
             throw new NotImplementedException();
         }

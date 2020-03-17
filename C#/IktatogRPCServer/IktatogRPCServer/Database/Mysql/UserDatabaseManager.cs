@@ -17,7 +17,7 @@ namespace IktatogRPCServer.Database.Mysql
 
         }
 
-        public override User Add(User newObjet)
+        public override User Add(User newObjet, User user)
         {
             throw new NotImplementedException();
         }

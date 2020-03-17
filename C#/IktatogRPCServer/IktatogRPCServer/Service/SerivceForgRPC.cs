@@ -51,41 +51,154 @@ namespace IktatogRPCServer.Service
                 return Task.FromException<Answer>(e);
             }
         }
+        //TODO EZ KELL?
         public override Task<Answer> Register(User request, ServerCallContext context)
         {
 
             return base.Register(request, context);
         }
-        public override async Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
+        public override Task<User> AddUser(User request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "Admin")
+            {
+                MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new User());
+        }
+        public override Task<Answer> DisableUser(User request, ServerCallContext context)
+        {
+            return base.DisableUser(request, context);
+        }
+
+
+
+        //TODO
+        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        {
+
+            return await Task.Run(() =>
+            {
+                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
+                Document document = databaseManager.GetDataById(request.Id);
+                return document;
+            });
+        }
+        
+        //TODO
+        public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
         {
             return await Task.Run(() =>
             {
 
-                return new RovidIkonyv() { Id = new Random().Next(1, 400), Iktatoszam = "Added SZám" };
-
+                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length / (double)1024) / 1024, Type = request.Type };
             });
+
+        }
+        
+        public override Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                Ikonyv ikonyv = manager.Add(request, user);
+                return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
+            }
+            return Task.FromResult(new RovidIkonyv());
+        }
+        
+        public override Task<Csoport> AddCsoportToTelephely(NewTorzsData request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                Csoport csoport = new Csoport() { Name = request.Name, Shortname = request.Shorname };
+                MysqlDatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request,user)); ;
+            }
+            return Task.FromResult(new Csoport());
+        }
+        
+        public override Task<RovidIkonyv> AddIktatasWithValasz(Ikonyv request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                Ikonyv ikonyv = manager.Add(request, user);
+                return Task.FromResult(new RovidIkonyv() {Id= ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam }) ;
+            }
+            return Task.FromResult(new RovidIkonyv());
+        }
+        
+        public override Task<Jelleg> AddJellegToTelephely(NewTorzsData request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new Jelleg());
+        }
+        
+        public override Task<Partner> AddPartnerToTelephely(NewTorzsData request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new Partner());
+        }
+        
+        public override Task<PartnerUgyintezo> AddPartnerUgyintezoToPartner(NewTorzsData request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new PartnerUgyintezo());
+        }
+        
+        public override Task<Telephely> AddTelephely(Telephely request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new Telephely());
+        }
+        
+        public override Task<Ugyintezo> AddUgyintezoToTelephely(NewTorzsData request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Add(request, user)); ;
+            }
+            return Task.FromResult(new Ugyintezo());
         }
 
+        //TODO Ez kell?
         public override Task ListallIktatas(EmptyMessage request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
 
             return base.ListallIktatas(request, responseStream, context);
         }
-        public override Task<Answer> ModifyIktatas(Ikonyv request, ServerCallContext context)
-        {
-            return base.ModifyIktatas(request, context);
-        }
-        public override Task<Answer> DeleteIktatas(DeleteMessage request, ServerCallContext context)
-        {
-            return base.DeleteIktatas(request, context);
-        }
+
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
 
@@ -98,62 +211,7 @@ namespace IktatogRPCServer.Service
             }
 
         }
-        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
-        {
 
-            return await Task.Run(() =>
-            {
-                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
-                Document document = databaseManager.GetDataById(request.Id);
-                return document;
-            });
-        }
-        public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
-        {
-            return await Task.Run(() =>
-            {
-
-                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length / (double)1024) / 1024, Type = request.Type };
-            });
-
-        }
-
-        public override Task<Csoport> AddCsoportToTelephely(NewTorzsData request, ServerCallContext context)
-        {
-            return base.AddCsoportToTelephely(request, context);
-        }
-        public override Task<RovidIkonyv> AddIktatasWithValasz(Ikonyv request, ServerCallContext context)
-        {
-            return base.AddIktatasWithValasz(request, context);
-        }
-        public override Task<Jelleg> AddJellegToTelephely(NewTorzsData request, ServerCallContext context)
-        {
-            return base.AddJellegToTelephely(request, context);
-        }
-        public override Task<Partner> AddPartnerToTelephely(NewTorzsData request, ServerCallContext context)
-        {
-            return base.AddPartnerToTelephely(request, context);
-        }
-        public override Task<PartnerUgyintezo> AddPartnerUgyintezoToPartner(NewTorzsData request, ServerCallContext context)
-        {
-            return base.AddPartnerUgyintezoToPartner(request, context);
-        }
-        public override Task<Telephely> AddTelephely(Telephely request, ServerCallContext context)
-        {
-            return base.AddTelephely(request, context);
-        }
-        public override Task<Ugyintezo> AddUgyintezoToTelephely(NewTorzsData request, ServerCallContext context)
-        {
-            return base.AddUgyintezoToTelephely(request, context);
-        }
-        public override Task<User> AddUser(User request, ServerCallContext context)
-        {
-            return base.AddUser(request, context);
-        }
-        public override Task<Answer> DisableUser(User request, ServerCallContext context)
-        {
-            return base.DisableUser(request, context);
-        }
         public override async Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
         {
             User user;
@@ -173,6 +231,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new User());
             }
         }
+
         public override async Task GetCsoportokByTelephely(Telephely request, IServerStreamWriter<Csoport> responseStream, ServerCallContext context)
         {
             User user;
@@ -192,14 +251,17 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Csoport());
             }
         }
+
         public override Task GetDocumentInfoByIkonyv(Ikonyv request, IServerStreamWriter<DocumentInfo> responseStream, ServerCallContext context)
         {
             return base.GetDocumentInfoByIkonyv(request, responseStream, context);
         }
+
         public override Task GetIkonyvek(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
             return base.GetIkonyvek(request, responseStream, context);
         }
+
         public override async Task GetJellegekByTelephely(Telephely request, IServerStreamWriter<Jelleg> responseStream, ServerCallContext context)
         {
             User user;
@@ -219,6 +281,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Jelleg());
             }
         }
+
         public override async Task GetPartnerekByTelephely(Telephely request, IServerStreamWriter<Partner> responseStream, ServerCallContext context)
         {
             User user;
@@ -238,6 +301,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Partner());
             }
         }
+
         public override async Task GetPartnerUgyintezoByPartner(Partner request, IServerStreamWriter<PartnerUgyintezo> responseStream, ServerCallContext context)
         {
             User user;
@@ -257,6 +321,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new PartnerUgyintezo());
             }
         }
+
         public override async Task GetPrivileges(EmptyMessage request, IServerStreamWriter<Privilege> responseStream, ServerCallContext context)
         {
             User user;
@@ -276,6 +341,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Privilege());
             }
         }
+
         public override async Task GetShortIktSzamokByTelephely(Telephely request, IServerStreamWriter<RovidIkonyv> responseStream, ServerCallContext context)
         {
 
@@ -296,6 +362,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new RovidIkonyv());
             }
         }
+
         public override async Task GetTelephelyek(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
         {           
             User user; 
@@ -315,6 +382,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Telephely());
             }
         }
+
         public override async Task GetUgyintezokByTelephely(Telephely request, IServerStreamWriter<Ugyintezo> responseStream, ServerCallContext context)
         {;
             User user;
@@ -334,6 +402,7 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Ugyintezo());
             }
         }
+
         public override async Task GetYears(EmptyMessage request, IServerStreamWriter<Year> responseStream, ServerCallContext context)
         {
             User user;
@@ -354,67 +423,91 @@ namespace IktatogRPCServer.Service
             }
 
         }
+
         public override Task<Answer> ModifyCsoport(Csoport request, ServerCallContext context)
         {
             return base.ModifyCsoport(request, context);
         }
+
         public override Task<Answer> ModifyJelleg(Jelleg request, ServerCallContext context)
         {
             return base.ModifyJelleg(request, context);
         }
+
         public override Task<Answer> ModifyPartner(Partner request, ServerCallContext context)
         {
             return base.ModifyPartner(request, context);
         }
+
         public override Task<Answer> ModifyPartnerUgyintezo(PartnerUgyintezo request, ServerCallContext context)
         {
             return base.ModifyPartnerUgyintezo(request, context);
         }
+
         public override Task<Answer> ModifyTelephely(Telephely request, ServerCallContext context)
         {
             return base.ModifyTelephely(request, context);
         }
+
         public override Task<Answer> ModifyUgyintezo(Ugyintezo request, ServerCallContext context)
         {
             return base.ModifyUgyintezo(request, context);
         }
+
         public override Task<Answer> ModifyUser(User request, ServerCallContext context)
         {
             return base.ModifyUser(request, context);
         }
+
+        public override Task<Answer> ModifyIktatas(Ikonyv request, ServerCallContext context)
+        {
+            return base.ModifyIktatas(request, context);
+        }
+
+        public override Task<Answer> DeleteIktatas(DeleteMessage request, ServerCallContext context)
+        {
+            return base.DeleteIktatas(request, context);
+        }
+
         public override Task<Answer> RemoveCsoport(Csoport request, ServerCallContext context)
         {
             return base.RemoveCsoport(request, context);
         }
+
         public override Task<Answer> RemoveIkonyv(Ikonyv request, ServerCallContext context)
         {
             return base.RemoveIkonyv(request, context);
         }
+
         public override Task<Answer> RemoveJelleg(Jelleg request, ServerCallContext context)
         {
             return base.RemoveJelleg(request, context);
         }
+
         public override Task<Answer> RemovePartner(Partner request, ServerCallContext context)
         {
             return base.RemovePartner(request, context);
         }
+
         public override Task<Answer> RemovePartnerUgyintezo(PartnerUgyintezo request, ServerCallContext context)
         {
             return base.RemovePartnerUgyintezo(request, context);
         }
+
         public override Task<Answer> RemoveTelephely(Telephely request, ServerCallContext context)
         {
             return base.RemoveTelephely(request, context);
         }
+
         public override Task<Answer> RemoveUgyintezoFromTelephely(Ugyintezo request, ServerCallContext context)
         {
             return base.RemoveUgyintezoFromTelephely(request, context);
         }
+
         public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
         {
             return Task.Run(() => { return new Answer() { Error = false, Message = "A törlés sikeres volt." }; });
         }
-
         private bool CheckUserIsValid(Metadata header, out User user) {
             AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
             return TokenManager.IsValidToken(authToken, out user);

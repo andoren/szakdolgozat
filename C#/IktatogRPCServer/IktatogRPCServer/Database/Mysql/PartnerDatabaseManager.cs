@@ -16,7 +16,83 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override Partner Add(Partner newObjet)
+
+
+        public override Partner Add(NewTorzsData newObject, User user)
+        {
+            Partner partner = new Partner()
+            {
+                Name = newObject.Name,
+            };
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "addpartner";
+            //IN PARAMETERS
+            MySqlParameter telephelyp = new MySqlParameter()
+            {
+                ParameterName = "@telephely_b",
+                DbType = System.Data.DbType.Int32,
+                Value = newObject.Telephely.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter namep = new MySqlParameter()
+            {
+                ParameterName = "@name_b",
+                DbType = System.Data.DbType.String,
+                Value = newObject.Name,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+            MySqlParameter userp = new MySqlParameter()
+            {
+                ParameterName = "@created_by_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(telephelyp);
+            command.Parameters.Add(namep);
+            command.Parameters.Add(userp);
+            //OUTPARAMETER
+            MySqlParameter newPartnerId = new MySqlParameter()
+            {
+                ParameterName = "@newid_b",
+                DbType = System.Data.DbType.Int32,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            command.Parameters.Add(newPartnerId);
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    partner.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+
+            return partner;
+        }
+
+        public override Partner Add(Partner newObject, User user)
         {
             throw new NotImplementedException();
         }
