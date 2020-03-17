@@ -37,7 +37,7 @@ namespace IktatogRPCServer.Database.Mysql
             List<Ugyintezo> ugyintezok = new List<Ugyintezo>();
             if (filter is Telephely)
             {
-                Thread.Sleep(1000);
+     
                 Telephely telephely = filter as Telephely;
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;

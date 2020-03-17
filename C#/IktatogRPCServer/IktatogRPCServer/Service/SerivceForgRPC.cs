@@ -95,7 +95,7 @@ namespace IktatogRPCServer.Service
                     await responseStream.WriteAsync(response);
 
                 }
-            }      
+            }
 
         }
         public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
@@ -156,11 +156,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<User> mysqlDatabaseManager = new UserDatabaseManager(connectionManager);
 
@@ -178,11 +175,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetCsoportokByTelephely(Telephely request, IServerStreamWriter<Csoport> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Csoport> mysqlDatabaseManager = new CsoportDatabaseManager(connectionManager);
 
@@ -208,11 +202,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetJellegekByTelephely(Telephely request, IServerStreamWriter<Jelleg> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Jelleg> mysqlDatabaseManager = new JellegDatabaseManager(connectionManager);
 
@@ -230,11 +221,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetPartnerekByTelephely(Telephely request, IServerStreamWriter<Partner> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Partner> mysqlDatabaseManager = new PartnerDatabaseManager(connectionManager);
 
@@ -252,11 +240,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetPartnerUgyintezoByPartner(Partner request, IServerStreamWriter<PartnerUgyintezo> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<PartnerUgyintezo> mysqlDatabaseManager = new PartnerUgyintezoDatabaseManager(connectionManager);
 
@@ -274,11 +259,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetPrivileges(EmptyMessage request, IServerStreamWriter<Privilege> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
 
@@ -296,11 +278,9 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetShortIktSzamokByTelephely(Telephely request, IServerStreamWriter<RovidIkonyv> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
-            User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
 
-            if (TokenManager.IsValidToken(authToken, out user))
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders,out user))
             {
                 MysqlDatabaseManager<RovidIkonyv> mysqlDatabaseManager = new RovidIkonyvDatabaseManager(connectionManager);
 
@@ -317,12 +297,9 @@ namespace IktatogRPCServer.Service
             }
         }
         public override async Task GetTelephelyek(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
-        {
-            Metadata header = context.RequestHeaders;
-            User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+        {           
+            User user; 
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
 
@@ -339,12 +316,9 @@ namespace IktatogRPCServer.Service
             }
         }
         public override async Task GetUgyintezokByTelephely(Telephely request, IServerStreamWriter<Ugyintezo> responseStream, ServerCallContext context)
-        {
-            Metadata header = context.RequestHeaders;
+        {;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Ugyintezo> mysqlDatabaseManager = new UgyintezoDatabaseManager(connectionManager);
 
@@ -362,11 +336,8 @@ namespace IktatogRPCServer.Service
         }
         public override async Task GetYears(EmptyMessage request, IServerStreamWriter<Year> responseStream, ServerCallContext context)
         {
-            Metadata header = context.RequestHeaders;
             User user;
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-
-            if (TokenManager.IsValidToken(authToken, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Year> mysqlDatabaseManager = new YearsDatabaseManager(connectionManager);
 
@@ -377,10 +348,11 @@ namespace IktatogRPCServer.Service
 
                 }
             }
-            else {
-              await responseStream.WriteAsync(new Year());
+            else
+            {
+                await responseStream.WriteAsync(new Year());
             }
-           
+
         }
         public override Task<Answer> ModifyCsoport(Csoport request, ServerCallContext context)
         {
@@ -441,6 +413,11 @@ namespace IktatogRPCServer.Service
         public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
         {
             return Task.Run(() => { return new Answer() { Error = false, Message = "A törlés sikeres volt." }; });
+        }
+
+        private bool CheckUserIsValid(Metadata header, out User user) {
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+            return TokenManager.IsValidToken(authToken, out user);
         }
     }
 }
