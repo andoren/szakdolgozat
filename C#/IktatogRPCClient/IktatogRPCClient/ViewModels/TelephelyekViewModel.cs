@@ -18,8 +18,8 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private async void LoadData() {
-            Telephelyek = await serverHelper.GetTelephelyekAsync();
+        private  void LoadData() {
+            Telephelyek = serverHelper.GetTelephelyek();
             eventAggregator.Subscribe(this);
         }
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();

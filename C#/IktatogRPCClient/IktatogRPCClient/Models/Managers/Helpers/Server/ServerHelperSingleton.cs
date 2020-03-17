@@ -61,14 +61,14 @@ namespace IktatogRPCClient.Models.Managers
         #endregion
 
         #region Getters
-        public async Task<BindableCollection<Year>> GetYearsAsync()
+        public BindableCollection<Year> GetYears()
         {
             BindableCollection<Year> years = new BindableCollection<Year>();
-            //new BindableCollection<Year>() { new Year() {Id = 3, Year_ = 2020, Active= true }, new Year() { Id = 2, Active= false, Year_ = 2019 } };
+          
             try
             {
                 var stream = client.GetYears(new EmptyMessage(), calloptions);
-                while (await stream.ResponseStream.MoveNext())
+                while ( stream.ResponseStream.MoveNext().Result)
                 {
                     years.Add(stream.ResponseStream.Current);
                 }
@@ -77,7 +77,7 @@ namespace IktatogRPCClient.Models.Managers
             catch (Exception)
             {
 
-                throw;
+                MessageBox.Show("Meow error");
             }
             return years;
         }
@@ -100,14 +100,14 @@ namespace IktatogRPCClient.Models.Managers
             }
             return ugyintezok;
         }
-        public async Task<BindableCollection<Privilege>> GetPrivilegesAsync()
+        public BindableCollection<Privilege> GetPrivileges()
         {
             //new BindableCollection<Privilege>() { new Privilege() { Id = 1, Name = "Admin" }, new Privilege() { Id = 2, Name = "User" } };
             BindableCollection<Privilege> privileges = new BindableCollection<Privilege>();
             try
             {
                 var stream = client.GetPrivileges(new EmptyMessage(), calloptions);
-                while (await stream.ResponseStream.MoveNext())
+                while (stream.ResponseStream.MoveNext().Result)
                 {
                     privileges.Add(stream.ResponseStream.Current);
                 }
@@ -287,14 +287,14 @@ namespace IktatogRPCClient.Models.Managers
 
             return ugyintezok;
         }
-        public async Task<BindableCollection<Telephely>> GetTelephelyekAsync()
+        public  BindableCollection<Telephely> GetTelephelyek()
         {
             //return new BindableCollection<Telephely>() { new Telephely() { Id = 1, Name = "Rákóczi" }, new Telephely() { Id = 2, Name = "Vajda" } };
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
                 var stream = client.GetTelephelyek(new EmptyMessage(), calloptions);
-                while (await stream.ResponseStream.MoveNext())
+                while (stream.ResponseStream.MoveNext().Result)
                 {
                     telephelyek.Add(stream.ResponseStream.Current);
                 }
@@ -307,14 +307,14 @@ namespace IktatogRPCClient.Models.Managers
             }
             return telephelyek;
         }
-        public async Task<BindableCollection<UserProxy>> GetAllUserAsync()
+        public BindableCollection<UserProxy> GetAllUser()
         {
             BindableCollection<UserProxy> userProxies = new BindableCollection<UserProxy>();
             try
             {
                 
                 var stream = client.GetAllUser(new EmptyMessage(), calloptions);
-                while (await stream.ResponseStream.MoveNext())
+                while (stream.ResponseStream.MoveNext().Result)
                 {
                     userProxies.Add(new UserProxy(stream.ResponseStream.Current));
                 }

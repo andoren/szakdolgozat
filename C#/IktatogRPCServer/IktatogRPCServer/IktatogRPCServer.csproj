@@ -115,8 +115,19 @@
     <Compile Include="Database\Abstract\DatabaseManager.cs" />
     <Compile Include="Database\ConnectionManager.cs" />
     <Compile Include="Database\Mysql\Abstract\MysqlDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\CsoportDatabaseManager.cs" />
     <Compile Include="Database\Mysql\DocumentDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\IkonyvDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\JellegDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\PartnerDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\PartnerUgyintezoDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\PrivilegeDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\RovidIkonyvDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\TelephelyDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\UgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
+    <Compile Include="Database\Mysql\YearsDatabaseManager.cs" />
+    <Compile Include="Logger\Logging.cs" />
     <Compile Include="Service\SerivceForgRPC.cs" />
     <Compile Include="Service\TokenSerivce.cs" />
     <Page Include="MainWindow.xaml">
@@ -167,7 +178,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.26.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.26.0\build\net45\Grpc.Core.targets')" />

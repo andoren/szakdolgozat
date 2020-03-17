@@ -9,11 +9,26 @@ namespace IktatogRPCServer.Database
 {
     public class ConnectionManager
     {
-          string ConnectionString
+      public string ConnectionString
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+                try
+                {
+                    string server = "localhost";
+                    string database = "iktato";
+                    string uid = "root";
+                    string password = "k35Vl1o1L5";
+                    string connectionString;
+                    connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+                    database + ";" + "CharSet = utf8;" + "UID=" + uid + ";" + "PASSWORD=" + password + "; Connect Timeout=5";
+
+                    return connectionString;
+                }
+                catch (Exception e) { 
+                
+                }
+                return "";
             }
         }
     }

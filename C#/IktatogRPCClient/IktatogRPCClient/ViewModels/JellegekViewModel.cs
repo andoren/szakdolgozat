@@ -18,11 +18,11 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private async void LoadData() {
+        private  void LoadData() {
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
             SelectedTelephely = AvailableTelephelyek.First();
         }
         private bool _jellegekIsVisible = true;
@@ -57,10 +57,13 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedTelephely; }
             set { _selectedTelephely = value;
                 NotifyOfPropertyChange(() => SelectedTelephely);
-                AvailableJellegek = serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely).Result;
+                GetJellegekAsync();
             }
         }
-
+        private async void GetJellegekAsync() {
+        
+                AvailableJellegek = await serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely);
+        }
         public BindableCollection<Telephely> AvailableTelephelyek
         {
             get { return _availableTelephelyek; }

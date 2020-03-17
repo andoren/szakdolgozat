@@ -1,4 +1,5 @@
 ﻿using IktatogRPCServer.Database.Abstract;
+using IktatogRPCServer.Logger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,58 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
 
         }
 
-        public override void CloseConnection()
+        public override void CloseConnection(object connection)
         {
-            throw new NotImplementedException();
+            try
+            {
+                (connection as MySqlConnection).Close();
+
+            }
+            catch (MySqlException e)
+            {
+                Logging.LogToScreenAndFile(e.Message);
+
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
         }
+
 
         public MySqlConnection GetConnection()
         {
-            throw new NotImplementedException();
+            return new MySqlConnection(connectionManager.ConnectionString);
         }
 
-        public override void OpenConnection()
+        public override void OpenConnection(object connection)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                (connection as MySqlConnection).Open();
 
-    }
+            }
+            catch (MySqlException e)
+            {
+                switch (e.Number)
+                {
+                    case 0:
+                        Logging.LogToScreenAndFile("Nem tudok a mysql szerverhez kapcsolódni.");
+                        Logging.LogToScreenAndFile(e.Message);
+                        break;
+
+                    case 1045:
+                        Logging.LogToScreenAndFile("Hibás felhasználónév vagy jelszó");
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+        }
+    }   
 }

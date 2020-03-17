@@ -16,7 +16,7 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override bool Add(Document newObjet)
+        public override Document Add(Document newObjet)
         {
             throw new NotImplementedException();
         }
@@ -96,5 +96,10 @@ namespace IktatogRPCServer.Database.Mysql
         {
             throw new NotImplementedException();
         }
-    }
+
+		public override List<Document> GetAllData(object filter)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

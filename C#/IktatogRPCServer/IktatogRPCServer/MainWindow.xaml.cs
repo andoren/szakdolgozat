@@ -21,6 +21,7 @@ using Iktato;
 using System.Diagnostics;
 using System.Windows.Threading;
 using Microsoft.VisualBasic.Devices;
+using IktatogRPCServer.Logger;
 
 namespace IktatogRPCServer
 {
@@ -33,20 +34,12 @@ namespace IktatogRPCServer
         {
             InitializeComponent();
             //StartServer();
-            mySelf = Process.GetCurrentProcess();
-            theCPUCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            theMemCounter = new PerformanceCounter("Process", "Private Bytes",mySelf.ProcessName);
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(250);
-            timer.Tick += SetProcessLabel;
-            timer.Start();
-          
+            Logging.main = this;
+            Logging.loggingText = BoxToLog;
+
 
         }
-        Process mySelf;
-        PerformanceCounter theCPUCounter;
-        PerformanceCounter theMemCounter;
-        int AllMemoryInMb = Convert.ToInt32((new ComputerInfo().TotalPhysicalMemory / (Math.Pow(1024, 2))) + 0.5);
+
         Server server;
         const int Port = 443;
         public void StartServer()
@@ -74,18 +67,7 @@ namespace IktatogRPCServer
                 MessageBox.Show(ex.Message);
             }
         }
-        private void SetProcessLabel(object sender, EventArgs e) {
 
-            
-          
-            float processor = theCPUCounter.NextValue() / Environment.ProcessorCount;
-            float memory = theMemCounter.NextValue()/(1024*1024);
-            ProcessorLabel.Text = string.Format("{0}%",(int)processor);
-            MemoryLable.Text = $"{(int)memory}MB/{AllMemoryInMb}MB";
-            CpuBar.Value = (int)processor;
-            MemoryBar.Value = (int)((((memory) / AllMemoryInMb) * 100));
-
-        }
 
         private void StartServer_Click(object sender, RoutedEventArgs e)
         {

@@ -12,7 +12,7 @@ using IktatogRPCServer.Database.Mysql.Abstract;
 
 namespace IktatogRPCServer.Service
 {
-    class SerivceForgRPC:IktatoService.IktatoServiceBase
+    class SerivceForgRPC : IktatoService.IktatoServiceBase
     {
         readonly TokenSerivce TokenManager = new TokenSerivce();
         readonly ConnectionManager connectionManager = new ConnectionManager();
@@ -20,12 +20,14 @@ namespace IktatogRPCServer.Service
         {
             UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
             User user;
-            if (userManager.IsValidUser(request, out user)) {
+            if (userManager.IsValidUser(request, out user))
+            {
 
-                user.AuthToken = new AuthToken() { Token = TokenManager.GenerateToken(user) };                 
+                user.AuthToken = new AuthToken() { Token = TokenManager.GenerateToken(user) };
                 return Task.FromResult<User>(user);
             }
-            else {
+            else
+            {
                 Status s = new Status(StatusCode.Unauthenticated, "Hibás felhasználónév vagy jelszó!");
                 return Task.FromException<User>(new RpcException(s));
             }
@@ -34,20 +36,20 @@ namespace IktatogRPCServer.Service
             //{
             //    return Task.FromResult<User>(new User() { Id = 1, Username = "Misi", Fullname = "Pekár Mihály",, Privilege = new Privilege() { Id = 1, Name = "Admin" } });
             //}
-            
+
         }
         public override Task<Answer> Logout(EmptyMessage request, ServerCallContext context)
         {
             try
             {
-              
-                 return Task.FromResult<Answer>(new Answer() { Error=false, Message = "Sikeres kijelentkezés."});
-               
+
+                return Task.FromResult<Answer>(new Answer() { Error = false, Message = "Sikeres kijelentkezés." });
+
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return Task.FromException<Answer>(e);
             }
-
         }
         public override Task<Answer> Register(User request, ServerCallContext context)
         {
@@ -56,15 +58,17 @@ namespace IktatogRPCServer.Service
         }
         public override async Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
         {
-            return await Task.Run(()=> {
-               
-                return new RovidIkonyv() { Id = new Random().Next(1,400),Iktatoszam="Added SZám"} ;
-                
+            return await Task.Run(() =>
+            {
+
+                return new RovidIkonyv() { Id = new Random().Next(1, 400), Iktatoszam = "Added SZám" };
+
             });
         }
-       
+
         public override Task ListallIktatas(EmptyMessage request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
+
             return base.ListallIktatas(request, responseStream, context);
         }
         public override Task<Answer> ModifyIktatas(Ikonyv request, ServerCallContext context)
@@ -77,120 +81,43 @@ namespace IktatogRPCServer.Service
         }
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
-            Ikonyv konyv = new Ikonyv()
-            {
-                CreatedBy = new User { Id = 1, Username = "misi" },
-                Csoport = new Csoport() { Id = 5, Name = "Kiscica", Shortname = "KC" },
-                Erkezett = "2020.02.15",
-                HatIdo = "2020.02.20",
-                Id = 232,
-                Hivszam = "1234/412Hivszám",
-                Iktatoszam = "B-R/KC/M/2020",
-                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
-                Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "MacskaKonzervGyártó" },
-                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Brachna Anita" },
-                Szoveg = "Éhesek a cicám valamit jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
-                Targy = "Cica éhes",
-                Telephely = new Telephely() { Id = 1, Name = "Rákóczi" }
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
 
-            };
-            konyv.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy" });
-            Ikonyv konyv2 = new Ikonyv()
+            if (TokenManager.IsValidToken(authToken, out user))
             {
-                CreatedBy = new User { Id = 1, Username = "misi" },
-                Csoport = new Csoport() { Id = 5, Name = "Kiscica", Shortname = "KC" },
-                Erkezett = "2020.02.15",
-                HatIdo = "2020.02.20",
-                Id = 232,
-                HasDoc = true,
-                Hivszam = "1234/412Hivszám",
-                Iktatoszam = "B-R/KC/M/2020",
-                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
-                Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "MacskaKonzervGyártó2" },
-                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Brachna Anita" },
-                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
-                Targy = "Cica éhes2",
-                Telephely = new Telephely() { Id = 1, Name = "Rákóczi" }
+                MysqlDatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
 
-            };
-            konyv2.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy2" });
-            Ikonyv konyv3 = new Ikonyv()
-            {
-                CreatedBy = new User { Id = 1, Username = "misi" },
-                Csoport = new Csoport() { Id = 5, Name = "Kiscica2", Shortname = "KC2" },
-                Erkezett = "2020.02.15",
-                HatIdo = "2020.02.20",
-                Id = 232,
-                Hivszam = "1234/412Hivszám",
-                Iktatoszam = "Kiscicaikató",
-                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
-                Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "Beszállító Kiscica" },
-                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Pekár Mihály" },
-                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
-                Targy = "Ez egy kiktatás",
-                Telephely = new Telephely() { Id = 1, Name = "Vajda" }
+                List<Ikonyv> ikonyvek = mysqlDatabaseManager.GetAllData(user);
+                foreach (var response in ikonyvek)
+                {
+                    await responseStream.WriteAsync(response);
 
-            };
-            konyv2.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy3" });
-            Ikonyv konyv0 = new Ikonyv()
-            {
-                CreatedBy = new User { Id = 1, Username = "misi" },
-                Csoport = new Csoport() { Id = 5, Name = "Kutya", Shortname = "WUFF" },
-                Erkezett = "2020.02.15",
-                HatIdo = "2020.02.20",
-                Id = 233,
-                Hivszam = "1234/412Hivszám",
-                Iktatoszam = "Első Iktatás",
-                Jelleg = new Jelleg() { Id = 1, Name = "Levél" },
-                Irany = 0,
-                Partner = new Partner() { Id = 1, Name = "Meow" },
-                Ugyintezo = new Ugyintezo() { Id = 1, Name = "Kis Cica" },
-                Szoveg = "Éhesek a cicám valam2222it jó volna baszni ennek a dolognak mert ez már nem állapot roar!",
-                Targy = "Ez egy kiktatás",
-                Telephely = new Telephely() { Id = 1, Name = "Vajda" }
+                }
+            }      
 
-            };
-            konyv0.Partner.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "FluffyBoy0" });
-            List<Ikonyv> ikonyvek = new List<Ikonyv>() {konyv0, konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2, 
-                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
-                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
-                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-                konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2, konyv, konyv2,
-                konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,
-            konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv,konyv2,konyv3};
-            foreach (var response in ikonyvek)
-            {
-                await responseStream.WriteAsync(response);
-               
-            }
         }
         public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
         {
-            
-            return await Task.Run(()=> {
+
+            return await Task.Run(() =>
+            {
                 MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
                 Document document = databaseManager.GetDataById(request.Id);
-                return document; 
+                return document;
             });
         }
         public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
         {
-            return await Task.Run(() => {
-                
-                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length/(double)1024)/1024, Type = request.Type };
+            return await Task.Run(() =>
+            {
+
+                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length / (double)1024) / 1024, Type = request.Type };
             });
-          
+
         }
-        public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
-        {
-            return Task.Run(() => { return new Answer() { Error=false, Message="A törlés sikeres volt." }; });
-        }
+
         public override Task<Csoport> AddCsoportToTelephely(NewTorzsData request, ServerCallContext context)
         {
             return base.AddCsoportToTelephely(request, context);
@@ -227,13 +154,49 @@ namespace IktatogRPCServer.Service
         {
             return base.DisableUser(request, context);
         }
-        public override Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
+        public override async Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
         {
-            return base.GetAllUser(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<User> mysqlDatabaseManager = new UserDatabaseManager(connectionManager);
+
+                List<User> users = mysqlDatabaseManager.GetAllData(user);
+                foreach (var response in users)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new User());
+            }
         }
-        public override Task GetCsoportokByTelephely(Telephely request, IServerStreamWriter<Csoport> responseStream, ServerCallContext context)
+        public override async Task GetCsoportokByTelephely(Telephely request, IServerStreamWriter<Csoport> responseStream, ServerCallContext context)
         {
-            return base.GetCsoportokByTelephely(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Csoport> mysqlDatabaseManager = new CsoportDatabaseManager(connectionManager);
+
+                List<Csoport> users = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in users)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Csoport());
+            }
         }
         public override Task GetDocumentInfoByIkonyv(Ikonyv request, IServerStreamWriter<DocumentInfo> responseStream, ServerCallContext context)
         {
@@ -243,37 +206,181 @@ namespace IktatogRPCServer.Service
         {
             return base.GetIkonyvek(request, responseStream, context);
         }
-        public override Task GetJellegekByTelephely(Telephely request, IServerStreamWriter<Jelleg> responseStream, ServerCallContext context)
+        public override async Task GetJellegekByTelephely(Telephely request, IServerStreamWriter<Jelleg> responseStream, ServerCallContext context)
         {
-            return base.GetJellegekByTelephely(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Jelleg> mysqlDatabaseManager = new JellegDatabaseManager(connectionManager);
+
+                List<Jelleg> users = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in users)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Jelleg());
+            }
         }
-        public override Task GetPartnerekByTelephely(Telephely request, IServerStreamWriter<Partner> responseStream, ServerCallContext context)
+        public override async Task GetPartnerekByTelephely(Telephely request, IServerStreamWriter<Partner> responseStream, ServerCallContext context)
         {
-            return base.GetPartnerekByTelephely(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Partner> mysqlDatabaseManager = new PartnerDatabaseManager(connectionManager);
+
+                List<Partner> partnerek = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in partnerek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Partner());
+            }
         }
-        public override Task GetPartnerUgyintezoByPartner(Partner request, IServerStreamWriter<PartnerUgyintezo> responseStream, ServerCallContext context)
+        public override async Task GetPartnerUgyintezoByPartner(Partner request, IServerStreamWriter<PartnerUgyintezo> responseStream, ServerCallContext context)
         {
-            return base.GetPartnerUgyintezoByPartner(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<PartnerUgyintezo> mysqlDatabaseManager = new PartnerUgyintezoDatabaseManager(connectionManager);
+
+                List<PartnerUgyintezo> ugyintezok = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in ugyintezok)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new PartnerUgyintezo());
+            }
         }
-        public override Task GetPrivileges(EmptyMessage request, IServerStreamWriter<Privilege> responseStream, ServerCallContext context)
+        public override async Task GetPrivileges(EmptyMessage request, IServerStreamWriter<Privilege> responseStream, ServerCallContext context)
         {
-            return base.GetPrivileges(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
+
+                List<Privilege> privileges = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in privileges)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Privilege());
+            }
         }
-        public override Task GetShortIktSzamokByTelephely(Telephely request, IServerStreamWriter<RovidIkonyv> responseStream, ServerCallContext context)
+        public override async Task GetShortIktSzamokByTelephely(Telephely request, IServerStreamWriter<RovidIkonyv> responseStream, ServerCallContext context)
         {
-            return base.GetShortIktSzamokByTelephely(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<RovidIkonyv> mysqlDatabaseManager = new RovidIkonyvDatabaseManager(connectionManager);
+
+                List<RovidIkonyv> privileges = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in privileges)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new RovidIkonyv());
+            }
         }
-        public override Task GetTelephelyek(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
+        public override async Task GetTelephelyek(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
         {
-            return base.GetTelephelyek(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
+
+                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(user);
+                foreach (var response in telephelyek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Telephely());
+            }
         }
-        public override Task GetUgyintezokByTelephely(Telephely request, IServerStreamWriter<Ugyintezo> responseStream, ServerCallContext context)
+        public override async Task GetUgyintezokByTelephely(Telephely request, IServerStreamWriter<Ugyintezo> responseStream, ServerCallContext context)
         {
-            return base.GetUgyintezokByTelephely(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Ugyintezo> mysqlDatabaseManager = new UgyintezoDatabaseManager(connectionManager);
+
+                List<Ugyintezo> telephelyek = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in telephelyek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Ugyintezo());
+            }
         }
-        public override Task GetYears(EmptyMessage request, IServerStreamWriter<Year> responseStream, ServerCallContext context)
+        public override async Task GetYears(EmptyMessage request, IServerStreamWriter<Year> responseStream, ServerCallContext context)
         {
-            return base.GetYears(request, responseStream, context);
+            Metadata header = context.RequestHeaders;
+            User user;
+            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+
+            if (TokenManager.IsValidToken(authToken, out user))
+            {
+                MysqlDatabaseManager<Year> mysqlDatabaseManager = new YearsDatabaseManager(connectionManager);
+
+                List<Year> evek = mysqlDatabaseManager.GetAllData();
+                foreach (var response in evek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else {
+              await responseStream.WriteAsync(new Year());
+            }
+           
         }
         public override Task<Answer> ModifyCsoport(Csoport request, ServerCallContext context)
         {
@@ -330,6 +437,10 @@ namespace IktatogRPCServer.Service
         public override Task<Answer> RemoveUgyintezoFromTelephely(Ugyintezo request, ServerCallContext context)
         {
             return base.RemoveUgyintezoFromTelephely(request, context);
+        }
+        public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
+        {
+            return Task.Run(() => { return new Answer() { Error = false, Message = "A törlés sikeres volt." }; });
         }
     }
 }

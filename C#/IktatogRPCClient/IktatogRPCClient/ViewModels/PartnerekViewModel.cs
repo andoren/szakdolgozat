@@ -12,21 +12,22 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class PartnerekViewModel:Conductor<Screen>, IHandle<Partner>, IHandle<(Telephely, Partner)>,IHandle<Telephely>,IHandle<RemovedItem>
+    class PartnerekViewModel : Conductor<Screen>, IHandle<Partner>, IHandle<(Telephely, Partner)>, IHandle<Telephely>, IHandle<RemovedItem>
     {
         public PartnerekViewModel()
         {
             LoadData();
         }
-        private async void LoadData()
+        private void LoadData()
         {
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek =  await serverHelper.GetTelephelyekAsync();
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
             SelectedTelephely = AvailableTelephelyek.First();
+
         }
-        private bool _partnerekIsVisible=true;
+        private bool _partnerekIsVisible = true;
         private BindableCollection<Telephely> _availableTelephelyek;
         private Telephely _selectedTelephely;
         private ServerHelperSingleton serverHelper;
@@ -61,10 +62,12 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(() => SelectedTelephely);
-                AvailablePartnerek = serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely).Result;
+                LoadPartnerAsync();
             }
         }
-
+        private async void LoadPartnerAsync(){
+            AvailablePartnerek = await serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely);
+        }
 
 
         public BindableCollection<Telephely> AvailableTelephelyek

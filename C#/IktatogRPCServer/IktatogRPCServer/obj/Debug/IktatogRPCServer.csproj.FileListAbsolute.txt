@@ -48,6 +48,9 @@ E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Newtonsoft.
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.pdb
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.xml
 E:\Repos\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Newtonsoft.Json.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Google.Protobuf.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCDLL.pdb
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Upload\December.xlsx
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\server.crt
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\server.key
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\grpc_csharp_ext.x86.dll
@@ -56,6 +59,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\libgrpc_csharp_ext.x64.so
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\libgrpc_csharp_ext.x86.dylib
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\libgrpc_csharp_ext.x64.dylib
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\App.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCServer.exe.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCServer.pdb
@@ -74,12 +78,10 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Ubiety.Dns.Core.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Google.Protobuf.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Google.Protobuf.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Grpc.Core.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Grpc.Core.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Grpc.Core.Api.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Grpc.Core.Api.xml
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCDLL.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\IktatogRPCDLL.dll.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\JWT.xml
@@ -103,4 +105,3 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csprojAssemblyReference.cache
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Upload\December.xlsx

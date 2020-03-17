@@ -14,8 +14,9 @@ namespace IktatogRPCClient.ViewModels
     {
 		public IktatasViewModel()
 		{
-            AvailableTelephelyek = serverHelper.GetTelephelyekAsync().Result;
-            SelectedTelephely = AvailableTelephelyek[0];
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
+            SelectedTelephely = AvailableTelephelyek.First();
+            SelectedIrany = Iranyok.First();
             eventAggregator.Subscribe(this);
           
         }
@@ -24,16 +25,16 @@ namespace IktatogRPCClient.ViewModels
         private BindableCollection<Telephely> _availableTelephelyek;
         private Telephely _selectedTelephely;
         private Csoport _selectedCsoport;
-        private BindableCollection<Csoport> _availableCsoportok;
+        private BindableCollection<Csoport> _availableCsoportok = new BindableCollection<Csoport>();
         private string _targy;
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
-        private BindableCollection<Partner> _availablePartnerek;
-        private BindableCollection<PartnerUgyintezo> _availablePartnerUgyintezok;
+        private BindableCollection<Partner> _availablePartnerek = new BindableCollection<Partner>();
+        private BindableCollection<PartnerUgyintezo> _availablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>();
         private PartnerUgyintezo _selectedPartnerUgyintezo;
         private Partner _selectedPartner;
-        private BindableCollection<Jelleg> _availableJellegek;
+        private BindableCollection<Jelleg> _availableJellegek = new BindableCollection<Jelleg>();
         private Jelleg _selectedJelleg;
-        private BindableCollection<Ugyintezo> _availableUgyintezok;
+        private BindableCollection<Ugyintezo> _availableUgyintezok = new BindableCollection<Ugyintezo>();
         private Ugyintezo _selectedUgyintezo;
         private string _erkezettDatum = DateTime.Now.ToShortDateString();
         private BindableCollection<RovidIkonyv> _iktSzamok = new BindableCollection<RovidIkonyv>();
@@ -148,10 +149,12 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedPartner; }
             set { _selectedPartner = value;
                 NotifyOfPropertyChange(()=>SelectedPartner);
-                if(value != null)AvailablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
+                if (value != null) LoadPartnerUgyintezo();
             }
         }
-
+        private async void LoadPartnerUgyintezo() {
+            AvailablePartnerUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
+        }
         public PartnerUgyintezo SelectedPartnerUgyintezo
 
         {
@@ -215,13 +218,21 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
-                AvailableCsoportok = serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely).Result;
-                AvailablePartnerek = serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely).Result;
-                AvailableJellegek = serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely).Result;
-                AvailableUgyintezok = serverHelper.GetUgyintezokByTelephelyAsync(SelectedTelephely).Result;
+                GetTelephelyData();
             }
         }
-
+        private async void GetTelephelyData() {
+            SetLoader();
+                AvailableCsoportok.Clear();
+                AvailablePartnerek.Clear();
+                AvailableJellegek.Clear();
+                AvailableUgyintezok.Clear();
+                AvailableCsoportok  = await serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely);
+                AvailablePartnerek  = await serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely);
+                AvailableJellegek   = await serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely);
+                AvailableUgyintezok = await serverHelper.GetUgyintezokByTelephelyAsync(SelectedTelephely);
+            SetLoader();
+        }
         public BindableCollection<Telephely> AvailableTelephelyek
         {
             get { return _availableTelephelyek; }
@@ -255,15 +266,17 @@ namespace IktatogRPCClient.ViewModels
             get { return _valaszIsChecked; }
             set { _valaszIsChecked = value;
                 NotifyOfPropertyChange(() => ValaszIsChecked);
-                if (value) { 
-                    IktSzamok = serverHelper.GetShortIktSzamokByTelephelyAsync(SelectedTelephely).Result;
-                    if (IktSzamok.Count > 0) SelectedIktSzam = IktSzamok[0];
+                if (value) {
+                    LoadRovidIkonyvek();
                 }
                 else { IktSzamok.Clear(); }
             }
         }
 
-
+        private async void LoadRovidIkonyvek() {
+            IktSzamok = await serverHelper.GetShortIktSzamokByTelephelyAsync(SelectedTelephely);
+            if (IktSzamok.Count > 0) SelectedIktSzam = IktSzamok[0];
+        }
         public async void IktatButton(string targy,string erkezettDatum,string hatidoDatum, string hivatkozasiszam, string szoveg)
         {
             LoaderIsVisible = true;
@@ -322,6 +335,9 @@ namespace IktatogRPCClient.ViewModels
             _recentlyAddedIkonyvek.Remove(SelectedIkonyv);
             _recentlyAddedIkonyvek.Add(message);
             NotifyOfPropertyChange(()=>message);
+        }
+        private void SetLoader() {
+            LoaderIsVisible = !LoaderIsVisible;
         }
     }
 }

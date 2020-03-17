@@ -19,7 +19,7 @@
             <RowDefinition/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Grid  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+        <Grid  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MenuGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -37,59 +37,18 @@
             <Button Grid.Column="5" Margin="5" >Logging</Button>
             <Button Grid.Column="6" Margin="5" x:Name="StopServerAndQuit" Click="StopServerAndQuit_Click">Kilépés</Button>
         </Grid>
-        <GroupBox Grid.Row="2" Grid.Column="1" Header="Iktató szerver erőforrás"   HorizontalAlignment="Stretch" >
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Processzor: " Margin="0,0,0,10" FontSize="20" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                <ProgressBar Grid.Column="0" Grid.Row="1" Orientation="Vertical" x:Name="CpuBar"  Height="300"  Width="100" />
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-                    <TextBlock x:Name="ProcessorLabel" FontSize="20"  Text="0%" />
-                </StackPanel>
-
-
-                <TextBlock Margin="0,0,0,10" FontSize="20" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="Memória: " />
-                <ProgressBar Grid.Row="1" Grid.Column="1" x:Name="MemoryBar" Orientation="Vertical"  Height="300"  Width="95" />
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="1" Grid.Column="1">
-                    <TextBlock FontSize="20" x:Name="MemoryLable" Text="0%" />
-                </StackPanel>
-
-
-
-            </Grid>
-        </GroupBox>
-        <GroupBox Grid.Row="2" Grid.Column="2" Header="SQL szerver erőforrás"   HorizontalAlignment="Stretch" >
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Processzor: " Margin="0,0,0,10" FontSize="20" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                <ProgressBar Grid.Column="0" Grid.Row="1" Orientation="Vertical" x:Name="SQLCpuBar"  Height="300"  Width="100" />
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-                    <TextBlock x:Name="SQLProcessorLabel" FontSize="20"  Text="0%" />
-                </StackPanel>
-
-
-                <TextBlock Margin="0,0,0,10" FontSize="20" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="Memória: " />
-                <ProgressBar Grid.Row="1" Grid.Column="1" x:Name="SQLMemoryBar" Orientation="Vertical"  Height="300"  Width="95" />
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="1" Grid.Column="1">
-                    <TextBlock FontSize="20" x:Name="SQLMemoryLable" Text="0%" />
-                </StackPanel>
-
-
-
-            </Grid>
-        </GroupBox>
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Width="{Binding ElementName=MenuGrid, Path=ActualWidth}">
+            <TextBlock>Log:</TextBlock>
+            <TextBox x:Name="BoxToLog" IsReadOnly="True" TextWrapping="Wrap" 
+                             AcceptsReturn="True"
+                             VerticalContentAlignment="Top"
+                             HorizontalScrollBarVisibility="Disabled"
+                             VerticalScrollBarVisibility="Auto" 
+                             Margin="5 0 5 5" 
+                             VerticalAlignment="Stretch" 
+                             SpellCheck.IsEnabled="True"
+                             MinHeight="100"></TextBox>
+        </StackPanel>
+        
     </Grid>
 </Window>

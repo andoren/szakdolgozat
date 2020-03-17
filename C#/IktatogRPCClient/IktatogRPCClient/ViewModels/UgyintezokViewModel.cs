@@ -19,9 +19,9 @@ namespace IktatogRPCClient.ViewModels
             
             LoadData();
         }
-        private async void LoadData() {
+        private void LoadData() {
             eventAggregator.Subscribe(this);
-            ValaszthatoTelephely = await serverHelper.GetTelephelyekAsync();
+            ValaszthatoTelephely = serverHelper.GetTelephelyek();
             ValasztottTelephely = ValaszthatoTelephely.First();
       
         }
@@ -45,9 +45,12 @@ namespace IktatogRPCClient.ViewModels
             set {
                 _valasztottTelephely = value;
                 NotifyOfPropertyChange(() => ValasztottTelephely);
-                TelephelyUgyintezoi = serverHelper.GetUgyintezokByTelephelyAsync(value).Result;
+                GetUgyintezokAsync();
             }
-        }     
+        }
+        private async void GetUgyintezokAsync() {
+            TelephelyUgyintezoi = await serverHelper.GetUgyintezokByTelephelyAsync(ValasztottTelephely);
+        }
         public bool UgyintezokIsVisible
         {
             get {

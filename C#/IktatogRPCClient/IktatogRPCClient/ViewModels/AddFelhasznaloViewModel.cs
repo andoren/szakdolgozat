@@ -16,9 +16,9 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private async void LoadData() {
-            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
-            AvailablePrivileges = await serverHelper.GetPrivilegesAsync();
+        private  void LoadData() {
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
+            AvailablePrivileges = serverHelper.GetPrivileges();
         }
         private string _newUsername;
         private string _newFullname;

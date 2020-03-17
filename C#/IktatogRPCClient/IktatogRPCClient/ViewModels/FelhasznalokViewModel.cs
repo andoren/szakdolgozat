@@ -19,8 +19,8 @@ namespace IktatogRPCClient.ViewModels
 		{
 			LoadData();
 		}
-		private async void LoadData() {
-			AvailabelUsers = await serverHelper.GetAllUserAsync();
+		private void LoadData() {
+			AvailabelUsers = serverHelper.GetAllUser();
 			eventAggregator.Subscribe(this);
 		}
 		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();

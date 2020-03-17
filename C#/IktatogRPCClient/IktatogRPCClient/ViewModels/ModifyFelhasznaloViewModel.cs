@@ -16,10 +16,10 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private async void LoadData()
+        private void LoadData()
         {
-            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
-            AvailablePrivileges = await serverHelper.GetPrivilegesAsync();
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
+            AvailablePrivileges = serverHelper.GetPrivileges();
         }
         private string _newUsername;
         private string _newFullname;

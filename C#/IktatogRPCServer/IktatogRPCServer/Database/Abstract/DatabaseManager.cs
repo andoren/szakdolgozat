@@ -16,13 +16,14 @@ namespace IktatogRPCServer.Database.Abstract
         }
 
 
-        abstract public void OpenConnection();
-        abstract public void CloseConnection();
-        abstract public bool Add(T newObjet);
+        abstract public void OpenConnection(object connection);
+        abstract public void CloseConnection(object connection);
+        abstract public T Add(T newObjet);
         abstract public bool Update(T modifiedObject);
         abstract public bool Delete(int id);
 
         abstract public List<T> GetAllData();
+        abstract public List<T> GetAllData(object filter);
         abstract public T GetDataById(int id);
     }
 }

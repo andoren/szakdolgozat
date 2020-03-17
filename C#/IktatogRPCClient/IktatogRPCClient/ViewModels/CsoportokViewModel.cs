@@ -46,11 +46,14 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
-                TelephelyCsoportjai =  serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely).Result;
+                GetCsoportokAsync();
                 NotifyOfPropertyChange(()=>TelephelyCsoportjai);
             }
         }
+        private async void GetCsoportokAsync() {
+            TelephelyCsoportjai = await serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely);
 
+        }
         public BindableCollection<Telephely> ValaszthatoTelephely
         {
             get { return _valaszthatoTelephely; }
@@ -128,13 +131,14 @@ namespace IktatogRPCClient.ViewModels
                 }
             }
         }
-        private async void LoadData()
+        private void LoadData()
         {
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
             serverHelper = ServerHelperSingleton.GetInstance();
-            ValaszthatoTelephely = await serverHelper.GetTelephelyekAsync();
+            ValaszthatoTelephely = serverHelper.GetTelephelyek();
             SelectedTelephely = ValaszthatoTelephely.First();
+            
         }
 
         public void Handle((Telephely, Csoport) message)

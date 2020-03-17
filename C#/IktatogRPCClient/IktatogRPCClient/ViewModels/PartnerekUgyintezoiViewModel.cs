@@ -20,12 +20,12 @@ namespace IktatogRPCClient.ViewModels
         {
             LoadData();
         }
-        private  async void LoadData()
+        private   void LoadData()
         {
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
+            AvailableTelephelyek = serverHelper.GetTelephelyek();
             SelectedTelephely = AvailableTelephelyek.First();
         }
         private bool _partnerekIsVisible=true;
@@ -60,14 +60,15 @@ namespace IktatogRPCClient.ViewModels
         {
             get { return _selectedPartner; }
             set { 
-                _selectedPartner = value;
-                
-                if (value != null) AvailableUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
-                else AvailableUgyintezok =  new BindableCollection<PartnerUgyintezo>();
+                _selectedPartner = value;              
                 NotifyOfPropertyChange(() => SelectedPartner);
+                GetPartnerUgyintezokAsync();
             }
         }
-
+        private async void GetPartnerUgyintezokAsync() {
+            AvailableUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
+            
+        }
         public BindableCollection<Partner> AvailablePartnerek
         {
             get { return _availablePartnerek; }
@@ -83,11 +84,14 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedTelephely; }
             set { _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
-                AvailablePartnerek = serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely).Result;
-               
+                GetPartnerekAsync();
+
+
             }
         }
-
+        private async void GetPartnerekAsync() {
+            AvailablePartnerek = await serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely);
+        }
 
 
         public BindableCollection<Telephely> AvailableTelephelyek
