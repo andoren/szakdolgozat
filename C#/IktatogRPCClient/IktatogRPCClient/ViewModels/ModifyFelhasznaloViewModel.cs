@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class ModifyFelhasznaloViewModel : TorzsDataView<UserProxy>, IHandle<UserProxy>
+    class ModifyFelhasznaloViewModel : TorzsDataView<UserProxy>, IHandle<UserProxy>,IHandle<BindableCollection<Telephely>>
     {
         public ModifyFelhasznaloViewModel()
         {
@@ -18,7 +18,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private void LoadData()
         {
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
+           
             AvailablePrivileges = serverHelper.GetPrivileges();
         }
         private string _newUsername;
@@ -170,13 +170,13 @@ namespace IktatogRPCClient.ViewModels
             return IsValid;
         }
 
-        public void Handle(UserProxy message)
+        public async void Handle(UserProxy message)
         {
             ModifiedUser = message;
             NewFullname = message.Fullname;
             NewUsername = message.Username;
-            
-            SelectedTelephelyek = message.Telephelyek;
+
+            SelectedTelephelyek = await serverHelper.GetUserTelephelyeiAsync(message);
             for (int i = 0; i < AvailableTelephelyek.Count; i++)
             {
                 for (int j = 0; j < SelectedTelephelyek.Count; j++)
@@ -187,6 +187,11 @@ namespace IktatogRPCClient.ViewModels
             SelectedPrivilege = message.Privilege;
             NotifyOfPropertyChange(()=>SelectedTelephelyek);
             NotifyOfPropertyChange(() => AvailableTelephelyek);
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            AvailableTelephelyek = new BindableCollection<Telephely>(message);
         }
     }
 }

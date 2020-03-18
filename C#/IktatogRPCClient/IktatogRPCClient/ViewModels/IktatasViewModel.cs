@@ -14,11 +14,17 @@ namespace IktatogRPCClient.ViewModels
     {
 		public IktatasViewModel()
 		{
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
-            SelectedTelephely = AvailableTelephelyek.First();
+
+            LoadData();
+        }
+        private async void LoadData() {
+
+            
             SelectedIrany = Iranyok.First();
             eventAggregator.Subscribe(this);
-          
+            AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
+            if(AvailableTelephelyek.Count >0)SelectedTelephely = AvailableTelephelyek.First();
+            
         }
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         private static BindableCollection<Ikonyv> _recentlyAddedIkonyvek = new BindableCollection<Ikonyv>();
@@ -338,6 +344,12 @@ namespace IktatogRPCClient.ViewModels
         }
         private void SetLoader() {
             LoaderIsVisible = !LoaderIsVisible;
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            AvailableTelephelyek = message;
+            SelectedTelephely = AvailableTelephelyek.First();
         }
     }
 }

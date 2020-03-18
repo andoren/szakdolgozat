@@ -107,7 +107,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Logging.LogToScreenAndFile(ex.Message);
 
             }
-     
+            Logging.LogToScreenAndFile($"Új felhasználó hozzáadva: {newUser.Username}. {user.Username} felhasználó által");
             return newUser;
         }
         private void AddUserToTelephely(User user,Telephely telephely) {
@@ -325,7 +325,10 @@ namespace IktatogRPCServer.Database.Mysql
 
             return userek;
         }
+        private User GetUserTelephelyei(User user) {
 
+            return user;
+        }
         public override User Add(NewTorzsData newObject, User user)
         {
             throw new NotImplementedException();

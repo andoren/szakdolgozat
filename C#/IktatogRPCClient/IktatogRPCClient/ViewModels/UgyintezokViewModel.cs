@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>,IHandle<(Telephely,Ugyintezo)>,IHandle<Telephely>,IHandle<RemovedItem>
+    class UgyintezokViewModel:Conductor<Screen>,IHandle<Ugyintezo>,
+        IHandle<(Telephely,Ugyintezo)>,IHandle<Telephely>,IHandle<RemovedItem>,IHandle<BindableCollection<Telephely>>
     {
         public UgyintezokViewModel()
         {
@@ -21,8 +22,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private void LoadData() {
             eventAggregator.Subscribe(this);
-            ValaszthatoTelephely = serverHelper.GetTelephelyek();
-            ValasztottTelephely = ValaszthatoTelephely.First();
+       
       
         }
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance(); 
@@ -183,5 +183,10 @@ namespace IktatogRPCClient.ViewModels
             }
         }
 
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            ValaszthatoTelephely = message;
+            if (ValaszthatoTelephely.Count > 0)ValasztottTelephely = ValaszthatoTelephely.First();
+        }
     }
 }

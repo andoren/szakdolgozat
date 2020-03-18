@@ -49,7 +49,7 @@ service IktatoService {
   rpc GetDocumentById (DocumentInfo)returns (Document);
   rpc UploadDocument (Document) returns (DocumentInfo);
   rpc Removedocument (DocumentInfo) returns (Answer);
-
+  rpc GetUserTelephelyei (User) returns (stream Telephely);
 }
 message NewTorzsData{
     Partner Partner = 1;

@@ -26,9 +26,9 @@
                 <ContentControl Grid.Column="1"  Margin="10"  x:Name="JellegekViewModel"/>
                 <ContentControl Grid.Column="2"  Margin="10" x:Name="PartnersViewModel"/>
                 <ContentControl Grid.Row="1" Grid.Column="0"  Margin="10" x:Name="PartnerekUgyintezoiViewModel"/>
-                <ContentControl Grid.Row="1" Grid.Column="1"  Margin="10" IsEnabled="{Binding Path=AdminSettingsIsVisible}"  x:Name="TelephelyekViewModel" />
-                <ContentControl Grid.Row="1" Grid.Column="2"  Margin="10" IsEnabled="{Binding Path=AdminSettingsIsVisible}"  x:Name="CsoportokViewModel"/>
-                <ContentControl Grid.Row="2" Grid.Column="0"  Margin="10" IsEnabled="{Binding Path=AdminSettingsIsVisible}"  x:Name="FelhasznalokViewModel"/>
+                <ContentControl Grid.Row="1" Grid.Column="1"  Margin="10"  x:Name="TelephelyekViewModel" />
+                <ContentControl Grid.Row="1" Grid.Column="2"  Margin="10"   x:Name="CsoportokViewModel"/>
+                <ContentControl Grid.Row="2" Grid.Column="0"  Margin="10"   x:Name="FelhasznalokViewModel"/>
             </Grid>
         </ScrollViewer>
     </Grid>

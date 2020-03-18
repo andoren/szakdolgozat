@@ -46,7 +46,7 @@ namespace IktatogRPCClient.ViewModels
             set
             {
                 _ugyintezoNeve = value;
-                NotifyOfPropertyChange(()=>UgyintezoNeve);
+                NotifyOfPropertyChange(() => UgyintezoNeve);
                 NotifyOfPropertyChange(() => CanDoAction);
             }
         }

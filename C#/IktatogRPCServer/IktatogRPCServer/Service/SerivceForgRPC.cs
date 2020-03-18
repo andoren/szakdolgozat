@@ -16,7 +16,7 @@ namespace IktatogRPCServer.Service
     {
         readonly TokenSerivce TokenManager = new TokenSerivce();
         readonly ConnectionManager connectionManager = new ConnectionManager();
-        readonly static List<(string,DateTime)> InvalidTokens = new List<(string, DateTime)>();
+         static List<(string,DateTime)> InvalidTokens = new List<(string, DateTime)>();
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
             UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
@@ -32,11 +32,6 @@ namespace IktatogRPCServer.Service
                 Status s = new Status(StatusCode.Unauthenticated, "Hibás felhasználónév vagy jelszó!");
                 return Task.FromException<User>(new RpcException(s));
             }
-
-            //if (context.RequestHeaders.Select(x => x.Value == "kiscica") != null)
-            //{
-            //    return Task.FromResult<User>(new User() { Id = 1, Username = "Misi", Fullname = "Pekár Mihály",, Privilege = new Privilege() { Id = 1, Name = "Admin" } });
-            //}
 
         }
         public override Task<Answer> Logout(EmptyMessage request, ServerCallContext context)
@@ -61,7 +56,7 @@ namespace IktatogRPCServer.Service
         public override Task<User> AddUser(User request, ServerCallContext context)
         {
             User user;
-            if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "Admin")
+            if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
                 MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user)); ;
@@ -79,19 +74,7 @@ namespace IktatogRPCServer.Service
             else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
-
-
-        //TODO
-        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
-        {
-
-            return await Task.Run(() =>
-            {
-                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
-                Document document = databaseManager.GetDataById(request.Id);
-                return document;
-            });
-        }
+       
         
         //TODO
         public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
@@ -201,7 +184,37 @@ namespace IktatogRPCServer.Service
 
             return base.ListallIktatas(request, responseStream, context);
         }
+        public async override Task GetUserTelephelyei(User request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
 
+                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(request);
+                foreach (var response in telephelyek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Telephely());
+            }
+        }
+
+        //TODO
+        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        {
+
+            return await Task.Run(() =>
+            {
+                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
+                Document document = databaseManager.GetDataById(request.Id);
+                return document;
+            });
+        }
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
             User user;
@@ -524,7 +537,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                if (user.Privilege.Name == "Admin")
+                if (user.Privilege.Name == "admin")
                 {
                     MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                     return Task.FromResult(manager.Delete(request.Id, user));
@@ -620,13 +633,24 @@ namespace IktatogRPCServer.Service
             else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
         private bool CheckUserIsValid(Metadata header, out User user) {
-            
-            AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-            if (TokenIsUsed(authToken)) {
+            bool success = false;
+            try
+            {
+                AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
+                if (TokenIsUsed(authToken))
+                {
+                    user = new User();
+                    success  = false;
+                }
+
+                success = TokenManager.IsValidToken(authToken, out user);
+            }
+            catch (Exception e) {
+                Logger.Logging.LogToScreenAndFile($"Hiba történt a user validálása közben. {e.Message}");
                 user = new User();
-                return false;
-            } 
-            return TokenManager.IsValidToken(authToken, out user);
+            }
+            
+            return success;
         }
         private bool TokenIsUsed(AuthToken token) {
             bool used = false;

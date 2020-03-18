@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-	class FelhasznalokViewModel : Conductor<Screen>, IHandle<UserProxy>
+	class FelhasznalokViewModel : Conductor<Screen>, IHandle<UserProxy>, IHandle<BindableCollection<Telephely>>
 	{
 
 		public FelhasznalokViewModel()
 		{
 			LoadData();
 		}
-		private void LoadData() {
-			AvailabelUsers = serverHelper.GetAllUser();
+		private async void LoadData() {
+			AvailabelUsers = await serverHelper.GetAllUserAsync();
 			eventAggregator.Subscribe(this);
 		}
 		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
@@ -28,7 +28,7 @@ namespace IktatogRPCClient.ViewModels
 		private BindableCollection<UserProxy> _availableUsers;
 		private UserProxy _selectedUser;
 		private bool _usersIsVisible = true;
-
+		private BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
 		public bool UsersIsVisible
 		{
 			get { return _usersIsVisible; }
@@ -71,8 +71,9 @@ namespace IktatogRPCClient.ViewModels
 		public void CreateUser() {
 			UsersIsVisible = false;
 			Screen createScreen = SceneManager.CreateScene(Scenes.AddFelhasznalo);
+			eventAggregator.Subscribe(createScreen);
 			ActivateItem(createScreen);
-			
+			eventAggregator.PublishOnUIThread(telephelyek);
 		}
 		public void ModifyUser() {
 			UsersIsVisible = false;
@@ -80,6 +81,7 @@ namespace IktatogRPCClient.ViewModels
 			eventAggregator.Subscribe(modifyScreen);
 			ActivateItem(modifyScreen);
 			eventAggregator.PublishOnUIThread(SelectedUser);
+			eventAggregator.PublishOnUIThread(telephelyek);
 		}
 		public async void DisableUser() {
 			if ( await serverHelper.DisableUserAsync(SelectedUser.GetUser)) {
@@ -101,6 +103,11 @@ namespace IktatogRPCClient.ViewModels
 				NotifyOfPropertyChange(()=>AvailabelUsers);
 			}
 			else if (!string.IsNullOrWhiteSpace(message.Fullname)) { AvailabelUsers.Add(message); }
+		}
+
+		public void Handle(BindableCollection<Telephely> message)
+		{
+			telephelyek = message;
 		}
 	}
 }

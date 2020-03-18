@@ -188,6 +188,26 @@ namespace IktatogRPCClient.Models.Managers
             }
             return csoportok;
         }
+
+        public async Task<BindableCollection<Telephely>> GetUserTelephelyeiAsync(UserProxy message)
+        {
+            BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
+            try
+            {
+                var stream = client.GetUserTelephelyei(message.GetUser, calloptions);
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    telephelyek.Add(stream.ResponseStream.Current);
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+            return telephelyek;
+        }
+
         public async Task<BindableCollection<Partner>> GetPartnerekByTelephelyAsync(Telephely selectedTelephely)
         {
             /*
@@ -287,42 +307,42 @@ namespace IktatogRPCClient.Models.Managers
 
             return ugyintezok;
         }
-        public  BindableCollection<Telephely> GetTelephelyek()
+        public async Task<BindableCollection<Telephely>> GetTelephelyekAsync()
         {
-            //return new BindableCollection<Telephely>() { new Telephely() { Id = 1, Name = "Rákóczi" }, new Telephely() { Id = 2, Name = "Vajda" } };
+          
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
                 var stream = client.GetTelephelyek(new EmptyMessage(), calloptions);
-                while (stream.ResponseStream.MoveNext().Result)
+                while (await stream.ResponseStream.MoveNext())
                 {
                     telephelyek.Add(stream.ResponseStream.Current);
                 }
                 
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                MessageBox.Show(e.Message);
             }
             return telephelyek;
         }
-        public BindableCollection<UserProxy> GetAllUser()
+        public async Task<BindableCollection<UserProxy>> GetAllUserAsync()
         {
             BindableCollection<UserProxy> userProxies = new BindableCollection<UserProxy>();
             try
             {
                 
                 var stream = client.GetAllUser(new EmptyMessage(), calloptions);
-                while (stream.ResponseStream.MoveNext().Result)
+                while (await stream.ResponseStream.MoveNext())
                 {
                     userProxies.Add(new UserProxy(stream.ResponseStream.Current));
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                MessageBox.Show(e.Message);
+              
             }
             return userProxies;
         }
@@ -581,6 +601,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
+                selectedPartnerUgyintezo.Name = ugyintezoNeve;
                 Answer answer = await client.ModifyPartnerUgyintezoAsync(selectedPartnerUgyintezo, calloptions);
                 if (answer.Error == false)
                 {

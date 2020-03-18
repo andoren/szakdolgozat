@@ -14,19 +14,18 @@ namespace IktatogRPCClient.ViewModels
 {
     class PartnerekUgyintezoiViewModel:Conductor<Screen>,IHandle<Partner>,IHandle<(Telephely,Partner)>
         ,IHandle<RemovedItem>,IHandle<Telephely>,IHandle<(Partner,PartnerUgyintezo)>, IHandle<PartnerUgyintezo>,
-        IHandle<(Telephely, Partner, PartnerUgyintezo)>
+        IHandle<(Telephely, Partner, PartnerUgyintezo)>, IHandle<BindableCollection<Telephely>>
     {
         public PartnerekUgyintezoiViewModel()
         {
             LoadData();
         }
-        private   void LoadData()
+        private  void LoadData()
         {
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
-            SelectedTelephely = AvailableTelephelyek.First();
+
         }
         private bool _partnerekIsVisible=true;
         private BindableCollection<Telephely> _availableTelephelyek;
@@ -249,6 +248,12 @@ namespace IktatogRPCClient.ViewModels
                     }
                 }
             }
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            AvailableTelephelyek = message ;
+            SelectedTelephely = AvailableTelephelyek.First();
         }
     }
 }

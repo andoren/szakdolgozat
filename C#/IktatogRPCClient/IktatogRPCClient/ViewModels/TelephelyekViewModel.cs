@@ -12,16 +12,14 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class TelephelyekViewModel : Conductor<Screen>, IHandle<Telephely>
+    class TelephelyekViewModel : Conductor<Screen>, IHandle<Telephely>,IHandle<BindableCollection<Telephely>>
     {
         public TelephelyekViewModel()
         {
-            LoadData();
-        }
-        private  void LoadData() {
-            Telephelyek = serverHelper.GetTelephelyek();
             eventAggregator.Subscribe(this);
         }
+
+
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         private BindableCollection<Telephely> _telephelyek;
         private Telephely _selectedTelephely;
@@ -97,7 +95,8 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle(Telephely message)
         {
-            if(Telephelyek.Where(x=>x.Name == message.Name).FirstOrDefault() == null) { 
+            Telephely telephely1 = Telephelyek.Where(x => x.Name == message.Name).FirstOrDefault();
+            if (telephely1 == null) { 
                 if (message != SelectedTelephely) {
                 
                     Telephely telephely = Telephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
@@ -116,6 +115,11 @@ namespace IktatogRPCClient.ViewModels
                 }
             }
 
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            Telephelyek = new BindableCollection<Telephely>(message);
         }
     }
 }

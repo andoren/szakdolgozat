@@ -10,16 +10,15 @@ using System.Windows.Controls;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddFelhasznaloViewModel : TorzsDataView<UserProxy>
+    class AddFelhasznaloViewModel : TorzsDataView<UserProxy>,IHandle<BindableCollection<Telephely>>
     {
         public AddFelhasznaloViewModel()
         {
-            LoadData();
-        }
-        private  void LoadData() {
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
             AvailablePrivileges = serverHelper.GetPrivileges();
         }
+       
+            
+   
         private string _newUsername;
         private string _newFullname;
         private string _newPassword;
@@ -157,5 +156,9 @@ namespace IktatogRPCClient.ViewModels
             NewPassword = source.Password;
         }
 
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            AvailableTelephelyek = new BindableCollection<Telephely>(message);
+        }
     }
 }

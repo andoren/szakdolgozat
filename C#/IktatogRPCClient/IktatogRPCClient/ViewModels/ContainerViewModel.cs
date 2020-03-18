@@ -63,8 +63,16 @@ namespace IktatogRPCClient.ViewModels
             manager.ShowWindow(new LoginViewModel(), null, null);
             TryClose();
         }
-        public void Kilepes() {
-            if(serverHelper.LogoutAsync().Result)
+        public async void Kilepes() {
+            LoaderIsVisible = true;
+            try
+            {
+
+
+                await serverHelper.LogoutAsync();
+            }
+            catch (Exception) { }
+            LoaderIsVisible = false;
             TryClose();
         }
 

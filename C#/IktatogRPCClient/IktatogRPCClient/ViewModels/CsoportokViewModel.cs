@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>,IHandle<(Telephely,Csoport)>, IHandle<Telephely>,IHandle<RemovedItem>
+    class CsoportokViewModel : Conductor<Screen>, IHandle<Csoport>,IHandle<(Telephely,Csoport)>, 
+        IHandle<Telephely>,IHandle<RemovedItem>,IHandle<BindableCollection<Telephely>>
     {
 
         public CsoportokViewModel()
@@ -57,7 +58,9 @@ namespace IktatogRPCClient.ViewModels
         public BindableCollection<Telephely> ValaszthatoTelephely
         {
             get { return _valaszthatoTelephely; }
-            set { _valaszthatoTelephely = value; }
+            set { _valaszthatoTelephely = value;
+                NotifyOfPropertyChange(()=>ValaszthatoTelephely);
+            }
         }
 
 
@@ -136,8 +139,7 @@ namespace IktatogRPCClient.ViewModels
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
             serverHelper = ServerHelperSingleton.GetInstance();
-            ValaszthatoTelephely = serverHelper.GetTelephelyek();
-            SelectedTelephely = ValaszthatoTelephely.First();
+
             
         }
 
@@ -178,6 +180,12 @@ namespace IktatogRPCClient.ViewModels
                 ValaszthatoTelephely.Remove(telephely);
                 NotifyOfPropertyChange(() => ValaszthatoTelephely);
             }
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            ValaszthatoTelephely = message;
+            SelectedTelephely = ValaszthatoTelephely.First();
         }
     }
 }

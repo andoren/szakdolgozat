@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class JellegekViewModel : Conductor<Screen>, IHandle<Jelleg>, IHandle<(Telephely, Jelleg)>,IHandle<Telephely>,IHandle<RemovedItem>
+    class JellegekViewModel : Conductor<Screen>, IHandle<Jelleg>, 
+        IHandle<(Telephely, Jelleg)>,IHandle<Telephely>,IHandle<RemovedItem>,IHandle<BindableCollection<Telephely>>
     {
         public JellegekViewModel()
         {
@@ -22,8 +23,7 @@ namespace IktatogRPCClient.ViewModels
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-            AvailableTelephelyek = serverHelper.GetTelephelyek();
-            SelectedTelephely = AvailableTelephelyek.First();
+          
         }
         private bool _jellegekIsVisible = true;
         private BindableCollection<Telephely> _availableTelephelyek;
@@ -180,6 +180,12 @@ namespace IktatogRPCClient.ViewModels
                 AvailableTelephelyek.Remove(telephely);
                 NotifyOfPropertyChange(() => AvailableTelephelyek);
             }
+        }
+
+        public void Handle(BindableCollection<Telephely> message)
+        {
+            AvailableTelephelyek = message;
+            SelectedTelephely = AvailableTelephelyek.First();
         }
     }
 }

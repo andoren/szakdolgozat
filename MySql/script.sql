@@ -18,6 +18,8 @@ call addtelephely("Vajda",1, @v);
 call addtelephely("Rákóczi",1, @v);
 call addtelephely("Tessedik",1, @v);
 call addUser('misi','kiscica','Pekár Mihály',2,@v);
+select * from felh_telephely;
+select * from user;
 call addUserToTelephely(1,1);
 call addUserToTelephely(1,2);
 call addUserToTelephely(1,3);

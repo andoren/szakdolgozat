@@ -17,6 +17,10 @@ namespace IktatogRPCClient.ViewModels
         
         public TorzsViewModel()
         {
+            Initialize();
+            GetTelephelyekAsync();
+        }
+        private  void Initialize() {
             UgyintezokViewModel = SceneManager.CreateScene(Scenes.Ugyintezok);
             TelephelyekViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
             CsoportokViewModel = SceneManager.CreateScene(Scenes.Csoportok);
@@ -24,13 +28,18 @@ namespace IktatogRPCClient.ViewModels
             FelhasznalokViewModel = SceneManager.CreateScene(Scenes.Felhasznalok);
             PartnersViewModel = SceneManager.CreateScene(Scenes.Partnerek);
             PartnerekUgyintezoiViewModel = SceneManager.CreateScene(Scenes.PartnerekUgyintezoi);
-            Items.Add(UgyintezokViewModel);
-            Items.Add(TelephelyekViewModel);
-            Items.Add(CsoportokViewModel);
-            Items.Add(JellegekViewModel);
-            Items.Add(FelhasznalokViewModel);
-            Items.Add(PartnersViewModel);
-            Items.Add(PartnerekUgyintezoiViewModel);
+            AddScreensToEventAggregator(UgyintezokViewModel, TelephelyekViewModel, CsoportokViewModel,
+                JellegekViewModel, FelhasznalokViewModel, PartnersViewModel, PartnerekUgyintezoiViewModel);
+            AddScreensToShowIt(UgyintezokViewModel, TelephelyekViewModel, CsoportokViewModel,
+                JellegekViewModel, FelhasznalokViewModel, PartnersViewModel, PartnerekUgyintezoiViewModel);
+            
+        }
+        EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
+        private async void GetTelephelyekAsync() {
+            LoaderIsVisible = true;
+            BindableCollection<Telephely> telephelyek = await ServerHelperSingleton.GetInstance().GetTelephelyekAsync();
+            await eventAggregator.PublishOnUIThreadAsync(telephelyek);
+            LoaderIsVisible = false;
         }
         public Screen PartnerekUgyintezoiViewModel { get; set; }
         public Screen UgyintezokViewModel { get; private set; }
@@ -47,6 +56,43 @@ namespace IktatogRPCClient.ViewModels
             get{
                 return userHelper.IsAdmin;
             }
+        }
+        public bool CsoportokViewModelIsVisible {
+            get
+            {
+                return AdminSettingsIsVisible;
+            }
+        }
+        public bool FelhasznalokViewModelIsVisible
+        {
+            get
+            {
+                return AdminSettingsIsVisible;
+            }
+        }
+        public bool TelephelyekViewModelIsVisible
+        {
+            get
+            {
+                return AdminSettingsIsVisible;
+            }
+        }
+
+        public bool LoaderIsVisible { get; private set; }
+
+        private void AddScreensToEventAggregator(params Screen[] screens) {
+           
+            foreach (var screen in screens)
+            {
+                eventAggregator.Subscribe(screen);
+            }
+        }
+        private void AddScreensToShowIt(params Screen[] screens) {
+            foreach (var screen in screens)
+            {
+                Items.Add(screen);
+            }
+            
         }
 
     }
