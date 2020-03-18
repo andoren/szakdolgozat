@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
 using System;
@@ -22,7 +23,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private bool _loaderIsVisible;
         private string _currentUSer;
-
+        private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         public string CurrentUser
         {
             get { return _currentUSer; }
@@ -53,12 +54,17 @@ namespace IktatogRPCClient.ViewModels
         
         }
 
-        public void Kijelentkezes() {
+        public async void Kijelentkezes() {
+            LoaderIsVisible = true;
+           
+            await serverHelper.LogoutAsync();
+            LoaderIsVisible = false;
             var manager = new WindowManager();
             manager.ShowWindow(new LoginViewModel(), null, null);
             TryClose();
         }
         public void Kilepes() {
+            if(serverHelper.LogoutAsync().Result)
             TryClose();
         }
 

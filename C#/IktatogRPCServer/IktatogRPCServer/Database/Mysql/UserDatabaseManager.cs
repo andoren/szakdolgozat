@@ -161,7 +161,6 @@ namespace IktatogRPCServer.Database.Mysql
 
             }
         }
-
         public override Answer Delete(int id, User user)
         {
             MySqlCommand command = new MySqlCommand();
@@ -222,19 +221,60 @@ namespace IktatogRPCServer.Database.Mysql
         }
         public bool IsValidUser(LoginMessage request, out User user)
         {
+            MySqlConnection connection = GetConnection();
+            bool eredmeny = false;
             user = new User();
-            if (request.Username == "misi")
+            try
             {
-                user.Username = request.Username;
-                user.Fullname = "Pekár Mihály";
-                user.Id = 1;
-                user.Privilege = new Privilege() { Id = 1, Name = "Admin" };
-                return true;
+                MySqlCommand command = new MySqlCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "UserLogin";
+                MySqlParameter usernamep = new MySqlParameter()
+                {
+                    ParameterName = "@username_b",
+                    DbType = System.Data.DbType.String,
+                    Value = request.Username,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+
+                MySqlParameter passwordp = new MySqlParameter()
+                {
+                    ParameterName = "@password_b",
+                    DbType = System.Data.DbType.String,
+                    Value = request.Password,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(usernamep);
+                command.Parameters.Add(passwordp);
+                command.Connection = connection;
+                OpenConnection(connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                eredmeny = reader.HasRows;
+                if (eredmeny)
+                {
+                    reader.Read();
+                    user.Id = int.Parse(reader["id"].ToString());
+                    user.Username = reader["username"].ToString();
+                    user.Fullname = reader["FullName"].ToString();
+                    user.Privilege = new Privilege() { Id= int.Parse(reader["privilegeid"].ToString()),Name = reader["privilegename"].ToString() };
+                    
+                }
+
             }
-            else
+            catch (MySqlException ex)
             {
-                return false;
+                Logging.LogToScreenAndFile("Location: "+nameof(this.IsValidUser)+"Error code: " + ex.Code + Environment.NewLine +"Error message: " + ex.Message);
             }
+            catch (Exception e)
+            {
+                Logging.LogToScreenAndFile("Location: " + nameof(this.IsValidUser) + e.Message);
+            }
+            finally
+            {
+                CloseConnection(connection);
+          
+            }
+            return eredmeny;
         }
 
         public override List<User> GetAllData(object filter)
