@@ -16,12 +16,19 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override Privilege Add(Privilege newObjet)
+ 
+
+        public override Privilege Add(NewTorzsData newObject, User user)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Delete(int id)
+        public override Privilege Add(Privilege newObject, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
@@ -80,7 +87,7 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override bool Update(Privilege modifiedObject)
+        public override Answer Update(Privilege modifiedObject)
         {
             throw new NotImplementedException();
         }

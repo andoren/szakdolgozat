@@ -16,12 +16,19 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
     
-        public override Ikonyv Add(Ikonyv newObjet)
+
+
+        public override Ikonyv Add(NewTorzsData newObject, User user)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Delete(int id)
+        public override Ikonyv Add(Ikonyv newObject, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
@@ -97,7 +104,7 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override bool Update(Ikonyv modifiedObject)
+        public override Answer Update(Ikonyv modifiedObject)
         {
             throw new NotImplementedException();
         }

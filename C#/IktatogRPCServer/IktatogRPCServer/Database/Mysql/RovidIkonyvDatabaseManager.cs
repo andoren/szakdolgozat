@@ -16,12 +16,19 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override RovidIkonyv Add(RovidIkonyv newObjet)
+  
+
+        public override RovidIkonyv Add(NewTorzsData newObject, User user)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Delete(int id)
+        public override RovidIkonyv Add(RovidIkonyv newObject, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
@@ -84,7 +91,7 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override bool Update(RovidIkonyv modifiedObject)
+        public override Answer Update(RovidIkonyv modifiedObject)
         {
             throw new NotImplementedException();
         }

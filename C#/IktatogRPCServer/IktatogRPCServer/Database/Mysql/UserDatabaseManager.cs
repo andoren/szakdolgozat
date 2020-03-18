@@ -17,15 +17,195 @@ namespace IktatogRPCServer.Database.Mysql
 
         }
 
-        public override User Add(User newObjet, User user)
+        public override User Add(User newObject, User user)
         {
-            throw new NotImplementedException();
+            User newUser = new User()
+            {
+                Username = newObject.Username,
+                Fullname = newObject.Fullname,
+                Privilege = newObject.Privilege,
+                
+            };
+            foreach (var telephely in newObject.Telephelyek)
+            {
+                newUser.Telephelyek.Add(telephely);
+            }
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "adduser";
+            //IN PARAMETERS in username_b varchar(45),in password_b varchar(250), in fullname_b varchar(120), in privilege_b tinyint
+            MySqlParameter usernamep = new MySqlParameter()
+            {
+                ParameterName = "@username_b",
+                DbType = System.Data.DbType.String,
+                Value = newUser.Username,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+            MySqlParameter passwordp = new MySqlParameter()
+            {
+                ParameterName = "@password_b",
+                DbType = System.Data.DbType.String,
+                Value = newObject.Password,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+            MySqlParameter fullnamep = new MySqlParameter()
+            {
+                ParameterName = "@fullname_b",
+                DbType = System.Data.DbType.String,
+                Value = newUser.Fullname,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter privilege_b = new MySqlParameter()
+            {
+                ParameterName = "@privilege_b",
+                DbType = System.Data.DbType.Int32,
+                Value = newUser.Privilege.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(usernamep);
+            command.Parameters.Add(passwordp);
+            command.Parameters.Add(fullnamep);
+            command.Parameters.Add(privilege_b);
+            //OUTPARAMETER
+            MySqlParameter newPartnerId = new MySqlParameter()
+            {
+                ParameterName = "newid_b",
+                DbType = System.Data.DbType.Int32,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            command.Parameters.Add(newPartnerId);
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    newUser.Id = int.Parse(command.Parameters["newid_b"].Value.ToString());
+                    foreach (var telephely in newUser.Telephelyek)
+                    {
+                        AddUserToTelephely(newUser, telephely);
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+     
+            return newUser;
+        }
+        private void AddUserToTelephely(User user,Telephely telephely) {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "addusertotelephely";
+            //IN PARAMETERS 
+            MySqlParameter useridp = new MySqlParameter()
+            {
+                ParameterName = "@user_id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+            MySqlParameter telephelyp = new MySqlParameter()
+            {
+                ParameterName = "@telephely_b",
+                DbType = System.Data.DbType.Int32,
+                Value = telephely.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+
+            command.Parameters.Add(useridp);
+            command.Parameters.Add(telephelyp);
+
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    command.ExecuteNonQuery();                   
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
         }
 
-
-        public override bool Delete(int id)
+        public override Answer Delete(int id, User user)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection connection = GetConnection();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "deluser";
+            MySqlParameter idp = new MySqlParameter()
+            {
+                ParameterName = "@user_id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter deleterp = new MySqlParameter()
+            {
+                ParameterName = "@deleter_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(idp);
+            command.Parameters.Add(deleterp);
+            bool eredmeny = true;
+            string message = "Sikeres törlés!";
+            try
+            {
+                OpenConnection(connection);
+                command.Connection = connection;
+                eredmeny = command.ExecuteNonQuery() == 0;
+                if (eredmeny) message = "Hiba a törlés közben.";
+            }
+            catch (MySqlException ex)
+            {
+                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+            }
+            catch (Exception e)
+            {
+                Logging.LogToScreenAndFile(e.Message);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+            return new Answer() { Error = eredmeny, Message = message };
         }
 
         public override List<User> GetAllData()
@@ -36,7 +216,7 @@ namespace IktatogRPCServer.Database.Mysql
         {
             throw new NotImplementedException();
         }
-        public override bool Update(User modifiedObject)
+        public override Answer Update(User modifiedObject)
         {
             throw new NotImplementedException();
         }
@@ -66,7 +246,7 @@ namespace IktatogRPCServer.Database.Mysql
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getusers";
-                command.Parameters.AddWithValue("@user_b", user.Id);
+                
                 try
                 {
                     MySqlConnection connection = GetConnection();
@@ -104,6 +284,11 @@ namespace IktatogRPCServer.Database.Mysql
             }
 
             return userek;
+        }
+
+        public override User Add(NewTorzsData newObject, User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

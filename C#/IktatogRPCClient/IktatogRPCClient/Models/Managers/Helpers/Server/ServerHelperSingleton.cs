@@ -371,7 +371,7 @@ namespace IktatogRPCClient.Models.Managers
         #region Additions
         public async Task<Telephely> AddTelephelyAsync(string telephelyNeve)
         {
-            Telephely telephely = new Telephely() { Id = 0 };
+            Telephely telephely = new Telephely() { Id = 0, Name = telephelyNeve };
             try
             {
                 telephely = await client.AddTelephelyAsync(telephely, calloptions);

@@ -69,7 +69,13 @@ namespace IktatogRPCServer.Service
         }
         public override Task<Answer> DisableUser(User request, ServerCallContext context)
         {
-            return base.DisableUser(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
 
@@ -329,7 +335,7 @@ namespace IktatogRPCServer.Service
             {
                 MysqlDatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
 
-                List<Privilege> privileges = mysqlDatabaseManager.GetAllData(request);
+                List<Privilege> privileges = mysqlDatabaseManager.GetAllData();
                 foreach (var response in privileges)
                 {
                     await responseStream.WriteAsync(response);
@@ -471,7 +477,14 @@ namespace IktatogRPCServer.Service
 
         public override Task<Answer> RemoveCsoport(Csoport request, ServerCallContext context)
         {
-            return base.RemoveCsoport(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Csoport> manager= new CsoportDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id,user));
+            }
+            else return Task.FromResult(new Answer() { Error = true , Message = "Hibás felhasználó!"}) ;
+            
         }
 
         public override Task<Answer> RemoveIkonyv(Ikonyv request, ServerCallContext context)
@@ -481,32 +494,68 @@ namespace IktatogRPCServer.Service
 
         public override Task<Answer> RemoveJelleg(Jelleg request, ServerCallContext context)
         {
-            return base.RemoveJelleg(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> RemovePartner(Partner request, ServerCallContext context)
         {
-            return base.RemovePartner(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> RemovePartnerUgyintezo(PartnerUgyintezo request, ServerCallContext context)
         {
-            return base.RemovePartnerUgyintezo(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> RemoveTelephely(Telephely request, ServerCallContext context)
         {
-            return base.RemoveTelephely(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> RemoveUgyintezoFromTelephely(Ugyintezo request, ServerCallContext context)
         {
-            return base.RemoveUgyintezoFromTelephely(request, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
         {
-            return Task.Run(() => { return new Answer() { Error = false, Message = "A törlés sikeres volt." }; });
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
         private bool CheckUserIsValid(Metadata header, out User user) {
             AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };

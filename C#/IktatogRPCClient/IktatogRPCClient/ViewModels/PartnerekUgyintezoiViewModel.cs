@@ -62,7 +62,8 @@ namespace IktatogRPCClient.ViewModels
             set { 
                 _selectedPartner = value;              
                 NotifyOfPropertyChange(() => SelectedPartner);
-                GetPartnerUgyintezokAsync();
+                if (value != null) GetPartnerUgyintezokAsync();
+                else AvailableUgyintezok.Clear();
             }
         }
         private async void GetPartnerUgyintezokAsync() {

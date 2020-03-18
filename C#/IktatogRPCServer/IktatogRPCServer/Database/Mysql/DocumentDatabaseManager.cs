@@ -16,12 +16,7 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override Document Add(Document newObjet)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Delete(int id)
+        public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
@@ -92,12 +87,22 @@ namespace IktatogRPCServer.Database.Mysql
 			}
 			return (ba1);
 		}
-		public override bool Update(Document modifiedObject)
+		public override Answer Update(Document modifiedObject)
         {
             throw new NotImplementedException();
         }
 
 		public override List<Document> GetAllData(object filter)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override Document Add(NewTorzsData newObject, User user)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override Document Add(Document newObject, User user)
 		{
 			throw new NotImplementedException();
 		}

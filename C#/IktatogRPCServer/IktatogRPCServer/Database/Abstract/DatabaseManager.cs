@@ -21,8 +21,8 @@ namespace IktatogRPCServer.Database.Abstract
         abstract public void CloseConnection(object connection);
         abstract public T Add(NewTorzsData newObject, User user);
         abstract public T Add(T newObject, User user);
-        abstract public bool Update(T modifiedObject);
-        abstract public bool Delete(int id);
+        abstract public Answer Update(T modifiedObject);
+        abstract public Answer Delete(int id,User user);
 
         abstract public List<T> GetAllData();
         abstract public List<T> GetAllData(object filter);

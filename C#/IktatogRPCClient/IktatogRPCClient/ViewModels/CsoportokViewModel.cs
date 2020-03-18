@@ -47,7 +47,7 @@ namespace IktatogRPCClient.ViewModels
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(()=>SelectedTelephely);
                 GetCsoportokAsync();
-                NotifyOfPropertyChange(()=>TelephelyCsoportjai);
+                
             }
         }
         private async void GetCsoportokAsync() {
@@ -66,7 +66,7 @@ namespace IktatogRPCClient.ViewModels
             get { return _telephelyCsoportjai; }
             set {
                 _telephelyCsoportjai = value;
-                
+                NotifyOfPropertyChange(() => TelephelyCsoportjai);
             }
         }
         public Csoport SelectedCsoport

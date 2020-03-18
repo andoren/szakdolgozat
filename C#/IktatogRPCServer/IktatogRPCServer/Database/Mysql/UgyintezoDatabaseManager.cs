@@ -34,6 +34,13 @@ namespace IktatogRPCServer.Database.Mysql
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addugyintezo";
             //IN PARAMETERS
+            MySqlParameter telephelyp = new MySqlParameter()
+            {
+                ParameterName = "@telephely_b",
+                DbType = System.Data.DbType.Int32,
+                Value = newObject.Telephely.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
 
             MySqlParameter namep = new MySqlParameter()
             {
@@ -50,6 +57,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Value = user.Id,
                 Direction = System.Data.ParameterDirection.Input
             };
+            command.Parameters.Add(telephelyp);
             command.Parameters.Add(namep);
             command.Parameters.Add(userp);
             //OUTPARAMETER
@@ -69,7 +77,7 @@ namespace IktatogRPCServer.Database.Mysql
                 try
                 {
                     command.ExecuteNonQuery();
-                    telephely.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
+                    ugyintezo.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
                 }
                 catch (MySqlException ex)
                 {
@@ -91,9 +99,50 @@ namespace IktatogRPCServer.Database.Mysql
             return ugyintezo;
         }
 
-        public override bool Delete(int id)
+        public override Answer Delete(int id, User user)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection connection = GetConnection();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "delugyintezo";
+            MySqlParameter idp = new MySqlParameter()
+            {
+                ParameterName = "@id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter deleterp = new MySqlParameter()
+            {
+                ParameterName = "@deleter_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(idp);
+            command.Parameters.Add(deleterp);
+            bool eredmeny = true;
+            string message = "Sikeres törlés!";
+            try
+            {
+                OpenConnection(connection);
+                command.Connection = connection;
+                eredmeny = command.ExecuteNonQuery() == 0;
+                if (eredmeny) message = "Hiba a törlés közben.";
+            }
+            catch (MySqlException ex)
+            {
+                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+            }
+            catch (Exception e)
+            {
+                Logging.LogToScreenAndFile(e.Message);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+            return new Answer() { Error = eredmeny, Message = message };
         }
 
         public override List<Ugyintezo> GetAllData()
@@ -155,7 +204,7 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override bool Update(Ugyintezo modifiedObject)
+        public override Answer Update(Ugyintezo modifiedObject)
         {
             throw new NotImplementedException();
         }
