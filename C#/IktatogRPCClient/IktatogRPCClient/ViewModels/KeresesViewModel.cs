@@ -22,13 +22,17 @@ namespace IktatogRPCClient.ViewModels
 	{
 		public KeresesViewModel()
 		{
-		
+
+			Initialize();
+		}
+		private async void Initialize() {
+			LoaderIsVisible = true;
 			SelectedSearchParameter = SearchList[0];
-			AvailabelYears = serverHelper.GetYears();
+			AvailabelYears = await serverHelper.GetYears();
 			SelectedItemsPerPage = ItemsPerPage[2];
 			eventAggregator.Subscribe(this);
+			LoaderIsVisible = false;
 		}
-
 		#region variables
 		private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();

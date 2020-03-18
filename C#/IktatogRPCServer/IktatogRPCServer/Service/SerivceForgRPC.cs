@@ -444,6 +444,16 @@ namespace IktatogRPCServer.Service
 
         }
 
+        public override Task<Answer> AddYearAndActivate(EmptyMessage request, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Year> manager = new YearsDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Update(new Year() { Id = user.Id }));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
+        }
         public override Task<Answer> ModifyCsoport(Csoport request, ServerCallContext context)
         {
             User user;

@@ -50,3 +50,5 @@ call getIkonyvek(1);
 SET FOREIGN_KEY_CHECKS=1;
 select * from telephely;
 select * from user;
+select * from felh_telephely;
+call gettelephelyek(2);

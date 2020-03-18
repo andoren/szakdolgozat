@@ -54,6 +54,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\Syst
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Memory.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Numerics.Vectors.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csprojAssemblyReference.cache
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCDLL\IktatogRPCDLL\obj\Debug\IktatogRPCDLL.pdb

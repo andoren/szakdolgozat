@@ -58,7 +58,7 @@ namespace Iktato {
             "ZRIkCglBdXRoVG9rZW4YBiABKAsyES5Ja3RhdG8uQXV0aFRva2VuEiYKC1Rl",
             "bGVwaGVseWVrGAcgAygLMhEuSWt0YXRvLlRlbGVwaGVseSIaCglBdXRoVG9r",
             "ZW4SDQoFdG9rZW4YASABKAkiGwoNRGVsZXRlTWVzc2FnZRIKCgJpZBgBIAEo",
-            "BTKQFQoNSWt0YXRvU2VydmljZRIrCgVMb2dpbhIULklrdGF0by5Mb2dpbk1l",
+            "BTLMFQoNSWt0YXRvU2VydmljZRIrCgVMb2dpbhIULklrdGF0by5Mb2dpbk1l",
             "c3NhZ2UaDC5Ja3RhdG8uVXNlchIuCgZMb2dvdXQSFC5Ja3RhdG8uRW1wdHlN",
             "ZXNzYWdlGg4uSWt0YXRvLkFuc3dlchIoCghSZWdpc3RlchIMLklrdGF0by5V",
             "c2VyGg4uSWt0YXRvLkFuc3dlchIxCgpBZGRJa3RhdGFzEg4uSWt0YXRvLklr",
@@ -118,7 +118,8 @@ namespace Iktato {
             "RG9jdW1lbnQaFC5Ja3RhdG8uRG9jdW1lbnRJbmZvEjYKDlJlbW92ZWRvY3Vt",
             "ZW50EhQuSWt0YXRvLkRvY3VtZW50SW5mbxoOLklrdGF0by5BbnN3ZXISNwoS",
             "R2V0VXNlclRlbGVwaGVseWVpEgwuSWt0YXRvLlVzZXIaES5Ja3RhdG8uVGVs",
-            "ZXBoZWx5MAFiBnByb3RvMw=="));
+            "ZXBoZWx5MAESOgoSQWRkWWVhckFuZEFjdGl2YXRlEhQuSWt0YXRvLkVtcHR5",
+            "TWVzc2FnZRoOLklrdGF0by5BbnN3ZXJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {

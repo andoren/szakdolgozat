@@ -141,7 +141,13 @@ namespace IktatogRPCClient.Managers
                         screen = new ModifyFelhasznaloViewModel();
                         break;
                     }
- 
+                case Scenes.Evek:
+                    {
+                        screen = new EvekViewModel();
+                        break;
+                    }
+      
+
                 default:
                     throw new InvalidSceneExeption();
                     

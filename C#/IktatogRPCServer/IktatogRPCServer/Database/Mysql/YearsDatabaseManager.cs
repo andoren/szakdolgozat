@@ -26,55 +26,7 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Year Add(Year newObject, User user)
         {
-            MySqlCommand command = new MySqlCommand();
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.CommandText = "addyear";
-            //IN PARAMETERS 
-            MySqlParameter useridp = new MySqlParameter()
-            {
-                ParameterName = "@user_id_b",
-                DbType = System.Data.DbType.Int32,
-                Value = user.Id,
-                Direction = System.Data.ParameterDirection.Input
-            };
-
-            MySqlParameter yearp = new MySqlParameter()
-            {
-                ParameterName = "@year_b",
-                DbType = System.Data.DbType.Int32,
-                Value = newObject.Year_,
-                Direction = System.Data.ParameterDirection.Input
-            };
-            command.Parameters.Add(useridp);
-            command.Parameters.Add(yearp);
-
-            try
-            {
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
-                try
-                {
-                    command.ExecuteNonQuery();
-                    newObject.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
-                }
-                catch (MySqlException ex)
-                {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
-                }
-                catch (Exception e)
-                {
-                    Logging.LogToScreenAndFile(e.Message);
-
-                }
-                finally { CloseConnection(connection); }
-            }
-            catch (Exception ex)
-            {
-                Logging.LogToScreenAndFile(ex.Message);
-
-            }
-            return newObject;
+            throw new NotImplementedException();
         }
 
         public override Answer Delete(int id, User user)
@@ -139,7 +91,52 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Answer Update(Year modifiedObject)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "AddYearAndActivate";
+            string message = "Hiba az év hozzáadása közben.";
+            bool eredmeny = false;
+            //IN PARAMETERS 
+            MySqlParameter useridp = new MySqlParameter()
+            {
+                ParameterName = "@id_B",
+                DbType = System.Data.DbType.Int32,
+                Value = modifiedObject.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+
+            command.Parameters.Add(useridp);
+
+
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    eredmeny = command.ExecuteNonQuery() == 0;
+                    if (!eredmeny) message = "Sikeres év hozzáadás.";
+
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+            return new Answer() { Error = eredmeny, Message = message };
         }
     }
 }

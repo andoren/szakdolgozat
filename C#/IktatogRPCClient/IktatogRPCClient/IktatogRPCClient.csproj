@@ -94,6 +94,7 @@
     <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="ViewModels\CsoportokViewModel.cs" />
     <Compile Include="ViewModels\DocumentHandlerViewModel.cs" />
+    <Compile Include="ViewModels\EvekViewModel.cs" />
     <Compile Include="ViewModels\FelhasznalokViewModel.cs" />
     <Compile Include="ViewModels\FooldalViewModel.cs" />
     <Compile Include="ViewModels\IktatasViewModel.cs" />
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="Views\DocumentHandlerView.xaml.cs">
       <DependentUpon>DocumentHandlerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EvekView.xaml.cs">
+      <DependentUpon>EvekView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FelhasznalokView.xaml.cs">
       <DependentUpon>FelhasznalokView.xaml</DependentUpon>
@@ -299,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DocumentHandlerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EvekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

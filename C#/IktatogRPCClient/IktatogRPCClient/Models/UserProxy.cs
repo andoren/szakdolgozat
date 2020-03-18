@@ -89,5 +89,10 @@ namespace IktatogRPCClient.Models
         {
             return !(newUsername.Length < 4 || newUsername.Length > 20);
         }
+        public bool IsAdmin {
+            get {
+                return _user.Privilege.Name == "admin";
+            }
+        }
     }
 }

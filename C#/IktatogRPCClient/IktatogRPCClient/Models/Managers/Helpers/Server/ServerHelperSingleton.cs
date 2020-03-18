@@ -50,6 +50,8 @@ namespace IktatogRPCClient.Models.Managers
             return channel;
         }
 
+ 
+
         public void InitializeConnection()
         {
 
@@ -61,14 +63,14 @@ namespace IktatogRPCClient.Models.Managers
         #endregion
 
         #region Getters
-        public BindableCollection<Year> GetYears()
+        public async Task<BindableCollection<Year>> GetYears()
         {
             BindableCollection<Year> years = new BindableCollection<Year>();
           
             try
             {
                 var stream = client.GetYears(new EmptyMessage(), calloptions);
-                while ( stream.ResponseStream.MoveNext().Result)
+                while (await stream.ResponseStream.MoveNext())
                 {
                     years.Add(stream.ResponseStream.Current);
                 }
@@ -389,6 +391,28 @@ namespace IktatogRPCClient.Models.Managers
         #endregion
 
         #region Additions
+        public async Task<bool> AddYearAndActivateAsync()
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.AddYearAndActivateAsync(new EmptyMessage(), calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
         public async Task<Telephely> AddTelephelyAsync(string telephelyNeve)
         {
             Telephely telephely = new Telephely() { Id = 0, Name = telephelyNeve };

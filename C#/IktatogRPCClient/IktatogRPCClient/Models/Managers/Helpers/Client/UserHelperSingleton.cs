@@ -64,7 +64,7 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
         }
         public bool IsAdmin {
             get {
-                return CurrentUser.Privilege.Name == "Admin" ? true : false;
+                return CurrentUser.Privilege.Name == "admin" ? true : false;
             }
         }
     }

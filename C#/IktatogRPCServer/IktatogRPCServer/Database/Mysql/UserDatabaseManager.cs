@@ -217,7 +217,89 @@ namespace IktatogRPCServer.Database.Mysql
         }
         public override Answer Update(User modifiedObject)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "modifyuser";
+            string message = "Hiba a partner módosítása közben.";
+            bool eredmeny = false;
+            //IN PARAMETERS
+            MySqlParameter usernamep = new MySqlParameter()
+            {
+                ParameterName = "@username_b",
+                DbType = System.Data.DbType.String,
+                Value = modifiedObject.Username,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter idp = new MySqlParameter()
+            {
+                ParameterName = "@id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = modifiedObject.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter fullnamep = new MySqlParameter()
+            {
+                ParameterName = "@fullname_b",
+                DbType = System.Data.DbType.String,
+                Value = modifiedObject.Fullname,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter privilegep = new MySqlParameter()
+            {
+                ParameterName = "@privilege_b",
+                DbType = System.Data.DbType.Int32,
+                Value = modifiedObject.Privilege.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter telephelyekp = new MySqlParameter()
+            {
+                ParameterName = "@telephelyek_b",
+                DbType = System.Data.DbType.String,
+                Value = TelephelyekIdToString(modifiedObject.Telephelyek),
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(usernamep);
+            command.Parameters.Add(idp);
+            command.Parameters.Add(fullnamep);
+            command.Parameters.Add(privilegep);
+            command.Parameters.Add(telephelyekp);
+            try
+            {
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    eredmeny = command.ExecuteNonQuery() == 0;
+                    if (!eredmeny) message = "Sikeres módosítás.";
+                }
+                catch (MySqlException ex)
+                {
+                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                }
+                catch (Exception e)
+                {
+                    Logging.LogToScreenAndFile(e.Message);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Logging.LogToScreenAndFile(ex.Message);
+
+            }
+
+            return new Answer() { Error = eredmeny, Message = message };
+        }
+        private string TelephelyekIdToString(IEnumerable<Telephely> telephelyek) {
+            string data = "";
+            for (int i = 0; i < telephelyek.Count(); i++)
+            {
+                data += telephelyek.ElementAt(i).Id;
+                if (i < telephelyek.Count() -1) data+="," ;
+            }
+            return data;
         }
         public bool IsValidUser(LoginMessage request, out User user)
         {

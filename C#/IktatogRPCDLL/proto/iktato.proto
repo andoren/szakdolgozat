@@ -50,6 +50,7 @@ service IktatoService {
   rpc UploadDocument (Document) returns (DocumentInfo);
   rpc Removedocument (DocumentInfo) returns (Answer);
   rpc GetUserTelephelyei (User) returns (stream Telephely);
+  rpc AddYearAndActivate (EmptyMessage) returns (Answer);
 }
 message NewTorzsData{
     Partner Partner = 1;

@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Managers;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
@@ -20,25 +21,30 @@ namespace IktatogRPCClient.ViewModels
             Initialize();
             GetTelephelyekAsync();
         }
+        private UserProxy user = new UserProxy(UserHelperSingleton.CurrentUser);
         private  void Initialize() {
             UgyintezokViewModel = SceneManager.CreateScene(Scenes.Ugyintezok);
-            TelephelyekViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
-            CsoportokViewModel = SceneManager.CreateScene(Scenes.Csoportok);
             JellegekViewModel = SceneManager.CreateScene(Scenes.Jellegek);
-            FelhasznalokViewModel = SceneManager.CreateScene(Scenes.Felhasznalok);
             PartnersViewModel = SceneManager.CreateScene(Scenes.Partnerek);
             PartnerekUgyintezoiViewModel = SceneManager.CreateScene(Scenes.PartnerekUgyintezoi);
-            AddScreensToEventAggregator(UgyintezokViewModel, TelephelyekViewModel, CsoportokViewModel,
-                JellegekViewModel, FelhasznalokViewModel, PartnersViewModel, PartnerekUgyintezoiViewModel);
-            AddScreensToShowIt(UgyintezokViewModel, TelephelyekViewModel, CsoportokViewModel,
-                JellegekViewModel, FelhasznalokViewModel, PartnersViewModel, PartnerekUgyintezoiViewModel);
-            
+            if (user.IsAdmin)
+            {
+                FelhasznalokViewModel = SceneManager.CreateScene(Scenes.Felhasznalok);
+                TelephelyekViewModel = SceneManager.CreateScene(Scenes.Telephelyek);
+                CsoportokViewModel = SceneManager.CreateScene(Scenes.Csoportok);
+                EvekViewModel = SceneManager.CreateScene(Scenes.Evek);
+ 
+            }
+            AddScreensToEventAggregator();
+      
+
         }
         EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         private async void GetTelephelyekAsync() {
             LoaderIsVisible = true;
             BindableCollection<Telephely> telephelyek = await ServerHelperSingleton.GetInstance().GetTelephelyekAsync();
             await eventAggregator.PublishOnUIThreadAsync(telephelyek);
+
             LoaderIsVisible = false;
         }
         public Screen PartnerekUgyintezoiViewModel { get; set; }
@@ -48,41 +54,15 @@ namespace IktatogRPCClient.ViewModels
         public Screen CsoportokViewModel { get; private set; }
         public Screen JellegekViewModel { get; private set; }
         public Screen FelhasznalokViewModel { get; private set; }
-
+        public Screen EvekViewModel { get; private set; }
         public Screen PartnersViewModel { get; private set; }
-        private UserHelperSingleton userHelper = UserHelperSingleton.GetInstance();
-
-        public bool AdminSettingsIsVisible {
-            get{
-                return userHelper.IsAdmin;
-            }
-        }
-        public bool CsoportokViewModelIsVisible {
-            get
-            {
-                return AdminSettingsIsVisible;
-            }
-        }
-        public bool FelhasznalokViewModelIsVisible
-        {
-            get
-            {
-                return AdminSettingsIsVisible;
-            }
-        }
-        public bool TelephelyekViewModelIsVisible
-        {
-            get
-            {
-                return AdminSettingsIsVisible;
-            }
-        }
+        
 
         public bool LoaderIsVisible { get; private set; }
 
-        private void AddScreensToEventAggregator(params Screen[] screens) {
+        private void AddScreensToEventAggregator() {
            
-            foreach (var screen in screens)
+            foreach (var screen in Items)
             {
                 eventAggregator.Subscribe(screen);
             }
