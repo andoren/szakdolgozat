@@ -442,6 +442,7 @@ namespace IktatogRPCServer.Database.Mysql
                             ikonyv.Ugyintezo = new Ugyintezo() { Id = int.Parse(reader["ugyintezoid"].ToString()), Name = reader["ugyintezoname"].ToString() };
                             ikonyv.Csoport = new Csoport() { Id = int.Parse(reader["csoportid"].ToString()), Name = reader["csoportname"].ToString(), Shortname = reader["csoportshortname"].ToString(), };
                             ikonyv.Jelleg = new Jelleg() { Id = int.Parse(reader["jellegid"].ToString()), Name = reader["jellegname"].ToString() };
+                            ikonyv.HasDoc = int.Parse(reader["doccount"].ToString()) > 0;
                             ikonyvek.Add(ikonyv);
                         }
                     }

@@ -20,7 +20,48 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Answer Delete(int id, User user)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection connection = GetConnection();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "deletedoc";
+            MySqlParameter idp = new MySqlParameter()
+            {
+                ParameterName = "@id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter deleterp = new MySqlParameter()
+            {
+                ParameterName = "@deleter_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            command.Parameters.Add(idp);
+            command.Parameters.Add(deleterp);
+            bool eredmeny = true;
+            string message = "Sikeres törlés!";
+            try
+            {
+                OpenConnection(connection);
+                command.Connection = connection;
+                eredmeny = command.ExecuteNonQuery() == 0;
+                if (eredmeny) message = "Hiba a törlés közben.";
+            }
+            catch (MySqlException ex)
+            {
+                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+            }
+            catch (Exception e)
+            {
+                Logging.LogToScreenAndFile(e.Message);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+            return new Answer() { Error = eredmeny, Message = message };
         }
 
         public override List<Document> GetAllData()

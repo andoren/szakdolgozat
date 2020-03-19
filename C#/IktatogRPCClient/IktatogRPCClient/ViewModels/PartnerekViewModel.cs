@@ -129,6 +129,7 @@ namespace IktatogRPCClient.ViewModels
         public void ModifyPartner() {
             PartnerekIsVisible = false;
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyPartner);
+            eventAggregator.Subscribe(modifyScreen);
             ActivateItem(modifyScreen);
             eventAggregator.PublishOnUIThread(SelectedTelephely);
             eventAggregator.PublishOnUIThread(SelectedPartner);
@@ -197,7 +198,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle(BindableCollection<Telephely> message)
         {
             AvailableTelephelyek = message;
-            SelectedTelephely = AvailableTelephelyek.First();
+            if(AvailableTelephelyek.Count > 0)SelectedTelephely = AvailableTelephelyek.First();
         }
     }
 }

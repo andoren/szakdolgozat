@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical">
                 <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Partner ügyintéző hozzáadása</TextBlock>
-                <TextBlock FontSize="20" Margin="10">Telephely</TextBlock>
+                <TextBlock FontSize="20" Margin="10">Partner:</TextBlock>
                 <ComboBox Margin="10,0,10,5" x:Name="AvailablePartnerek" SelectedItem="{Binding Path = SelectedPartner}" DisplayMemberPath="Name"></ComboBox>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Margin="10">Új ügyintéző neve:</TextBlock>

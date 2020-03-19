@@ -19,7 +19,7 @@ namespace IktatogRPCClient.Models
         protected ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         protected override void OnActivate()
         {
-            eventAggregator.Subscribe(this);
+            //eventAggregator.Subscribe(this);
             base.OnActivate();
         }
 

@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Models\IkonyvHandlerModel.cs" />
     <Compile Include="Models\DocumentHandlerClosed.cs" />
+    <Compile Include="Models\InformationBox.cs" />
     <Compile Include="Models\Irany.cs" />
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />

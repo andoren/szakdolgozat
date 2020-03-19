@@ -368,6 +368,13 @@ namespace Iktato {
         __Marshaller_Iktato_EmptyMessage,
         __Marshaller_Iktato_Answer);
 
+    static readonly grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Telephely> __Method_GetAllTelephely = new grpc::Method<global::Iktato.EmptyMessage, global::Iktato.Telephely>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAllTelephely",
+        __Marshaller_Iktato_EmptyMessage,
+        __Marshaller_Iktato_Telephely);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -614,6 +621,11 @@ namespace Iktato {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Iktato.Answer> AddYearAndActivate(global::Iktato.EmptyMessage request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAllTelephely(global::Iktato.EmptyMessage request, grpc::IServerStreamWriter<global::Iktato.Telephely> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1291,6 +1303,14 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_AddYearAndActivate, null, options, request);
       }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Telephely> GetAllTelephely(global::Iktato.EmptyMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllTelephely(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Telephely> GetAllTelephely(global::Iktato.EmptyMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAllTelephely, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override IktatoServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -1350,7 +1370,8 @@ namespace Iktato {
           .AddMethod(__Method_UploadDocument, serviceImpl.UploadDocument)
           .AddMethod(__Method_Removedocument, serviceImpl.Removedocument)
           .AddMethod(__Method_GetUserTelephelyei, serviceImpl.GetUserTelephelyei)
-          .AddMethod(__Method_AddYearAndActivate, serviceImpl.AddYearAndActivate).Build();
+          .AddMethod(__Method_AddYearAndActivate, serviceImpl.AddYearAndActivate)
+          .AddMethod(__Method_GetAllTelephely, serviceImpl.GetAllTelephely).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -1407,6 +1428,7 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_Removedocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Answer>(serviceImpl.Removedocument));
       serviceBinder.AddMethod(__Method_GetUserTelephelyei, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.User, global::Iktato.Telephely>(serviceImpl.GetUserTelephelyei));
       serviceBinder.AddMethod(__Method_AddYearAndActivate, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.EmptyMessage, global::Iktato.Answer>(serviceImpl.AddYearAndActivate));
+      serviceBinder.AddMethod(__Method_GetAllTelephely, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.EmptyMessage, global::Iktato.Telephely>(serviceImpl.GetAllTelephely));
     }
 
   }

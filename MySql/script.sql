@@ -1,4 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
+truncate doc;
+truncate ikonyvdocs;
 truncate ikonyv;
 truncate ikonyvpartnerei;
 truncate partner;
@@ -59,7 +61,8 @@ delete from evek where id = 3;
 update evek set active = 1 where id= 2;
 select * from ikonyv;
 
-CALL addsubIkonyv("Próba tárgy","11111-111-1",1,1,1,1,2,2,3,0,STR_TO_DATE('2019.12.20','%Y.%m.%d'),STR_TO_DATE('2019.12.22','%Y.%m.%d'),"Ez egy szöveg a próba iktatáshoz ami bármilyen hosszu lehet akár lorem ipsumot is beilleszthetnék ide, de vajon van értelme?",1, @v,@b); 
-select CONCAT(SUBSTRING_INDEX("B-SZ/R/3/2020",'/',3),"-",1,"/",2020);   
+CALL addsubIkonyv("Próba tárgy","11111-111-1",1,1,1,1,2,2,3,0,STR_TO_DATE('2019.12.20','%Y.%m.%d'),STR_TO_DATE('2019.12.22','%Y.%m.%d'),"Ez egy szöveg a próba iktatáshoz ami bármilyen hosszu lehet akár lorem ipsumot is beilleszthetnék ide, de vajon van értelme?",6, @v,@b); 
+select CONCAT(SUBSTRING_INDEX("B-SZ/R/3-1-2/2020",'/',3),"-",1,"/",2020);   
 select * from ikonyv;
 select * from ikonyvpartnerei;
+select * from felh_telephely;

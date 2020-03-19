@@ -12,7 +12,7 @@ namespace IktatogRPCClient.ViewModels
     class ModifyPartnerViewModel : TorzsDataView<Partner>, IHandle<Telephely>,IHandle<Partner>
     {
         private Telephely _selectedTelephely;
-        private string _newName;
+        private string _newName="" ;
         private Partner _selectedPartner;
 
         public Partner SelectedPartner
@@ -57,7 +57,7 @@ namespace IktatogRPCClient.ViewModels
 
         protected override bool ValidateDataInForm()
         {
-            return!(NewName.Length < 3 || NewName.Length > 50);
+            return !(NewName.Length < 3 || NewName.Length > 50);
         }
     }
 }

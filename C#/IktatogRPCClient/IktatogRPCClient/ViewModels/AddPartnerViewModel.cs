@@ -51,7 +51,7 @@ namespace IktatogRPCClient.ViewModels
         public async override void DoAction()
         {
             Partner partner = await serverHelper.AddPartnerToTelephelyAsync(SelectedTelephely,PartnerNeve) ;
-            eventAggregator.BeginPublishOnUIThread((SelectedTelephely,partner));
+            if(partner.Id != -1)eventAggregator.BeginPublishOnUIThread((SelectedTelephely,partner));
             TryClose();
         }
 

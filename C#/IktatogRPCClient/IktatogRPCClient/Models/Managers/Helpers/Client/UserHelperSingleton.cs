@@ -54,7 +54,7 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             }
             catch (RpcException re)
             {
-                if (re.StatusCode == StatusCode.Unauthenticated) throw new LoginErrorException("Hibás felhasznlónév vagy jelszó! Próbálja megújra");               
+                InformationBox.ShowError(re);
             }
             catch (Exception e )
             {

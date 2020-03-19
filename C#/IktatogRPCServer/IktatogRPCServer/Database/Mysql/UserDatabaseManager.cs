@@ -383,6 +383,7 @@ namespace IktatogRPCServer.Database.Mysql
                             newuser.Id = int.Parse(reader["id"].ToString());
                             newuser.Username = reader["username"].ToString();
                             newuser.Fullname = reader["fullname"].ToString();
+                            newuser.Privilege = new Privilege() { Id = int.Parse(reader["privilegeid"].ToString()), Name = reader["privilege"].ToString() };
                             userek.Add(newuser);
                         }
                     }

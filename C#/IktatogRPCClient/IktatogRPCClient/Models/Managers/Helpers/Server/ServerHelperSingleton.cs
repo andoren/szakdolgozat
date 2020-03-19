@@ -27,6 +27,7 @@ namespace IktatogRPCClient.Models.Managers
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
 
+    
 
         //TODO THE WHOLE HELPER! :(
         private UserHelperSingleton userHelper;
@@ -63,10 +64,34 @@ namespace IktatogRPCClient.Models.Managers
         #endregion
 
         #region Getters
+        public BindableCollection<Telephely> GetAllTelephely()
+        {
+            BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
+
+            try
+            {
+                var stream = client.GetAllTelephely(new EmptyMessage(), calloptions);
+                while (stream.ResponseStream.MoveNext().Result)
+                {
+                    telephelyek.Add(stream.ResponseStream.Current);
+                }
+
+            }
+            catch (RpcException ex)
+            {
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
+            }
+            return telephelyek;
+        }
+
         public async Task<BindableCollection<Year>> GetYears()
         {
             BindableCollection<Year> years = new BindableCollection<Year>();
-          
+
             try
             {
                 var stream = client.GetYears(new EmptyMessage(), calloptions);
@@ -74,12 +99,14 @@ namespace IktatogRPCClient.Models.Managers
                 {
                     years.Add(stream.ResponseStream.Current);
                 }
-                
-            }
-            catch (Exception)
-            {
 
-                MessageBox.Show("Meow error");
+            }
+            catch (RpcException ex) {
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return years;
         }
@@ -95,10 +122,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
                 
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return ugyintezok;
         }
@@ -115,10 +145,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
                 
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return privileges;
         }
@@ -129,10 +162,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 document = await client.GetDocumentByIdAsync(info, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return document;
         }
@@ -155,10 +191,13 @@ namespace IktatogRPCClient.Models.Managers
                     
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return jellegek;
 
@@ -184,9 +223,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
 
             }
-            catch (Exception )
+            catch (RpcException ex)
             {
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return csoportok;
         }
@@ -202,10 +245,13 @@ namespace IktatogRPCClient.Models.Managers
                     telephelyek.Add(stream.ResponseStream.Current);
                 }
             }
+            catch (RpcException ex)
+            {
+                InformationBox.ShowError(ex);
+            }
             catch (Exception e)
             {
-
-                MessageBox.Show(e.Message);
+                InformationBox.ShowError(e);
             }
             return telephelyek;
         }
@@ -235,9 +281,13 @@ namespace IktatogRPCClient.Models.Managers
                     }  
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return partnerek;
         }
@@ -258,9 +308,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
                 
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return rovidIkonyvs;
         }
@@ -280,10 +334,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception )
+            catch (RpcException ex)
             {
-                throw;
-
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
 
@@ -304,10 +361,13 @@ namespace IktatogRPCClient.Models.Managers
                     
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return ugyintezok;
@@ -325,10 +385,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
                 
             }
+            catch (RpcException ex)
+            {
+                InformationBox.ShowError(ex);
+            }
             catch (Exception e)
             {
-
-                MessageBox.Show(e.Message);
+                InformationBox.ShowError(e);
             }
             return telephelyek;
         }
@@ -344,10 +407,13 @@ namespace IktatogRPCClient.Models.Managers
                     userProxies.Add(new UserProxy(stream.ResponseStream.Current));
                 }
             }
+            catch (RpcException ex)
+            {
+                InformationBox.ShowError(ex);
+            }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
-              
+                InformationBox.ShowError(e);
             }
             return userProxies;
         }
@@ -362,12 +428,14 @@ namespace IktatogRPCClient.Models.Managers
                     ikonyvek.Add(stream.ResponseStream.Current);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
             }
-       
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
+            }
             return ikonyvek;
 
         }
@@ -384,10 +452,13 @@ namespace IktatogRPCClient.Models.Managers
                 }
                 
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return documentInfos;
         }
@@ -409,9 +480,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;
@@ -423,10 +498,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 telephely = await client.AddTelephelyAsync(telephely, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return telephely;
         }
@@ -437,10 +515,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 documentInfo = await client.UploadDocumentAsync(doc, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return documentInfo;
         }
@@ -452,10 +533,13 @@ namespace IktatogRPCClient.Models.Managers
                 NewTorzsData newJelleg = new NewTorzsData(){ Telephely = selectedTelephely, Name = jellegNeve};
                 jelleg = await client.AddJellegToTelephelyAsync(newJelleg, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return jelleg;
         }
@@ -467,10 +551,13 @@ namespace IktatogRPCClient.Models.Managers
                 NewTorzsData newUgyintezo = new NewTorzsData(){ Partner = selectedPartner, Name = ugyintezoNeve };
                 partnerUgyintezo = await client.AddPartnerUgyintezoToPartnerAsync(newUgyintezo, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return partnerUgyintezo;
         }
@@ -479,13 +566,16 @@ namespace IktatogRPCClient.Models.Managers
             Partner partner = new Partner() { Id = 0 };
             try
             {
-                NewTorzsData newPartner = new NewTorzsData(){ Telephely = selectedTelephely, Name = partnerNeve};
+                NewTorzsData newPartner = new NewTorzsData() { Telephely = selectedTelephely, Name = partnerNeve };
                 partner = await client.AddPartnerToTelephelyAsync(newPartner, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex) {
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
             {
+                InformationBox.ShowError(e);
 
-                throw;
             }
             return partner;
         }
@@ -509,10 +599,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 proxy = new UserProxy(await client.AddUserAsync(user, calloptions));
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return proxy;
         }
@@ -523,10 +616,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 rovidIkonyv = await client.AddIktatasAsync(newIkonyv, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return rovidIkonyv;
         }
@@ -539,10 +635,13 @@ namespace IktatogRPCClient.Models.Managers
                 NewTorzsData newCsoport = new NewTorzsData(){ Telephely = valasztottTelephely, Name = csoportName, Shorname = csoportKod};
                 csoport = await client.AddCsoportToTelephelyAsync(newCsoport, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return csoport;
         }
@@ -554,10 +653,13 @@ namespace IktatogRPCClient.Models.Managers
                 rovidIkonyv = await client.AddIktatasWithValaszAsync(newIkonyv);
 
             }
-            catch (Exception )
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return rovidIkonyv;
         }
@@ -570,10 +672,13 @@ namespace IktatogRPCClient.Models.Managers
                 NewTorzsData newUgyintezo = new NewTorzsData(){ Telephely = valasztottTelephely, Name = ugyintezoNeve};
                 ugyintezo = await client.AddUgyintezoToTelephelyAsync(newUgyintezo, calloptions);
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return ugyintezo;
         }
@@ -594,10 +699,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-
-                throw;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
             return success;
         }
@@ -616,11 +724,14 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
             }
-
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
+            }
             return success;
         }
         public async Task<bool> ModifyPartnerUgyintezoAsync(PartnerUgyintezo selectedPartnerUgyintezo, string ugyintezoNeve)
@@ -639,9 +750,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;
@@ -661,9 +776,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;
@@ -683,9 +802,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;
@@ -705,9 +828,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;
@@ -727,11 +854,14 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
             }
-
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
+            }
             return success;
         }
         public async Task<bool> ModifyIkonyvAsync(Ikonyv ikonyv)
@@ -749,9 +879,13 @@ namespace IktatogRPCClient.Models.Managers
                     throw new Exception(answer.Message);
                 }
             }
-            catch (Exception)
+            catch (RpcException ex)
             {
-                success = false;
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
+                InformationBox.ShowError(e);
             }
 
             return success;

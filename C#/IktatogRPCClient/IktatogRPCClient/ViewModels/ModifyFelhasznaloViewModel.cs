@@ -10,25 +10,28 @@ using System.Windows.Controls;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class ModifyFelhasznaloViewModel : TorzsDataView<UserProxy>, IHandle<UserProxy>,IHandle<BindableCollection<Telephely>>
+    class ModifyFelhasznaloViewModel : TorzsDataView<UserProxy>, IHandle<UserProxy>
     {
         public ModifyFelhasznaloViewModel()
         {
             LoadData();
         }
-        private void LoadData()
+        private  void LoadData()
         {
            
             AvailablePrivileges = serverHelper.GetPrivileges();
+            
+            AvailableTelephelyek = serverHelper.GetAllTelephely();
         }
         private string _newUsername;
         private string _newFullname;
         private BindableCollection<Privilege> _availablePrivileges;
         private Privilege _selectedPrivilege;
-        private BindableCollection<Telephely> _availableTelephelyek;
+        private BindableCollection<Telephely> _availableTelephelyek = new BindableCollection<Telephely>();
         private Telephely _selectedTelephelyToAdd;
         private BindableCollection<Telephely> _selectedTelephelyek = new BindableCollection<Telephely>();
         private Telephely _selectedTelephelyToRemove;
+        private UserProxy NewUser = new UserProxy(new User());
         public Telephely SelectedTelephelyToRemove
         {
             get { return _selectedTelephelyToRemove; }
@@ -150,7 +153,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 user.Telephelyek.Add(telephely);
             }
-            UserProxy NewUser = new UserProxy(user);
+            NewUser = new UserProxy(user);
             bool success =  await serverHelper.ModifyUserAsync(NewUser.GetUser);
             eventAggregator.PublishOnUIThread(NewUser);
             TryClose();
@@ -172,6 +175,7 @@ namespace IktatogRPCClient.ViewModels
 
         public async void Handle(UserProxy message)
         {
+            if (message == NewUser || message.Id == 0) return;
             ModifiedUser = message;
             NewFullname = message.Fullname;
             NewUsername = message.Username;
@@ -189,9 +193,6 @@ namespace IktatogRPCClient.ViewModels
             NotifyOfPropertyChange(() => AvailableTelephelyek);
         }
 
-        public void Handle(BindableCollection<Telephely> message)
-        {
-            AvailableTelephelyek = new BindableCollection<Telephely>(message);
-        }
+
     }
 }

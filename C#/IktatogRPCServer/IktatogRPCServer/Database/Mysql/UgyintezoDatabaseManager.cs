@@ -69,8 +69,7 @@ namespace IktatogRPCServer.Database.Mysql
             };
 
             command.Parameters.Add(newPartnerId);
-            try
-            {
+         
                 MySqlConnection connection = GetConnection();
                 command.Connection = connection;
                 OpenConnection(connection);
@@ -79,22 +78,14 @@ namespace IktatogRPCServer.Database.Mysql
                     command.ExecuteNonQuery();
                     ugyintezo.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
                 }
-                catch (MySqlException ex)
-                {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
-                }
+
                 catch (Exception e)
                 {
                     Logging.LogToScreenAndFile(e.Message);
-
+                    throw e;
                 }
                 finally { CloseConnection(connection); }
-            }
-            catch (Exception ex)
-            {
-                Logging.LogToScreenAndFile(ex.Message);
-
-            }
+           
 
             return ugyintezo;
         }

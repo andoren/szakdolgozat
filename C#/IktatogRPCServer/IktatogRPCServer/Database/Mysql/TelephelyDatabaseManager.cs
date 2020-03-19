@@ -138,7 +138,47 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override List<Telephely> GetAllData()
         {
-            throw new NotImplementedException();
+            List<Telephely> telephelyek = new List<Telephely>();
+     
+                MySqlCommand command = new MySqlCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "getalltelephely";
+   
+                try
+                {
+                    MySqlConnection connection = GetConnection();
+                    command.Connection = connection;
+                    OpenConnection(connection);
+                    try
+                    {
+                        MySqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Telephely telephely = new Telephely();
+                            telephely.Id = int.Parse(reader["id"].ToString());
+                            telephely.Name = reader["name"].ToString();
+                            telephelyek.Add(telephely);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Logging.LogToScreenAndFile(e.Message);
+                    }
+                    finally
+                    {
+                        CloseConnection(connection);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logging.LogToScreenAndFile(ex.Message);
+                }
+        
+            return telephelyek;
         }
 
         public override List<Telephely> GetAllData(object filter)

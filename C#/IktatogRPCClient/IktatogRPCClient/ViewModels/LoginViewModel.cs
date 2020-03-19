@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Grpc.Core;
 using Iktato;
+using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Microsoft.Win32;
@@ -77,10 +78,14 @@ namespace IktatogRPCClient.ViewModels
                 manager.ShowWindow(new ContainerViewModel(), null, null);
                 TryClose();
             }
-            catch (Exception e) {
+            catch (RpcException ex) {
+                InformationBox.ShowError(ex);
+            }
+            catch (Exception e)
+            {
                 LoaderIsVisible = false;
-                MessageBox.Show(e.Message);
-                
+                InformationBox.ShowError(e);
+
             }
            
         }

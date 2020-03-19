@@ -14,11 +14,16 @@ namespace IktatogRPCClient.ViewModels
     {
         public AddFelhasznaloViewModel()
         {
-            AvailablePrivileges = serverHelper.GetPrivileges();
+            LoadData();
         }
-       
-            
-   
+
+        private  void LoadData()
+        {
+
+            AvailablePrivileges = serverHelper.GetPrivileges();
+            AvailableTelephelyek =  serverHelper.GetAllTelephely();
+        }
+
         private string _newUsername;
         private string _newFullname;
         private string _newPassword;

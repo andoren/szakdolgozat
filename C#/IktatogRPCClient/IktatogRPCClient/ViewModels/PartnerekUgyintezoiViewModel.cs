@@ -28,13 +28,13 @@ namespace IktatogRPCClient.ViewModels
 
         }
         private bool _partnerekIsVisible=true;
-        private BindableCollection<Telephely> _availableTelephelyek;
+        private BindableCollection<Telephely> _availableTelephelyek = new BindableCollection<Telephely>();
         private Telephely _selectedTelephely;
         private ServerHelperSingleton serverHelper;
         private EventAggregatorSingleton eventAggregator;
-        private BindableCollection<Partner> _availablePartnerek;
+        private BindableCollection<Partner> _availablePartnerek = new BindableCollection<Partner>();
         private Partner _selectedPartner;
-        private BindableCollection<PartnerUgyintezo> _availableUgyintezok;
+        private BindableCollection<PartnerUgyintezo> _availableUgyintezok = new BindableCollection<PartnerUgyintezo>();
         private PartnerUgyintezo _selectedUgyintezo;
 
         public PartnerUgyintezo SelectedUgyintezo
@@ -253,7 +253,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle(BindableCollection<Telephely> message)
         {
             AvailableTelephelyek = message ;
-            SelectedTelephely = AvailableTelephelyek.First();
+            if (AvailableTelephelyek.Count > 0) SelectedTelephely = AvailableTelephelyek.First();
         }
     }
 }

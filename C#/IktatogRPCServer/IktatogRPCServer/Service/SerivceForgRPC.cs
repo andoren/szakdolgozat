@@ -9,6 +9,7 @@ using Iktato;
 using IktatogRPCServer.Database;
 using IktatogRPCServer.Database.Mysql;
 using IktatogRPCServer.Database.Mysql.Abstract;
+using MySql.Data.MySqlClient;
 
 namespace IktatogRPCServer.Service
 {
@@ -140,13 +141,35 @@ namespace IktatogRPCServer.Service
         
         public override Task<Partner> AddPartnerToTelephely(NewTorzsData request, ServerCallContext context)
         {
-            User user;
-            if (CheckUserIsValid(context.RequestHeaders, out user))
+            try
             {
-                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                User user;
+                if (CheckUserIsValid(context.RequestHeaders, out user))
+                {
+                    MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                    return Task.FromResult(manager.Add(request, user)); ;
+                }
+                return Task.FromResult(new Partner());
             }
-            return Task.FromResult(new Partner());
+            catch (MySqlException e)
+            {
+                if (e.Number == 1062)
+                {
+                    Status error = new Status(StatusCode.AlreadyExists, "Ezen a néven már létezik partner!");
+                    return Task.FromException<Partner>(new RpcException(error));
+                }
+                else
+                {
+                    Status error = new Status(StatusCode.Unknown, e.Message);
+                    return Task.FromException<Partner>(new RpcException(error));
+                }
+
+            }
+            catch (Exception e)
+            {
+                Status error = new Status(StatusCode.Unknown, e.Message);
+                return Task.FromException<Partner>(new RpcException(error));
+            }
         }
         
         public override Task<PartnerUgyintezo> AddPartnerUgyintezoToPartner(NewTorzsData request, ServerCallContext context)
@@ -173,13 +196,34 @@ namespace IktatogRPCServer.Service
         
         public override Task<Ugyintezo> AddUgyintezoToTelephely(NewTorzsData request, ServerCallContext context)
         {
-            User user;
-            if (CheckUserIsValid(context.RequestHeaders, out user))
+            try
             {
-                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                User user;
+                if (CheckUserIsValid(context.RequestHeaders, out user))
+                {
+                    MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                    return Task.FromResult(manager.Add(request, user)); ;
+                }
+                return Task.FromResult(new Ugyintezo());
             }
-            return Task.FromResult(new Ugyintezo());
+            catch (MySqlException e)
+            {
+                if (e.Number == 1062)
+                {
+                    Status error = new Status(StatusCode.AlreadyExists, "Ezen a néven már létezik ügyintéző!");
+                    return Task.FromException<Ugyintezo>(new RpcException(error));
+                }
+                else
+                {
+                    Status error = new Status(StatusCode.Unknown, e.Message);
+                    return Task.FromException<Ugyintezo>(new RpcException(error));
+                }
+
+            }
+            catch (Exception e) {
+                Status error = new Status(StatusCode.Unknown, e.Message);
+                return Task.FromException<Ugyintezo>(new RpcException(error));
+            }
         }
 
         //TODO Ez kell?
@@ -234,7 +278,25 @@ namespace IktatogRPCServer.Service
             }
 
         }
+        public override async Task GetAllTelephely(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
+        {
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
 
+                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData();
+                foreach (var response in telephelyek)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
+            else
+            {
+                await responseStream.WriteAsync(new Telephely());
+            }
+        }
         public override async Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
         {
             User user;
