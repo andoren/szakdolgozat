@@ -15,12 +15,17 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class DocumentHandlerViewModel:Screen
-    {
+	class DocumentHandlerViewModel : Screen
+	{
 		public DocumentHandlerViewModel(int IkonyvId)
 		{
-			IkonyvDocuments = serverHelper.GetDocumentInfoByIkonyvIdAsync(IkonyvId).Result;
+			this.ikonyvid = IkonyvId;
+			LoadData(IkonyvId);
 		}
+		private async void LoadData(int IkonyvId) {
+			IkonyvDocuments = await serverHelper.GetDocumentInfoByIkonyvIdAsync(IkonyvId);
+		}
+		private int ikonyvid;
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
 		private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
 		private BindableCollection<DocumentInfo> _ikonyvDocuments = new BindableCollection<DocumentInfo>();
@@ -85,7 +90,7 @@ namespace IktatogRPCClient.ViewModels
 			{
 				Process.Start(fullpath);
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
 				throw;
 			}
@@ -99,6 +104,7 @@ namespace IktatogRPCClient.ViewModels
 			document.Name = FileInfo[0];
 			document.Type = FileInfo[1];
 			document.Doc = ByteString.CopyFrom(GetBytesFromFile(FileInfo[2]));
+			document.IkonyvId = ikonyvid;
 			DocumentInfo uploadedDocument = await serverHelper.UploadDocumentAsync(document);
 			IkonyvDocuments.Add(uploadedDocument);
 			NotifyOfPropertyChange(()=>IkonyvDocuments);

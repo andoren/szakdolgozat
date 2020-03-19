@@ -77,13 +77,17 @@ namespace IktatogRPCServer.Service
        
         
         //TODO
-        public override async Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
+        public override  Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
         {
-            return await Task.Run(() =>
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-
-                return new DocumentInfo() { Id = 2, Name = request.Name, Size = (request.Doc.Length / (double)1024) / 1024, Type = request.Type };
-            });
+                MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
+                Document document = manager.Add(request, user);
+                return Task.FromResult(new DocumentInfo() { Id = document.Id, Name = document.Name, 
+                    Path = document.Path, Size = ((document.Doc.Length/(double)1024)/1024), Type = document.Type });
+            }
+            return Task.FromResult(new DocumentInfo());
 
         }
         
@@ -205,15 +209,14 @@ namespace IktatogRPCServer.Service
         }
 
         //TODO
-        public override async Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        public override Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
         {
 
-            return await Task.Run(() =>
-            {
-                MysqlDatabaseManager<Document> databaseManager = new DocumentDatabaseManager(connectionManager);
-                Document document = databaseManager.GetDataById(request.Id);
-                return document;
-            });
+
+                DocumentDatabaseManager databaseManager = new DocumentDatabaseManager(connectionManager);
+                Document document = databaseManager.GetDataById(request);
+                return Task.FromResult(document);
+           
         }
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
@@ -272,9 +275,20 @@ namespace IktatogRPCServer.Service
             }
         }
 
-        public override Task GetDocumentInfoByIkonyv(Ikonyv request, IServerStreamWriter<DocumentInfo> responseStream, ServerCallContext context)
+        public override async Task GetDocumentInfoByIkonyv(Ikonyv request, IServerStreamWriter<DocumentInfo> responseStream, ServerCallContext context)
         {
-            return base.GetDocumentInfoByIkonyv(request, responseStream, context);
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
+                DocumentDatabaseManager mysqlDatabaseManager = new DocumentDatabaseManager(connectionManager);
+
+                List<DocumentInfo> infos = mysqlDatabaseManager.GetDocumentInfosByIkonyv(request);
+                foreach (var response in infos)
+                {
+                    await responseStream.WriteAsync(response);
+
+                }
+            }
         }
 
         public override Task GetIkonyvek(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)

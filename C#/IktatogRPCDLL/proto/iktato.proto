@@ -63,15 +63,19 @@ message RovidIkonyv{
     string Iktatoszam = 2;
 }
 message Document{
-    bytes Doc = 1;
-    string Name = 2;
-    string Type  = 3;
+    int32 Id = 1;
+    bytes Doc = 2;
+    string Name = 3;
+    string Type  = 4;
+    string Path = 5;
+    int32 IkonyvId = 6;
 }
 message DocumentInfo{
     int32 Id = 1;
     string Name = 2;
     string Type = 3;
     double Size = 4;
+    string Path = 5;
 }
 
 message SearchIkonyvData{
