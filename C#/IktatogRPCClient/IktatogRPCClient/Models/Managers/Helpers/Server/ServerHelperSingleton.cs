@@ -241,6 +241,9 @@ namespace IktatogRPCClient.Models.Managers
             }
             return partnerek;
         }
+
+    
+
         public async Task<BindableCollection<RovidIkonyv>> GetShortIktSzamokByTelephelyAsync(Telephely selectedTelephely)
         {
             /*new BindableCollection<RovidIkonyv>() { new RovidIkonyv() { Id=1,Iktatoszam="RövidIktatószám1" }, new RovidIkonyv() { Id = 2, Iktatoszam = "RövidIktatószám2" }, new RovidIkonyv() { Id = 3, Iktatoszam = "RövidIktatószám3" } };
@@ -715,6 +718,28 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 Answer answer = await client.ModifyUgyintezoAsync(modifiedUgyintezo, calloptions);
+                if (answer.Error == false)
+                {
+                    success = true;
+                }
+                else
+                {
+                    throw new Exception(answer.Message);
+                }
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            return success;
+        }
+        public async Task<bool> ModifyIkonyvAsync(Ikonyv ikonyv)
+        {
+            bool success = false;
+            try
+            {
+                Answer answer = await client.ModifyIktatasAsync(ikonyv, calloptions);
                 if (answer.Error == false)
                 {
                     success = true;

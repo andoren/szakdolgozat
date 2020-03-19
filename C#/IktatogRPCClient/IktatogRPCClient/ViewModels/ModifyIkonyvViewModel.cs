@@ -20,25 +20,27 @@ namespace IktatogRPCClient.ViewModels
 
             InitializeData(IkonyvToModify);
         }
-        private void InitializeData(Ikonyv IkonyvToModify) {
+        private async void InitializeData(Ikonyv IkonyvToModify) {
             this.IkonyvToModify = new Ikonyv(IkonyvToModify);
-            AvailablePartners = serverHelper.GetPartnerekByTelephelyAsync(IkonyvToModify.Telephely).Result;
-            SelectedPartner = AvailablePartners.Count > 0 ? AvailablePartners[0] : new Partner();
-            AvailableJellegek = serverHelper.GetJellegekByTelephelyAsync(IkonyvToModify.Telephely).Result;
-            AvailableUgyintezok = serverHelper.GetUgyintezokByTelephelyAsync(IkonyvToModify.Telephely).Result;
-            AvailablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
+            AvailablePartners = await serverHelper.GetPartnerekByTelephelyAsync(IkonyvToModify.Telephely);
+            AvailableJellegek = await serverHelper.GetJellegekByTelephelyAsync(IkonyvToModify.Telephely);
+            AvailableUgyintezok = await serverHelper.GetUgyintezokByTelephelyAsync(IkonyvToModify.Telephely);
+            SelectedPartner = AvailablePartners.Where(x=>x.Id == IkonyvToModify.Partner.Id).FirstOrDefault();
             SelectedJelleg = IkonyvToModify.Jelleg;
-            SelectedPartnerUgyintezo = IkonyvToModify.Partner.Ugyintezok.Count > 0 ? IkonyvToModify.Partner.Ugyintezok[0] : null;
             SelectedUgyintezo = IkonyvToModify.Ugyintezo;
             IkonyvHasDocument = IkonyvToModify.HasDoc;
+    
             eventAggregator.Subscribe(this);
         }
+        private PartnerUgyintezo _emptyPartnerUgyintezo = new PartnerUgyintezo() { Id = -1, Name = "" };
+
+  
         private ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         private Ikonyv _ikonyvToModify;
         private Partner _selectedPartner;
         private BindableCollection<Partner> _availablePartners;
         private PartnerUgyintezo _selectedPartnerUgyintezo;
-        private BindableCollection<PartnerUgyintezo> _availablePartnerUgyintezok;
+        private BindableCollection<PartnerUgyintezo> _availablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>();
         private Jelleg _selectedJelleg;
         private BindableCollection<Jelleg> _availableJellegek;
         private Ugyintezo _selectedUgyintezo;
@@ -91,7 +93,11 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => CanModifyButton);
             }
         }
+        public PartnerUgyintezo EmptyPartnerUgyintezo
+        {
+            get { return _emptyPartnerUgyintezo; }
 
+        }
         public bool ModificationIsVisible
         {
             get { return _modificationIsVisible; }
@@ -162,7 +168,8 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedPartnerUgyintezo; }
             set
             {
-                _selectedPartnerUgyintezo = value;
+                if (value != null) _selectedPartnerUgyintezo = value;
+                else _selectedPartnerUgyintezo = EmptyPartnerUgyintezo;
                 NotifyOfPropertyChange(() => SelectedPartnerUgyintezo);
             }
         }
@@ -181,12 +188,22 @@ namespace IktatogRPCClient.ViewModels
             get { return _selectedPartner; }
             set {
                 _selectedPartner = value;
-                NotifyOfPropertyChange(()=>SelectedPartner);
-                AvailablePartnerUgyintezok = new BindableCollection<PartnerUgyintezo>(SelectedPartner.Ugyintezok);
+                NotifyOfPropertyChange(() => SelectedPartner);     
+
+                SetPartnerUgyintezok();
                 NotifyOfPropertyChange(() => AvailablePartnerUgyintezok);
             }
         }
-
+        private async void SetPartnerUgyintezok() {
+            AvailablePartnerUgyintezok.Clear();
+            AvailablePartnerUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
+            AvailablePartnerUgyintezok.Insert(0, EmptyPartnerUgyintezo);
+            if (IkonyvToModify.Partner.Ugyintezok.Count > 0) SelectedPartnerUgyintezo = AvailablePartnerUgyintezok.Where(x => x.Id == IkonyvToModify.Partner.Ugyintezok[0].Id).FirstOrDefault();
+            else
+            {
+                SelectedPartnerUgyintezo = EmptyPartnerUgyintezo;
+            }
+        }
         public string Title
         {
             get { return $"{IkonyvToModify.Iktatoszam} módosítása"; }
@@ -202,8 +219,8 @@ namespace IktatogRPCClient.ViewModels
         public void CancelButton() {
             MyParent.CloseScreen(this, ModificationHappend);
         }
-        public void ModifyButton() {
-
+        public async void ModifyButton() {
+            LoaderIsVisible = true;
             IkonyvToModify.Jelleg = SelectedJelleg;
             IkonyvToModify.Partner = SelectedPartner;
             IkonyvToModify.Partner.Ugyintezok.Clear();
@@ -211,9 +228,11 @@ namespace IktatogRPCClient.ViewModels
             IkonyvToModify.Ugyintezo = SelectedUgyintezo;
             IkonyvToModify.HasDoc = IkonyvHasDocument;
             IkonyvToModify.Szoveg = Szoveg;
+            await serverHelper.ModifyIkonyvAsync(IkonyvToModify);
             eventAggregator.PublishOnUIThread(IkonyvToModify);
             ModificationHappend = true;
             MyParent.CloseScreen(this, ModificationHappend);
+            LoaderIsVisible = false;
         }
         public bool CanModifyButton {
             get {
@@ -248,9 +267,11 @@ namespace IktatogRPCClient.ViewModels
         }
         public bool CanRemoveButton {
             get {
-                return UserHelperSingleton.CurrentUser.Privilege.Name == "Admin";
+                return UserHelperSingleton.CurrentUser.Privilege.Name == "admin";
             }
         }
+
+        public bool LoaderIsVisible { get; private set; }
 
         public void DocumentView() {
             ModificationIsVisible = false;

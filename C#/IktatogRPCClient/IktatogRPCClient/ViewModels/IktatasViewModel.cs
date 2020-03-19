@@ -160,6 +160,8 @@ namespace IktatogRPCClient.ViewModels
         }
         private async void LoadPartnerUgyintezo() {
             AvailablePartnerUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
+            AvailablePartnerUgyintezok.Insert(0,EmptyPartnerUgyintezo);
+            SelectedPartnerUgyintezo = AvailablePartnerUgyintezok.First();
         }
         public PartnerUgyintezo SelectedPartnerUgyintezo
 
@@ -169,13 +171,20 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(()=>SelectedPartnerUgyintezo);
             }
         }
+        private PartnerUgyintezo _emptyPartnerUgyintezo = new PartnerUgyintezo() {Id  =-1, Name="" };
+
+        public PartnerUgyintezo EmptyPartnerUgyintezo
+        {
+            get { return _emptyPartnerUgyintezo; }
+      
+        }
 
         public BindableCollection<PartnerUgyintezo> AvailablePartnerUgyintezok
 
         {
             get { return _availablePartnerUgyintezok; }
             set { _availablePartnerUgyintezok = value;
-                if (value != null && value.Count > 0) SelectedPartnerUgyintezo = value[0];
+               
                 NotifyOfPropertyChange(()=>AvailablePartnerUgyintezok);
             }
         }
@@ -286,6 +295,7 @@ namespace IktatogRPCClient.ViewModels
         public async void IktatButton(string targy,string erkezettDatum,string hatidoDatum, string hivatkozasiszam, string szoveg)
         {
             LoaderIsVisible = true;
+            if (SelectedPartnerUgyintezo != EmptyPartnerUgyintezo) SelectedPartner.Ugyintezok.Add(SelectedPartnerUgyintezo);
             Ikonyv newIkonyv = new Ikonyv()
             {
                 Csoport = SelectedCsoport,
@@ -298,17 +308,18 @@ namespace IktatogRPCClient.ViewModels
                 Szoveg = szoveg,
                 Targy = targy,
                 Telephely = SelectedTelephely,
-                Ugyintezo = SelectedUgyintezo
+                Ugyintezo = SelectedUgyintezo,
+                ValaszId = -1
             };
             RovidIkonyv rovidIkonyv;
             if (ValaszIsChecked)
             {
                 newIkonyv.ValaszId = SelectedIktSzam.Id;
-                rovidIkonyv = await serverHelper.AddIktatasWithValaszAsync(newIkonyv);
+                
             }
-            else {
-                rovidIkonyv = await serverHelper.AddIktatas(newIkonyv);
-            }
+           
+            rovidIkonyv = await serverHelper.AddIktatas(newIkonyv);
+           
             if (rovidIkonyv.Id == 0) {
                 LoaderIsVisible = false;
                 return;

@@ -15,7 +15,7 @@ namespace IktatogRPCServer.Service
         {
 
         }
-        private string Secret = "Ótemplomi Szeretetszolgálat";
+        private readonly string Secret = "Ótemplomi Szeretetszolgálat";
         public  bool IsValidToken(AuthToken token, out User user) {
             user = new User();
             try
@@ -24,8 +24,9 @@ namespace IktatogRPCServer.Service
                 //throw new Exception("Ez egy exception a grpcn keresztül.");
                 return true;
             }
-            catch (SignatureVerificationException)
+            catch (SignatureVerificationException ex)
             {
+                Logging.LogToScreenAndFile(ex.Message);
                 return false;
             }
             catch (Exception e) {
@@ -46,15 +47,17 @@ namespace IktatogRPCServer.Service
                 .Build();
         }
         private User GetUserFromJWT(string jwt) {
-            User user = new User();
-            IDictionary<string, object> data = new JwtBuilder()
-                .WithSecret(Secret)
-                .MustVerifySignature()
-                .Decode<IDictionary<string, object>>(jwt);
-            user.Username = data["username"].ToString();
-            user.Privilege = new Privilege() { Id = int.Parse(data["privilegeid"].ToString()), Name = data["privilege"].ToString() };
-            user.Id = int.Parse(data["id"].ToString());
-            return user;
+            lock (Secret) {
+                User user = new User();
+                IDictionary<string, object> data = new JwtBuilder()
+                    .WithSecret(Secret)
+                    .MustVerifySignature()
+                    .Decode<IDictionary<string, object>>(jwt);
+                user.Username = data["username"].ToString();
+                user.Privilege = new Privilege() { Id = int.Parse(data["privilegeid"].ToString()), Name = data["privilege"].ToString() };
+                user.Id = int.Parse(data["id"].ToString());
+                return user;
+            }
         }
     }
 }

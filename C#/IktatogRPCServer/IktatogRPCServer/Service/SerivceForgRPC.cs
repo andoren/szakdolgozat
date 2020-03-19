@@ -14,9 +14,9 @@ namespace IktatogRPCServer.Service
 {
     class SerivceForgRPC : IktatoService.IktatoServiceBase
     {
-        readonly TokenSerivce TokenManager = new TokenSerivce();
-        readonly ConnectionManager connectionManager = new ConnectionManager();
-         static List<(string,DateTime)> InvalidTokens = new List<(string, DateTime)>();
+        private readonly TokenSerivce TokenManager = new TokenSerivce();
+        private readonly ConnectionManager connectionManager = new ConnectionManager();
+        private static List<(string,DateTime)> InvalidTokens = new List<(string, DateTime)>();
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
             UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
@@ -574,7 +574,13 @@ namespace IktatogRPCServer.Service
 
         public override Task<Answer> RemoveIkonyv(Ikonyv request, ServerCallContext context)
         {
-            return base.RemoveIkonyv(request, context);
+            User user;
+            if ( CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
+            {
+                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                return Task.FromResult(manager.Delete(request.Id, user));
+            }
+            else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
         public override Task<Answer> RemoveJelleg(Jelleg request, ServerCallContext context)
@@ -663,16 +669,11 @@ namespace IktatogRPCServer.Service
             return success;
         }
         private bool TokenIsUsed(AuthToken token) {
-            bool used = false;
-            foreach (var item in InvalidTokens)
-            {
-                if (item.Item2.AddDays(1) > DateTime.Now) {
-                    InvalidTokens.Remove(item);
-                    continue;
-                } 
-                if (item.Item1 == token.Token) used = true;
+            lock (InvalidTokens) { 
+                bool used = true;
+
+                return used;
             }
-            return used;
         }
     }
 }

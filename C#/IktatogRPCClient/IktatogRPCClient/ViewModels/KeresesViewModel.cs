@@ -157,15 +157,15 @@ namespace IktatogRPCClient.ViewModels
 		{
 			get {
 				int count = 0;
-				if (string.IsNullOrWhiteSpace(SearchText))
+				if (AllIkonyv.Count > 0 && string.IsNullOrWhiteSpace(SearchText))
 				{
-					if (AllIkonyv.Count % SelectedItemsPerPage != 0)
+					if ( AllIkonyv.Count % SelectedItemsPerPage != 0)
 					{
 						count++;
 					}
 					count += AllIkonyv.Count / SelectedItemsPerPage;
 				}
-				else {
+				else if(SearchedIkonyvek.Count > 0) {
 					if (SearchedIkonyvek.Count % SelectedItemsPerPage != 0)
 					{
 						count++;
@@ -450,6 +450,7 @@ namespace IktatogRPCClient.ViewModels
 		public override void Handle(Ikonyv message)
 		{
 				int index = AllIkonyv.IndexOf(SelectedIkonyv);
+			if (index == -1) return;
 				AllIkonyv.Remove(SelectedIkonyv) ;
 				SearchedIkonyvek.Remove(SelectedIkonyv);
 				ShownIkonyvek.Remove(SelectedIkonyv);	
