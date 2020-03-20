@@ -15,7 +15,7 @@
             <RowDefinition Height="auto"/>
           
         </Grid.RowDefinitions>
-        <DataGrid BorderThickness="0" Grid.Row="0" MinHeight="300" MinWidth="600" x:Name="IkonyvDocuments" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedDocument}"
+        <DataGrid BorderThickness="0" Grid.Row="0"  x:Name="IkonyvDocuments" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedDocument}"
            CellStyle="{StaticResource CellStyle}"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5"  SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
@@ -23,12 +23,12 @@
                                     Header="Megnevezés" Width="*" Binding="{Binding Name}"/>
                 <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                      ElementStyle="{StaticResource DataGridColumnStyle}" 
-                                     Header="Kiterjesztés" Width="auto" Binding="{Binding Type}"/>
+                                     Header="Kiterjesztés" Width="*" Binding="{Binding Type}"/>
                 <DataGridTextColumn  HeaderStyle="{StaticResource DataGridHeaderStyle}" 
                                      ElementStyle="{StaticResource DataGridColumnStyle}" 
-                                     Header="Mérete" Width="auto" Binding="{Binding Size}"/>
+                                     Header="Mérete" Width="*" Binding="{Binding Size , StringFormat={}{0:,0.00} mb}"/>
                 <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 
-                                         Width="100"  Header="Törlés">
+                                         Width="*"  Header="Törlés">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button cal:Message.Attach="[Event Click]= [Action RemoveDocument]" Style="{StaticResource WarningButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5 0">X</Button>

@@ -72,6 +72,9 @@ namespace IktatogRPCClient.ViewModels
 				return SelectedDocument != null;
 			}
 		}
+
+		public object Logger { get; private set; }
+
 		public async Task DownloadDocument() {
 		
 			LoaderIsVisible = true;
@@ -116,25 +119,33 @@ namespace IktatogRPCClient.ViewModels
 			TryClose();
 		}
 		private string[] ChooseDataToUpload() {
+			
 			string[] fileInfo = new string[3];
-			OpenFileDialog dialog = new OpenFileDialog();
-			dialog.Title = "Válaszd ki a dokumentumot.";
-			dialog.FileName = "";
-			dialog.Multiselect = false;
-			dialog.Filter = "Feltölthető dokumentumok |*.doc;*.xls;*.ppt;*.pdf,*.docx;*.xlsx" ;
-			dialog.ReadOnlyChecked = true;
-			if (dialog.ShowDialog() == true)
+			try
 			{
-				
- 				string[] fileName = dialog.SafeFileName.Split('.');
-				fileInfo[0] = fileName[0];
-				fileInfo[1] = fileName[1];
-				fileInfo[2] =  dialog.FileName;
-				return fileInfo;
-			}
-			else
-				return fileInfo;
+				OpenFileDialog dialog = new OpenFileDialog();
+				dialog.Title = "Válaszd ki a dokumentumot.";
+				dialog.FileName = "";
+				dialog.Multiselect = false;
+				dialog.Filter = "Feltölthető dokumentumok |*.doc;*.xls;*.ppt;*.pdf;*.PDF;*.docx;*.xlsx";
+				dialog.ReadOnlyChecked = true;
+				if (dialog.ShowDialog() == true)
+				{
+					string dokname = dialog.SafeFileName;
+					int lastDotIndex = dokname.LastIndexOf('.');
 
+					fileInfo[0] = dokname.Substring(0, lastDotIndex);
+					fileInfo[1] = dokname.Substring(lastDotIndex+1);
+					fileInfo[2] = dialog.FileName;
+					return fileInfo;
+				}
+				else
+					return fileInfo;
+			}
+			catch (Exception e) {
+				InformationBox.ShowError(e);
+			}
+			return fileInfo;
 	}
 		private byte[] GetBytesFromFile(string FileName) {
 			byte[] ba1 = new byte[1];
