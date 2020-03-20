@@ -82,8 +82,7 @@ message DocumentInfo{
 message SearchIkonyvData{
     int32 Irany = 1;
     Year Year = 2;
-    int32 From = 3;
-    int32 To = 4;
+    User User = 3;
 
 }
 message Year{

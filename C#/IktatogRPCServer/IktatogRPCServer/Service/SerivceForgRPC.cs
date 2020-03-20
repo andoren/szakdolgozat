@@ -268,8 +268,8 @@ namespace IktatogRPCServer.Service
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
-
-                List<Ikonyv> ikonyvek = mysqlDatabaseManager.GetAllData(user);
+                request.User = user;
+                List<Ikonyv> ikonyvek = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in ikonyvek)
                 {
                     await responseStream.WriteAsync(response);
@@ -351,11 +351,6 @@ namespace IktatogRPCServer.Service
 
                 }
             }
-        }
-
-        public override Task GetIkonyvek(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
-        {
-            return base.GetIkonyvek(request, responseStream, context);
         }
 
         public override async Task GetJellegekByTelephely(Telephely request, IServerStreamWriter<Jelleg> responseStream, ServerCallContext context)

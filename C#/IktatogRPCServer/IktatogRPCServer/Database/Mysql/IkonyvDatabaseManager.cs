@@ -406,12 +406,14 @@ namespace IktatogRPCServer.Database.Mysql
         public override List<Ikonyv> GetAllData(object filter)
         {
             List<Ikonyv> ikonyvek = new List<Ikonyv>();
-            if (filter is User) {
-                User user = filter as User;
+            if (filter is SearchIkonyvData) {
+                SearchIkonyvData data = filter as SearchIkonyvData;
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getikonyvek";
-                command.Parameters.AddWithValue("@user_id_b", user.Id);
+                command.Parameters.AddWithValue("@user_id_b", data.User.Id);
+                command.Parameters.AddWithValue("@year_id_b", data.Year.Id);
+                command.Parameters.AddWithValue("@irany_b", data.Irany);
                 try
                 {
                     MySqlConnection connection = GetConnection();
