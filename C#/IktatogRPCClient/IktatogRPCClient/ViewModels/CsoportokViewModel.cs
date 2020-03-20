@@ -184,8 +184,11 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle(BindableCollection<Telephely> message)
         {
-            ValaszthatoTelephely = message;
-            if (ValaszthatoTelephely.Count > 0) SelectedTelephely = ValaszthatoTelephely.First();
+            if (ValaszthatoTelephely == null) {
+                ValaszthatoTelephely = message;
+                if (ValaszthatoTelephely.Count > 0) SelectedTelephely = ValaszthatoTelephely.First();
+            }
+           
         }
     }
 }
