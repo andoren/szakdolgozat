@@ -9,8 +9,8 @@
         FontFamily="Roboto"
         FontSize="18"
         WindowStyle="SingleBorderWindow"
-        Icon="/IktatogRPCClient;component/Resources/icon.png"
-        Title="Iktatás" Height="800" MinWidth="1200" Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen">
+      
+        Title="Iktatás" Height="800" MinWidth="1200" Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
     <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

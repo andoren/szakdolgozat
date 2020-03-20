@@ -15,18 +15,18 @@ namespace IktatogRPCServer.Database
             {
                 try
                 {
-                    string server = "localhost";
-                    string database = "iktato";
-                    string uid = "root";
-                    string password = "k35Vl1o1L5";
-                    string connectionString;
-                    connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                    database + ";" + "CharSet = utf8;" + "UID=" + uid + ";" + "PASSWORD=" + password + "; Connect Timeout=5";
+                    //string server = "localhost";
+                    //string database = "iktato";
+                    //string uid = "root";
+                    //string password = "k35Vl1o1L5";
+                    //string connectionString;
+                    //connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+                    //database + ";" + "CharSet = utf8;" + "UID=" + uid + ";" + "PASSWORD=" + password + "; Connect Timeout=5";
 
-                    return connectionString;
+                    return ConfigurationManager.ConnectionStrings["Test"].ConnectionString; 
                 }
-                catch (Exception e) { 
-                
+                catch (Exception e) {
+                    Logger.Logging.LogToScreenAndFile($"{nameof(this.ConnectionString)} -ban/ben hiba történt! {e.Message}");
                 }
                 return "";
             }
