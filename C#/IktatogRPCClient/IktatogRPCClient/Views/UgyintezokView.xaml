@@ -19,7 +19,7 @@
                 <StackPanel Grid.Row="0" Orientation="Vertical">
                     <TextBlock Foreground="White" Padding="5" Background="#FF036A9A" FontSize="24">Ügyintézők</TextBlock>
                     <TextBlock FontSize="20" Margin="5">Telephely</TextBlock>
-                    <ComboBox Margin="5 0" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely}" DisplayMemberPath="Name"></ComboBox>
+                    <ComboBox Margin="5 0" x:Name="ValaszthatoTelephely" SelectedItem="{Binding Path = ValasztottTelephely, Mode=TwoWay}" DisplayMemberPath="Name"></ComboBox>
                     <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="5 0">Ügyintézők a telephelyen</TextBlock>
                 </StackPanel>
                 <ListBox Margin="5" Grid.Row="1" MinHeight="100" MaxHeight="300" x:Name="TelephelyUgyintezoi" SelectedItem="{Binding Path=ValasztottUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" />

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class ModifyUgyintezoViewModel:TorzsDataView<Ugyintezo>,IHandle<Ugyintezo>
+    class ModifyUgyintezoViewModel:TorzsDataView<Ugyintezo>,IHandle<(Telephely,Ugyintezo)>
     {
 
         public ModifyUgyintezoViewModel()
@@ -27,7 +27,7 @@ namespace IktatogRPCClient.ViewModels
                 NotifyOfPropertyChange(() => ModifiedUgyintezo);
             }
         }
-
+        public Telephely SelectedTelephely { get; set; }
         private string _newName;
 
         public string NewName
@@ -41,17 +41,12 @@ namespace IktatogRPCClient.ViewModels
         }
 
 
-        public void Handle(Ugyintezo message)
-        {
-            ModifiedUgyintezo = message;
-            NewName = message.Name ;
-        }
 
         public async override void DoAction()
         {
             Ugyintezo modifiedUgyintezo = new Ugyintezo() { Id = ModifiedUgyintezo.Id, Name = NewName };
             if (await serverHelper.ModifyUgyintezoAsync(modifiedUgyintezo)) {
-                eventAggregator.PublishOnUIThread(modifiedUgyintezo);
+                eventAggregator.PublishOnUIThread((SelectedTelephely, modifiedUgyintezo));
                 TryClose();
             }
  
@@ -60,6 +55,13 @@ namespace IktatogRPCClient.ViewModels
         protected override bool ValidateDataInForm()
         {
             return (NewName.Length > 4 && NewName.Length < 100);
+        }
+
+        public void Handle((Telephely, Ugyintezo) message)
+        {
+            SelectedTelephely = new Telephely(message.Item1);
+            ModifiedUgyintezo = new Ugyintezo(message.Item2);
+            NewName = message.Item2.Name;
         }
     }
 }

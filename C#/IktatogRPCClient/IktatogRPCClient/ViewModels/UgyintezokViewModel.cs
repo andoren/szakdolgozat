@@ -43,9 +43,15 @@ namespace IktatogRPCClient.ViewModels
         {
             get { return _valasztottTelephely; }
             set {
-                _valasztottTelephely = value;
-                NotifyOfPropertyChange(() => ValasztottTelephely);
-                GetUgyintezokAsync();
+                if (value != null)
+                {
+                    _valasztottTelephely = value;
+                    NotifyOfPropertyChange(() => ValasztottTelephely);
+                    GetUgyintezokAsync();
+
+                }
+             
+           
             }
         }
         private async void GetUgyintezokAsync() {
@@ -119,8 +125,8 @@ namespace IktatogRPCClient.ViewModels
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyUgyintezo);
             eventAggregator.Subscribe(modifyScreen);
             ActivateItem(modifyScreen);
-            eventAggregator.PublishOnUIThread(ValasztottUgyintezo);
-            eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
+            eventAggregator.PublishOnUIThread((ValasztottTelephely, ValasztottUgyintezo));
+           
         }
         public bool CanModifyUgyintezo {
             get {
@@ -129,27 +135,33 @@ namespace IktatogRPCClient.ViewModels
         }
         public void Handle(Ugyintezo message)
         {
-            if (message != ValasztottUgyintezo) {
-                UgyintezokIsVisible = true;
-                if (!string.IsNullOrWhiteSpace(message.Name)) {
-
-                    TelephelyUgyintezoi.Remove(ValasztottUgyintezo);
-                    TelephelyUgyintezoi.Add(message);
-                    
-                    NotifyOfPropertyChange(() => TelephelyUgyintezoi);
-                }
-            }
+           if(ValasztottUgyintezo != message) UgyintezokIsVisible = true;
         }
 
         public void Handle((Telephely, Ugyintezo) message)
         {
-            UgyintezokIsVisible = true;
+            
             if (message.Item1.Name == ValasztottTelephely.Name)
-            {             
-                if (!string.IsNullOrWhiteSpace(message.Item2.Name))
-                {
-                    TelephelyUgyintezoi.Add(message.Item2);
+            {
+                Ugyintezo temp = TelephelyUgyintezoi.Where(x => x.Name == message.Item2.Name).FirstOrDefault();
+                if (temp == null) {
+                    UgyintezokIsVisible = true;
+                    {
+                        Ugyintezo tempid = TelephelyUgyintezoi.Where(x => x.Id == message.Item2.Id).FirstOrDefault();
+                        if (tempid != null)
+                        {
+
+                            TelephelyUgyintezoi.Remove(ValasztottUgyintezo);
+                            TelephelyUgyintezoi.Add(message.Item2);
+
+
+                        }
+                        else {
+                            TelephelyUgyintezoi.Add(message.Item2);
+                        }
+                    }
                 }
+    
                 NotifyOfPropertyChange(() => TelephelyUgyintezoi);
             }
         }
