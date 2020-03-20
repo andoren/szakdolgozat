@@ -141,8 +141,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Telephely, Ugyintezo) message)
         {
             
-            if (message.Item1.Name == ValasztottTelephely.Name)
-            {
+       
                 Ugyintezo temp = TelephelyUgyintezoi.Where(x => x.Name == message.Item2.Name).FirstOrDefault();
                 if (temp == null) {
                     UgyintezokIsVisible = true;
@@ -156,14 +155,14 @@ namespace IktatogRPCClient.ViewModels
 
 
                         }
-                        else {
+                        else if(message.Item1.Name == ValasztottTelephely.Name) {
                             TelephelyUgyintezoi.Add(message.Item2);
                         }
                     }
                 }
     
                 NotifyOfPropertyChange(() => TelephelyUgyintezoi);
-            }
+            
         }
         public void Handle(Telephely message)
         {

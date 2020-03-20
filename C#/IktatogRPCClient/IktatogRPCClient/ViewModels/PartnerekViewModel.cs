@@ -197,8 +197,11 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle(BindableCollection<Telephely> message)
         {
-            AvailableTelephelyek = message;
-            if(AvailableTelephelyek.Count > 0)SelectedTelephely = AvailableTelephelyek.First();
+            if (AvailableTelephelyek == null) {
+                AvailableTelephelyek = message;
+                if (AvailableTelephelyek.Count > 0) SelectedTelephely = AvailableTelephelyek.First();
+            }
+           
         }
     }
 }
