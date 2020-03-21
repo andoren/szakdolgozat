@@ -175,10 +175,7 @@ namespace IktatogRPCClient.Models.Managers
 
         public async Task<BindableCollection<Jelleg>> GetJellegekByTelephelyAsync(Telephely selectedTelephely)
         {
-            /*
-             if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Jelleg>() { new Jelleg() { Id = new Random().Next(1, 20), Name = "Fax" } };
-                else return new BindableCollection<Jelleg>() { new Jelleg() { Id = 1, Name = "Levél" } };
-             */
+ 
             BindableCollection<Jelleg> jellegek = new BindableCollection<Jelleg>();
             try
             {
