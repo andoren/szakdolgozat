@@ -334,7 +334,7 @@ namespace Iktato {
         __Marshaller_Iktato_Answer);
 
     static readonly grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document> __Method_GetDocumentById = new grpc::Method<global::Iktato.DocumentInfo, global::Iktato.Document>(
-        grpc::MethodType.Unary,
+        grpc::MethodType.ServerStreaming,
         __ServiceName,
         "GetDocumentById",
         __Marshaller_Iktato_DocumentInfo,
@@ -600,7 +600,7 @@ namespace Iktato {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Iktato.Document> GetDocumentById(global::Iktato.DocumentInfo request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task GetDocumentById(global::Iktato.DocumentInfo request, grpc::IServerStreamWriter<global::Iktato.Document> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1231,21 +1231,13 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_RemoveUgyintezoFromTelephely, null, options, request);
       }
-      public virtual global::Iktato.Document GetDocumentById(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Document> GetDocumentById(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetDocumentById(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Iktato.Document GetDocumentById(global::Iktato.DocumentInfo request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Iktato.Document> GetDocumentById(global::Iktato.DocumentInfo request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_GetDocumentById, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Document> GetDocumentByIdAsync(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetDocumentByIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.Document> GetDocumentByIdAsync(global::Iktato.DocumentInfo request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_GetDocumentById, null, options, request);
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetDocumentById, null, options, request);
       }
       public virtual grpc::AsyncClientStreamingCall<global::Iktato.Document, global::Iktato.DocumentInfo> UploadDocument(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -1415,7 +1407,7 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_RemoveTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Telephely, global::Iktato.Answer>(serviceImpl.RemoveTelephely));
       serviceBinder.AddMethod(__Method_RemoveCsoport, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Csoport, global::Iktato.Answer>(serviceImpl.RemoveCsoport));
       serviceBinder.AddMethod(__Method_RemoveUgyintezoFromTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ugyintezo, global::Iktato.Answer>(serviceImpl.RemoveUgyintezoFromTelephely));
-      serviceBinder.AddMethod(__Method_GetDocumentById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Document>(serviceImpl.GetDocumentById));
+      serviceBinder.AddMethod(__Method_GetDocumentById, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.DocumentInfo, global::Iktato.Document>(serviceImpl.GetDocumentById));
       serviceBinder.AddMethod(__Method_UploadDocument, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Iktato.Document, global::Iktato.DocumentInfo>(serviceImpl.UploadDocument));
       serviceBinder.AddMethod(__Method_Removedocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Answer>(serviceImpl.Removedocument));
       serviceBinder.AddMethod(__Method_GetUserTelephelyei, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.User, global::Iktato.Telephely>(serviceImpl.GetUserTelephelyei));

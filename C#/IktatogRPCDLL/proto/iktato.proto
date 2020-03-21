@@ -46,7 +46,7 @@ service IktatoService {
   rpc RemoveTelephely (Telephely) returns (Answer);
   rpc RemoveCsoport (Csoport) returns (Answer);
   rpc RemoveUgyintezoFromTelephely (Ugyintezo) returns (Answer);
-  rpc GetDocumentById (DocumentInfo)returns (Document);
+  rpc GetDocumentById (DocumentInfo) returns (stream Document);
   rpc UploadDocument (stream Document) returns (DocumentInfo);
   rpc Removedocument (DocumentInfo) returns (Answer);
   rpc GetUserTelephelyei (User) returns (stream Telephely);

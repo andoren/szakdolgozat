@@ -158,20 +158,21 @@ namespace IktatogRPCClient.Models.Managers
         public async Task<Document> GetDocumentByIdAsync(DocumentInfo info)
         {
             Document document = new Document() { Name = "" };
-            try
+            List<byte[]> Chunkes = new List<byte[]>();
+            Document recivedDocuemnt = new Document();
+            var call =  client.GetDocumentById(info,calloptions);
+            while (await call.ResponseStream.MoveNext())
             {
-                document = await client.GetDocumentByIdAsync(info, calloptions);
+                recivedDocuemnt = call.ResponseStream.Current;
+                Chunkes.Add(call.ResponseStream.Current.Doc.ToArray());
             }
-            catch (RpcException ex)
-            {
-                InformationBox.ShowError(ex);
-            }
-            catch (Exception e)
-            {
-                InformationBox.ShowError(e);
-            }
-            return document;
-        }
+            recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
+            return recivedDocuemnt;
+         }
+          
+            
+  
+
         public async Task<BindableCollection<Jelleg>> GetJellegekByTelephelyAsync(Telephely selectedTelephely)
         {
             /*
