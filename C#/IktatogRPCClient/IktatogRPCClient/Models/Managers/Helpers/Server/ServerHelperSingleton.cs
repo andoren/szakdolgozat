@@ -26,7 +26,7 @@ namespace IktatogRPCClient.Models.Managers
 
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
-
+        private int chunkSize = 64 * 1024;
     
 
         //TODO THE WHOLE HELPER! :(
@@ -158,20 +158,21 @@ namespace IktatogRPCClient.Models.Managers
         public async Task<Document> GetDocumentByIdAsync(DocumentInfo info)
         {
             Document document = new Document() { Name = "" };
-            try
+            List<byte[]> Chunkes = new List<byte[]>();
+            Document recivedDocuemnt = new Document();
+            var call =  client.GetDocumentById(info,calloptions);
+            while (await call.ResponseStream.MoveNext())
             {
-                document = await client.GetDocumentByIdAsync(info, calloptions);
+                recivedDocuemnt = call.ResponseStream.Current;
+                Chunkes.Add(call.ResponseStream.Current.Doc.ToArray());
             }
-            catch (RpcException ex)
-            {
-                InformationBox.ShowError(ex);
-            }
-            catch (Exception e)
-            {
-                InformationBox.ShowError(e);
-            }
-            return document;
-        }
+            recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
+            return recivedDocuemnt;
+         }
+          
+            
+  
+
         public async Task<BindableCollection<Jelleg>> GetJellegekByTelephelyAsync(Telephely selectedTelephely)
         {
             /*
@@ -513,7 +514,39 @@ namespace IktatogRPCClient.Models.Managers
             DocumentInfo documentInfo = new DocumentInfo() { Id = 0 };
             try
             {
-                documentInfo = await client.UploadDocumentAsync(doc, calloptions);
+                
+               
+                
+                
+              
+                using (var call = client.UploadDocument(calloptions))
+                {
+                    Document chunkDocument = new Document();
+                    chunkDocument.Id = 0;
+                    chunkDocument.IkonyvId = doc.IkonyvId;
+                    chunkDocument.Name = doc.Name;
+                    chunkDocument.Type = doc.Type;
+                    byte[] byteToSend = doc.Doc.ToArray();
+                    for (long i = 0; i < byteToSend.Length; i += chunkSize)
+                    {
+
+                        if (i + chunkSize > doc.Doc.Length)
+                        {
+                            chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, i + chunkSize - doc.Doc.Length));
+                            await call.RequestStream.WriteAsync(chunkDocument);
+                        }
+                        else
+                        {
+                            chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, 0));
+                            await call.RequestStream.WriteAsync(chunkDocument);
+                        }
+
+
+                    }
+                    await call.RequestStream.CompleteAsync();
+                    documentInfo = await call.ResponseAsync;
+                }
+
             }
             catch (RpcException ex)
             {
@@ -524,6 +557,20 @@ namespace IktatogRPCClient.Models.Managers
                 InformationBox.ShowError(e);
             }
             return documentInfo;
+        }
+
+        private byte[] FromToByteArray(byte[] input, long from,long size ) {
+            byte[] output;
+            if (size == 0) output = new byte[chunkSize];
+            
+            else {
+                output = new byte[chunkSize-size];
+            }
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = input[from + i];
+            }
+            return output;
         }
         public async Task<Jelleg> AddJellegToTelephelyAsync(Telephely selectedTelephely, string jellegNeve)
         {

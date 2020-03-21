@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Grpc.Core;
 using Iktato;
 using IktatogRPCServer.Database;
@@ -18,6 +19,7 @@ namespace IktatogRPCServer.Service
         private readonly TokenSerivce TokenManager = new TokenSerivce();
         private readonly ConnectionManager connectionManager = new ConnectionManager();
         private static List<(string,DateTime)> InvalidTokens = new List<(string, DateTime)>();
+        private int chunkSize = 64 * 1024;
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
             UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
@@ -75,23 +77,37 @@ namespace IktatogRPCServer.Service
             else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
-       
-        
-        //TODO
-        public override  Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
+        public override async Task<DocumentInfo> UploadDocument(IAsyncStreamReader<Document> requestStream, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
+                List<byte[]> Chunkes = new List<byte[]>();
+                Document recivedDocuemnt = new Document();
+                while (await requestStream.MoveNext())
+                {
+                    recivedDocuemnt = requestStream.Current;
+                    Chunkes.Add(requestStream.Current.Doc.ToArray());
+                }
                 MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
-                Document document = manager.Add(request, user);
-                return Task.FromResult(new DocumentInfo() { Id = document.Id, Name = document.Name, 
-                    Path = document.Path, Size = ((document.Doc.Length/(double)1024)/1024), Type = document.Type });
+                
+                recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
+                Document document = manager.Add(recivedDocuemnt, user);
+                return new DocumentInfo()
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    Path = document.Path,
+                    Size = ((document.Doc.Length / (double)1024) / 1024),
+                    Type = document.Type
+                };
             }
-            return Task.FromResult(new DocumentInfo());
-
+            else {
+                return new DocumentInfo();
+            }
+           
         }
-        
+
         public override Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
         {
             User user;
@@ -251,17 +267,63 @@ namespace IktatogRPCServer.Service
                 await responseStream.WriteAsync(new Telephely());
             }
         }
-
-        //TODO
-        public override Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        public override async Task GetDocumentById(DocumentInfo request, IServerStreamWriter<Document> responseStream, ServerCallContext context)
         {
-
-
+            User user;
+            if (CheckUserIsValid(context.RequestHeaders, out user))
+            {
                 DocumentDatabaseManager databaseManager = new DocumentDatabaseManager(connectionManager);
                 Document document = databaseManager.GetDataById(request);
-                return Task.FromResult(document);
-           
+                Document chunkDocument = new Document();
+                chunkDocument.Id = 0;
+                chunkDocument.IkonyvId = document.IkonyvId;
+                chunkDocument.Name = document.Name;
+                chunkDocument.Type = document.Type;
+                byte[] byteToSend = document.Doc.ToArray();
+                for (long i = 0; i < byteToSend.Length; i += chunkSize)
+                {
+
+                    if (i + chunkSize > document.Doc.Length)
+                    {
+                        chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, i + chunkSize - document.Doc.Length));
+                        await responseStream.WriteAsync(chunkDocument);
+                    }
+                    else
+                    {
+                        chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, 0));
+                        await responseStream.WriteAsync(chunkDocument);
+                    }
+                }
+            }
+            
         }
+      
+        private byte[] FromToByteArray(byte[] input, long from, long size)
+        {
+            byte[] output;
+            if (size == 0) output = new byte[chunkSize];
+
+            else
+            {
+                output = new byte[chunkSize - size];
+            }
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = input[from + i];
+            }
+            return output;
+        }
+        //TODO
+        //public override Task<Document> GetDocumentById(DocumentInfo request, ServerCallContext context)
+        //{
+        //    User user;
+        //    if (CheckUserIsValid(context.RequestHeaders, out user))
+        //    {
+        //        DocumentDatabaseManager databaseManager = new DocumentDatabaseManager(connectionManager);
+        //        Document document = databaseManager.GetDataById(request);
+        //        return Task.FromResult(document);
+        //    } else return Task.FromResult(new Document());
+        //}
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
             User user;

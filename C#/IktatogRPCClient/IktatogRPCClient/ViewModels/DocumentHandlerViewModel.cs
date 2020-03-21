@@ -101,7 +101,7 @@ namespace IktatogRPCClient.ViewModels
 		}
 		public async Task UploadDocument() {
 			string[] FileInfo = ChooseDataToUpload();
-			if (FileInfo[2] == "") return;
+			if (string.IsNullOrWhiteSpace(FileInfo[2])) return;
 			LoaderIsVisible = true;
 			Document document = new Document();
 			document.Name = FileInfo[0];
@@ -135,11 +135,12 @@ namespace IktatogRPCClient.ViewModels
 					int lastDotIndex = dokname.LastIndexOf('.');
 
 					fileInfo[0] = dokname.Substring(0, lastDotIndex);
-					fileInfo[1] = dokname.Substring(lastDotIndex+1);
+					fileInfo[1] = dokname.Substring(lastDotIndex + 1);
 					fileInfo[2] = dialog.FileName;
 					return fileInfo;
 				}
 				else
+					
 					return fileInfo;
 			}
 			catch (Exception e) {

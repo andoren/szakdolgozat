@@ -11,8 +11,8 @@ namespace IktatogRPCClient.Models
 {
     public class InformationBox
     {
-        public static void ShowError(Exception e) { 
-        
+        public static void ShowError(Exception e) {
+            MessageBox.Show(e.Message);
         }
         public static void ShowError(RpcException e)
         {
