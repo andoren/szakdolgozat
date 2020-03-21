@@ -341,7 +341,7 @@ namespace Iktato {
         __Marshaller_Iktato_Document);
 
     static readonly grpc::Method<global::Iktato.Document, global::Iktato.DocumentInfo> __Method_UploadDocument = new grpc::Method<global::Iktato.Document, global::Iktato.DocumentInfo>(
-        grpc::MethodType.Unary,
+        grpc::MethodType.ClientStreaming,
         __ServiceName,
         "UploadDocument",
         __Marshaller_Iktato_Document,
@@ -605,7 +605,7 @@ namespace Iktato {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Iktato.DocumentInfo> UploadDocument(global::Iktato.Document request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Iktato.DocumentInfo> UploadDocument(grpc::IAsyncStreamReader<global::Iktato.Document> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1247,21 +1247,13 @@ namespace Iktato {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetDocumentById, null, options, request);
       }
-      public virtual global::Iktato.DocumentInfo UploadDocument(global::Iktato.Document request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncClientStreamingCall<global::Iktato.Document, global::Iktato.DocumentInfo> UploadDocument(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return UploadDocument(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return UploadDocument(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Iktato.DocumentInfo UploadDocument(global::Iktato.Document request, grpc::CallOptions options)
+      public virtual grpc::AsyncClientStreamingCall<global::Iktato.Document, global::Iktato.DocumentInfo> UploadDocument(grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_UploadDocument, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.DocumentInfo> UploadDocumentAsync(global::Iktato.Document request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return UploadDocumentAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Iktato.DocumentInfo> UploadDocumentAsync(global::Iktato.Document request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_UploadDocument, null, options, request);
+        return CallInvoker.AsyncClientStreamingCall(__Method_UploadDocument, null, options);
       }
       public virtual global::Iktato.Answer Removedocument(global::Iktato.DocumentInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -1424,7 +1416,7 @@ namespace Iktato {
       serviceBinder.AddMethod(__Method_RemoveCsoport, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Csoport, global::Iktato.Answer>(serviceImpl.RemoveCsoport));
       serviceBinder.AddMethod(__Method_RemoveUgyintezoFromTelephely, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Ugyintezo, global::Iktato.Answer>(serviceImpl.RemoveUgyintezoFromTelephely));
       serviceBinder.AddMethod(__Method_GetDocumentById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Document>(serviceImpl.GetDocumentById));
-      serviceBinder.AddMethod(__Method_UploadDocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.Document, global::Iktato.DocumentInfo>(serviceImpl.UploadDocument));
+      serviceBinder.AddMethod(__Method_UploadDocument, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Iktato.Document, global::Iktato.DocumentInfo>(serviceImpl.UploadDocument));
       serviceBinder.AddMethod(__Method_Removedocument, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.DocumentInfo, global::Iktato.Answer>(serviceImpl.Removedocument));
       serviceBinder.AddMethod(__Method_GetUserTelephelyei, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Iktato.User, global::Iktato.Telephely>(serviceImpl.GetUserTelephelyei));
       serviceBinder.AddMethod(__Method_AddYearAndActivate, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Iktato.EmptyMessage, global::Iktato.Answer>(serviceImpl.AddYearAndActivate));

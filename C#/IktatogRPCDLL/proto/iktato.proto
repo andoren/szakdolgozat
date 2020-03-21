@@ -47,12 +47,14 @@ service IktatoService {
   rpc RemoveCsoport (Csoport) returns (Answer);
   rpc RemoveUgyintezoFromTelephely (Ugyintezo) returns (Answer);
   rpc GetDocumentById (DocumentInfo)returns (Document);
-  rpc UploadDocument (Document) returns (DocumentInfo);
+  rpc UploadDocument (stream Document) returns (DocumentInfo);
   rpc Removedocument (DocumentInfo) returns (Answer);
   rpc GetUserTelephelyei (User) returns (stream Telephely);
   rpc AddYearAndActivate (EmptyMessage) returns (Answer);
   rpc GetAllTelephely (EmptyMessage) returns (stream Telephely);
 }
+
+
 message NewTorzsData{
     Partner Partner = 1;
     Telephely Telephely = 2;

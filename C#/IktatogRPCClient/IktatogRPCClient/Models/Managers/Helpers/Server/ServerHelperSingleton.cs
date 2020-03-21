@@ -26,7 +26,7 @@ namespace IktatogRPCClient.Models.Managers
 
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
-
+        private int chunkSize = 64 * 1024;
     
 
         //TODO THE WHOLE HELPER! :(
@@ -513,7 +513,39 @@ namespace IktatogRPCClient.Models.Managers
             DocumentInfo documentInfo = new DocumentInfo() { Id = 0 };
             try
             {
-                documentInfo = await client.UploadDocumentAsync(doc, calloptions);
+                
+               
+                
+                
+              
+                using (var call = client.UploadDocument(calloptions))
+                {
+                    Document chunkDocument = new Document();
+                    chunkDocument.Id = 0;
+                    chunkDocument.IkonyvId = doc.IkonyvId;
+                    chunkDocument.Name = doc.Name;
+                    chunkDocument.Type = doc.Type;
+                    byte[] byteToSend = doc.Doc.ToArray();
+                    for (long i = 0; i < byteToSend.Length; i += chunkSize)
+                    {
+
+                        if (i + chunkSize > doc.Doc.Length)
+                        {
+                            chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, i + chunkSize - doc.Doc.Length));
+                            await call.RequestStream.WriteAsync(chunkDocument);
+                        }
+                        else
+                        {
+                            chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, 0));
+                            await call.RequestStream.WriteAsync(chunkDocument);
+                        }
+
+
+                    }
+                    await call.RequestStream.CompleteAsync();
+                    documentInfo = await call.ResponseAsync;
+                }
+
             }
             catch (RpcException ex)
             {
@@ -524,6 +556,20 @@ namespace IktatogRPCClient.Models.Managers
                 InformationBox.ShowError(e);
             }
             return documentInfo;
+        }
+
+        private byte[] FromToByteArray(byte[] input, long from,long size ) {
+            byte[] output;
+            if (size == 0) output = new byte[chunkSize];
+            
+            else {
+                output = new byte[chunkSize-size];
+            }
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = input[from + i];
+            }
+            return output;
         }
         public async Task<Jelleg> AddJellegToTelephelyAsync(Telephely selectedTelephely, string jellegNeve)
         {

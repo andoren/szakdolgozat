@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Grpc.Core;
 using Iktato;
 using IktatogRPCServer.Database;
@@ -75,23 +76,53 @@ namespace IktatogRPCServer.Service
             else return Task.FromResult(new Answer() { Error = true, Message = "Hibás felhasználó!" });
         }
 
-       
-        
-        //TODO
-        public override  Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
+        public override async Task<DocumentInfo> UploadDocument(IAsyncStreamReader<Document> requestStream, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
+                List<byte[]> Chunkes = new List<byte[]>();
+                Document recivedDocuemnt = new Document();
+                while (await requestStream.MoveNext())
+                {
+                    recivedDocuemnt = requestStream.Current;
+                    Chunkes.Add(requestStream.Current.Doc.ToArray());
+                }
                 MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
-                Document document = manager.Add(request, user);
-                return Task.FromResult(new DocumentInfo() { Id = document.Id, Name = document.Name, 
-                    Path = document.Path, Size = ((document.Doc.Length/(double)1024)/1024), Type = document.Type });
+                
+                recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
+                Document document = manager.Add(recivedDocuemnt, user);
+                return new DocumentInfo()
+                {
+                    Id = document.Id,
+                    Name = document.Name,
+                    Path = document.Path,
+                    Size = ((document.Doc.Length / (double)1024) / 1024),
+                    Type = document.Type
+                };
             }
-            return Task.FromResult(new DocumentInfo());
-
+            else {
+                return new DocumentInfo();
+            }
+           
         }
-        
+
+
+        //TODO
+        //public override  Task<DocumentInfo> UploadDocument(Document request, ServerCallContext context)
+        //{
+        //    User user;
+        //    if (CheckUserIsValid(context.RequestHeaders, out user))
+        //    {
+        //        MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
+        //        Document document = manager.Add(request, user);
+        //        return Task.FromResult(new DocumentInfo() { Id = document.Id, Name = document.Name, 
+        //            Path = document.Path, Size = ((document.Doc.Length/(double)1024)/1024), Type = document.Type });
+        //    }
+        //    return Task.FromResult(new DocumentInfo());
+
+        //}
+
         public override Task<RovidIkonyv> AddIktatas(Ikonyv request, ServerCallContext context)
         {
             User user;
