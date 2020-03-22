@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Windows;
 using Grpc.Core;
@@ -13,24 +14,32 @@ namespace IktatogRPCServer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, System.IObserver<Serilog.Events.LogEvent>
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            //StartServer();
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-               .WriteTo.File(Directory.GetCurrentDirectory()+"\\logs\\log.txt", shared: true, rollingInterval: RollingInterval.Day)
-               .WriteTo.Observers(events => events.Subscribe(this))
-               .CreateLogger();
+            ContentControl.Content = ladingPage;
 
         }
-
+        LadingPage ladingPage = new LadingPage(); 
         Server server;
-        const int Port = 443;
-        const string Ip = "localhost";
-        public void StartServer()
+        int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
+        string Ip = ConfigurationManager.AppSettings["APPHOST"];
+        private void StartServer_Click(object sender, RoutedEventArgs e)
+        {
+            StartLogger();
+            StartServer();
+        }
+        private void StartLogger()
+        {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+           .WriteTo.File(Directory.GetCurrentDirectory() + "\\logs\\log.txt", shared: true, rollingInterval: RollingInterval.Day)
+           .WriteTo.Observers(events => events.Subscribe(ladingPage))
+           .CreateLogger();
+        }
+        private void StartServer()
         {
             try
             {
@@ -38,17 +47,17 @@ namespace IktatogRPCServer
                 var servercert = File.ReadAllText("certs/server.crt");
                 Log.Debug("Mainwindow.StartServer: Ssl key bolvasása.");
                 var serverkey = File.ReadAllText("certs/server.key");
-                
+
                 KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
                 SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });
                 Log.Debug("Mainwindow.StartServer: Server Binding port es cím");
                 server = new Server
                 {
-                    Services = { IktatoService.BindService(new Service.SerivceForgRPC ()) },
-                    Ports = { new ServerPort(Ip, Port, credentials)},
-                    
+                    Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
+                    Ports = { new ServerPort(Ip, Port, credentials) },
+
                 };
-                Log.Debug("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}",Ip,Port);
+                Log.Debug("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
                 server.Start();
                 StartServerButton.IsEnabled = false;
                 StopServerButton.IsEnabled = true;
@@ -56,16 +65,10 @@ namespace IktatogRPCServer
             }
             catch (Exception ex)
             {
-                Log.Error("Következő hiba történt a szerver indulásakor: {Message}",ex);
+                Log.Error("Következő hiba történt a szerver indulásakor: {Message}", ex);
             }
             Log.Information("A szerver elindult ");
-            
-        }
 
-
-        private void StartServer_Click(object sender, RoutedEventArgs e)
-        {
-            StartServer();
         }
 
         private void StopServerAndQuit_Click(object sender, RoutedEventArgs e)
@@ -73,6 +76,7 @@ namespace IktatogRPCServer
             if (server != null) {
                 server.ShutdownAsync();
             }
+            Log.Warning("A szerver leáll.");
             Log.CloseAndFlush();
             this.Close();
         }
@@ -84,28 +88,31 @@ namespace IktatogRPCServer
                 server.ShutdownAsync();
                 StartServerButton.IsEnabled = true;
                 StopServerButton.IsEnabled = false;
+                Log.Warning("A szerver leáll.");
             }
             Log.CloseAndFlush();
         }
 
-        public void OnNext(LogEvent value)
+
+
+        private void Logging_Click(object sender, RoutedEventArgs e)
         {
-            Dispatcher.Invoke(()=> {
-                if(value.Level == LogEventLevel.Warning || value.Level == LogEventLevel.Information)BoxToLog.Text += value.MessageTemplate.Text + "\n";
-            }); 
+            ContentControl.Content = new ManageLogging();
         }
 
-        public void OnError(Exception error)
+        private void SqlButton_Click(object sender, RoutedEventArgs e)
         {
-            Dispatcher.Invoke(() => {
-                BoxToLog.Text += error.Message + "\n";
-            });
-            
+            ContentControl.Content = new ManageSql();
         }
 
-        public void OnCompleted()
+        private void LadingPageButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ContentControl.Content = ladingPage;
+        }
+
+        private void UserManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentControl.Content = new UserManage();
         }
     }
 }

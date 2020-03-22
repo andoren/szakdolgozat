@@ -157,8 +157,28 @@
     <Compile Include="Database\Mysql\UgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
     <Compile Include="Database\Mysql\YearsDatabaseManager.cs" />
+    <Compile Include="LadingPage.xaml.cs">
+      <DependentUpon>LadingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageLogging.xaml.cs">
+      <DependentUpon>ManageLogging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSql.xaml.cs">
+      <DependentUpon>ManageSql.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\SerivceForgRPC.cs" />
     <Compile Include="Service\TokenSerivce.cs" />
+    <Compile Include="UserManage.xaml.cs">
+      <DependentUpon>UserManage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageLogging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -171,6 +191,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManageSql.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

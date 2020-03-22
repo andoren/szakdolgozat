@@ -10,7 +10,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -29,26 +28,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="5" x:Name="StartServerButton" Click="StartServer_Click" >Inditás</Button>
-            <Button Grid.Column="1" Margin="5" x:Name="StopServerButton" Click="StopServerButton_Click" >Leállítás</Button>
-            <Button Grid.Column="2" Margin="5" >Cache műveletek</Button>
-            <Button Grid.Column="3" Margin="5" >Felhasználó</Button>
-            <Button Grid.Column="4" Margin="5" >SQL mentés</Button>
-            <Button Grid.Column="5" Margin="5" >Logging</Button>
+             <!--Menü-->
+            <Button Grid.Column="0" Margin="5" x:Name="LadingPageButton" Click="LadingPageButton_Click" >Fődoldal</Button>
+            <Button Grid.Column="1" Margin="5" x:Name="StartServerButton" Click="StartServer_Click" >Inditás</Button>
+            <Button Grid.Column="2" Margin="5" x:Name="StopServerButton" Click="StopServerButton_Click" >Leállítás</Button>
+            <Button Grid.Column="3" Margin="5" x:Name="UserManageButton" Click="UserManageButton_Click" >Felhasználó</Button>
+            <Button Grid.Column="4" Margin="5" x:Name="SqlButton" Click="SqlButton_Click" >Adatbázis</Button>
+            <Button Grid.Column="5" Margin="5" x:Name="Logging" Click="Logging_Click" >Logolás</Button>
             <Button Grid.Column="6" Margin="5" x:Name="StopServerAndQuit" Click="StopServerAndQuit_Click">Kilépés</Button>
         </Grid>
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Width="{Binding ElementName=MenuGrid, Path=ActualWidth}">
-            <TextBlock>Log:</TextBlock>
-            <TextBox x:Name="BoxToLog" IsReadOnly="True" TextWrapping="Wrap" 
-                             AcceptsReturn="True"
-                             VerticalContentAlignment="Top"
-                             HorizontalScrollBarVisibility="Disabled"
-                             VerticalScrollBarVisibility="Auto" 
-                             Margin="5 0 5 5" FontSize="20"
-                             VerticalAlignment="Stretch" 
-                             SpellCheck.IsEnabled="True"
-                             MinHeight="100" Height="374"></TextBox>
-        </StackPanel>
-        
+        <!--Változó UserControllok-->
+        <ContentControl Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentControl"></ContentControl>
     </Grid>
 </Window>
