@@ -13,7 +13,7 @@
                              VerticalContentAlignment="Top"
                              HorizontalScrollBarVisibility="Disabled"
                              VerticalScrollBarVisibility="Auto" 
-                             Margin="5 25 5 5" FontSize="20"
+                             Margin="5 40 5 5" FontSize="20"
                              VerticalAlignment="Stretch" 
                              HorizontalAlignment="Stretch"
                              SpellCheck.IsEnabled="True"

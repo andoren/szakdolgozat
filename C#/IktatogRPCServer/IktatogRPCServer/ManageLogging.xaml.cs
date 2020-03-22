@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
+using Serilog;
+using Serilog.Events;
 
 namespace IktatogRPCServer
 {
@@ -29,19 +31,18 @@ namespace IktatogRPCServer
             InformationText.Visibility = Visibility.Hidden;
             CurrentLoggingPath.Text = MainWindow.LogPath;
             NewLoggingPath.Text = MainWindow.LogPath;
-            
+            ServerLoggingLevelComboBox.ItemsSource = Enum.GetValues(typeof(LogEventLevel));
+            ServerLoggingLevelToShowComboBox.ItemsSource = Enum.GetValues(typeof(LogEventLevel));
+            ServerCurrentLogLevel.Text = Enum.GetName(typeof(LogEventLevel), RegistryHelper.GetLogLevel());
+            ServerCurrentLogLevelToShow.Text= Enum.GetName(typeof(LogEventLevel), RegistryHelper.GetLogLevelToShow());
         }
-        const string userRoot = "HKEY_CURRENT_USER";
-        const string subkey = "OtemplomIktato";
-        const string keyName = userRoot + "\\" + subkey;
+        
         private void ChoosePathButton_Click(object sender, RoutedEventArgs e)
         {
-
             var dlg = new CommonOpenFileDialog();
             dlg.Title = "Elérési út kiválasztása.";
             dlg.IsFolderPicker = true;
             dlg.InitialDirectory = Directory.GetCurrentDirectory();
-
             dlg.AddToMostRecentlyUsedList = false;
             dlg.AllowNonFileSystemItems = false;
             dlg.DefaultDirectory = Directory.GetCurrentDirectory();
@@ -51,7 +52,6 @@ namespace IktatogRPCServer
             dlg.EnsureValidNames = true;
             dlg.Multiselect = false;
             dlg.ShowPlacesList = true;
-
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 NewLoggingPath.Text = dlg.FileName;
@@ -63,6 +63,24 @@ namespace IktatogRPCServer
         {
             RegistryHelper.SetLogPath(NewLoggingPath.Text);
             MessageBox.Show("A logolás elérésí útja módosult.");
+            InformationText.Visibility = Visibility.Visible;
+        }
+
+        private void ModifyServerLogLevel_Click(object sender, RoutedEventArgs e)
+        {
+            if (ServerLoggingLevelComboBox.SelectedItem == null) return;
+            RegistryHelper.SetLogLevel((int)ServerLoggingLevelComboBox.SelectedItem);
+            MessageBox.Show("A szerver logolási szintje módosult");
+            InformationText.Visibility = Visibility.Visible;
+        }
+
+        private void ModifyCurrentLogLevelToShow_Click(object sender, RoutedEventArgs e)
+        {
+            if (ServerLoggingLevelToShowComboBox.SelectedItem == null) return;
+            RegistryHelper.SetLogLevelToShow((int)ServerLoggingLevelToShowComboBox.SelectedItem);
+            MessageBox.Show("A mutatott logolási szint módosult");
+
+            InformationText.Visibility = Visibility.Visible;
         }
     }
 }

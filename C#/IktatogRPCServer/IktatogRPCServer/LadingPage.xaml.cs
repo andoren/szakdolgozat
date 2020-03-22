@@ -29,7 +29,7 @@ namespace IktatogRPCServer
         public void OnNext(LogEvent value)
         {
             Dispatcher.Invoke(()=> {
-                if((int)value.Level >= (int)LogLevelToShow) BoxToLog.Text += $"{DateTime.Now.ToString()} {value.RenderMessage()}\n";
+                if((int)value.Level >= (int)RegistryHelper.GetLogLevelToShow()) BoxToLog.Text += $"{DateTime.Now.ToString()} {value.RenderMessage()}\n";
             }); 
         }
         public static void SetLogLEvelToShow(LogEventLevel logEventLevel) {

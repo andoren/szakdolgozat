@@ -21,7 +21,7 @@ namespace IktatogRPCServer
             {
                 
                
-               if (e.Args.Contains("-d")) window.SetServerLogLevel(LogEventLevel.Debug) ;
+               if (e.Args.Contains("-d")) window.ChangeLogLevel(LogEventLevel.Debug) ;
                if (e.Args.Contains("-s")) window.StartServer_Click(null, null);
               
                

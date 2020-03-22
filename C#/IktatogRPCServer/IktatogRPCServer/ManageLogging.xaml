@@ -61,12 +61,12 @@
                         <TextBlock Margin="5">Választható logolási szintek:</TextBlock>
                         <ComboBox Margin="5" x:Name="ServerLoggingLevelComboBox"></ComboBox>
                     </StackPanel>
-                    <Button Margin="5 5 5 15"  Grid.Row="1">Módosítás</Button>
+                    <Button x:Name="ModifyServerLogLevel" Click="ModifyServerLogLevel_Click" Margin="5 5 5 15"  Grid.Row="1">Módosítás</Button>
                     <StackPanel Grid.Column="1">
                         <TextBlock Margin="5">Megjelenített logolási szintek:</TextBlock>
                         <ComboBox Margin="5" x:Name="ServerLoggingLevelToShowComboBox"></ComboBox>
                     </StackPanel>
-                    <Button Margin="5 5 5 15"  Grid.Row="1" Grid.Column="1">Módosítás</Button>
+                    <Button x:Name="ModifyCurrentLogLevelToShow" Click="ModifyCurrentLogLevelToShow_Click" Margin="5 5 5 15"  Grid.Row="1" Grid.Column="1">Módosítás</Button>
                 </Grid>
             </GroupBox>
         </StackPanel>

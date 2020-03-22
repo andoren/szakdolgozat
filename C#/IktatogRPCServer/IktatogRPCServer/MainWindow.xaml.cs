@@ -22,7 +22,6 @@ namespace IktatogRPCServer
         {
             InitializeComponent();
             ContentControl.Content = ladingPage;
-            serverLevelSwitch.MinimumLevel = LogEventLevel.Information;
             LogPath = RegistryHelper.GetLogPath();
         }
 
@@ -31,7 +30,7 @@ namespace IktatogRPCServer
         Server server;
         int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
         string Ip = ConfigurationManager.AppSettings["APPHOST"];
-        LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
+        private static LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
         private static string _logPath = "";
 
         public static string LogPath
@@ -45,11 +44,12 @@ namespace IktatogRPCServer
             StartLogger();
             StartServer();
         }
-        public void ChangeLogLevel(LogEventLevel level) {
+        public  void ChangeLogLevel(LogEventLevel level) {
             serverLevelSwitch.MinimumLevel = level;
         }
         private void StartLogger()
         {
+            serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
             if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.ControlledBy(serverLevelSwitch)
@@ -89,9 +89,7 @@ namespace IktatogRPCServer
 
         }
 
-        public void SetServerLogLevel(LogEventLevel logEventLevel) {
-            serverLevelSwitch.MinimumLevel = logEventLevel;
-        }
+  
         private void StopServerAndQuit_Click(object sender, RoutedEventArgs e)
         {
             if (server != null) {
