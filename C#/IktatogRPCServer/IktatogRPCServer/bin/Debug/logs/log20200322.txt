@@ -1019,3 +1019,21 @@ Fájlnév: 'E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCSer
 2020-03-22 16:30:44.020 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
 2020-03-22 16:30:44.045 +01:00 [INF] A szerver elindult 
 2020-03-22 16:30:50.914 +01:00 [WRN] A szerver leáll.
+2020-03-22 17:05:22.790 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-22 17:05:22.816 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-22 17:05:22.817 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-22 17:05:23.080 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-22 17:05:23.107 +01:00 [INF] A szerver elindult 
+2020-03-22 17:06:07.908 +01:00 [WRN] A szerver leáll.
+2020-03-22 17:06:24.774 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-22 17:06:24.812 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-22 17:06:24.813 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-22 17:06:25.082 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-22 17:06:25.120 +01:00 [INF] A szerver elindult 
+2020-03-22 17:06:58.138 +01:00 [WRN] A szerver leáll.
+2020-03-22 17:16:00.552 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-22 17:16:00.593 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-22 17:16:00.595 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-22 17:16:00.879 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-22 17:16:00.914 +01:00 [INF] A szerver elindult 
+2020-03-22 17:20:29.731 +01:00 [WRN] A szerver leáll.

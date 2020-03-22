@@ -38,7 +38,7 @@ namespace IktatogRPCServer
         public void OnError(Exception error)
         {
             Dispatcher.Invoke(() => {
-                BoxToLog.Text += error.Message + "\n";
+                BoxToLog.Text += $"{DateTime.Now.ToString()} {error.Message}\n";
             });
 
         }
