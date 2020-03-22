@@ -58,8 +58,9 @@ service IktatoService {
 message NewTorzsData{
     Partner Partner = 1;
     Telephely Telephely = 2;
-    string Name = 3;
-    string Shorname = 4;
+    User user = 3;
+    string Name = 4;
+    string Shorname = 5;
 }
 message RovidIkonyv{
     int32 Id = 1;

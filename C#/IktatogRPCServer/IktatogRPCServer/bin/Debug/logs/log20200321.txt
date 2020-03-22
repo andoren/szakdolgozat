@@ -1,0 +1,610 @@
+2020-03-21 16:26:48.464 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:26:48.507 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:26:48.510 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:26:48.724 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-21 16:26:48.755 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:33:37.203 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:33:37.229 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:33:37.232 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:33:37.529 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-21 16:33:37.574 +01:00 [INF] A szerver elindult 
+2020-03-21 16:33:41.569 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:33:42.078 +01:00 [DBG] Login: Sikeres user validálás. { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-21 16:33:42.079 +01:00 [DBG] Login: Token generálás megkezdése a következő adatokkal: Felhasználónév: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }, Privilege: { "id": 1, "name": "admin" }, Id: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-21 16:33:42.126 +01:00 [DBG] Login: A token sikeresen legenerálva.
+2020-03-21 16:35:50.998 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:50.998 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:50.999 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:50.999 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:50.999 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.000 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.000 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.000 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.001 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.009 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.009 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.009 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.010 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.010 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.011 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.010 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.012 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.013 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.114 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.114 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.114 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.114 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.114 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.115 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.115 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.115 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.115 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.116 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.117 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.120 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.121 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.121 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.121 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.121 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.121 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.121 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.121 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.122 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.122 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.139 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.140 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.140 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.140 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.140 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.140 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.140 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.141 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:35:51.166 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:35:51.167 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:35:51.167 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:35:51.167 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:35:51.167 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:35:51.167 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:35:51.167 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:35:51.168 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:28.434 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:28.434 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:28.435 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:28.435 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:28.435 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:28.436 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:28.436 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:28.436 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:28.438 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:28.439 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:28.454 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:28.454 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:28.463 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:28.463 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:28.463 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:28.463 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:28.463 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:28.464 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:28.480 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:28.480 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:28.480 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:28.480 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:28.480 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:28.481 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:28.481 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:28.481 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:37.555 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:37.555 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:37.555 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:37.555 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:37.555 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:37.556 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:37.556 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:37.557 +01:00 [DBG] CsoportDatabaseManager.Add: Mysqlcommand előkészítése.
+2020-03-21 16:36:37.558 +01:00 [DBG] CsoportDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.
+2020-03-21 16:36:37.558 +01:00 [DBG] CsoportDatabaseManager.Add: Kimenő paraméter létrehozása és hozzáadása a paraméter listához.
+2020-03-21 16:36:37.558 +01:00 [DBG] CsoportDatabaseManager.Add: MysqlConnection létrehozása és nyitása.
+2020-03-21 16:36:37.558 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:37.558 +01:00 [DBG] CsoportDatabaseManager.Add: MysqlCommand végrehajtása
+2020-03-21 16:36:37.572 +01:00 [DBG] CsoportDatabaseManager.Add: Kimenő paraméter kiolvasása { "name": "meowe", "shortname": "m" }
+2020-03-21 16:36:47.690 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.690 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.691 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.691 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.691 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.691 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.691 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.692 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.692 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.692 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.692 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.692 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.692 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.693 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.693 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.729 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.729 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.730 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.730 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.730 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.730 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.730 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.730 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.731 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.731 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.731 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.731 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.732 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.732 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.732 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.732 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.731 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.732 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.732 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.733 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.733 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.733 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.733 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.733 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.734 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.734 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.734 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.735 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.735 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.735 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.736 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.736 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.736 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.736 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.736 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.736 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.736 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.737 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.737 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.737 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.737 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.737 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.737 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.741 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.741 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.741 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.742 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.742 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.742 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.742 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.744 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:47.745 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:47.745 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:47.745 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:47.745 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:47.745 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:47.746 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:47.746 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:47.746 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.035 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.036 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.036 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.036 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.036 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.036 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.036 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.036 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.036 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.065 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.065 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.066 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.066 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.066 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.066 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.066 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.066 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.067 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.067 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.067 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.067 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.067 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.067 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.068 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.069 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.069 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.069 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.069 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.067 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.069 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.069 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.069 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.069 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.070 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.070 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.071 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.071 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.071 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.071 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.072 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.072 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.072 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.073 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.073 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.073 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.073 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.073 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.073 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.074 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.074 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.074 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.074 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.074 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.075 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.075 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.075 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.073 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.075 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.075 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.075 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.076 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.076 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.076 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.076 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.076 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.085 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.085 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.085 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.085 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.085 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.086 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.086 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.087 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.087 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.087 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.087 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.087 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.088 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.088 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:36:52.088 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:36:52.088 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.088 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:36:52.088 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.088 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:36:52.088 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:36:52.088 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:36:52.089 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:36:52.089 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:36:52.089 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:13.435 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:13.437 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:13.437 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:13.437 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:13.437 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:13.438 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:13.438 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:13.438 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:14.673 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:14.673 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:14.673 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:14.673 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:14.673 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:14.674 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:14.674 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:14.674 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:15.627 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:15.629 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:15.629 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:15.629 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:15.629 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:15.629 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:15.630 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:15.630 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.279 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.280 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.281 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.281 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.281 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.281 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.282 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.282 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.282 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.283 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.283 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.283 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.283 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.283 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.284 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.284 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.283 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.283 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.309 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.309 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.309 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.310 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.310 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.310 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.310 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.310 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.310 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.310 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.311 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.311 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.311 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.311 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.311 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.311 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.311 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.311 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.311 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.330 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.330 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.330 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.330 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.330 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.330 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.331 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.331 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:18.331 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:18.331 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:18.332 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:18.332 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:18.332 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:18.332 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:18.333 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:18.333 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:22.904 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:22.904 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:22.904 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:22.904 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:22.905 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:22.905 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:22.905 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:22.905 +01:00 [DBG] CsoportDatabaseManager.Add: Mysqlcommand előkészítése.
+2020-03-21 16:37:22.905 +01:00 [DBG] CsoportDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.
+2020-03-21 16:37:22.906 +01:00 [DBG] CsoportDatabaseManager.Add: Kimenő paraméter létrehozása és hozzáadása a paraméter listához.
+2020-03-21 16:37:22.906 +01:00 [DBG] CsoportDatabaseManager.Add: MysqlConnection létrehozása és nyitása.
+2020-03-21 16:37:22.906 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:22.907 +01:00 [DBG] CsoportDatabaseManager.Add: MysqlCommand végrehajtása
+2020-03-21 16:37:22.916 +01:00 [DBG] CsoportDatabaseManager.Add: Kimenő paraméter kiolvasása { "id": 7, "name": "kkkkk", "shortname": "kk" }
+2020-03-21 16:37:24.221 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.221 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.222 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.222 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.223 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.222 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.223 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.223 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.223 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.223 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.223 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.223 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.223 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.223 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.223 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.223 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.223 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.254 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.255 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.255 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.255 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.255 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.255 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.256 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.256 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.256 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.256 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.256 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.257 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.257 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.257 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.257 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.257 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.259 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.259 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.259 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.259 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.259 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.260 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.260 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.260 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.261 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.261 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.261 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.261 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.262 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.262 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.262 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.263 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.263 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.263 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.263 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.263 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.263 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.264 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.264 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.265 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.265 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.265 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.265 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.265 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.265 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.266 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.266 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.262 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.266 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.266 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.266 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.267 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.267 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.267 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.266 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.268 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.268 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.269 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.269 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.269 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.269 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.276 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.276 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.276 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.278 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.279 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.279 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.279 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.279 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.279 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.279 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.279 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.279 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.279 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.280 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.280 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.280 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:37:24.282 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:37:24.283 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:37:24.283 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:37:24.283 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:37:24.283 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:37:24.283 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:37:24.284 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:37:24.284 +01:00 [DBG] Connectionstring kilvasása.

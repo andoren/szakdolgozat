@@ -1,6 +1,6 @@
 ﻿using Iktato;
 using IktatogRPCServer.Database.Mysql.Abstract;
-using IktatogRPCServer.Logger;
+using Serilog;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,6 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
     
-
-
         public override Ikonyv Add(NewTorzsData newObject, User user)
         {
             throw new NotImplementedException();
@@ -26,9 +24,11 @@ namespace IktatogRPCServer.Database.Mysql
         public override Ikonyv Add(Ikonyv newObject, User user)
         {
             if (newObject.ValaszId == -1) {
+                Log.Debug("IkonyvDatabaseManager.Add: AddRootIkonyv meghívva.");
                 return AddRootIkonyv(newObject, user);
             }else
             {
+                Log.Debug("IkonyvDatabaseManager.Add: AddSubIkonyv meghívva.");
                 return AddSubIkonyv(newObject, user);
             }
          
@@ -36,9 +36,14 @@ namespace IktatogRPCServer.Database.Mysql
 
         private Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
         {
+            Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addRootIkonyv";
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
+            Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {NewObject}, User: {User}", newObject, user);
             //IN PARAMETERS
             MySqlParameter targyp = new MySqlParameter()
             {
@@ -132,6 +137,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Direction = System.Data.ParameterDirection.Input
             };
             //OUT parameters
+            Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Kimenő paraméter beálltása ");
             MySqlParameter newidp = new MySqlParameter()
             {
                 ParameterName = "@newid",
@@ -161,39 +167,44 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(iktaszmp);
             try
             {
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
+    
                 try
                 {
+                    Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Command végrehajtása");
                     command.ExecuteNonQuery();
                     newObject.Id = int.Parse(command.Parameters["@newid"].Value.ToString());
                     newObject.Iktatoszam = command.Parameters["@iktszam"].Value.ToString();
+                    Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Kimenő paraméterek: {NewObject} ",newObject);
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("IkonyvDatabaseManager.AddRootIkonyv: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("IkonyvDatabaseManager.AddRootIkonyv: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("IkonyvDatabaseManager.AddRootIkonyv: Hiba történt {Message}", ex);
 
             }
 
             return newObject;
         }
         private Ikonyv AddSubIkonyv(Ikonyv newObject, User user) {
+            Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addsubikonyv";
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
             //IN PARAMETERS
+            Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {NewObject}, User: {User}", newObject, user);
             MySqlParameter targyp = new MySqlParameter()
             {
                 ParameterName = "@targy_b",
@@ -293,6 +304,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Direction = System.Data.ParameterDirection.Input
             };
             //OUT parameters
+            Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Kimenő paraméter beálltása ");
             MySqlParameter newidp = new MySqlParameter()
             {
                 ParameterName = "@newid",
@@ -323,29 +335,29 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(parentidp);
             try
             {
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
+     
                 try
                 {
+                    Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Command végrehajtása");
                     command.ExecuteNonQuery();
                     newObject.Id = int.Parse(command.Parameters["@newid"].Value.ToString());
                     newObject.Iktatoszam = command.Parameters["@myIktSzam"].Value.ToString();
+                    Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Kimenő paraméterek: {NewObject} ", newObject);
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("IkonyvDatabaseManager.AddSubIkonyv: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("IkonyvDatabaseManager.AddSubIkonyv: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("IkonyvDatabaseManager.AddSubIkonyv: Hiba történt {Message}", ex);
 
             }
 
@@ -354,10 +366,14 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Answer Delete(int id, User user)
         {
+            Log.Debug("IkonyvDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             MySqlConnection connection = GetConnection();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delikonyv";
+            OpenConnection(connection);
+            command.Connection = connection;
+            Log.Debug("IkonyvDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {Id}, User: {User}", id, user);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -378,18 +394,18 @@ namespace IktatogRPCServer.Database.Mysql
             string message = "Sikeres törlés!";
             try
             {
-                OpenConnection(connection);
-                command.Connection = connection;
+                Log.Debug("IkonyvDatabaseManager.Delete: Command végrehajtása");
                 eredmeny = command.ExecuteNonQuery() == 0;
                 if (eredmeny) message = "Hiba a törlés közben.";
             }
             catch (MySqlException ex)
             {
-                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+                Log.Error("IkonyvDatabaseManager.Delete: Adatbázis hiba. {Message}", ex);
             }
             catch (Exception e)
             {
-                Logging.LogToScreenAndFile(e.Message);
+                Log.Error("IkonyvDatabaseManager.Delete: Hiba történt {Message}", e);
+
             }
             finally
             {
@@ -398,29 +414,30 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-        public override List<Ikonyv> GetAllData()
-        {
-            return new List<Ikonyv>();
-        }
 
         public override List<Ikonyv> GetAllData(object filter)
         {
+            Log.Debug("IkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Ikonyv> ikonyvek = new List<Ikonyv>();
             if (filter is SearchIkonyvData) {
                 SearchIkonyvData data = filter as SearchIkonyvData;
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getikonyvek";
+                Log.Debug("IkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Adat: {Data}", data);
                 command.Parameters.AddWithValue("@user_id_b", data.User.Id);
                 command.Parameters.AddWithValue("@year_id_b", data.Year.Id);
-                command.Parameters.AddWithValue("@irany_b", data.Irany);
+                command.Parameters.AddWithValue("@irany_b", data.Irany); 
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
                 try
                 {
-                    MySqlConnection connection = GetConnection();
-                    command.Connection = connection;
-                    OpenConnection(connection);
+               
                     try
                     {
+
+                        Log.Debug("IkonyvDatabaseManager.GetAllData: Command végrehajtása");
                         MySqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
@@ -450,11 +467,12 @@ namespace IktatogRPCServer.Database.Mysql
                     }
                     catch (MySqlException ex)
                     {
-                        Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                        Log.Error("IkonyvDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                     }
                     catch (Exception e)
                     {
-                        Logging.LogToScreenAndFile(e.Message);
+                        Log.Error("IkonyvDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
                     }
                     finally
                     {
@@ -463,25 +481,26 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (Exception ex)
                 {
-                    Logging.LogToScreenAndFile(ex.Message);
+                    Log.Error("IkonyvDatabaseManager.GetAllData: Hiba történt {Message}", ex);
                 }
             }
             return ikonyvek;
         }
 
-        public override Ikonyv GetDataById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Answer Update(Ikonyv modifiedObject)
         {
+            Log.Debug("IkonyvDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "modifyikonyv";
-            string message = "Hiba a partner módosítása közben.";
+            string message = "Hiba a iktatás módosítása közben.";
             bool eredmeny = false;
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
             //IN PARAMETERS   
+            Log.Debug("IkonyvDatabaseManager.Update: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Ikonyv: {ModifiedObject}", modifiedObject);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -564,28 +583,27 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(szovegp);
             try
             {
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
+
                 try
                 {
+                    Log.Debug("IkonyvDatabaseManager.Update: Command végrehajtása");
                     eredmeny = command.ExecuteNonQuery() == 0;
                     if (!eredmeny) message = "Sikeres módosítás.";
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("IkonyvDatabaseManager.Update: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("IkonyvDatabaseManager.Update: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("IkonyvDatabaseManager.Update: Hiba történt {Message}", ex);
 
             }
 

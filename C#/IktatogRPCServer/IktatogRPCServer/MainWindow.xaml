@@ -44,10 +44,10 @@
                              VerticalContentAlignment="Top"
                              HorizontalScrollBarVisibility="Disabled"
                              VerticalScrollBarVisibility="Auto" 
-                             Margin="5 0 5 5" 
+                             Margin="5 0 5 5" FontSize="20"
                              VerticalAlignment="Stretch" 
                              SpellCheck.IsEnabled="True"
-                             MinHeight="100"></TextBox>
+                             MinHeight="100" Height="374"></TextBox>
         </StackPanel>
         
     </Grid>

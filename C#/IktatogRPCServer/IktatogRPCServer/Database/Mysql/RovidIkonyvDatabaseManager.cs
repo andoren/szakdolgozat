@@ -1,7 +1,7 @@
 ﻿using Iktato;
 using IktatogRPCServer.Database.Mysql.Abstract;
-using IktatogRPCServer.Logger;
 using MySql.Data.MySqlClient;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,23 +23,17 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override RovidIkonyv Add(RovidIkonyv newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
-
+  
         public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
 
-        public override List<RovidIkonyv> GetAllData()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public override List<RovidIkonyv> GetAllData(object filter)
         {
+            Log.Debug("RovidIkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<RovidIkonyv> rovidikoynvek = new List<RovidIkonyv>();
             if (filter is Telephely)
             {
@@ -47,14 +41,17 @@ namespace IktatogRPCServer.Database.Mysql
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getshortikonyv";
+                Log.Debug("RovidIkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
                 command.Parameters.AddWithValue("@telephely_b", telephely.Id);
                 try
                 {
+                    Log.Debug("RovidIkonyvDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
                     MySqlConnection connection = GetConnection();
                     command.Connection = connection;
                     OpenConnection(connection);
                     try
                     {
+                        Log.Debug("RovidIkonyvDatabaseManager.GetAllData: MysqlCommand végrehajtása");
                         MySqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
@@ -66,11 +63,12 @@ namespace IktatogRPCServer.Database.Mysql
                     }
                     catch (MySqlException ex)
                     {
-                        Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                        Log.Error("RovidIkonyvDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                     }
                     catch (Exception e)
                     {
-                        Logging.LogToScreenAndFile(e.Message);
+                        Log.Error("RovidIkonyvDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
                     }
                     finally
                     {
@@ -79,18 +77,12 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (Exception ex)
                 {
-                    Logging.LogToScreenAndFile(ex.Message);
+                    Log.Error("RovidIkonyvDatabaseManager.GetAllData: Hiba történt {Message}", ex);
                 }
             }
 
             return rovidikoynvek;
         }
-
-        public override RovidIkonyv GetDataById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Answer Update(RovidIkonyv modifiedObject)
         {
             throw new NotImplementedException();

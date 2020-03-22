@@ -1,6 +1,6 @@
 ﻿using Iktato;
 using IktatogRPCServer.Database.Mysql.Abstract;
-using IktatogRPCServer.Logger;
+using Serilog;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Partner Add(NewTorzsData newObject, User user)
         {
+            Log.Debug("PartnerDatabaseManager.Add: Mysqlcommand előkészítése.");
             Partner partner = new Partner()
             {
                 Name = newObject.Name,
@@ -27,6 +28,7 @@ namespace IktatogRPCServer.Database.Mysql
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addpartner";
             //IN PARAMETERS
+            Log.Debug("PartnerDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {NewObject}", newObject);
             MySqlParameter telephelyp = new MySqlParameter()
             {
                 ParameterName = "@telephely_b",
@@ -53,47 +55,45 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(namep);
             command.Parameters.Add(userp);
             //OUTPARAMETER
+            Log.Debug("PartnerDatabaseManager.Add: Kimenő paraméter létrehozása és hozzáadása a paraméter listához.");
             MySqlParameter newPartnerId = new MySqlParameter()
             {
                 ParameterName = "@newid_b",
                 DbType = System.Data.DbType.Int32,
                 Direction = System.Data.ParameterDirection.Output
             };
-
             command.Parameters.Add(newPartnerId);
-        
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
-                try
-                {
-                    command.ExecuteNonQuery();
-                    partner.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
-                }
-     
-                catch (Exception e)
-                {
-                    Logging.LogToScreenAndFile(e.Message);
-                    throw e;
-                }
-                finally { CloseConnection(connection); }
-          
-      
+            Log.Debug("PartnerDatabaseManager.Add: MysqlConnection létrehozása és nyitása.");
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
+            try
+            {
+                Log.Debug("PartnerDatabaseManager.Add: MysqlCommand végrehajtása");
+                command.ExecuteNonQuery();
+                partner.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
+                Log.Debug("PartnerDatabaseManager.Add: Kimenő paraméter kiolvasása {Id}", partner.Id);
+            }
+
+            catch (Exception e)
+            {
+                Log.Error("PartnerDatabaseManager.Add: Hiba történt {Message}", e);
+                throw e;
+            }
+            finally { CloseConnection(connection); }
+
+
 
             return partner;
         }
-
-        public override Partner Add(Partner newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Answer Delete(int id, User user)
         {
+            Log.Debug("PartnerDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             MySqlConnection connection = GetConnection();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delpartner";
+            Log.Debug("PartnerDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {Id}, User: {User}", id, user);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -114,18 +114,21 @@ namespace IktatogRPCServer.Database.Mysql
             string message = "Sikeres törlés!";
             try
             {
+                Log.Debug("PartnerDatabaseManager.Delete: MysqlConnection létrehozása és nyitása.");
                 OpenConnection(connection);
                 command.Connection = connection;
+                Log.Debug("PartnerDatabaseManager.Delete: MysqlCommand végrehajtása");
                 eredmeny = command.ExecuteNonQuery() == 0;
                 if (eredmeny) message = "Hiba a törlés közben.";
             }
             catch (MySqlException ex)
             {
-                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+                Log.Error("PartnerDatabaseManager.Delete: Adatbázis hiba. {Message}", ex);
             }
             catch (Exception e)
             {
-                Logging.LogToScreenAndFile(e.Message);
+                Log.Error("PartnerDatabaseManager.Delete: Hiba történt {Message}", e);
+
             }
             finally
             {
@@ -133,29 +136,27 @@ namespace IktatogRPCServer.Database.Mysql
             }
             return new Answer() { Error = eredmeny, Message = message };
         }
-
-        public override List<Partner> GetAllData()
-        {
-            throw new NotImplementedException();
-        }
-
         public override List<Partner> GetAllData(object filter)
         {
+            Log.Debug("PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Partner> partnerek = new List<Partner>();
             if (filter is Telephely)
             {
                 Telephely telephely = filter as Telephely;
                 MySqlCommand command = new MySqlCommand();
+                Log.Debug("PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getpartners";
                 command.Parameters.AddWithValue("@telephely_b", telephely.Id);
                 try
                 {
+                    Log.Debug("PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
                     MySqlConnection connection = GetConnection();
                     command.Connection = connection;
                     OpenConnection(connection);
                     try
                     {
+                        Log.Debug("PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása");
                         MySqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
@@ -167,11 +168,12 @@ namespace IktatogRPCServer.Database.Mysql
                     }
                     catch (MySqlException ex)
                     {
-                        Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                        Log.Error("PartnerDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                     }
                     catch (Exception e)
                     {
-                        Logging.LogToScreenAndFile(e.Message);
+                        Log.Error("PartnerDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
                     }
                     finally
                     {
@@ -180,27 +182,22 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (Exception ex)
                 {
-                    Logging.LogToScreenAndFile(ex.Message);
+                    Log.Error("PartnerDatabaseManager.GetAllData: Hiba történt {Message}", ex);
                 }
             }
 
             return partnerek;
         }
-
-        public override Partner GetDataById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Answer Update(Partner modifiedObject)
         {
-
+            Log.Debug("PartnerDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "modifypartner";
             string message = "Hiba a partner módosítása közben.";
             bool eredmeny = false;
             //IN PARAMETERS
+            Log.Debug("PartnerDatabaseManager.Update: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {ModifiedObject}", modifiedObject);
             MySqlParameter namep = new MySqlParameter()
             {
                 ParameterName = "@name_b",
@@ -219,28 +216,30 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(idp);
             try
             {
+                Log.Debug("PartnerDatabaseManager.Update: MysqlConnection létrehozása és nyitása.");
                 MySqlConnection connection = GetConnection();
                 command.Connection = connection;
                 OpenConnection(connection);
                 try
                 {
-                    eredmeny =  command.ExecuteNonQuery() == 0;
+                    Log.Debug("PartnerDatabaseManager.Update: MysqlCommand végrehajtása");
+                    eredmeny = command.ExecuteNonQuery() == 0;
                     if (!eredmeny) message = "Sikeres módosítás.";
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("PartnerDatabaseManager.Update: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("PartnerDatabaseManager.Update: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("PartnerDatabaseManager.Update: Hiba történt {Message}", ex);
 
             }
 

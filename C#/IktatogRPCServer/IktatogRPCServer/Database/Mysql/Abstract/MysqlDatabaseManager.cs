@@ -1,15 +1,15 @@
 ﻿using IktatogRPCServer.Database.Abstract;
-using IktatogRPCServer.Logger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace IktatogRPCServer.Database.Mysql.Abstract
 {
-    public abstract class MysqlDatabaseManager<T> : DatabaseManager<T>
+    public abstract class MysqlDatabaseManager<T> : DatabaseManager<T> where T: new ()
     {
         public MysqlDatabaseManager(ConnectionManager connection) : base(connection)
         {
@@ -25,12 +25,12 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
             }
             catch (MySqlException e)
             {
-                Logging.LogToScreenAndFile(e.Message);
+                Log.Warning("Hiba az adatbázis kapcsolat bontása közben. {Message}",e);
 
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Warning("Hiba az adatbázis kapcsolat bontása közben. {Message}", ex);
 
             }
         }
@@ -50,22 +50,12 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
             }
             catch (MySqlException e)
             {
-                switch (e.Number)
-                {
-                    case 0:
-                        Logging.LogToScreenAndFile("Nem tudok a mysql szerverhez kapcsolódni.");
-                        Logging.LogToScreenAndFile(e.Message);
-                        break;
-
-                    case 1045:
-                        Logging.LogToScreenAndFile("Hibás felhasználónév vagy jelszó");
-                        break;
-                }
+                Log.Error("Hiba az adatbázis kapcsolat nyitása közben. {Message}", e);
 
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("Hiba az adatbázis kapcsolat nyitása közben. {Message}", ex);
 
             }
         }

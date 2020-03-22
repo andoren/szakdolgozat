@@ -1,0 +1,429 @@
+2020-03-22 14:57:29.782 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-22 14:57:29.837 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-22 14:57:29.843 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-22 14:57:30.341 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-22 14:57:30.380 +01:00 [INF] A szerver elindult 
+2020-03-22 14:57:35.682 +01:00 [DBG] UserDatabaseManager.IsValidUser: Mysqlcommand előkészítése.
+2020-03-22 14:57:35.684 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:35.685 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:36.197 +01:00 [DBG] UserDatabaseManager.IsValidUser: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. 
+2020-03-22 14:57:36.199 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlCommand végrehajtása
+2020-03-22 14:57:36.346 +01:00 [DBG] UserDatabaseManager.IsValidUser: Sikeres bejelentkezés.
+2020-03-22 14:57:36.487 +01:00 [DBG] Login: Sikeres user validálás. { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-22 14:57:36.488 +01:00 [DBG] Login: Token generálás megkezdése a következő adatokkal: Felhasználónév: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }, Privilege: { "id": 1, "name": "admin" }, Id: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-22 14:57:36.668 +01:00 [DBG] Login: A token sikeresen legenerálva.
+2020-03-22 14:57:42.561 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:42.561 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:42.562 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:42.562 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:42.562 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:42.570 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:42.571 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:42.571 +01:00 [DBG] YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:42.572 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:42.572 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:42.573 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:45.463 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:45.464 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:45.464 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:45.464 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:45.464 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:45.465 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:45.465 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:45.467 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:45.468 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Adat: { "Year": { "id": 1, "Year": 2020, "Active": true }, "User": { "id": 1, "username": "admin ", "privilege": { "id": 1, "name": "admin" } } }
+2020-03-22 14:57:45.470 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:45.472 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Command végrehajtása
+2020-03-22 14:57:47.618 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:47.619 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:47.619 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:47.619 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:47.619 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:47.619 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:47.620 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:47.620 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:47.621 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:47.621 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:47.621 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:47.622 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:47.852 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:47.852 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:47.852 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:47.852 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:47.852 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:47.853 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:47.853 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:47.854 +01:00 [DBG] JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:47.854 +01:00 [DBG] JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:47.854 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:47.854 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:47.855 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:47.868 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:47.868 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:47.868 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:47.869 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:47.869 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:47.869 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:47.869 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:47.871 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:47.872 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:47.873 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:47.873 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:47.875 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:47.894 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:47.894 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:47.894 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:47.894 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:47.894 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:47.894 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:47.895 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:47.896 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:47.897 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 3, "name": "Jelenker" }
+2020-03-22 14:57:47.898 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:47.899 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:47.900 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:53.759 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:53.759 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:53.759 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:53.759 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:53.759 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:53.760 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:53.760 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:53.760 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:53.760 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:53.760 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:53.761 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:53.762 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:53.878 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:53.879 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:53.879 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:53.879 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:53.879 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:53.879 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:53.879 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:53.879 +01:00 [DBG] JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:53.879 +01:00 [DBG] JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:53.880 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:53.880 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:53.880 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:53.885 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:53.885 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:53.885 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:53.885 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:53.885 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:53.885 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:53.886 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:53.887 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:53.890 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 2 }
+2020-03-22 14:57:53.890 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:53.890 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:53.891 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:57:53.896 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:57:53.896 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:57:53.896 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:57:53.896 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:57:53.896 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:57:53.896 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:57:53.896 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:57:53.896 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:57:53.897 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 3, "name": "Jelenker" }
+2020-03-22 14:57:53.897 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:57:53.897 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:57:53.897 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:02.320 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:02.321 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:02.321 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:02.321 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:02.321 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:02.322 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:02.322 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:02.323 +01:00 [DBG] IkonyvDatabaseManager.Update: Mysqlcommand előkészítése.
+2020-03-22 14:58:02.323 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:02.327 +01:00 [DBG] IkonyvDatabaseManager.Update: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Ikonyv: { "id": 9, "targy": "Mosogató számla", "Ugyintezo": { "id": 2, "name": "Brachna Anita" }, "Partner": { "id": 3, "name": "Jelenker", "Ugyintezok": [ { "id": -1 } ] }, "Telephely": { "id": 2 }, "Csoport": { "id": 3, "name": "Konyha", "shortname": "K" }, "Jelleg": { "id": 3, "name": "Levél2" }, "Erkezett": "2020. 03. 20. 0:00:00", "HatIdo": "2020. 03. 20. 0:00:00", "Iktatoszam": "K-K/R/2-1/2020", "HasDoc": true }
+2020-03-22 14:58:02.329 +01:00 [DBG] IkonyvDatabaseManager.Update: Command végrehajtása
+2020-03-22 14:58:06.176 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.176 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.176 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.176 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.176 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.177 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.177 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.178 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:06.178 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. User.Id: 1
+2020-03-22 14:58:06.178 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.178 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.179 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:06.215 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.215 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.215 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.215 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.215 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.216 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.216 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.217 +01:00 [DBG] CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.217 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.217 +01:00 [DBG] CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id 1
+2020-03-22 14:58:06.221 +01:00 [DBG] CsoportDatabaseManager.Delete: MysqlCommand végrehajtása
+2020-03-22 14:58:06.285 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.285 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.286 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.286 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.286 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.286 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.286 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.287 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:06.287 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:06.287 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.287 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.288 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:06.295 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.295 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.295 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.296 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.296 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.296 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.297 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.297 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:06.297 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "EKE" }
+2020-03-22 14:58:06.297 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.297 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.297 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.297 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.297 +01:00 [DBG] JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:06.298 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:06.299 +01:00 [DBG] JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:06.299 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.299 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.325 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:06.330 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:06.330 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:06.331 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:06.331 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:06.331 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:06.331 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:06.333 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:06.334 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:06.334 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:06.334 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:06.334 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:06.335 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.565 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.566 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.566 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.566 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.566 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.567 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.567 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.567 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.567 +01:00 [DBG] YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.567 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.567 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.569 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.569 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.569 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.569 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.569 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.569 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.569 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.569 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.569 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.569 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.569 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.570 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.570 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.570 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. User.Id: 1
+2020-03-22 14:58:12.570 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.570 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.571 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.625 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.625 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.625 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.625 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.626 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.626 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.626 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.626 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.626 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:12.626 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.626 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.627 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.628 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.628 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.628 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.628 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.628 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.628 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.628 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.629 +01:00 [DBG] JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.629 +01:00 [DBG] JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:12.629 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.629 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.630 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.631 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.631 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.632 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.632 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.632 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.632 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.633 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.633 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.633 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:12.633 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.633 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.634 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.645 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.645 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.646 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.646 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.647 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.647 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.648 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.648 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.648 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:12.648 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.648 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.648 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:12.650 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.650 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.650 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.650 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.650 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.651 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.651 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.651 +01:00 [DBG] CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.652 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.652 +01:00 [DBG] CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id 1
+2020-03-22 14:58:12.653 +01:00 [DBG] CsoportDatabaseManager.Delete: MysqlCommand végrehajtása
+2020-03-22 14:58:12.668 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:12.668 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:12.668 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:12.669 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:12.669 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:12.669 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:12.669 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:12.670 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:12.670 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "EKE" }
+2020-03-22 14:58:12.670 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:12.670 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:12.671 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:24.399 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:24.399 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:24.399 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:24.399 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:24.400 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:24.400 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:24.400 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:24.400 +01:00 [DBG] YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:24.400 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:24.400 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:24.401 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:25.231 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.232 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.232 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.232 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.232 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.233 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.233 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.233 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:25.233 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. User.Id: 1
+2020-03-22 14:58:25.234 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.234 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.234 +01:00 [DBG] TelephelyDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:25.268 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.270 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.270 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.270 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.270 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.270 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.270 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.270 +01:00 [DBG] CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.270 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.271 +01:00 [DBG] CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id 1
+2020-03-22 14:58:25.271 +01:00 [DBG] CsoportDatabaseManager.Delete: MysqlCommand végrehajtása
+2020-03-22 14:58:25.329 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.330 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.330 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.330 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.331 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.331 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.331 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.331 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:25.331 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:25.332 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.332 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.332 +01:00 [DBG] PartnerDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.338 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.338 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.338 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.338 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.339 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.339 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.339 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.339 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:25.339 +01:00 [DBG] JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:25.339 +01:00 [DBG] JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:25.339 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "EKE" }
+2020-03-22 14:58:25.340 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.340 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.340 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.340 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.340 +01:00 [DBG] JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:25.340 +01:00 [DBG] PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:25.345 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:25.345 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:25.345 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:25.345 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:25.345 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:25.345 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:25.345 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:25.345 +01:00 [DBG] PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:25.345 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. { "id": 1, "name": "Vajda" }
+2020-03-22 14:58:25.345 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:25.345 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:25.346 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:26.022 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:26.022 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:26.022 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:26.022 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:26.022 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:26.022 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:26.022 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:26.023 +01:00 [DBG] YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:26.023 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:26.023 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:26.024 +01:00 [DBG] YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása
+2020-03-22 14:58:27.963 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-22 14:58:27.963 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-22 14:58:27.964 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-22 14:58:27.964 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-22 14:58:27.964 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-22 14:58:27.966 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-22 14:58:27.966 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-22 14:58:27.966 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.
+2020-03-22 14:58:27.966 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Adat: { "Year": { "id": 1, "Year": 2020, "Active": true }, "User": { "id": 1, "username": "admin ", "privilege": { "id": 1, "name": "admin" } } }
+2020-03-22 14:58:27.967 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:27.968 +01:00 [DBG] IkonyvDatabaseManager.GetAllData: Command végrehajtása
+2020-03-22 14:58:35.029 +01:00 [DBG] UserDatabaseManager.IsValidUser: Mysqlcommand előkészítése.
+2020-03-22 14:58:35.030 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlConnection létrehozása és nyitása.
+2020-03-22 14:58:35.031 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-22 14:58:35.031 +01:00 [DBG] UserDatabaseManager.IsValidUser: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. 
+2020-03-22 14:58:35.031 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlCommand végrehajtása
+2020-03-22 14:58:35.033 +01:00 [DBG] Login: Sikertelen user validálás

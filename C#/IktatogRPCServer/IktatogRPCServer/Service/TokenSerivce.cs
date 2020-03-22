@@ -1,9 +1,9 @@
 ﻿using Iktato;
-using IktatogRPCServer.Logger;
 using JWT;
 using JWT.Algorithms;
 using JWT.Builder;
 using JWT.Serializers;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -20,22 +20,24 @@ namespace IktatogRPCServer.Service
             user = new User();
             try
             {
+                Log.Debug("TokenSerivce.IsValidToken: GetUserFromJWT hívása.");
                 user = GetUserFromJWT(token.Token);
+                Log.Debug("TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.");
                 //throw new Exception("Ez egy exception a grpcn keresztül.");
                 return true;
             }
             catch (SignatureVerificationException ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("TokenService.IsValidtoken: Nem tudtam kiszedni az adatokat a tokenből. {Message}",ex);
                 return false;
             }
             catch (Exception e) {
-                Logging.LogToScreenAndFile(e.Message);
+                Log.Error("TokenService.IsValidtoken: Hiba a token validálása közben {Message}", e);
                 return false;
             }
             
         }
-        internal string GenerateToken(User user) {
+        public string GenerateToken(User user) {
             return new JwtBuilder()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .WithSecret(Secret)

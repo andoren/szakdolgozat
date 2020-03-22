@@ -1,12 +1,12 @@
 ﻿using Iktato;
 using IktatogRPCServer.Database.Mysql.Abstract;
-using IktatogRPCServer.Logger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace IktatogRPCServer.Database.Mysql
 {
@@ -16,10 +16,6 @@ namespace IktatogRPCServer.Database.Mysql
         {
         }
 
-        public override Csoport Add(Csoport newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Csoport Add(NewTorzsData newObject, User user)
         {
@@ -28,10 +24,12 @@ namespace IktatogRPCServer.Database.Mysql
                 Name = newObject.Name,
                 Shortname = newObject.Shorname
             };
+            Log.Debug("CsoportDatabaseManager.Add: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addgroup";
             //IN PARAMETERS
+            Log.Debug("CsoportDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Csoport}",newObject);
             MySqlParameter telephelyp = new MySqlParameter()
             {
                 ParameterName = "@telephely_b",
@@ -65,6 +63,7 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(shortnamep);
             command.Parameters.Add(userp);
             //OUTPARAMETER
+            Log.Debug("CsoportDatabaseManager.Add: Kimenő paraméter létrehozása és hozzáadása a paraméter listához.");
             MySqlParameter newCsoportId = new MySqlParameter()
             {
                 ParameterName = "@newid_b",
@@ -75,28 +74,31 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(newCsoportId);
             try
             {
+                Log.Debug("CsoportDatabaseManager.Add: MysqlConnection létrehozása és nyitása.");
                 MySqlConnection connection = GetConnection();
                 command.Connection = connection;
                 OpenConnection(connection);
                 try
                 {
+                    Log.Debug("CsoportDatabaseManager.Add: MysqlCommand végrehajtása");
                     command.ExecuteNonQuery();
                     csoport.Id = int.Parse(command.Parameters["@newid_b"].Value.ToString());
+                    Log.Debug("CsoportDatabaseManager.Add: Kimenő paraméter kiolvasása {Id}", csoport);
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("CsoportDatabaseManager.Add: Adatbázis hiba. {Message}",ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("CsoportDatabaseManager.Add: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("CsoportDatabaseManager.Add: Hiba történt {Message}", ex);
 
             }
 
@@ -105,10 +107,13 @@ namespace IktatogRPCServer.Database.Mysql
 
         public override Answer Delete(int id,User user)
         {
+            Log.Debug("CsoportDatabaseManager.Delete: MysqlConnection létrehozása és nyitása.");
             MySqlCommand command = new MySqlCommand();
             MySqlConnection connection = GetConnection();
+            OpenConnection(connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delgroup";
+            Log.Debug("CsoportDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id} User: {User}", id,user);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -129,18 +134,19 @@ namespace IktatogRPCServer.Database.Mysql
             string message = "Sikeres törlés!";
             try
             {
-                OpenConnection(connection);
+                Log.Debug("CsoportDatabaseManager.Delete: MysqlCommand végrehajtása");
                 command.Connection = connection;
                 eredmeny = command.ExecuteNonQuery() == 0;
                 if (eredmeny) message = "Hiba a törlés közben.";
             }
             catch (MySqlException ex)
             {
-                Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error Message: " + ex.Message);
+                Log.Error("CsoportDatabaseManager.Delete: Adatbázis hiba. {Message}", ex);
             }
             catch (Exception e)
             {
-                Logging.LogToScreenAndFile(e.Message);
+                Log.Error("CsoportDatabaseManager.Delete: Hiba történt {Message}", e);
+
             }
             finally
             {
@@ -150,30 +156,30 @@ namespace IktatogRPCServer.Database.Mysql
         }
     
 
-        public override List<Csoport> GetAllData()
-        {
-            return new List<Csoport>();
-        }
-
         public override List<Csoport> GetAllData(object filter)
         {
             List<Csoport> csoportok = new List<Csoport>();
             if (filter is Telephely) {
-                Telephely telephely = filter as Telephely;                
+                Telephely telephely = filter as Telephely;
+                Log.Debug("CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
                 MySqlCommand command = new MySqlCommand();
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "getGroup";
+                Log.Debug("CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id}", telephely.Id);
                 command.Parameters.AddWithValue("@telephely_b",telephely.Id);
                 try
                 {
-                    MySqlConnection connection = GetConnection();
-                    command.Connection = connection;
-                    OpenConnection(connection);
+                   
+                    
                     try
                     {
                         MySqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
+                            Log.Debug("CsoportDatabaseManager.Delete: MysqlCommand végrehajtása");
                             Csoport csoport = new Csoport();
                             csoport.Id = int.Parse(reader["id"].ToString());
                             csoport.Name = reader["name"].ToString();
@@ -183,11 +189,12 @@ namespace IktatogRPCServer.Database.Mysql
                     }
                     catch (MySqlException ex)
                     {
-                        Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                        Log.Error("CsoportDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                     }
                     catch (Exception e)
                     {
-                        Logging.LogToScreenAndFile(e.Message);
+                        Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
                     }
                     finally { 
                         CloseConnection(connection);
@@ -195,27 +202,26 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (Exception ex)
                 {
-                    Logging.LogToScreenAndFile(ex.Message);
+                    Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", ex);
                 }
                 
             }
             return csoportok;
         }
 
-        public override Csoport GetDataById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Answer Update(Csoport modifiedObject)
         {
-
+            Log.Debug("CsoportDatabaseManager.Update: MysqlConnection létrehozása és nyitása.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "modifygroup";
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
             string message = "Hiba a partner módosítása közben.";
             bool eredmeny = false;
             //IN PARAMETERS
+            Log.Debug("CsoportDatabaseManager.Update: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Csoport: {Csoport}", modifiedObject);
             MySqlParameter namep = new MySqlParameter()
             {
                 ParameterName = "@name_b",
@@ -242,28 +248,27 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(idp);
             try
             {
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
+             
                 try
                 {
+                    Log.Debug("CsoportDatabaseManager.Update: MysqlCommand végrehajtása");
                     eredmeny = command.ExecuteNonQuery() == 0;
                     if (!eredmeny) message = "Sikeres módosítás.";
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("CsoportDatabaseManager.Update: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("CsoportDatabaseManager.Update: Hiba történt {Message}", e);
 
                 }
                 finally { CloseConnection(connection); }
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("CsoportDatabaseManager.Update: Hiba történt {Message}", ex);
 
             }
 

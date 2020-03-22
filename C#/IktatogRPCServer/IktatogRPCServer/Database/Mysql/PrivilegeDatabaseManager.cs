@@ -1,12 +1,12 @@
 ﻿using Iktato;
 using IktatogRPCServer.Database.Mysql.Abstract;
-using IktatogRPCServer.Logger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace IktatogRPCServer.Database.Mysql
 {
@@ -23,29 +23,27 @@ namespace IktatogRPCServer.Database.Mysql
             throw new NotImplementedException();
         }
 
-        public override Privilege Add(Privilege newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Answer Delete(int id, User user)
         {
             throw new NotImplementedException();
         }
 
-        public override List<Privilege> GetAllData()
+        public override List<Privilege> GetAllData(object filter)
         {
+            Log.Debug("PrivilegeDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Privilege> privileges = new List<Privilege>();
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "getprivileges";
             try
             {
+                Log.Debug("PrivilegeDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
                 MySqlConnection connection = GetConnection();
                 command.Connection = connection;
                 OpenConnection(connection);
                 try
                 {
+                    Log.Debug("PrivilegeDatabaseManager.GetAllData: MysqlCommand végrehajtása");
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -57,11 +55,12 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (MySqlException ex)
                 {
-                    Logging.LogToScreenAndFile("Error code: " + ex.Code + " Error message: " + ex.Message);
+                    Log.Error("PrivilegeDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
-                    Logging.LogToScreenAndFile(e.Message);
+                    Log.Error("PrivilegeDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
                 }
                 finally
                 {
@@ -70,22 +69,13 @@ namespace IktatogRPCServer.Database.Mysql
             }
             catch (Exception ex)
             {
-                Logging.LogToScreenAndFile(ex.Message);
+                Log.Error("PrivilegeDatabaseManager.GetAllData: Hiba történt {Message}", ex);
             }
 
 
             return privileges;
         }
 
-        public override List<Privilege> GetAllData(object filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Privilege GetDataById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Answer Update(Privilege modifiedObject)
         {

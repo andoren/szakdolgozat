@@ -1,0 +1,228 @@
+2020-03-21 16:13:27.065 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:13:27.095 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:13:27.097 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:13:27.302 +01:00 [DBG] Mainwindow.StartServer: sikeres binding
+2020-03-21 16:13:27.332 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:13:49.000 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:13:49.031 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:13:49.033 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:13:49.237 +01:00 [DBG] Mainwindow.StartServer: sikeres binding
+2020-03-21 16:13:49.268 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:14:18.869 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:14:18.906 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:14:18.907 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:14:19.111 +01:00 [DBG] Mainwindow.StartServer: sikeres binding
+2020-03-21 16:14:19.130 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:21:25.397 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:21:25.436 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:21:25.439 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:21:25.671 +01:00 [DBG] Mainwindow.StartServer: sikeres binding
+2020-03-21 16:21:25.703 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:21:53.652 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:22:55.679 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-21 16:22:55.710 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-21 16:22:55.712 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-21 16:22:55.909 +01:00 [DBG] Mainwindow.StartServer: sikeres binding
+2020-03-21 16:22:55.939 +01:00 [DBG] A szerver elindult 
+2020-03-21 16:22:58.686 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:22:59.187 +01:00 [DBG] Login: Sikeres user validálás. { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-21 16:22:59.189 +01:00 [DBG] Login: Token generálás megkezdése a következő adatokkal: Felhasználónév: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }, Privilege: { "id": 1, "name": "admin" }, Id: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-21 16:22:59.240 +01:00 [DBG] Login: A token sikeresen legenerálva.
+2020-03-21 16:23:10.924 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:10.924 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:10.924 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:10.924 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:10.927 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:10.927 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:10.927 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:10.927 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:10.927 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:10.928 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:10.928 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:10.928 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:10.928 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:10.929 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:10.929 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:10.956 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:10.956 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:10.956 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:10.957 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:10.957 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:10.957 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:10.965 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:10.966 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.012 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.039 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.040 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.040 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.044 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.050 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.050 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.050 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.051 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.051 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.051 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.052 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.052 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.052 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.053 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.053 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.053 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.053 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.053 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.054 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.054 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.054 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.054 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.054 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.055 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.055 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.055 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.060 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.069 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.070 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.086 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.086 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.098 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.099 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:23:11.107 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.107 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:23:11.107 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:23:11.108 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:23:11.117 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:23:11.118 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:23:11.118 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:23:11.130 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:23:11.132 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:24:01.470 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:24:01.470 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:24:01.470 +01:00 [DBG] CheckUserIsValid: Token kiolvasása a headerből.
+2020-03-21 16:24:01.472 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:24:01.472 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:24:01.472 +01:00 [DBG] CheckUserIsValid: Sikeres kiolvasás
+2020-03-21 16:24:01.472 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:24:01.473 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:24:01.473 +01:00 [DBG] CheckUserIsValid: A tokennel nem rég jelentkeztek ki.
+2020-03-21 16:24:01.473 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:24:01.473 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:24:01.473 +01:00 [DBG] CheckUserIsValid: Token validálás megkezdése.
+2020-03-21 16:24:01.473 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:24:01.474 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:24:01.474 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT hívása.
+2020-03-21 16:24:01.474 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:24:01.474 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:24:01.474 +01:00 [DBG] TokenSerivce.IsValidToken: GetUserFromJWT sikeres hívás.
+2020-03-21 16:24:01.474 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:24:01.474 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:24:01.475 +01:00 [DBG] CheckUserIsValid: A token: true
+2020-03-21 16:24:01.475 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:24:01.475 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:24:01.475 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-21 16:24:03.935 +01:00 [ERR] Hiba az adatbázis kapcsolat nyitása közben. MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts. ---> System.AggregateException: Egy vagy több hiba történt. ---> System.Net.Sockets.SocketException: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+   --- Vége a belső kivételek veremkivonatának ---
+   a következő helyen: System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   a következő helyen: System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetTcpStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+---> (0 számú belső kivétel) System.Net.Sockets.SocketException (0x80004005): Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)<---
+
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Open()
+   a következő helyen: IktatogRPCServer.Database.Mysql.Abstract.MysqlDatabaseManager`1.OpenConnection(Object connection) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\Abstract\MysqlDatabaseManager.cs, sor: 48
+2020-03-21 16:24:03.935 +01:00 [ERR] Hiba az adatbázis kapcsolat nyitása közben. MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts. ---> System.AggregateException: Egy vagy több hiba történt. ---> System.Net.Sockets.SocketException: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+   --- Vége a belső kivételek veremkivonatának ---
+   a következő helyen: System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   a következő helyen: System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetTcpStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+---> (0 számú belső kivétel) System.Net.Sockets.SocketException (0x80004005): Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)<---
+
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Open()
+   a következő helyen: IktatogRPCServer.Database.Mysql.Abstract.MysqlDatabaseManager`1.OpenConnection(Object connection) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\Abstract\MysqlDatabaseManager.cs, sor: 48
+2020-03-21 16:24:03.954 +01:00 [WRN] TelephelyDatabaseManager.GetAllData: Hiba történt System.InvalidOperationException: Connection must be valid and open.
+   a következő helyen: MySql.Data.MySqlClient.Interceptors.ExceptionInterceptor.Throw(Exception exception)
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   a következő helyen: IktatogRPCServer.Database.Mysql.TelephelyDatabaseManager.GetAllData(Object filter) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\TelephelyDatabaseManager.cs, sor: 203
+2020-03-21 16:24:03.969 +01:00 [ERR] Hiba az adatbázis kapcsolat nyitása közben. MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts. ---> System.AggregateException: Egy vagy több hiba történt. ---> System.Net.Sockets.SocketException: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+   --- Vége a belső kivételek veremkivonatának ---
+   a következő helyen: System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   a következő helyen: System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetTcpStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.Common.StreamCreator.GetStream(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+---> (0 számú belső kivétel) System.Net.Sockets.SocketException (0x80004005): Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot 127.0.0.1:3306
+   a következő helyen: System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Net.Sockets.TcpClient.EndConnect(IAsyncResult asyncResult)
+   a következő helyen: System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)<---
+
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Open()
+   a következő helyen: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   a következő helyen: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Open()
+   a következő helyen: IktatogRPCServer.Database.Mysql.Abstract.MysqlDatabaseManager`1.OpenConnection(Object connection) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\Abstract\MysqlDatabaseManager.cs, sor: 48
+2020-03-21 16:24:03.981 +01:00 [WRN] UserDatabaseManager.GetAllData: Hiba történt System.InvalidOperationException: Connection must be valid and open.
+   a következő helyen: MySql.Data.MySqlClient.Interceptors.ExceptionInterceptor.Throw(Exception exception)
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   a következő helyen: IktatogRPCServer.Database.Mysql.UserDatabaseManager.GetAllData(Object filter) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\UserDatabaseManager.cs, sor: 381
+2020-03-21 16:24:04.005 +01:00 [ERR] YearsDatabaseManager.GetAllData: Hiba történt System.InvalidOperationException: Connection must be valid and open.
+   a következő helyen: MySql.Data.MySqlClient.Interceptors.ExceptionInterceptor.Throw(Exception exception)
+   a következő helyen: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.Throw(Exception ex)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   a következő helyen: IktatogRPCServer.Database.Mysql.YearsDatabaseManager.GetAllData() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\YearsDatabaseManager.cs, sor: 50
