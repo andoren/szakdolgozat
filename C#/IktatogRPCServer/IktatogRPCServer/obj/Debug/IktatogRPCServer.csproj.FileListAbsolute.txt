@@ -70,3 +70,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\UserManage.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\UserManage.baml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csprojAssemblyReference.cache
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

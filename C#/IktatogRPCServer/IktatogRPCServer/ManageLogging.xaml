@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCServer"
              mc:Ignorable="d"  FontSize="22"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid Margin="5">
         <StackPanel Orientation="Vertical">
             <GroupBox Header="Logolás élérési útja" Margin="5">
@@ -17,16 +17,17 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel>
                         <TextBlock Margin="5">Jelenlegi elérési út:</TextBlock>
-                        <TextBox IsReadOnly="True" x:Name="CurrentLoggingPath" Margin="5 5 5 15"></TextBox>
+                        <TextBox HorizontalScrollBarVisibility="auto" IsReadOnly="True" x:Name="CurrentLoggingPath" Margin="5 5 5 0 " ></TextBox>
+                        <TextBlock x:Name="InformationText" Margin="5 5 5 15" FontSize="14">* A módosítás csak a szerver újra indulásakor lép érvénybe!</TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <Grid >
                             <TextBlock Margin="5">Új elérési út</TextBlock>
-                            <Button VerticalAlignment="Center" Margin="5 0 5 5" HorizontalAlignment="Right" FontSize="16" Padding="10 5">Kiválaszt</Button>
+                            <Button x:Name="ChoosePathButton"  Click="ChoosePathButton_Click" VerticalAlignment="Center" Margin="5 0 5 5" HorizontalAlignment="Right" FontSize="16" Padding="10 5">Kiválaszt</Button>
                         </Grid>
-                        
-                        <TextBox IsReadOnly="True" x:Name="NewLoggingPath" Margin="5 5 5 5"></TextBox>
-                        <Button Margin="5">Módosítás</Button>
+
+                        <TextBox HorizontalScrollBarVisibility="auto"  IsReadOnly="True" x:Name="NewLoggingPath" Margin="5 5 5 5"></TextBox>
+                        <Button x:Name="ModifyPathButton" Click="ModifyPathButton_Click" Margin="5">Módosítás</Button>
                     </StackPanel>
                 </Grid>
             </GroupBox>

@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IktatogRPCServer"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="482" Width="884">
+        mc:Ignorable="d" FontSize="18"
+        Title="Iktató szerver" Height="500" Width="900" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -14,11 +14,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Grid  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MenuGrid">
+        <!---Menüsor-->
+        <Grid  Grid.Row="1" Grid.Column="1"  x:Name="MenuGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -38,6 +39,9 @@
             <Button Grid.Column="6" Margin="5" x:Name="StopServerAndQuit" Click="StopServerAndQuit_Click">Kilépés</Button>
         </Grid>
         <!--Változó UserControllok-->
-        <ContentControl Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContentControl"></ContentControl>
+        <ScrollViewer VerticalScrollBarVisibility="auto"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <ContentControl x:Name="ContentControl"></ContentControl>
+        </ScrollViewer>
+        
     </Grid>
 </Window>

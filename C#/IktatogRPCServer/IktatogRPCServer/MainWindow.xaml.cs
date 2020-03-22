@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using Grpc.Core;
 using Iktato;
+using Microsoft.Win32;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -22,13 +23,23 @@ namespace IktatogRPCServer
             InitializeComponent();
             ContentControl.Content = ladingPage;
             serverLevelSwitch.MinimumLevel = LogEventLevel.Information;
+            LogPath = RegistryHelper.GetLogPath();
         }
+
+
         LadingPage ladingPage = new LadingPage(); 
         Server server;
         int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
         string Ip = ConfigurationManager.AppSettings["APPHOST"];
         LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
-        
+        private static string _logPath = "";
+
+        public static string LogPath
+        {
+            get { return _logPath; }
+            set { _logPath = value; }
+        }
+
         public void StartServer_Click(object sender, RoutedEventArgs e)
         {
             StartLogger();
@@ -39,9 +50,10 @@ namespace IktatogRPCServer
         }
         private void StartLogger()
         {
+            if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.ControlledBy(serverLevelSwitch)
-           .WriteTo.File(Directory.GetCurrentDirectory() + "\\logs\\log.txt", shared: true, rollingInterval: RollingInterval.Day)
+           .WriteTo.File(LogPath, shared: true, rollingInterval: RollingInterval.Day)
            .WriteTo.Observers(events => events.Subscribe(ladingPage))
            .CreateLogger();           
         }
