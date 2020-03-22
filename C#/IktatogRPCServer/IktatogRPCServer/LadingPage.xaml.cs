@@ -25,14 +25,16 @@ namespace IktatogRPCServer
         {
             InitializeComponent();
         }
-
+        static LogEventLevel LogLevelToShow = LogEventLevel.Debug;
         public void OnNext(LogEvent value)
         {
             Dispatcher.Invoke(()=> {
-                if(value.Level == LogEventLevel.Warning || value.Level == LogEventLevel.Information)BoxToLog.Text += value.MessageTemplate.Text + "\n";
+                if((int)value.Level >= (int)LogLevelToShow) BoxToLog.Text += $"{DateTime.Now.ToString()} {value.RenderMessage()}\n";
             }); 
         }
-
+        public static void SetLogLEvelToShow(LogEventLevel logEventLevel) {
+            LogLevelToShow = logEventLevel;
+        }
         public void OnError(Exception error)
         {
             Dispatcher.Invoke(() => {

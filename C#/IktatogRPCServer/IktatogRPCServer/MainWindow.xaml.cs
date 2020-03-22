@@ -5,6 +5,7 @@ using System.Windows;
 using Grpc.Core;
 using Iktato;
 using Serilog;
+using Serilog.Core;
 using Serilog.Events;
 using Serilog.Sinks.File;
 using Serilog.Sinks.Observable;
@@ -20,24 +21,29 @@ namespace IktatogRPCServer
         {
             InitializeComponent();
             ContentControl.Content = ladingPage;
-
+            serverLevelSwitch.MinimumLevel = LogEventLevel.Information;
         }
         LadingPage ladingPage = new LadingPage(); 
         Server server;
         int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
         string Ip = ConfigurationManager.AppSettings["APPHOST"];
-        private void StartServer_Click(object sender, RoutedEventArgs e)
+        LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
+        
+        public void StartServer_Click(object sender, RoutedEventArgs e)
         {
             StartLogger();
             StartServer();
         }
+        public void ChangeLogLevel(LogEventLevel level) {
+            serverLevelSwitch.MinimumLevel = level;
+        }
         private void StartLogger()
         {
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
+            .MinimumLevel.ControlledBy(serverLevelSwitch)
            .WriteTo.File(Directory.GetCurrentDirectory() + "\\logs\\log.txt", shared: true, rollingInterval: RollingInterval.Day)
            .WriteTo.Observers(events => events.Subscribe(ladingPage))
-           .CreateLogger();
+           .CreateLogger();           
         }
         private void StartServer()
         {
@@ -71,6 +77,9 @@ namespace IktatogRPCServer
 
         }
 
+        public void SetServerLogLevel(LogEventLevel logEventLevel) {
+            serverLevelSwitch.MinimumLevel = logEventLevel;
+        }
         private void StopServerAndQuit_Click(object sender, RoutedEventArgs e)
         {
             if (server != null) {
@@ -92,9 +101,6 @@ namespace IktatogRPCServer
             }
             Log.CloseAndFlush();
         }
-
-
-
         private void Logging_Click(object sender, RoutedEventArgs e)
         {
             ContentControl.Content = new ManageLogging();
