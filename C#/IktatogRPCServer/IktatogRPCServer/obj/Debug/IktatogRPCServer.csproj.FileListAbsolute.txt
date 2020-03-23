@@ -73,3 +73,4 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.pdb
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csprojAssemblyReference.cache

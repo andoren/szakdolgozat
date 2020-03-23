@@ -77,10 +77,17 @@ namespace IktatogRPCServer
         private void ModifyCurrentLogLevelToShow_Click(object sender, RoutedEventArgs e)
         {
             if (ServerLoggingLevelToShowComboBox.SelectedItem == null) return;
-            RegistryHelper.SetLogLevelToShow((int)ServerLoggingLevelToShowComboBox.SelectedItem);
-            MessageBox.Show("A mutatott logolási szint módosult");
-
-            InformationText.Visibility = Visibility.Visible;
+            int currentLogLevel = (int)RegistryHelper.GetLogLevel();
+            int setLogLevelToShow = (int)ServerLoggingLevelToShowComboBox.SelectedItem;
+            if (currentLogLevel <= setLogLevelToShow)
+            {
+                RegistryHelper.SetLogLevelToShow(setLogLevelToShow);
+                MessageBox.Show("A mutatott logolási szint módosult");
+                InformationText.Visibility = Visibility.Visible;
+            }
+            else {
+                MessageBox.Show("A mutatott logolás szintje nem lehet kisebb mint a szerver logolási szintje.");
+            }
         }
     }
 }

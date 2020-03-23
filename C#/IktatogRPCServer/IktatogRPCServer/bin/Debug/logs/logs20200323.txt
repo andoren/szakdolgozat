@@ -1,0 +1,21 @@
+2020-03-23 09:54:39.988 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-23 09:54:40.046 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-23 09:54:40.056 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-23 09:54:40.791 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-23 09:54:40.829 +01:00 [INF] A szerver elindult 
+2020-03-23 09:56:30.425 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-23 09:56:30.465 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-23 09:56:30.469 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-23 09:56:30.735 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-23 09:56:30.771 +01:00 [INF] A szerver elindult 
+2020-03-23 10:00:37.940 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-23 10:00:37.974 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-23 10:00:37.977 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-23 10:00:38.210 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-23 10:00:38.243 +01:00 [INF] A szerver elindult 
+2020-03-23 10:01:24.656 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-23 10:01:24.694 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-23 10:01:24.696 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-23 10:01:24.965 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-23 10:01:25.003 +01:00 [INF] A szerver elindult 
+2020-03-23 10:01:53.879 +01:00 [WRN] A szerver leáll.
