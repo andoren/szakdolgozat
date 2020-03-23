@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,20 @@ namespace IktatogRPCClient.ViewModels
 
         public async override void DoAction()
         {
+            Log.Debug("{Class} hozzáadása gomb megnyomva.", GetType());
+            Log.Debug("{Class} Várakozás a szerverre... Adat:{TelephelyNeve}", GetType(),TelephelyNeve);
             Telephely newTelephely = await serverHelper.AddTelephelyAsync(TelephelyNeve);
-            eventAggregator.PublishOnUIThread(newTelephely);
+            if (newTelephely.Id != -1)
+            {
+                Log.Debug("{Class} Sikeres hozzáadás.", GetType());
+                Log.Debug("{Class} Telephely hírdetése.", GetType());
+                eventAggregator.PublishOnUIThread(newTelephely);
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás.", GetType());
+            }
+     
+            Log.Debug("{Class} bezárása.", GetType());
             TryClose();
         }
 

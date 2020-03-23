@@ -2,6 +2,7 @@
 using Google.Protobuf.Collections;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,11 +46,17 @@ namespace IktatogRPCClient.ViewModels
 
         public async override void DoAction()
         {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             Jelleg modifiedJelleg= new Jelleg() { Id = ModifiedJelleg.Id, Name = NewName };
-            if ( await serverHelper.ModifyJellegAsync(modifiedJelleg))
+            Log.Debug("{Class} a módosított adat: {ModifiedJelleg}", GetType(), modifiedJelleg);
+            if (await serverHelper.ModifyJellegAsync(modifiedJelleg))
             {
+                Log.Debug("{Class} Sikeres módosítás.", GetType());
                 eventAggregator.PublishOnUIThread(modifiedJelleg);
                 TryClose();
+            }
+            else {
+                Log.Debug("{Class} Sikertelen módosítás.", GetType());
             }
 
         }

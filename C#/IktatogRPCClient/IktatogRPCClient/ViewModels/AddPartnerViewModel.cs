@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,13 +51,25 @@ namespace IktatogRPCClient.ViewModels
         }
         public async override void DoAction()
         {
-            Partner partner = await serverHelper.AddPartnerToTelephelyAsync(SelectedTelephely,PartnerNeve) ;
-            if(partner.Id != -1)eventAggregator.BeginPublishOnUIThread((SelectedTelephely,partner));
+            Log.Debug("{Class} hozzáadás gomb megnyomva.", GetType());
+            Log.Debug("{Class} Várakozás a szerverre... Adat: {PartnerNeve}", GetType(),PartnerNeve);
+            Partner partner = await serverHelper.AddPartnerToTelephelyAsync(SelectedTelephely, PartnerNeve);
+            if (partner.Id != -1)
+            {
+                Log.Debug("{Class} Partner sikeresen hozzáadva.", GetType());
+                Log.Debug("{Class} Partner hírdetése.", GetType());
+                eventAggregator.BeginPublishOnUIThread((SelectedTelephely, partner));
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás.", GetType());
+            }
+            Log.Debug("{Class} Partner hozzáadás bezárása.", GetType());
             TryClose();
         }
 
         public void Handle(BindableCollection<Telephely> message)
         {
+            Log.Debug("{Class} Telephelyek hozzáadva.", GetType());
             AvailableTelephelyek = message;
         }
 

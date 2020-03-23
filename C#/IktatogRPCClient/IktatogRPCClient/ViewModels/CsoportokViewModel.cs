@@ -4,6 +4,7 @@ using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,8 +53,16 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         private async void GetCsoportokAsync() {
+            Log.Debug("{Class} Csoportok betöltése. Telephely: {SelectedTelephely}", GetType(),SelectedTelephely);
+            Log.Debug("{Class} Várakozás a szerverre....", GetType());
             TelephelyCsoportjai = await serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely);
-
+            if (TelephelyCsoportjai.Count > 0)
+            {
+                Log.Debug("{Class} Sikeres adatbetöltés", GetType());
+            }
+            else {
+                Log.Debug("{Class} Sikertelen adatbetöltés vagy nincs még Csoport a telephelyen", GetType());
+            }
         }
         public BindableCollection<Telephely> ValaszthatoTelephely
         {
@@ -95,24 +104,40 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreateCsoport() {
             CsoportokIsVisible = false;
+            Log.Debug("{Class} Csoport hozzáadása gomb megnyomva.", GetType());
+            Log.Debug("{Class} ViewModel elkészítése", GetType());
             Screen createScreen = SceneManager.CreateScene(Scenes.AddCsoport);
             eventAggregator.Subscribe(createScreen);
+            Log.Debug("{Class} ViewModel subscribed", GetType());
+            Log.Debug("{Class} ViewModel aktiválása", GetType());
             ActivateItem(createScreen);
+            Log.Debug("{Class} Telephelyek publikálása", GetType());
             eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
         }
         public void ModifyCsoport() {
-            CsoportokIsVisible = false;
-            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyCsoport);
+            CsoportokIsVisible = false; 
+            Log.Debug("{Class} Csoport módosítása gomb megnyomva.", GetType());
+            Log.Debug("{Class} ViewModel elkészítése", GetType());
+            Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyCsoport);                   
             eventAggregator.Subscribe(modifyScreen);
+            Log.Debug("{Class} ViewModel subscribed", GetType());
+            Log.Debug("{Class} ViewModel aktiválása", GetType());
             ActivateItem(modifyScreen);
+            Log.Debug("{Class} SelectedCsoport publikálása", GetType());
             eventAggregator.PublishOnUIThread(SelectedCsoport);
             
         }
         public async void RemoveCsoport() {
-            if ( await serverHelper.RemoveCsoportAsync(SelectedCsoport))
+            Log.Debug("{Class} Csoport törlése gomb megnyomva.", GetType());
+            Log.Debug("{Class} Várakozás a szerverre.... Adat: {SelectedCsoport}", GetType(),SelectedCsoport);
+            if (await serverHelper.RemoveCsoportAsync(SelectedCsoport))
             {
                 TelephelyCsoportjai.Remove(SelectedCsoport);
                 NotifyOfPropertyChange(() => TelephelyCsoportjai);
+                Log.Debug("{Class} Sikeres törlés.", GetType());
+            }
+            else {
+                Log.Debug("{Class} Sikertelen törlés.", GetType());
             }
         }
         public void Handle(Csoport message)
@@ -136,6 +161,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private void LoadData()
         {
+            Log.Debug("{Class} Adatok betöltése a szerverről és Subscribe this.", GetType());          
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
             serverHelper = ServerHelperSingleton.GetInstance();

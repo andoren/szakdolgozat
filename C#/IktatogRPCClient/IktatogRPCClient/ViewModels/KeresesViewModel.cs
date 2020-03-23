@@ -3,6 +3,7 @@ using Iktato;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,6 +27,7 @@ namespace IktatogRPCClient.ViewModels
 			Initialize();
 		}
 		private async void Initialize() {
+			Log.Debug("{Class} Adatok letöltése a szerverről", GetType());
 			LoaderIsVisible = true;
 			SelectedSearchParameter = SearchList[0];
 			AvailabelYears = await serverHelper.GetYears();
@@ -246,8 +248,10 @@ namespace IktatogRPCClient.ViewModels
 		#endregion
 		//Adatbázisbol szedi le az Ikönyveket
 		public  async void GetIkonyvek() {
+			
 			if (SelectedIranyParameter == null || SelectedYear == default) return;
 			else {
+				
 				LoaderIsVisible = true;
 				AllIkonyv = new BindableCollection<Ikonyv>();
 				SearchIkonyvData searchData = new SearchIkonyvData()
@@ -255,8 +259,9 @@ namespace IktatogRPCClient.ViewModels
 					Irany = SelectedIranyParameter.Way,
 					Year = SelectedYear
 				};
-
+				Log.Debug("{Class} Iktatások letöltése a szerverről. {SearchData}", GetType(), searchData);
 				AllIkonyv = new BindableCollection<Ikonyv>(await serverHelper.GetIkonyvekAsync(searchData));
+				Log.Debug("{Class} Sikeres letöltés.", GetType() );
 				SetVisibleIktatas();
 				LoaderIsVisible = false;
 			}
@@ -267,8 +272,10 @@ namespace IktatogRPCClient.ViewModels
 		private async void SetVisibleIktatas() {
 			
 			if (AllIkonyv.Count == 0) return;
+			Log.Debug("{Class} Adatok szűrése.", GetType());
 			await SetSearchData();
 			ShownIkonyvek.Clear();
+			Log.Debug("{Class} Szűrt adatok hozzáadása a gridviewhoz.", GetType());
 			if ((CurrentPage+1) * SelectedItemsPerPage > SearchedIkonyvek.Count)
 				{
 					for (int i = (CurrentPage ) * SelectedItemsPerPage; i < SearchedIkonyvek.Count; i++)
@@ -284,6 +291,7 @@ namespace IktatogRPCClient.ViewModels
 					NotifyOfPropertyChange(() => ShownIkonyvek);
 				}
 				}
+			Log.Debug("{Class} gombok beállítása", GetType());
 			SetButtons();
 			NotifyOfPropertyChange(() => MaxItemNumber);
 		}
@@ -292,10 +300,12 @@ namespace IktatogRPCClient.ViewModels
 		public async Task SetSearchData() {
 			await Task.Run(() =>
 			{
+				
 				ICollectionView cv = CollectionViewSource.GetDefaultView(new BindableCollection<Ikonyv>(AllIkonyv));
 				SearchedIkonyvek.Clear();
 				if (!string.IsNullOrEmpty(SearchText))
 				{
+					
 					cv.Filter = o =>
 					{
 						Ikonyv p = o as Ikonyv;

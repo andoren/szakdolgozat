@@ -4,6 +4,7 @@ using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,21 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class PartnerekViewModel : Conductor<Screen>, IHandle<Partner>, 
+    class PartnerekViewModel : Conductor<Screen>, IHandle<Partner>,
         IHandle<(Telephely, Partner)>, IHandle<Telephely>, IHandle<RemovedItem>,
         IHandle<BindableCollection<Telephely>>
     {
         public PartnerekViewModel()
         {
-            LoadData();
+            Initialize();
         }
-        private void LoadData()
+        private void Initialize()
         {
+            Log.Debug("{Class} adatok inicializációja.", GetType());
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
-      
+
 
         }
         private bool _partnerekIsVisible = true;
@@ -51,7 +53,9 @@ namespace IktatogRPCClient.ViewModels
         public BindableCollection<Partner> AvailablePartnerek
         {
             get { return _availablePartnerek; }
-            set { _availablePartnerek = value;
+            set
+            {
+                _availablePartnerek = value;
                 NotifyOfPropertyChange(() => AvailablePartnerek);
             }
         }
@@ -66,8 +70,18 @@ namespace IktatogRPCClient.ViewModels
                 LoadPartnerAsync();
             }
         }
-        private async void LoadPartnerAsync(){
+        private async void LoadPartnerAsync()
+        {
+            Log.Debug("{Class} partnerek letöltése.", GetType());
             AvailablePartnerek = await serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely);
+            if (AvailablePartnerek.Count > 0)
+            {
+                Log.Debug("{Class} Sikeres letöltés.", GetType());
+            }
+            else
+            {
+                Log.Debug("{Class} Sikertelen letöltés vagy nincs még ügyintéző a partnerhez.", GetType());
+            }
         }
 
 
@@ -112,21 +126,32 @@ namespace IktatogRPCClient.ViewModels
                 return SelectedPartner != null;
             }
         }
-        public void CreatePartner() {
+        public void CreatePartner()
+        {
+            Log.Debug("{Class} hozzáadás gomb megnyomva.", GetType());
             PartnerekIsVisible = false;
             Screen createScreen = SceneManager.CreateScene(Scenes.AddPartner);
             ActivateItem(createScreen);
             eventAggregator.Subscribe(createScreen);
             eventAggregator.PublishOnUIThread(AvailableTelephelyek);
         }
-        public async void RemovePartner() {
-            if (await serverHelper.RemovePartnerAsync(SelectedPartner)) {
-                
+        public async void RemovePartner()
+        {
+            Log.Debug("{Class} törlés gomb megnyomva.", GetType());
+            Log.Debug("{Class} törlés a kovetkező paraméterrel. {SelectedPartner}", GetType(),SelectedPartner);
+            if (await serverHelper.RemovePartnerAsync(SelectedPartner))
+            {
+                Log.Debug("{Class} Sikeres törlés.", GetType());
                 eventAggregator.PublishOnUIThread(new RemovedItem(SelectedPartner));
                 AvailablePartnerek.Remove(SelectedPartner);
             }
+            else {
+                Log.Debug("{Class} Sikertelen törlés.", GetType());
+            }
         }
-        public void ModifyPartner() {
+        public void ModifyPartner()
+        {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             PartnerekIsVisible = false;
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyPartner);
             eventAggregator.Subscribe(modifyScreen);
@@ -138,14 +163,17 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Telephely, Partner) message)
         {
             PartnerekIsVisible = true;
-            if (message.Item1.Name == SelectedTelephely.Name) {
+            if (message.Item1.Name == SelectedTelephely.Name)
+            {
                 Partner partner = AvailablePartnerek.Where(x => x.Id == message.Item2.Id).FirstOrDefault();
-                if (partner != null) {
+                if (partner != null)
+                {
                     AvailablePartnerek.Remove(partner);
                     AvailablePartnerek.Add(message.Item2);
-                    NotifyOfPropertyChange(()=>AvailablePartnerek);
+                    NotifyOfPropertyChange(() => AvailablePartnerek);
                 }
-                else {
+                else
+                {
                     AvailablePartnerek.Add(message.Item2);
                     NotifyOfPropertyChange(() => AvailablePartnerek);
                 }
@@ -163,45 +191,44 @@ namespace IktatogRPCClient.ViewModels
                 }
             }
         }
-        protected override void OnDeactivate(bool close)
-        {
-            eventAggregator.Unsubscribe(this);
-            base.OnDeactivate(close);
-        }
+       
         public void Handle(RemovedItem message)
         {
             if (message.Item is Telephely)
             {
 
                 Telephely telephely = AvailableTelephelyek.Where(x => x.Id == (message.Item as Telephely).Id).FirstOrDefault();
-                 AvailableTelephelyek.Remove(telephely);
-                 NotifyOfPropertyChange(() => AvailableTelephelyek);
+                AvailableTelephelyek.Remove(telephely);
+                NotifyOfPropertyChange(() => AvailableTelephelyek);
             }
         }
         public void Handle(Telephely message)
         {
-            if (message != SelectedTelephely&& message != null) { 
+            if (message != SelectedTelephely && message != null)
+            {
                 Telephely telephely = AvailableTelephelyek.Where(x => x.Id == message.Id).FirstOrDefault();
                 if (telephely == null)
                 {
                     AvailableTelephelyek.Add(message);
                     NotifyOfPropertyChange(() => AvailableTelephelyek);
                 }
-                else {
+                else
+                {
                     AvailableTelephelyek.Remove(telephely);
                     AvailableTelephelyek.Add(message);
-                    NotifyOfPropertyChange(()=>AvailableTelephelyek);
+                    NotifyOfPropertyChange(() => AvailableTelephelyek);
                 }
             }
         }
 
         public void Handle(BindableCollection<Telephely> message)
         {
-            if (AvailableTelephelyek == null) {
+            if (AvailableTelephelyek == null)
+            {
                 AvailableTelephelyek = message;
                 if (AvailableTelephelyek.Count > 0) SelectedTelephely = AvailableTelephelyek.First();
             }
-           
+
         }
     }
 }

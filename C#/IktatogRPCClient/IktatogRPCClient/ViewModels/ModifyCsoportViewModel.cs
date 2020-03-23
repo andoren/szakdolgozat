@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +45,17 @@ namespace IktatogRPCClient.ViewModels
 
         public async override void DoAction()
         {
+            Log.Debug("{Class} módosítás gomb megnyomva", GetType());
             Csoport modifiedCsoport = new Csoport() { Id = ModifiedCsoport.Id, Name = NewName, Shortname = NewKod };
+            Log.Debug("{Class} módosítás. Új csoport: {ModifiedCsoport}", GetType(), modifiedCsoport);
             if (await serverHelper.ModifyCsoportAsync(modifiedCsoport))
             {
+                Log.Debug("{Class} Sikeres módosítás", GetType());
                 eventAggregator.PublishOnUIThread(modifiedCsoport);
                 TryClose();
+            }
+            else {
+                Log.Debug("{Class} Sikertlen módosítás", GetType());
             }
         }
 

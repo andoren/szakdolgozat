@@ -12,6 +12,7 @@ using System.Windows;
 using Caliburn.Micro;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Google.Protobuf;
+using Serilog;
 
 namespace IktatogRPCClient.Models.Managers
 {
@@ -55,9 +56,11 @@ namespace IktatogRPCClient.Models.Managers
 
         public void InitializeConnection()
         {
-
+            Log.Debug("{Class} Csatlakozás inicializációja", GetType());
+            
             client = new IktatoService.IktatoServiceClient(GetChannel());
             userHelper = UserHelperSingleton.GetInstance();
+            Log.Debug("{Class} Calloption beállítása.", GetType());
             calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
         }
 

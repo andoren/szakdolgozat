@@ -5,6 +5,7 @@ using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private UserProxy user = new UserProxy(UserHelperSingleton.CurrentUser);
         private  void Initialize() {
+            Log.Debug("{Class} UserControllerek inicializációja.", GetType());
             UgyintezokViewModel = SceneManager.CreateScene(Scenes.Ugyintezok);
             JellegekViewModel = SceneManager.CreateScene(Scenes.Jellegek);
             PartnersViewModel = SceneManager.CreateScene(Scenes.Partnerek);
@@ -41,6 +43,7 @@ namespace IktatogRPCClient.ViewModels
         }
         EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         private async void GetTelephelyekAsync() {
+            Log.Debug("{Class} Telephelyek letöltése.", GetType());
             LoaderIsVisible = true;
             BindableCollection<Telephely> telephelyek = await ServerHelperSingleton.GetInstance().GetTelephelyekAsync();
             await eventAggregator.PublishOnUIThreadAsync(telephelyek);

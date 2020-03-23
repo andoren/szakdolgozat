@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -62,6 +63,7 @@ namespace IktatogRPCClient.ViewModels
 
         protected override bool ValidateDataInForm()
         {
+            
             bool isValid = true;
             if (ValasztottTelephely == null) isValid = false;
             if (string.IsNullOrWhiteSpace(CsoportKod) || string.IsNullOrWhiteSpace(CsoportName))
@@ -73,13 +75,26 @@ namespace IktatogRPCClient.ViewModels
         }
         public async override void DoAction()
         {
+            Log.Debug("{Class} Csoport hozzáadása gomb megnyomva.", GetType());
+            Log.Debug("{Class} Új csoport készítése...szerverre várás.", GetType());       
             Csoport NewCsoport = await serverHelper.AddCsoportToTelephelyAsync(ValasztottTelephely, CsoportName, CsoportKod);
-            eventAggregator.PublishOnUIThread((ValasztottTelephely, NewCsoport));
+            if (NewCsoport.Id != -1)
+            {
+                Log.Debug("{Class} Sikeres hozzáadás", GetType());
+                Log.Debug("{Class} ÚJ csoport hírdetése.", GetType());
+                eventAggregator.PublishOnUIThread((ValasztottTelephely, NewCsoport));
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás", GetType());
+            }
+            Log.Debug("{Class} Addcsoport bezárása.", GetType());
+            
             TryClose();
         }
 
         public void Handle(BindableCollection<Telephely> message)
         {
+            Log.Debug("{Class} Telephelyek event lekezleve és hozzáadva.", GetType());
             ValaszthatoTelephely = message;
         }
     }

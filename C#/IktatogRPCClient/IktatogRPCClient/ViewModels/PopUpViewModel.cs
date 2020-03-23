@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace IktatogRPCClient.ViewModels
             this.ScreenToShow = ScreenToShow;
             ScreenToShow.SetParent(this);
             ActivateItem(ScreenToShow);
-            //var c = CloseMySelf();
+           
         }
         private Screen _screenToShow;
 
@@ -30,6 +31,7 @@ namespace IktatogRPCClient.ViewModels
             set { _screenToShow = value; }
         }
         public void CloseScreen(Screen screen, bool? result) {
+            Log.Debug("{Class} View bezárása.", GetType());
             ChildResult = result;
             DeactivateItem(screen,(bool)result);
             TryClose(ChildResult);
@@ -37,14 +39,7 @@ namespace IktatogRPCClient.ViewModels
 
  
         public bool? ChildResult { get; set; }
-        //public async Task CloseMySelf() { 
-        //    await Task.Run(()=> {
-        //        while (ActiveItem != null) {
-        //            Thread.Sleep(10);
-        //        }
-        //        TryClose(ChildResult);
-        //    });
-        //}
+
 
        
     }

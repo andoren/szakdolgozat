@@ -49,8 +49,11 @@ namespace IktatogRPCClient.ViewModels
         {
             CheckUsername();
             CheckPassword();
+            Log.Debug("{Class} Csatlakozás a szerverhez", GetType());
             bool success = await userHelper.Login(GetDataFromLoginTextBoxes());
-            if(SaveUsernameIsChecked)Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
+            if(success)Log.Debug("{Class} Sikeres csatlakozás", GetType());
+            else Log.Debug("{Class} Sikertelen csatlakozás", GetType());
+            if (SaveUsernameIsChecked)Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
             return success;
         }
         private LoginMessage GetDataFromLoginTextBoxes() {            

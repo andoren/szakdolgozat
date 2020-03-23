@@ -4,6 +4,7 @@ using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,16 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         private async void GetUgyintezokAsync() {
+            Log.Debug("{Class} Ügyintézők letöltése. Paraméter: {ValasztottTelephely}", GetType(), ValasztottTelephely);
             TelephelyUgyintezoi = await serverHelper.GetUgyintezokByTelephelyAsync(ValasztottTelephely);
+            if (TelephelyUgyintezoi.Count > 0)
+            {
+                Log.Debug("{Class} Sikeres letöltés.", GetType());
+            }
+            else
+            {
+                Log.Debug("{Class} Sikertelen letöltés vagy nincs még ügyintéző a telephelyhez.", GetType());
+            }
         }
         public bool UgyintezokIsVisible
         {
@@ -101,6 +111,7 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         public void CreateUgyintezo() {
+            Log.Debug("{Class} Hozzáadás gomb megnyomva.", GetType());
             UgyintezokIsVisible = false;
             Screen createScreen = SceneManager.CreateScene(Scenes.AddUgyintezo);
             eventAggregator.Subscribe(createScreen);
@@ -108,10 +119,16 @@ namespace IktatogRPCClient.ViewModels
             eventAggregator.PublishOnUIThread(ValaszthatoTelephely);
         }
         public async void RemoveUgyintezo() {
+            Log.Debug("{Class} Törlés gomb megnyomva.", GetType());
+            Log.Debug("{Class} szerver hívása a következő adatokkal: {ValasztottUgyintezo}", GetType(), ValasztottUgyintezo);
             if (await serverHelper.RemoveUgyintezoFromTelephelyAsync(ValasztottUgyintezo))
             {
+                Log.Debug("{Class} Sikeres törlés.", GetType());
                 TelephelyUgyintezoi.Remove(ValasztottUgyintezo);
                 NotifyOfPropertyChange(() => TelephelyUgyintezoi);
+            }
+            else{
+                Log.Debug("{Class} Sikertelen törlés.", GetType());
             }
         
         }
@@ -121,6 +138,7 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         public void ModifyUgyintezo() {
+            Log.Debug("{Class} Módosítás gomb megnyomva.", GetType());
             UgyintezokIsVisible = false;
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyUgyintezo);
             eventAggregator.Subscribe(modifyScreen);

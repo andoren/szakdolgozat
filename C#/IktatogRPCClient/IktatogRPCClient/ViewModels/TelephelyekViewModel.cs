@@ -4,6 +4,7 @@ using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,9 +73,11 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreateTelephely() {
             TelephelyekIsVisible = false;
+            Log.Debug("{Class} hozzáadás gomb megnyomva.", GetType());
             ActivateItem(SceneManager.CreateScene(Scenes.AddTelephely));
         }
         public void ModifyTelephely() {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             TelephelyekIsVisible = false;
             Screen modifyTelephelyScreen = SceneManager.CreateScene(Scenes.ModifyTelephely);
             eventAggregator.Subscribe(modifyTelephelyScreen);
@@ -84,10 +87,17 @@ namespace IktatogRPCClient.ViewModels
  
 
         public async void RemoveTelephely() {
-            if ( await serverHelper.RemoveTelephelyAsync(SelectedTelephely)) {
+            Log.Debug("{Class} törlés gomb megnyomva.", GetType());
+            Log.Debug("{Class} törlés a következő adatokkal: {SelectedTelephely}", GetType(), SelectedTelephely);
+            if (await serverHelper.RemoveTelephelyAsync(SelectedTelephely))
+            {
+                Log.Debug("{Class} Sikeres törlés", GetType());
                 eventAggregator.PublishOnUIThread(new RemovedItem(SelectedTelephely));
                 Telephelyek.Remove(SelectedTelephely);
-                NotifyOfPropertyChange(()=>Telephelyek);
+                NotifyOfPropertyChange(() => Telephelyek);
+            }
+            else {
+                Log.Debug("{Class} Sikertelen törlés", GetType());
             }
         }
 

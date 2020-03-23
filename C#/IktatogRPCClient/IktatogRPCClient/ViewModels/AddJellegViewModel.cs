@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,17 +70,29 @@ namespace IktatogRPCClient.ViewModels
         }
         public async override void DoAction()
         {
+            Log.Debug("{Class} Jelleg hozzáadása gomb megnyomva.", GetType());
+            Log.Debug("{Class} Várakozás a szerverre... Adat: {JellegNeve}", GetType(),JellegNeve);
             Jelleg NewJelleg = await serverHelper.AddJellegToTelephelyAsync(SelectedTelephely, JellegNeve);
-            eventAggregator.PublishOnUIThread((SelectedTelephely, NewJelleg));
+            if (NewJelleg.Id != -1)
+            {
+                Log.Debug("{Class} Sikeres hozzáadás. ", GetType());
+                Log.Debug("{Class} Jelleg hírdetése.", GetType());
+                eventAggregator.PublishOnUIThread((SelectedTelephely, NewJelleg));
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás. ", GetType());
+            }
             TryClose();
         }
         public void Handle(BindableCollection<Telephely> message)
         {
+            Log.Debug("{Class} Telephelyek hozzáadva.", GetType());
             AvailableTelephelyek = message;
         }
 
         public void Handle(Jelleg message)
         {
+            Log.Debug("{Class} Módosítani kívánt jelleg elmentve. {Message}", GetType(), message);
             ModifiedJelleg = message;
         }
     }

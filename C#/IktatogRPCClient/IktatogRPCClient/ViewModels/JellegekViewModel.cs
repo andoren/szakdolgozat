@@ -4,6 +4,7 @@ using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,10 @@ namespace IktatogRPCClient.ViewModels
     {
         public JellegekViewModel()
         {
-            LoadData();
+            Initialize();
         }
-        private  void LoadData() {
+        private  void Initialize() {
+            Log.Debug("{Class} Adatok inicializációja", GetType());
             serverHelper = ServerHelperSingleton.GetInstance();
             eventAggregator = EventAggregatorSingleton.GetInstance();
             eventAggregator.Subscribe(this);
@@ -61,8 +63,15 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         private async void GetJellegekAsync() {
-        
-                AvailableJellegek = await serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely);
+            Log.Debug("{Class} Jellegek letöltése. Telephely: {SelectedTelephely}", GetType(),SelectedTelephely);
+            AvailableJellegek = await serverHelper.GetJellegekByTelephelyAsync(SelectedTelephely);
+            if (AvailableJellegek.Count > 0)
+            {
+                Log.Debug("{Class} Sikeres letöltés", GetType());
+            }
+            else {
+                Log.Debug("{Class} Sikertelen letöltés vagy nincs még jelleg a telephelyhez adva.", GetType());
+            }
         }
         public BindableCollection<Telephely> AvailableTelephelyek
         {
@@ -96,6 +105,7 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CreateJelleg()
         {
+            Log.Debug("{Class} Jelleg létrehozása gomb megnyomva", GetType());
             JellegekIsVisible = false;
             Screen createScreen = SceneManager.CreateScene(Scenes.AddJelleg);
             eventAggregator.Subscribe(createScreen);
@@ -104,16 +114,22 @@ namespace IktatogRPCClient.ViewModels
         }
         public async void RemoveJelleg()
         {
+            Log.Debug("{Class} Jelleg törlése gomb megnyomva", GetType());
             if (await serverHelper.RemoveJellegAsync(SelectedJelleg))
             {
+                Log.Debug("{Class} Sikeres törlés.", GetType());
                 AvailableJellegek.Remove(SelectedJelleg);
                 NotifyOfPropertyChange(() => AvailableJellegek);
+            }
+            else {
+                Log.Debug("{Class} Sikertlen törlés.", GetType());
             }
 
         }
 
         public void ModifyJelleg()
         {
+            Log.Debug("{Class} Jelleg módosítása gomb megnyomva", GetType());
             JellegekIsVisible = false;
             Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyJelleg);
             eventAggregator.Subscribe(modifyScreen);

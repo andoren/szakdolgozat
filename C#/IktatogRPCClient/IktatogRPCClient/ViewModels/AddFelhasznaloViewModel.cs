@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,16 +115,24 @@ namespace IktatogRPCClient.ViewModels
 
         }
         public void RemoveTelephely() {
+            Log.Debug("{Class} Telephely törlése gomb megnyomva", GetType());
+            Log.Debug("{Class} Az elérhető telephelyekhez hozzáadjuk a {SelectedTelephelyToRemove}", GetType(), SelectedTelephelyToRemove);
             AvailableTelephelyek.Add(SelectedTelephelyToRemove);
+            Log.Debug("{Class} Aa választott telephelykből kitöröljük a {SelectedTelephelyToRemove}", GetType(), SelectedTelephelyToRemove);
             SelectedTelephelyek.Remove(SelectedTelephelyToRemove);
             NotifyOfPropertyChange(() => SelectedTelephelyek);
             NotifyOfPropertyChange(() => CanDoAction);
+            Log.Debug("{Class} Telephely törlése vége.", GetType());
         }
         public void AddTelephely() {
+            Log.Debug("{Class} Telephely hozzáadása gomb megnyomva", GetType());
+            Log.Debug("{Class} A kiválasztott telephely {SelectedTelephelyToAdd} hozzáadva a választott telephelyekhez.", GetType(), SelectedTelephelyToAdd);
             SelectedTelephelyek.Add(SelectedTelephelyToAdd);
+            Log.Debug("{Class} A kiválasztott telephely {SelectedTelephelyToAdd} kitörlése az elérhető telephelyek közül.", GetType());
             AvailableTelephelyek.Remove(SelectedTelephelyToAdd);
             NotifyOfPropertyChange(()=>SelectedTelephelyek);
             NotifyOfPropertyChange(() => CanDoAction);
+            Log.Debug("{Class} Telephely hozzáadása vége.", GetType());
         }
         public bool CanRemoveTelephely {
             get {
@@ -136,9 +145,19 @@ namespace IktatogRPCClient.ViewModels
         }
         public async override void DoAction()
         {
+            Log.Debug("{Class} Felhasználó hozzáadása gomb megnyomva.", GetType());
+            Log.Debug("{Class} Várakozás a szerverre... Adat: {Username} , {NewFullname} , SelectedPrivilege, SelectedTelephelyek", GetType(), NewUsername, NewFullname, NewPassword, SelectedPrivilege, SelectedTelephelyek);
             UserProxy NewUser = await serverHelper.AddUserAsync(NewUsername,NewFullname,NewPassword,SelectedPrivilege,SelectedTelephelyek);
-            eventAggregator.PublishOnUIThread(NewUser);
+            if (NewUser.Id != -1) {
+                Log.Debug("{Class} Sikeres hozzáadás. Felhasználó hírdetése.", GetType());
+                eventAggregator.PublishOnUIThread(NewUser);
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás", GetType());
+            }
+            Log.Debug("{Class} bezárása.", GetType());
             TryClose();
+           
         }
 
  
@@ -163,6 +182,7 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle(BindableCollection<Telephely> message)
         {
+            Log.Debug("{Class} Telephelyek hozzáadva.", GetType());
             AvailableTelephelyek = new BindableCollection<Telephely>(message);
         }
     }

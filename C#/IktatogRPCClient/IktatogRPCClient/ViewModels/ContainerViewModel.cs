@@ -1,15 +1,10 @@
 ﻿using Caliburn.Micro;
-using Iktato;
 using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using Serilog;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -39,40 +34,60 @@ namespace IktatogRPCClient.ViewModels
         }
         public void Fooldal() {
             ChangeScene(Scenes.Fooldal);
-            
+            Log.Debug("{Class} Fooldal gomb megnyomva", GetType());
+
         }
         public void Iktatas() {
             ChangeScene(Scenes.Iktato);
-           
+            Log.Debug("{Class} Iktatás gomb megnyomva", GetType());
         }
         public void Kereses() {
             ChangeScene(Scenes.Kereses);
-         
+            Log.Debug("{Class} Keresés gomb megnyomva", GetType());
         }
         public void Torzs() {
             ChangeScene(Scenes.Torzs);
-        
+            Log.Debug("{Class} Törzs gomb megnyomva", GetType());
         }
 
         public async void Kijelentkezes() {
             LoaderIsVisible = true;
-           
-            await serverHelper.LogoutAsync();
+            Log.Debug("{Class} Kijelentkezés gomb megnyomva", GetType());
+            Log.Debug("{Class} Várakozás a szerverre....", GetType());
+            if (await serverHelper.LogoutAsync())
+            {
+                Log.Debug("{Class} Sikeres kijelentkezés.", GetType());
+            }
+            else {
+                Log.Debug("{Class} Sikertelen kijelentkezés.", GetType());
+            }
             LoaderIsVisible = false;
+            Log.Debug("{Class} Login ablak megnyitása", GetType());
             var manager = new WindowManager();
             manager.ShowWindow(new LoginViewModel(), null, null);
+            Log.Debug("{Class} bezárása", GetType());
             TryClose();
         }
         public async void Kilepes() {
             LoaderIsVisible = true;
             try
             {
-
-
-                await serverHelper.LogoutAsync();
+                Log.Debug("{Class} Kilépés gomb megnyomva", GetType());
+                Log.Debug("{Class} Várakozás a szerverre....", GetType());
+                if (await serverHelper.LogoutAsync())
+                {
+                    Log.Debug("{Class} Sikeres kijelentkezés.", GetType());
+                }
+                else
+                {
+                    Log.Debug("{Class} Sikertelen kijelentkezés.", GetType());
+                }
             }
-            catch (Exception) { }
+            catch (Exception e) {
+                Log.Warning("Hiba a kilépéskor. {Message}",e.Message);
+            }
             LoaderIsVisible = false;
+            Log.Warning("Program bezárása.");
             TryClose();
         }
 
@@ -82,6 +97,7 @@ namespace IktatogRPCClient.ViewModels
             CurrentUser = $"{name} - {Role}";
         }
         private void ChangeScene(Scenes scene) {
+            Log.Debug("{Class} Oldal váltása {Scene}", GetType(),scene);
             ActivateItem(SceneManager.CreateScene(scene));
         }
 

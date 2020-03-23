@@ -3,7 +3,9 @@ using Iktato;
 using IktatogRPCClient.Managers;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,12 +72,14 @@ namespace IktatogRPCClient.ViewModels
 		}
 		public void CreateUser() {
 			UsersIsVisible = false;
+			Log.Debug("{Class} Felhasználó létrehozása gomb megnyomva.", GetType() );
 			Screen createScreen = SceneManager.CreateScene(Scenes.AddFelhasznalo);
 			eventAggregator.Subscribe(createScreen);
 			ActivateItem(createScreen);
 			eventAggregator.PublishOnUIThread(telephelyek);
 		}
 		public void ModifyUser() {
+			Log.Debug("{Class} Felhasználó módosítása gomb megnyomva.", GetType());
 			UsersIsVisible = false;
 			Screen modifyScreen = SceneManager.CreateScene(Scenes.ModifyFelhasznalo);
 			eventAggregator.Subscribe(modifyScreen);
@@ -84,7 +88,9 @@ namespace IktatogRPCClient.ViewModels
 			eventAggregator.PublishOnUIThread(telephelyek);
 		}
 		public async void DisableUser() {
+			Log.Warning("{Class} Felhasználó törlése gomb megnyomva. User: {CurrentUser}", GetType(),UserHelperSingleton.CurrentUser);
 			if ( await serverHelper.DisableUserAsync(SelectedUser.GetUser)) {
+				Log.Warning("{Class} Felhasználó sikeresen törölve. User: {SelectedUser}", GetType(),SelectedUser);
 				AvailabelUsers.Remove(SelectedUser);
 				NotifyOfPropertyChange(() => AvailabelUsers);
 				NotifyOfPropertyChange(()=>SelectedUser);

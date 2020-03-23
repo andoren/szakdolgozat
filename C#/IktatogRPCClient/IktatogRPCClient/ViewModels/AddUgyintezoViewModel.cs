@@ -2,6 +2,7 @@
 using Iktato;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,13 +66,26 @@ namespace IktatogRPCClient.ViewModels
             return isValid;
         }
         public async override void DoAction() {
+            Log.Debug("{Class} hozzáadás gomb megnyomva", GetType());
+            Log.Debug("{Class} Várakozás a szerverre... Adat: {ValasztottTelephely, UgyintezoNeve}", GetType(),ValaszthatoTelephely,UgyintezoNeve);
             Ugyintezo NewUgyintezo = await serverHelper.AddUgyintezoToTelephelyAsync(ValasztottTelephely,UgyintezoNeve);
-            eventAggregator.PublishOnUIThread((ValasztottTelephely,NewUgyintezo));
+            if(NewUgyintezo.Id != -1) {
+                Log.Debug("{Class} Sikeres hozzáadás.", GetType());
+                Log.Debug("{Class} Ugyintezo hirdetése", GetType());
+                eventAggregator.PublishOnUIThread((ValasztottTelephely, NewUgyintezo));
+            }
+            else {
+                Log.Debug("{Class} Sikertelen hozzáadás.", GetType());
+            }
+         
+            
+            Log.Debug("{Class} Sikeres hozzáadás.", GetType());
             TryClose();
         }
 
         public void Handle(BindableCollection<Telephely> message)
         {
+            Log.Debug("{Class} Telephelyek hozzáadva", GetType());
             ValaszthatoTelephely = message;
         }
     }

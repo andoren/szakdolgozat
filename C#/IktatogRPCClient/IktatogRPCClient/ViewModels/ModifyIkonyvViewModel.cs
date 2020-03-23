@@ -5,6 +5,7 @@ using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using IktatogRPCClient.Models.Scenes;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,10 @@ namespace IktatogRPCClient.ViewModels
         {
 
             InitializeData(IkonyvToModify);
+            NotifyOfPropertyChange(()=> CanModifyButton);
         }
         private async void InitializeData(Ikonyv IkonyvToModify) {
+            Log.Debug("{Class} Adatok letöltése a szerverről", GetType());
             this.IkonyvToModify = new Ikonyv(IkonyvToModify);
             AvailablePartners = await serverHelper.GetPartnerekByTelephelyAsync(IkonyvToModify.Telephely);
             AvailableJellegek = await serverHelper.GetJellegekByTelephelyAsync(IkonyvToModify.Telephely);
@@ -195,6 +198,7 @@ namespace IktatogRPCClient.ViewModels
             }
         }
         private async void SetPartnerUgyintezok() {
+            Log.Debug("{Class} Partnerügyintézők letöltése. Partner: {SelectedPartner}", GetType(),SelectedPartner);
             AvailablePartnerUgyintezok.Clear();
             AvailablePartnerUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
             AvailablePartnerUgyintezok.Insert(0, EmptyPartnerUgyintezo);
@@ -206,7 +210,7 @@ namespace IktatogRPCClient.ViewModels
         }
         public string Title
         {
-            get { return $"{IkonyvToModify.Iktatoszam} módosítása"; }
+            get { return $"{IkonyvToModify.Iktatoszam}"; }
             
         }
 
@@ -217,9 +221,11 @@ namespace IktatogRPCClient.ViewModels
         }
 
         public void CancelButton() {
+            Log.Debug("{Class} Mégse gomb megnyomva.", GetType(), SelectedPartner);
             MyParent.CloseScreen(this, ModificationHappend);
         }
         public async void ModifyButton() {
+            Log.Debug("{Class} Módosítás gomb megnyomva.", GetType(), SelectedPartner);
             LoaderIsVisible = true;
             IkonyvToModify.Jelleg = SelectedJelleg;
             IkonyvToModify.Partner = SelectedPartner;
@@ -228,9 +234,14 @@ namespace IktatogRPCClient.ViewModels
             IkonyvToModify.Ugyintezo = SelectedUgyintezo;
             IkonyvToModify.HasDoc = IkonyvHasDocument;
             IkonyvToModify.Szoveg = Szoveg;
-            await serverHelper.ModifyIkonyvAsync(IkonyvToModify);
-            eventAggregator.PublishOnUIThread(IkonyvToModify);
-            ModificationHappend = true;
+            Log.Debug("{Class} Módosítás: {IkonyvToModify}.", GetType(), IkonyvToModify);
+            bool success = await serverHelper.ModifyIkonyvAsync(IkonyvToModify);
+            if (success) {
+                eventAggregator.PublishOnUIThread(IkonyvToModify);
+                ModificationHappend = true;
+                Log.Debug("{Class} Sikeres módosítás", GetType());
+            }
+          
             MyParent.CloseScreen(this, ModificationHappend);
             LoaderIsVisible = false;
         }
@@ -274,6 +285,7 @@ namespace IktatogRPCClient.ViewModels
         public bool LoaderIsVisible { get; private set; }
 
         public void DocumentView() {
+            Log.Debug("{Class} Dokumentumok listájának megnyitása.", GetType());
             ModificationIsVisible = false;
             Screen docScreen = new DocumentHandlerViewModel(IkonyvToModify.Id);
             eventAggregator.Subscribe(docScreen);

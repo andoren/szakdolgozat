@@ -2,6 +2,7 @@
 using Iktato;
 using IktatogRPCClient.Models;
 using IktatogRPCClient.Models.Managers;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,12 +45,20 @@ namespace IktatogRPCClient.ViewModels
 
         public async override void DoAction()
         {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             Ugyintezo modifiedUgyintezo = new Ugyintezo() { Id = ModifiedUgyintezo.Id, Name = NewName };
-            if (await serverHelper.ModifyUgyintezoAsync(modifiedUgyintezo)) {
+            Log.Debug("{Class} a szerver meghívása.... Adat: {ModifiedUgyintezo}", GetType(), modifiedUgyintezo);
+            if (await serverHelper.ModifyUgyintezoAsync(modifiedUgyintezo))
+            {
+                Log.Debug("{Class} Sikeres módosítás.", GetType());
                 eventAggregator.PublishOnUIThread((SelectedTelephely, modifiedUgyintezo));
-                TryClose();
+                
             }
- 
+            else {
+                eventAggregator.PublishOnUIThread((SelectedTelephely, new Ugyintezo()));
+                Log.Debug("{Class} Sikertelen módosítás.", GetType());
+            }
+            TryClose();
         }
 
         protected override bool ValidateDataInForm()

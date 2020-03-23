@@ -204,7 +204,7 @@ namespace IktatogRPCServer.Service
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                return Task.FromResult(manager.Add(new NewTorzsData() { Telephely = request}, user)); ;
             }
             return Task.FromResult(new Telephely());
         }

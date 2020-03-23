@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private  void LoadData()
         {
-           
+            Log.Debug("{Class} Adatok letöltése.", GetType());
             AvailablePrivileges = serverHelper.GetPrivileges();
             
             AvailableTelephelyek = serverHelper.GetAllTelephely();
@@ -123,6 +124,7 @@ namespace IktatogRPCClient.ViewModels
         }
         public void RemoveTelephely()
         {
+            Log.Debug("{Class} Adatok letöltése.", GetType());
             AvailableTelephelyek.Add(SelectedTelephelyToRemove);
             SelectedTelephelyek.Remove(SelectedTelephelyToRemove);
             NotifyOfPropertyChange(() => SelectedTelephelyek);
@@ -130,6 +132,7 @@ namespace IktatogRPCClient.ViewModels
         }
         public void AddTelephely()
         {
+            Log.Debug("{Class} Adatok letöltése.", GetType());
             SelectedTelephelyek.Add(SelectedTelephelyToAdd);
             AvailableTelephelyek.Remove(SelectedTelephelyToAdd);
             NotifyOfPropertyChange(() => SelectedTelephelyek);
@@ -148,14 +151,26 @@ namespace IktatogRPCClient.ViewModels
         }
         public async override void DoAction()
         {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             User user = new User() { Id = ModifiedUser.Id, Fullname = NewFullname, Privilege = SelectedPrivilege, Username = NewUsername };
+           
             foreach (var telephely in SelectedTelephelyek)
             {
                 user.Telephelyek.Add(telephely);
             }
+            Log.Debug("{Class} az uj felhasználó: {NewUser}", GetType());
             NewUser = new UserProxy(user);
+            Log.Debug("{Class} Várakozás a szerverre...", GetType());
             bool success =  await serverHelper.ModifyUserAsync(NewUser.GetUser);
+            if (success) {
+                Log.Debug("{Class} Sikeres módosítás.", GetType());
+            }
+            else
+            {
+                Log.Debug("{Class} Sikertelen módosítás.", GetType());
+            }
             eventAggregator.PublishOnUIThread(NewUser);
+            Log.Debug("{Class} Ablak bezárása.", GetType());
             TryClose();
         }
 

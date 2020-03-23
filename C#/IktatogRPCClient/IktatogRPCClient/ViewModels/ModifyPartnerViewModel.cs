@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +39,20 @@ namespace IktatogRPCClient.ViewModels
 
         public async override void DoAction()
         {
+            Log.Debug("{Class} módosítás gomb megnyomva.", GetType());
             SelectedPartner.Name = NewName;
+            Log.Debug("{Class} a szerver hívása... Adat: {SelectedPartner}", GetType(), SelectedPartner);
             bool success = await serverHelper.ModifyPartnerAsync(SelectedPartner);
-            eventAggregator.BeginPublishOnUIThread((SelectedTelephely,SelectedPartner));
+            if (success)
+            {
+                eventAggregator.BeginPublishOnUIThread((SelectedTelephely, SelectedPartner));
+                Log.Debug("{Class} Sikeres módosítás.", GetType());
+            }
+            else {
+                eventAggregator.BeginPublishOnUIThread((SelectedTelephely, new Partner()));
+                Log.Debug("{Class} Sikeretelen módosítás.", GetType());
+            }
+           
             TryClose();
         }
 
