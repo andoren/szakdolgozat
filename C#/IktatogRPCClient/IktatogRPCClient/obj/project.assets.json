@@ -202,6 +202,37 @@
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
         }
       },
+      "Serilog/2.9.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        }
+      },
       "System.Buffers/4.4.0": {
         "type": "package",
         "compile": {
@@ -490,6 +521,37 @@
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
         }
       },
+      "Serilog/2.9.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        }
+      },
       "System.Buffers/4.4.0": {
         "type": "package",
         "compile": {
@@ -774,6 +836,37 @@
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
         }
       },
+      "Serilog/2.9.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        }
+      },
       "System.Buffers/4.4.0": {
         "type": "package",
         "compile": {
@@ -1056,6 +1149,37 @@
         "build": {
           "build/Microsoft.Windows.SDK.Contracts.props": {},
           "build/Microsoft.Windows.SDK.Contracts.targets": {}
+        }
+      },
+      "Serilog/2.9.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net46/Serilog.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Serilog.dll": {}
+        }
+      },
+      "Serilog.Sinks.File/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.5.0"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Serilog.Sinks.File.dll": {}
         }
       },
       "System.Buffers/4.4.0": {
@@ -1502,6 +1626,47 @@
         "ref/netstandard2.0/en/Windows.Web.Http.Diagnostics.HttpDiagnosticsContract.xml"
       ]
     },
+    "Serilog/2.9.0": {
+      "sha512": "QzcrD33A3+CsVvwi1I5CSei67ikQnkGrw7SscgL+vZTghaC2aNYg8fiUcedXHzKJFNjgje9rBjzwYGQTKEaXaA==",
+      "type": "package",
+      "path": "serilog/2.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Serilog.dll",
+        "lib/net45/Serilog.xml",
+        "lib/net46/Serilog.dll",
+        "lib/net46/Serilog.xml",
+        "lib/netstandard1.0/Serilog.dll",
+        "lib/netstandard1.0/Serilog.xml",
+        "lib/netstandard1.3/Serilog.dll",
+        "lib/netstandard1.3/Serilog.xml",
+        "lib/netstandard2.0/Serilog.dll",
+        "lib/netstandard2.0/Serilog.xml",
+        "serilog.2.9.0.nupkg.sha512",
+        "serilog.nuspec"
+      ]
+    },
+    "Serilog.Sinks.File/4.1.0": {
+      "sha512": "U0b34w+ZikbqWEZ3ui7BdzxY/19zwrdhLtI3o6tfmLdD3oXxg7n2TZJjwCCTlKPgRuYic9CBWfrZevbb70mTaw==",
+      "type": "package",
+      "path": "serilog.sinks.file/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Serilog.Sinks.File.dll",
+        "lib/net45/Serilog.Sinks.File.pdb",
+        "lib/net45/Serilog.Sinks.File.xml",
+        "lib/netstandard1.3/Serilog.Sinks.File.dll",
+        "lib/netstandard1.3/Serilog.Sinks.File.pdb",
+        "lib/netstandard1.3/Serilog.Sinks.File.xml",
+        "lib/netstandard2.0/Serilog.Sinks.File.dll",
+        "lib/netstandard2.0/Serilog.Sinks.File.pdb",
+        "lib/netstandard2.0/Serilog.Sinks.File.xml",
+        "serilog.sinks.file.4.1.0.nupkg.sha512",
+        "serilog.sinks.file.nuspec"
+      ]
+    },
     "System.Buffers/4.4.0": {
       "sha512": "AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
       "type": "package",
@@ -1843,6 +2008,8 @@
       "Caliburn.Micro >= 3.2.0",
       "Grpc.Core >= 2.26.0",
       "Microsoft.Windows.SDK.Contracts >= 10.0.18362.2005",
+      "Serilog >= 2.9.0",
+      "Serilog.Sinks.File >= 4.1.0",
       "System.Interactive.Async >= 4.0.0"
     ]
   },
@@ -1890,6 +2057,14 @@
           "Microsoft.Windows.SDK.Contracts": {
             "target": "Package",
             "version": "[10.0.18362.2005, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[2.9.0, )"
+          },
+          "Serilog.Sinks.File": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "System.Interactive.Async": {
             "target": "Package",

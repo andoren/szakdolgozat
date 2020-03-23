@@ -2,18 +2,13 @@
 using Grpc.Core;
 using Iktato;
 using IktatogRPCClient.Models;
-using IktatogRPCClient.Models.Managers;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Serilog;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -50,12 +45,13 @@ namespace IktatogRPCClient.ViewModels
             set { _saveUsernameIsChecked = value; }
         }
 
-        async Task ConnectToServerAndLogin()
+        async Task<bool> ConnectToServerAndLogin()
         {
             CheckUsername();
             CheckPassword();
-            await userHelper.Login(GetDataFromLoginTextBoxes());
+            bool success = await userHelper.Login(GetDataFromLoginTextBoxes());
             if(SaveUsernameIsChecked)Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
+            return success;
         }
         private LoginMessage GetDataFromLoginTextBoxes() {            
             return new LoginMessage() { Username = UsernameBox, Password = PasswordBox };
@@ -73,19 +69,26 @@ namespace IktatogRPCClient.ViewModels
             try
             {
                 LoaderIsVisible = true;
-                await ConnectToServerAndLogin();
-                var manager = new WindowManager();
-                manager.ShowWindow(new ContainerViewModel(), null, null);
-                TryClose();
+                if (await ConnectToServerAndLogin())
+                {
+                    var manager = new WindowManager();
+                    manager.ShowWindow(new ContainerViewModel(), null, null);
+                    TryClose();
+                }
             }
-            catch (RpcException ex) {
+            catch (RpcException ex)
+            {
                 InformationBox.ShowError(ex);
+             
             }
             catch (Exception e)
             {
-                LoaderIsVisible = false;
-                InformationBox.ShowError(e);
 
+                InformationBox.ShowError(e);
+                
+            }
+            finally {
+                LoaderIsVisible = false;
             }
            
         }

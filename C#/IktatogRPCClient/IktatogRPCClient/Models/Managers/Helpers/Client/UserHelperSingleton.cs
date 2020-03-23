@@ -44,13 +44,19 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             get { return _token; }
             private set { _token = value; }
         }
-        public async  Task Login(LoginMessage message)
+        public async  Task<bool> Login(LoginMessage message)
         {
+            bool success = false;
             try
             {
                 CurrentUser = await new IktatoService.IktatoServiceClient(serverHelper.GetChannel()).LoginAsync(message);
-                Token = CurrentUser.AuthToken;
-                serverHelper.InitializeConnection();
+
+                if (CurrentUser != null)
+                {
+                    Token = CurrentUser.AuthToken;
+                    serverHelper.InitializeConnection();
+                    success = true;
+                }
             }
             catch (RpcException re)
             {
@@ -60,7 +66,7 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             {
                 MessageBox.Show($"Sima Exception: {e.Message}");           
             }
-
+            return success;
         }
         public bool IsAdmin {
             get {

@@ -19,3 +19,25 @@
 2020-03-23 10:01:24.965 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
 2020-03-23 10:01:25.003 +01:00 [INF] A szerver elindult 
 2020-03-23 10:01:53.879 +01:00 [WRN] A szerver leáll.
+2020-03-23 10:37:21.126 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
+2020-03-23 10:37:21.167 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
+2020-03-23 10:37:21.169 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
+2020-03-23 10:37:21.443 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
+2020-03-23 10:37:21.487 +01:00 [INF] A szerver elindult 
+2020-03-23 10:37:26.197 +01:00 [DBG] UserDatabaseManager.IsValidUser: Mysqlcommand előkészítése.
+2020-03-23 10:37:26.204 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlConnection létrehozása és nyitása.
+2020-03-23 10:37:26.205 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-23 10:37:26.763 +01:00 [DBG] UserDatabaseManager.IsValidUser: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. 
+2020-03-23 10:37:26.766 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlCommand végrehajtása
+2020-03-23 10:37:26.903 +01:00 [DBG] Login: Sikertelen user validálás
+2020-03-23 10:37:47.590 +01:00 [DBG] UserDatabaseManager.IsValidUser: Mysqlcommand előkészítése.
+2020-03-23 10:37:47.592 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlConnection létrehozása és nyitása.
+2020-03-23 10:37:47.592 +01:00 [DBG] Connectionstring kilvasása.
+2020-03-23 10:37:47.593 +01:00 [DBG] UserDatabaseManager.IsValidUser: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. 
+2020-03-23 10:37:47.603 +01:00 [DBG] UserDatabaseManager.IsValidUser: MysqlCommand végrehajtása
+2020-03-23 10:37:47.608 +01:00 [DBG] UserDatabaseManager.IsValidUser: Sikeres bejelentkezés.
+2020-03-23 10:37:47.771 +01:00 [DBG] Login: Sikeres user validálás. { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-23 10:37:47.773 +01:00 [DBG] Login: Token generálás megkezdése a következő adatokkal: Felhasználónév: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }, Privilege: { "id": 1, "name": "admin" }, Id: { "id": 1, "username": "admin ", "fullname": "Administrator  ", "privilege": { "id": 1, "name": "admin" } }
+2020-03-23 10:37:48.001 +01:00 [DBG] Login: A token sikeresen legenerálva.
+2020-03-23 10:38:19.953 +01:00 [WRN] A szerver leáll.
+2020-03-23 10:39:16.264 +01:00 [WRN] A szerver leáll.
