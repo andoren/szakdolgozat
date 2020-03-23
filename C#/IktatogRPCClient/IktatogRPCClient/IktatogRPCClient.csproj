@@ -77,6 +77,7 @@
     <Compile Include="Models\InformationBox.cs" />
     <Compile Include="Models\Irany.cs" />
     <Compile Include="Models\Managers\EventAggregatorSingleton.cs" />
+    <Compile Include="Models\Managers\Helpers\Client\LogHelper.cs" />
     <Compile Include="Models\Managers\Helpers\Client\UserHelperSingleton.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\InvalidCallOperation.cs" />
     <Compile Include="Models\Managers\Helpers\Server\Exceptions\LoginErrorException.cs" />

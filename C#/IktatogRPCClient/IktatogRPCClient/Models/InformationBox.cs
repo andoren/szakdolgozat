@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Grpc.Core;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace IktatogRPCClient.Models
     {
         public static void ShowError(Exception e) {
             MessageBox.Show(e.Message);
+            Log.Error("Kivétel dobva: {E}", e);
         }
         public static void ShowError(RpcException e)
         {
@@ -59,10 +61,7 @@ namespace IktatogRPCClient.Models
                 default:
                     break;
             }
-        }
-        public static bool ShowWarning() {
-            return true;
-        }
-        
+            Log.Warning("Szerver által dobott kivétel: {E}",e);
+        }        
     }
 }
