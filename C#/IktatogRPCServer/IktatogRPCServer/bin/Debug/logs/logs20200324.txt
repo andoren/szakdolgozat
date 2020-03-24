@@ -7,3 +7,17 @@ Paraméter neve: startIndex
 2020-03-24 09:42:27.877 +01:00 [WRN] A szerver leáll.
 2020-03-24 09:43:20.790 +01:00 [WRN] A szerver leáll.
 2020-03-24 09:47:48.066 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:06:45.299 +01:00 [ERR] Hiba történt az adatbázis mentése során. Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Unknown database 'iktato'
+2020-03-24 10:07:25.870 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:09:09.686 +01:00 [ERR] Hiba történt az adatbázis importálása során. Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Unknown database 'iktato'
+2020-03-24 10:09:58.495 +01:00 [ERR] Hiba történt az adatbázis importálása során. Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Unknown database 'iktato'
+2020-03-24 10:24:53.277 +01:00 [ERR] Hiba történt az adatbázis mentése során. A hívó szál nem fér hozzá az objektumhoz, mert annak egy másik szál a tulajdonosa.
+2020-03-24 10:26:11.312 +01:00 [ERR] Hiba történt az adatbázis mentése során. A hívó szál nem fér hozzá az objektumhoz, mert annak egy másik szál a tulajdonosa.
+2020-03-24 10:26:20.843 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:27:19.296 +01:00 [ERR] Hiba történt az adatbázis mentése során. A hívó szál nem fér hozzá az objektumhoz, mert annak egy másik szál a tulajdonosa.
+2020-03-24 10:27:59.702 +01:00 [ERR] Hiba történt az adatbázis importálása során. A hívó szál nem fér hozzá az objektumhoz, mert annak egy másik szál a tulajdonosa.
+2020-03-24 10:28:43.605 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:31:19.144 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:33:11.190 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:33:50.722 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:35:51.783 +01:00 [WRN] A szerver leáll.

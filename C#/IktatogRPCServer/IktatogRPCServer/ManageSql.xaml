@@ -27,42 +27,40 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
-        <GroupBox Margin="0 0 0 10" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Header="Adatbázis mentés">
+        <GroupBox Padding="10 20" Margin="0 10 0 5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Header="Adatbázis mentés">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="PathToSave" HorizontalAlignment="Right" Grid.ColumnSpan="3" Margin="5"></TextBlock>
+                <TextBox IsReadOnly="True" BorderThickness="0" Background="{x:Null}" MaxWidth="300" HorizontalScrollBarVisibility="Auto" Height="50" VerticalAlignment="Top" x:Name="PathToSave"  HorizontalAlignment="Right" Grid.ColumnSpan="3" Margin="5"></TextBox>
                 <StackPanel>
-                    <TextBlock Margin="5">Folyamat:</TextBlock>
+                    <TextBlock Margin="5 5 5 25">Folyamat:</TextBlock>
                     <Grid>
                         
                         <ProgressBar x:Name="SaveProgressBar" Margin="5" Height="30" ></ProgressBar>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="SavePrecentage"> 0%</TextBlock>
                     </Grid>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="SaveStatus"> </TextBlock>
                 </StackPanel>
-                <Button VerticalAlignment="Center" Margin="5 10 5 0" Grid.Column="1" x:Name="SaveSqlButton" Click="SaveSqlButton_Click" Height="30" Padding="10 0">Mentés</Button>
+                <Button VerticalAlignment="Center" Margin="5 30 5 0" Grid.Column="1" x:Name="SaveSqlButton" Click="SaveSqlButton_Click" Height="30" Padding="10 0">Mentés</Button>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6"   Header="Adatbázis visszatöltés">
+        <GroupBox Padding="10 20" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6"   Header="Adatbázis visszatöltés">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="ExportPath" HorizontalAlignment="Right" Grid.ColumnSpan="3" Margin="5"></TextBlock>
+                <TextBox IsReadOnly="True" BorderThickness="0" Background="{x:Null}" MaxWidth="300" HorizontalScrollBarVisibility="Auto" Height="50" VerticalAlignment="Top" x:Name="ImportPath" HorizontalAlignment="Right" Grid.ColumnSpan="3" Margin="5"></TextBox>
                 <StackPanel>
-                    <TextBlock Margin="5">Folyamat:</TextBlock>
+                    <TextBlock Margin="5 5 5 25">Folyamat:</TextBlock>
                     <Grid>
 
                         <ProgressBar x:Name="ImportProgressBar" Margin="5" Height="30" ></ProgressBar>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ImportPrecentage"> 0%</TextBlock>
                     </Grid>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ImportStatus"></TextBlock>
                 </StackPanel>
-                <Button VerticalAlignment="Center" Margin="5 10 5 0" Grid.Column="1" x:Name="ImportSqlButton"  Click="ImportSqlButton_Click"  Height="30" Padding="10 0">Betöltés</Button>
+                <Button VerticalAlignment="Center" Margin="5 30 5 0" Grid.Column="1" x:Name="ImportSqlButton"  Click="ImportSqlButton_Click"  Height="30" Padding="10 0">Betöltés</Button>
             </Grid>
         </GroupBox>
     </Grid>
