@@ -4,9 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCServer"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>Felhasználó kezelés</TextBlock>
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Margin="5" Header="Új dolgozó hozzáadása">
+            <Grid>
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel  Grid.Row="0" Orientation="Vertical">
+                    <TextBlock Margin="10 5" >Felhasználónév:*</TextBlock>
+                    <TextBox Margin="10 5"  x:Name="NewUsername"></TextBox>
+                    <TextBlock Margin="10 5" >Teljes név:*</TextBlock>
+                    <TextBox Margin="10 5"  x:Name="NewFullname"></TextBox>
+                    <TextBlock Margin="10 5" >Jelszó:*</TextBlock>
+                    <PasswordBox Margin="10 5"  ></PasswordBox>
+                    <TextBlock Margin="10 5" >Jogosultság:*</TextBlock>
+                    <ComboBox Margin="10 5"  x:Name="AvailablePrivileges" SelectedItem="{Binding Path=SelectedPrivilege,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
+                    <TextBlock Margin="10 5" >Telephelyei:*</TextBlock>
+                    <ComboBox Margin="10 5"  x:Name="AllTelephely" SelectedItem="{Binding Path=SelectedTelephelyToAdd,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
+
+                </StackPanel>
+                <StackPanel Margin="10" Grid.Row="1">
+                    <ListBox x:Name="SelectedTelephelyek" SelectedItem="{Binding Path=SelectedTelephelyToRemove,Mode=TwoWay}" MinHeight="150" DisplayMemberPath="Name"></ListBox>
+                    <Grid  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="AddTelephely" Grid.Column="0"  Padding="15" Margin="0 5 5 0">Telephely hozzáadása</Button>
+                        <Button x:Name="RemoveTelephely" Grid.Column="1"  Padding="30 15" Margin="0 5 0 0">Telephely törlése</Button>
+                    </Grid>
+                </StackPanel>
+                <StackPanel  HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+                    <Button x:Name="DoAction"   Padding="15" Margin="5">Hozzáadás</Button>
+                    <Button x:Name="CancelAction"   Padding="30,15" Margin="5">Mégse</Button>
+                </StackPanel>
+
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Margin="5" Grid.Column="1" Header ="Dolgozó jelszavának módosítása">
+            <StackPanel>
+                <TextBlock Margin="10 5">Felhasználó:*</TextBlock>
+                <ComboBox Height="18" Margin="10 5" SelectionChanged="AllUser_SelectionChanged"  x:Name="AllUser" SelectedItem="{Binding Path=SelectedTelephelyToAdd,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
+                <TextBlock Margin="10 5">Új jelszó:*</TextBlock>
+                <PasswordBox x:Name="NewPassword" Margin="10 5" IsEnabled="False"></PasswordBox>
+                <Button x:Name="ModifyPassword"    Padding="0 10" Margin="10">Módosítás</Button>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </UserControl>

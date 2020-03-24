@@ -21,3 +21,6 @@ Paraméter neve: startIndex
 2020-03-24 10:33:11.190 +01:00 [WRN] A szerver leáll.
 2020-03-24 10:33:50.722 +01:00 [WRN] A szerver leáll.
 2020-03-24 10:35:51.783 +01:00 [WRN] A szerver leáll.
+2020-03-24 10:39:59.349 +01:00 [WRN] A szerver leáll.
+2020-03-24 11:13:30.699 +01:00 [WRN] A szerver leáll.
+2020-03-24 11:19:23.997 +01:00 [WRN] A szerver leáll.
