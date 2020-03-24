@@ -1,0 +1,9 @@
+2020-03-24 08:43:04.405 +01:00 [ERR] Hiba történt az adatbázis mentése során. A megadott elérési út formátuma nem támogatott.
+2020-03-24 08:56:25.532 +01:00 [ERR] Hiba történt az adatbázis mentése során. startIndex értékének kisebbnek kell lennie a karakterlánc hosszúságánál.
+Paraméter neve: startIndex
+2020-03-24 08:56:55.904 +01:00 [ERR] Hiba történt az adatbázis mentése során. startIndex értékének kisebbnek kell lennie a karakterlánc hosszúságánál.
+Paraméter neve: startIndex
+2020-03-24 09:38:02.844 +01:00 [WRN] A szerver leáll.
+2020-03-24 09:42:27.877 +01:00 [WRN] A szerver leáll.
+2020-03-24 09:43:20.790 +01:00 [WRN] A szerver leáll.
+2020-03-24 09:47:48.066 +01:00 [WRN] A szerver leáll.
