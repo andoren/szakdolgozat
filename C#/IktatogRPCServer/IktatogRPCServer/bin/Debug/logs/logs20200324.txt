@@ -39,3 +39,25 @@ Paraméter neve: startIndex
 2020-03-24 13:11:10.969 +01:00 [WRN] A szerver leáll.
 2020-03-24 13:12:35.780 +01:00 [WRN] A szerver leáll.
 2020-03-24 13:14:13.652 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:07:32.719 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:10:06.847 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:33:57.845 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:39:10.818 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:40:09.349 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:46:42.855 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:54:41.618 +01:00 [WRN] A szerver leáll.
+2020-03-24 16:55:24.906 +01:00 [WRN] A szerver leáll.
+2020-03-24 17:03:36.374 +01:00 [ERR] UserDatabaseManager.Update: Adatbázis hiba. MySql.Data.MySqlClient.MySqlException (0x80004005): Cannot add or update a child row: a foreign key constraint fails (`iktato`.`felh_telephely`, CONSTRAINT `fk_users_telephely_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`))
+   a következő helyen: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   a következő helyen: MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   a következő helyen: MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   a következő helyen: MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   a következő helyen: MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   a következő helyen: MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   a következő helyen: IktatogRPCServer.Database.Mysql.UserDatabaseManager.Update(User modifiedObject) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\UserDatabaseManager.cs, sor: 190
+2020-03-24 17:06:29.951 +01:00 [WRN] A szerver leáll.
+2020-03-24 17:12:47.883 +01:00 [WRN] A szerver leáll.
+2020-03-24 17:13:20.132 +01:00 [WRN] A szerver leáll.
+2020-03-24 17:21:31.195 +01:00 [WRN] A szerver leáll.
+2020-03-24 17:34:33.238 +01:00 [WRN] A szerver leáll.

@@ -10,7 +10,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <GroupBox Margin="5" Header="Új dolgozó hozzáadása/Módosítása">
+        <GroupBox Margin="5" Header="Új felhasználó">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -45,22 +45,52 @@
                         <Button x:Name="RemoveTelephely" Click="RemoveTelephely_Click" Grid.Column="1"  Padding="30 15" Margin="0 5 0 0">Telephely törlése</Button>
                     </Grid>
                 </Grid>
-                <StackPanel  HorizontalAlignment="Center" Grid.Row="3" Orientation="Horizontal">
-                    <Button  x:Name="DoAction" Click="DoAction_Click" Padding="15" Margin="5">Hozzáadás</Button>
-                    <Button x:Name="CancelAction" Padding="30,15" Margin="5">Mégse</Button>
-                </StackPanel>
-
-
+                <Button Grid.Row="3" x:Name="DoAction" Click="DoAction_Click" Padding="15" Margin="5">Hozzáadás</Button>
             </Grid>
         </GroupBox>
-        <GroupBox Margin="5" Grid.Column="1" Header ="Dolgozó jelszavának módosítása">
-            <StackPanel>
-                <TextBlock Margin="10 5">Felhasználó:*</TextBlock>
-                <ComboBox  Margin="10 5" SelectionChanged="AllUser_SelectionChanged"  x:Name="AllUserCombobox" SelectedItem="{Binding Path=SelectedUser,Mode=OneWayToSource}" DisplayMemberPath="Username"></ComboBox>
-                <TextBlock Margin="10 5">Új jelszó:*</TextBlock>
-                <PasswordBox x:Name="NewPassword" Margin="10 5" IsEnabled="False"></PasswordBox>
-                <Button x:Name="ModifyPassword"    Padding="0 10" Margin="10">Módosítás</Button>
-            </StackPanel>
+        <GroupBox Margin="5" Grid.Column="1" Header ="Felhasználó módosítása">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel  Grid.Row="0" Orientation="Vertical">
+                    <TextBlock Margin="10 5">Felhasználó:</TextBlock>
+                    <ComboBox SelectionChanged="AllUser_SelectionChanged" Margin=" 10 5" x:Name="AllUserCombobox" SelectedItem="{Binding Path=SelectedUser}" DisplayMemberPath="Username"></ComboBox>
+                    <TextBlock Margin="10 5" >Felhasználónév:*</TextBlock>
+                    <TextBox Margin="10 5" TextChanged="NewUsernameForModification_TextChanged" x:Name="NewUsernameForModification"></TextBox>
+                    <TextBlock Margin="10 5" >Teljes név:*</TextBlock>
+                    <TextBox Margin="10 5" TextChanged="NewFullnameForModification_TextChanged" x:Name="NewFullnameForModification"></TextBox>
+                    <TextBlock Margin="10 5" >Jelszó:</TextBlock>
+                    <PasswordBox PasswordChanged="NewUserPasswordForModification_PasswordChanged" x:Name="NewUserPasswordForModification" Margin="10 5"  ></PasswordBox>
+                    <TextBlock Margin="10 5" >Jogosultság:*</TextBlock>
+                    <ComboBox Margin="10 5"  x:Name="PrivilegesForModificationComboBox" SelectedItem="{Binding Path=SelectedPrivilegeForModification,Mode=TwoWay}" DisplayMemberPath="Name"></ComboBox>
+                    <TextBlock Margin="10 5" >Telephelyei:*</TextBlock>
+                    <ComboBox Margin="10 5"  x:Name="AllTelephelyForModification" SelectedItem="{Binding Path=SelectedTelephelyToAddModification,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
+                </StackPanel>
+                <Grid Margin="10" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="SelectedTelephelyekListBoxForModification" SelectedItem="{Binding Path=SelectedTelephelyToRemoveModification,Mode=TwoWay}" MinHeight="150" DisplayMemberPath="Name"></ListBox>
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="ModifyAddTelephely" Click="ModifyAddTelephely_Click" Grid.Column="0"  Padding="15" Margin="0 5 5 0">Telephely hozzáadása</Button>
+                        <Button x:Name="ModifyRemoveTelephely" Click="ModifyRemoveTelephely_Click" Grid.Column="1"  Padding="30 15" Margin="0 5 0 0">Telephely törlése</Button>
+                    </Grid>
+                </Grid>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Button IsEnabled="False"  x:Name="DoActionForModification" Click="DoActionForModification_Click" Padding="15" Margin="5">Módosítás</Button>
+                    <Button IsEnabled="False"  x:Name="DeleteButton" Click="DeleteButton_Click" Padding="30 15" Margin="5">Törlés</Button>
+                </StackPanel>
+                
+            </Grid>
         </GroupBox>
     </Grid>
 </UserControl>

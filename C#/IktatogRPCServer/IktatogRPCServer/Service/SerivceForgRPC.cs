@@ -53,7 +53,7 @@ namespace IktatogRPCServer.Service
                 return Task.FromException<Answer>(e);
             }
         }
-        //TODO EZ KELL?
+        
 
         public override Task<User> AddUser(User request, ServerCallContext context)
         {

@@ -27,21 +27,20 @@ namespace IktatogRPCServer
         public UserManage()
         {
             InitializeComponent();
-            LoadData();
-            
+            LoadDataAndSet();
+
+
         }
-
-
-
-
         DatabaseManager<User> userDatabaseManager = new UserDatabaseManager(new ConnectionManager());
         DatabaseManager<Telephely> telephelyDatabaseManager = new TelephelyDatabaseManager(new ConnectionManager());
         DatabaseManager<Privilege> privilegeDatabaseManager = new PrivilegeDatabaseManager(new ConnectionManager());
-        private async void LoadData() {
+
+        private async void LoadDataAndSet() {
             await Task.Run(() => {
                 AllUser = userDatabaseManager.GetAllData(new User());
                 AvailableTelephelyek = telephelyDatabaseManager.GetAllData(new object());
                 AvailablePrivileges = privilegeDatabaseManager.GetAllData(new object());
+                AvailableTelephelyForModification = new List<Telephely>(AvailableTelephelyek);
             });
             AllUserCombobox.ItemsSource = AllUser;
             AllUserCombobox.DataContext = this;
@@ -52,7 +51,11 @@ namespace IktatogRPCServer
             SelectedTelephelyekListBox.ItemsSource = SelectedTelephelyek;
             SelectedTelephelyekListBox.DataContext = this;
             DoAction.IsEnabled = false;
+            PrivilegesForModificationComboBox.ItemsSource = AvailablePrivileges;
+            PrivilegesForModificationComboBox.DataContext = this;
+
         }
+        #region Addition
         private Telephely _selectedTelephelyToRemove;
 
         public Telephely SelectedTelephelyToRemove
@@ -115,17 +118,7 @@ namespace IktatogRPCServer
             set { _availablePrivileges = value; }
         }
 
-        private void AllUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SelectedUser != null)
-            {
-                NewPassword.IsEnabled = true;
-            }
-            else {
-                NewPassword.IsEnabled = false;
-            }
-            
-        }
+    
 
         private void AddTelephely_Click(object sender, RoutedEventArgs e)
         {
@@ -226,6 +219,178 @@ namespace IktatogRPCServer
             else {
                 MessageBox.Show("Sikertelen hozzáadás.");
             }
+        }
+        #endregion
+        #region Modification
+        private List<Telephely> _availableTelephelyForModicitaion;
+        public List<Telephely> AvailableTelephelyForModification
+        {
+            get { return _availableTelephelyForModicitaion; }
+            set { _availableTelephelyForModicitaion = value; }
+        }
+        private Telephely _selectedTelephelyToAddModification;
+
+        public Telephely SelectedTelephelyToAddModification
+        {
+            get { return _selectedTelephelyToAddModification; }
+            set { _selectedTelephelyToAddModification = value; }
+        }
+       
+        private List<Telephely> _selectedTelephelyekForModification = new List<Telephely>();
+
+        public List<Telephely> SelectedTelephelyekForModification
+        {
+            get { return _selectedTelephelyekForModification; }
+            set { _selectedTelephelyekForModification = value; }
+        }
+        private Telephely _selectedTelephelyToRemoveModification;
+
+        public Telephely SelectedTelephelyToRemoveModification
+        {
+            get { return _selectedTelephelyToRemoveModification; }
+            set { _selectedTelephelyToRemoveModification = value; }
+        }
+        private List<Privilege> _privilegesForModification;
+
+        public List<Privilege> PrivilegesForModification
+        {
+            get { return _privilegesForModification; }
+            set { _privilegesForModification = value; }
+        }
+        private Privilege _selectedPrivilegeForModification;
+
+        public Privilege SelectedPrivilegeForModification
+        {
+            get { return _selectedPrivilegeForModification; }
+            set { _selectedPrivilegeForModification = value; }
+        }
+
+        private void AllUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (SelectedUser != null)
+            {
+                NewFullnameForModification.Text = SelectedUser.Fullname;
+                NewUsernameForModification.Text = SelectedUser.Username;
+                SelectedPrivilegeForModification = SelectedUser.Privilege;
+                PrivilegesForModificationComboBox.SelectedIndex = SelectedUser.Privilege.Id == 1 ? 0 : 1;
+                DeleteButton.IsEnabled = true;
+                CanModifyUser();
+            }
+            else {
+                DeleteButton.IsEnabled = false;
+            }
+
+            SelectedTelephelyekForModification = telephelyDatabaseManager.GetAllData(SelectedUser);
+            AvailableTelephelyForModification = new List<Telephely>(AvailableTelephelyek);
+            AvailableTelephelyForModification.RemoveAll(item => SelectedTelephelyekForModification.Contains(item));
+            AllTelephelyForModification.ItemsSource = AvailableTelephelyForModification;
+            AllTelephelyForModification.DataContext = this;
+            AllTelephelyForModification.Items.Refresh();
+            SelectedTelephelyekListBoxForModification.ItemsSource = SelectedTelephelyekForModification;
+            SelectedTelephelyekListBoxForModification.DataContext = this;
+            SelectedTelephelyekListBoxForModification.Items.Refresh();
+
+
+        }
+        private void ModifyAddTelephely_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTelephelyToAddModification != null)
+            {
+                SelectedTelephelyekForModification.Add(SelectedTelephelyToAddModification);
+                AvailableTelephelyForModification.Remove(SelectedTelephelyToAddModification);
+                SelectedTelephelyekListBoxForModification.Items.Refresh();
+                AllTelephelyForModification.Items.Refresh();
+                ValidateNewUserData();
+            }
+        }
+
+        private void ModifyRemoveTelephely_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTelephelyToRemoveModification != null)
+            {
+                AvailableTelephelyForModification.Add(SelectedTelephelyToRemoveModification);
+                SelectedTelephelyekForModification.Remove(SelectedTelephelyToRemoveModification);
+                SelectedTelephelyekListBoxForModification.Items.Refresh();
+                AllTelephelyForModification.Items.Refresh();
+                ValidateNewUserData();
+            }
+        }
+
+        private void DoActionForModification_Click(object sender, RoutedEventArgs e)
+        {
+            User user = new User()
+            {
+                Id = SelectedUser.Id,
+                Username = NewUsernameForModification.Text,
+                Fullname = NewFullnameForModification.Text,
+                Password = NewUserPasswordForModification.Password,
+                Privilege = SelectedPrivilegeForModification,
+
+            };
+            foreach (Telephely telephely in SelectedTelephelyekForModification)
+            {
+                user.Telephelyek.Add(telephely);
+            }     
+            Answer answer = userDatabaseManager.Update(user);
+            if (!answer.Error)
+            {
+                PrivilegesForModificationComboBox.SelectedIndex = -1;
+                SelectedTelephelyekForModification.Clear();
+                AvailableTelephelyForModification.Clear();
+                SelectedTelephelyekListBoxForModification.Items.Refresh();
+                AllTelephelyForModification.Items.Refresh();
+                NewUsernameForModification.Text = "";
+                NewFullnameForModification.Text = "";
+                NewUserPasswordForModification.Clear();
+                MessageBox.Show("Sikeres módosítás.");
+            }
+            else
+            {
+                MessageBox.Show("Sikertelen módosítás.");
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedUser != null && !(userDatabaseManager.Delete(SelectedUser.Id,new User() { Id=1})).Error) MessageBox.Show("Sikeres törlés");
+            else MessageBox.Show("Sikertelen törlés.");
+        }
+
+        #endregion
+
+        private void NewUserPasswordForModification_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            CanModifyUser();
+        }
+
+        private void NewFullnameForModification_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CanModifyUser();
+        }
+
+        private void NewUsernameForModification_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CanModifyUser();
+        }
+        private void CanModifyUser() {
+            bool IsValid = true;
+            string password = NewUserPasswordForModification.Password;
+            string fullname = NewFullnameForModification.Text;
+            string username = NewUsernameForModification.Text;
+
+            
+            if (password.Length == 0) IsValid = true;
+            else if (!IsValidPassword(password)) IsValid = false;
+            if (SelectedPrivilegeForModification == null) IsValid = false;
+            else if (SelectedTelephelyekForModification.Count == 0) IsValid = false;
+            else if (string.IsNullOrWhiteSpace(fullname) ||
+                string.IsNullOrWhiteSpace(username)) IsValid = false;
+            else if (!IsValidUsername(username)) IsValid = false;
+            else if (!IsValidFullname(fullname)) IsValid = false;
+            
+            
+            DoActionForModification.IsEnabled = IsValid;
         }
     }
 }

@@ -206,8 +206,63 @@ namespace IktatogRPCServer.Database.Mysql
                 Log.Error("UserDatabaseManager.Update: Hiba történt {Message}", ex);
 
             }
-
+            if (!string.IsNullOrWhiteSpace(modifiedObject.Password)) {
+                ModifyPassword(modifiedObject);
+            }
             return new Answer() { Error = eredmeny, Message = message };
+        }
+        private void ModifyPassword(User user) {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "modifyuserpassword";
+            //IN PARAMETERS
+            Log.Debug("UserDatabaseManager.ModifyPassword: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {ModifiedObject}", user);
+            MySqlParameter usernamep = new MySqlParameter()
+            {
+                ParameterName = "@password_b",
+                DbType = System.Data.DbType.String,
+                Value = user.Password,
+                Direction = System.Data.ParameterDirection.Input
+            };
+            MySqlParameter idp = new MySqlParameter()
+            {
+                ParameterName = "@user_id_b",
+                DbType = System.Data.DbType.Int32,
+                Value = user.Id,
+                Direction = System.Data.ParameterDirection.Input
+            };
+
+            command.Parameters.Add(usernamep);
+            command.Parameters.Add(idp);   
+            try
+            {
+
+                Log.Debug("UserDatabaseManager.ModifyPassword: MysqlConnection létrehozása és nyitása.");
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    Log.Debug("UserDatabaseManager.ModifyPassword: MysqlCommand végrehajtása");
+                    command.ExecuteNonQuery();
+                    
+                }
+                catch (MySqlException ex)
+                {
+                    Log.Error("UserDatabaseManager.ModifyPassword: Adatbázis hiba. {Message}", ex);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("UserDatabaseManager.ModifyPassword: Hiba történt {Message}", e);
+
+                }
+                finally { CloseConnection(connection); }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("UserDatabaseManager.ModifyPassword: Hiba történt {Message}", ex);
+
+            }
         }
         /// <summary>
         /// A bevitt telephelyek id-jét kiszedi és egy mysql-ben olvashato stringgé módosítája
