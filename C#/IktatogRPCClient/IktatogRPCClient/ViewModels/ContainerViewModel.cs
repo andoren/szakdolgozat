@@ -61,6 +61,7 @@ namespace IktatogRPCClient.ViewModels
             else {
                 Log.Debug("{Class} Sikertelen kijelentkezés.", GetType());
             }
+            IktatasViewModel._recentlyAddedIkonyvek.Clear();
             LoaderIsVisible = false;
             Log.Debug("{Class} Login ablak megnyitása", GetType());
             var manager = new WindowManager();

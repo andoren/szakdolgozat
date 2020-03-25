@@ -31,7 +31,7 @@ namespace IktatogRPCClient.ViewModels
 
         }
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
-        private static BindableCollection<Ikonyv> _recentlyAddedIkonyvek = new BindableCollection<Ikonyv>();
+        public static BindableCollection<Ikonyv> _recentlyAddedIkonyvek = new BindableCollection<Ikonyv>();
         private BindableCollection<Telephely> _availableTelephelyek;
         private Telephely _selectedTelephely;
         private Csoport _selectedCsoport;
@@ -174,7 +174,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private async void LoadPartnerUgyintezo()
         {
-            Log.Debug("{Class} Partnerügyintézők letöltése. Partner: {SelectedPartner}", GetType(),SelectedPartner);
+            Log.Debug("{Class} Partnerügyintézők letöltése. Partner: {SelectedPartner}", GetType(), SelectedPartner);
             AvailablePartnerUgyintezok = await serverHelper.GetPartnerUgyintezoByPartnerAsync(SelectedPartner);
             AvailablePartnerUgyintezok.Insert(0, EmptyPartnerUgyintezo);
             SelectedPartnerUgyintezo = AvailablePartnerUgyintezok.First();
@@ -272,7 +272,7 @@ namespace IktatogRPCClient.ViewModels
             AvailablePartnerek.Clear();
             AvailableJellegek.Clear();
             AvailableUgyintezok.Clear();
-            Log.Debug("{Class} Csoportok letöltésének megkezdése.",  GetType());
+            Log.Debug("{Class} Csoportok letöltésének megkezdése.", GetType());
             AvailableCsoportok = await serverHelper.GetCsoportokByTelephelyAsync(SelectedTelephely);
             Log.Debug("{Class} Partnerek letöltésének megkezdése.", GetType());
             AvailablePartnerek = await serverHelper.GetPartnerekByTelephelyAsync(SelectedTelephely);
@@ -358,7 +358,7 @@ namespace IktatogRPCClient.ViewModels
                 Ugyintezo = SelectedUgyintezo,
                 ValaszId = -1
             };
-            Log.Debug("{Class} Az elő állított iktatás: {NewIkonyv}", GetType(),newIkonyv);
+            Log.Debug("{Class} Az elő állított iktatás: {NewIkonyv}", GetType(), newIkonyv);
             RovidIkonyv rovidIkonyv;
             if (ValaszIsChecked)
             {
@@ -406,7 +406,7 @@ namespace IktatogRPCClient.ViewModels
         {
             _recentlyAddedIkonyvek.Remove(SelectedIkonyv);
             _recentlyAddedIkonyvek.Add(message);
-            NotifyOfPropertyChange(() => message);
+            NotifyOfPropertyChange(() => RecentlyAddedIkonyvek);
         }
         private void SetLoader()
         {

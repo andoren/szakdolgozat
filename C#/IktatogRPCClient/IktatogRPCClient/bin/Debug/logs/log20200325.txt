@@ -1,0 +1,11 @@
+2020-03-25 10:42:30.730 +01:00 [WRN] Program bezárása.
+2020-03-25 10:49:17.748 +01:00 [WRN] Program bezárása.
+2020-03-25 10:56:23.189 +01:00 [WRN] Program bezárása.
+2020-03-25 11:04:02.381 +01:00 [WRN] Program bezárása.
+2020-03-25 11:05:24.435 +01:00 [WRN] Program bezárása.
+2020-03-25 11:10:54.927 +01:00 [WRN] Program bezárása.
+2020-03-25 11:11:51.739 +01:00 [WRN] Program bezárása.
+2020-03-25 11:14:47.264 +01:00 [WRN] Program bezárása.
+2020-03-25 11:15:47.941 +01:00 [WRN] Program bezárása.
+2020-03-25 11:43:32.654 +01:00 [WRN] Program bezárása.
+2020-03-25 11:48:57.823 +01:00 [WRN] Program bezárása.

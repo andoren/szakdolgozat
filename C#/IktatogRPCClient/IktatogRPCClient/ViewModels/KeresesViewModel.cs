@@ -249,9 +249,10 @@ namespace IktatogRPCClient.ViewModels
 		//Adatbázisbol szedi le az Ikönyveket
 		public  async void GetIkonyvek() {
 			
-			if (SelectedIranyParameter == null || SelectedYear == default) return;
+			if (SelectedIranyParameter == null || SelectedYear == null) return;
 			else {
-				
+				SearchedIkonyvek.Clear();
+				ShownIkonyvek.Clear();
 				LoaderIsVisible = true;
 				AllIkonyv = new BindableCollection<Ikonyv>();
 				SearchIkonyvData searchData = new SearchIkonyvData()

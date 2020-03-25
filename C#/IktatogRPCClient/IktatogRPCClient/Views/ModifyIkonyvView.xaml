@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d" 
              FontSize="20" Width="900" MinHeight="400">
     <Grid >
         <Grid x:Name="ModificationIsVisible">
@@ -16,8 +16,7 @@
             <Grid Height="65" Background="#FF036A9A" Grid.Row="0" >
                 <TextBlock  Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="30" x:Name="Title"></TextBlock>
             </Grid>
-       
-        <Grid Grid.Row="1" Margin="10 10 10 0" >
+            <Grid Grid.Row="1" Margin="10 10 10 0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -32,9 +31,8 @@
                     <ComboBox Height="30"  x:Name="AvailablePartnerUgyintezok" SelectedItem="{Binding Path=SelectedPartnerUgyintezo, Mode=TwoWay}" DisplayMemberPath="Name" Margin="5 0"></ComboBox>
                 <TextBlock Margin="5">Hivatkozásiszám:</TextBlock>
                     <TextBox Height="30"  x:Name="Hivszam"  Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
-                    <Button x:Name="DocumentView" Style="{StaticResource DefaultButtonStyle}" Padding="15" Margin="5 10"  >
-                        Dukomentum kezelés
-                    </Button>
+                <TextBlock Margin="5">Iránya:</TextBlock>
+                    <TextBox Height="30"  x:Name="Iranya" IsReadOnly="True"  Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 0" ></TextBox>
                 </StackPanel>
             <StackPanel  Grid.Column="1">
                 <TextBlock Margin="5">Jellege:*</TextBlock>
@@ -45,7 +43,10 @@
                     <DatePicker Height="30"  Background="White" x:Name="Erkezett" FontSize="20"   BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" VerticalContentAlignment="Center" ></DatePicker>
                 <TextBlock Margin="5">Határidő:*</TextBlock>
                     <DatePicker Height="30"  Background="White" x:Name="Hatido" FontSize="20"  BorderThickness="1" BorderBrush="#FF036A9A" Padding="0"  Margin="5 0" VerticalContentAlignment="Center" ></DatePicker>
-            </StackPanel>
+                    <Button x:Name="DocumentView" Style="{StaticResource DefaultButtonStyle}" Padding="15 10" Margin="5 18 5 5"  >
+                        Dokumentumok
+                    </Button>
+                </StackPanel>
             <StackPanel Margin="5" Grid.Column="2">
                 <TextBlock Margin="0 0 5 5">Megjegyzés:</TextBlock>
 
@@ -62,13 +63,18 @@
                              Style="{StaticResource loginTextBox}"  ></TextBox>
             </StackPanel>
         </Grid>
-        <StackPanel Margin="0 10" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Grid.Column="1">
-                <Button x:Name="ModifyButton" Style="{StaticResource AddButtonStyle}"  Margin="0 0 20 0" Padding="10"  >Módosítás</Button>
-                <Button x:Name="RemoveButton" Style="{StaticResource WarningButtonStyle}" Margin="0 0 20 0" Padding="30 15">Törlés</Button>
-                <Button x:Name="CancelButton" Style="{StaticResource DefaultButtonStyle}" Padding="30 15">Mégse</Button>
-        </StackPanel>
+            <Grid Margin="0 10" Grid.Row="2"  Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ModifyButton" Padding="10 15" Grid.Column="0" Style="{StaticResource AddButtonStyle}"  Margin="5"  >Módosítás</Button>
+                <Button x:Name="RemoveButton" Grid.Column="1" Style="{StaticResource WarningButtonStyle}" Margin="5" >Törlés</Button>
+                <Button x:Name="CancelButton" Grid.Column="2" Style="{StaticResource DefaultButtonStyle}" Margin="5">Mégse</Button>
+            </Grid>
         </Grid>
-
+        
         <ContentControl Visibility="{Binding Path=DocsIsVisible}" x:Name="ActiveItem" ></ContentControl>
     </Grid>
 </UserControl>

@@ -106,6 +106,7 @@
                              VerticalAlignment="Stretch" 
                              SpellCheck.IsEnabled="True"
                              MinHeight="100"
+                             MaxHeight="200"
                              Style="{StaticResource loginTextBox}"  ></TextBox>
             </StackPanel>
         </Grid>

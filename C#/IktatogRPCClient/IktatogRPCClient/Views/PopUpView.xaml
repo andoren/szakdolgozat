@@ -8,11 +8,10 @@
         AllowsTransparency="True"
         FontFamily="Robot"
         FontSize="22"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        WindowStyle="None" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight" >
-    <Border BorderBrush="Black" Background="White" BorderThickness="2">
-        <Grid>
+        SnapsToDevicePixels="True"
+        WindowStyle="None"  WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" >
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Background="White">
             <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ActiveItem"></ContentControl>
-        </Grid>
-    </Border>
+    </Grid>
+   
 </Window>

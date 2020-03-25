@@ -1,6 +1,0 @@
-2020-03-22 17:54:50.198 +01:00 [DBG] Mainwindow.StartServer: Ssl cert bolvasása.
-2020-03-22 17:54:50.241 +01:00 [DBG] Mainwindow.StartServer: Ssl key bolvasása.
-2020-03-22 17:54:50.244 +01:00 [DBG] Mainwindow.StartServer: Server Binding port es cím
-2020-03-22 17:54:50.676 +01:00 [DBG] Mainwindow.StartServer: sikeres binding Ip:localhost Port: 443
-2020-03-22 17:54:50.714 +01:00 [INF] A szerver elindult 
-2020-03-22 17:55:30.370 +01:00 [WRN] A szerver leáll.

@@ -68,11 +68,13 @@ namespace IktatogRPCServer
 
                 KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
                 SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });
+                
                 Log.Debug("Mainwindow.StartServer: Server Binding port es cím");
                 server = new Server
                 {
                     Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
-                    Ports = { new ServerPort(Ip, Port, credentials) },
+                    //Ports = { new ServerPort(Ip, Port, credentials) }
+                    Ports = { new ServerPort(Ip, Port, ServerCredentials.Insecure) }
 
                 };
                 Log.Debug("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);

@@ -20,7 +20,7 @@ namespace IktatogRPCClient.ViewModels
         {
 
             InitializeData(IkonyvToModify);
-            NotifyOfPropertyChange(()=> CanModifyButton);
+            
         }
         private async void InitializeData(Ikonyv IkonyvToModify) {
             Log.Debug("{Class} Adatok letöltése a szerverről", GetType());
@@ -32,7 +32,9 @@ namespace IktatogRPCClient.ViewModels
             SelectedJelleg = IkonyvToModify.Jelleg;
             SelectedUgyintezo = IkonyvToModify.Ugyintezo;
             IkonyvHasDocument = IkonyvToModify.HasDoc;
-    
+            Targy = IkonyvToModify.Targy;
+            Iranya = IkonyvToModify.Irany == 0 ? "Bejövő" : "Kimenő";
+            NotifyOfPropertyChange(() => CanModifyButton);
             eventAggregator.Subscribe(this);
         }
         private PartnerUgyintezo _emptyPartnerUgyintezo = new PartnerUgyintezo() { Id = -1, Name = "" };
@@ -50,6 +52,16 @@ namespace IktatogRPCClient.ViewModels
         private BindableCollection<Ugyintezo> _availableUgyintezok;
         private bool _modificationHappend = false;
         private bool _modificationIsVisible = true;
+        private string _iranya;
+
+        public string Iranya
+        {
+            get { return _iranya; }
+            set { _iranya = value;
+                NotifyOfPropertyChange(()=>Iranya);
+            }
+        }
+
         public string Szoveg { get {
                 return IkonyvToModify.Szoveg;
             } 
@@ -57,12 +69,13 @@ namespace IktatogRPCClient.ViewModels
                 IkonyvToModify.Szoveg = value;
             } 
         }
+        private string _targy;
         public string Targy
         {
-            get { return IkonyvToModify.Targy; }
+            get { return _targy; }
             set
             {
-                IkonyvToModify.Targy = value;
+                _targy = value;
                 NotifyOfPropertyChange(()=>Targy);
                 NotifyOfPropertyChange(()=>CanModifyButton);
             }

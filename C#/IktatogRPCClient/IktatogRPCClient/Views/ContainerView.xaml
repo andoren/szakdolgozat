@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        FontFamily="Roboto"
+        FontFamily="Arial"
         FontSize="18"
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="SingleBorderWindow" 
       
-        Title="Iktatás" Height="800" MinWidth="1200" Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
-    <Grid  >
+        Title="Iktatás" Height="800"  Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
+    <Window.Effect>
+        <DropShadowEffect RenderingBias="Quality"/>
+    </Window.Effect>
+    <Grid >
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*"/>
@@ -48,5 +52,6 @@
 
         </ContentControl>
         <local:LoadingSpinnerView Grid.RowSpan="5" x:Name="LoaderIsVisible" Visibility="Hidden"></local:LoadingSpinnerView>
+        <Grid Grid.RowSpan="3" Background="#44000000"  Style="{DynamicResource MainGridStyle}"></Grid>
     </Grid>
 </Window>

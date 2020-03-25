@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -21,7 +23,7 @@ namespace IktatogRPCClient.ViewModels
             this.ScreenToShow = ScreenToShow;
             ScreenToShow.SetParent(this);
             ActivateItem(ScreenToShow);
-           
+            Application.Current.Resources["GridVisibility"] = Visibility.Visible;
         }
         private Screen _screenToShow;
 
@@ -34,6 +36,7 @@ namespace IktatogRPCClient.ViewModels
             Log.Debug("{Class} View bezárása.", GetType());
             ChildResult = result;
             DeactivateItem(screen,(bool)result);
+            Application.Current.Resources["GridVisibility"] = Visibility.Hidden;
             TryClose(ChildResult);
         }
 

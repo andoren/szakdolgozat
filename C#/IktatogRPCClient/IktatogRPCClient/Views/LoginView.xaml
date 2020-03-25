@@ -7,11 +7,14 @@
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
         mc:Ignorable="d"
         WindowStyle="SingleBorderWindow"
-        FontSize="25"
-        FontFamily="Roboto"    
-        Title="Iktatás" Height="800" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        cal:Message.Attach="[Event KeyDown] = [Action IsEnterPressed($eventArgs)]" Icon="/IktatogRPCClient;component/Resources/iconwhite.png" 
+        FontSize="20"
+        FontFamily="Arial"    
+        Title="Iktatás" Height="700" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        cal:Message.Attach="[Event KeyDown] = [Action IsEnterPressed($eventArgs)]" SnapsToDevicePixels="True" Icon="/IktatogRPCClient;component/icon.ico"  
         >
+    <Window.Effect>
+        <DropShadowEffect RenderingBias="Quality"/>
+    </Window.Effect>
 
     <Grid Background="#43464B" >
 
@@ -21,7 +24,7 @@
         </Grid.ColumnDefinitions>
         
         <Border Grid.Row="1"  Background="#FF0F2948" BorderThickness="0,0,2,0" BorderBrush="#FF036A9A">
-            <StackPanel Margin="5,80" >
+            <StackPanel Margin="5,35" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -29,7 +32,7 @@
                     </Grid.ColumnDefinitions>
                     <Image Margin="10,0" Source="/IktatogRPCClient;component/Resources/iconwhite.png" Width="90" />
                     <StackPanel  Grid.Column="1">
-                        <TextBlock Margin="0,10,0,0" FontSize="21" Foreground="White">Ótemplomi Szeretetszolgálat</TextBlock>
+                        <TextBlock Margin="0,10,0,0" FontSize="21" Foreground="White">Ótemplom</TextBlock>
                         <TextBlock FontSize="50" Foreground="White">Iktató</TextBlock>
                     </StackPanel>
                     
@@ -49,7 +52,7 @@
                             <Path Fill="White" Data="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/>
                         </Grid>
                     </Grid>
-                    <TextBox x:Name="UsernameBox" Grid.Column="1" HorizontalAlignment="Stretch" Style="{DynamicResource loginTextBox}" />
+                    <TextBox x:Name="UsernameBox" Grid.Column="1" Padding="10" HorizontalAlignment="Stretch"  Style="{StaticResource loginTextBox}" />
                 </Grid>
                 <TextBlock Foreground="White" Margin="10,10,0,5">Jelszó:</TextBlock>
                 <Grid Margin="10,0,10,20" Background="White">
@@ -68,12 +71,12 @@
 		C109.047,119.666,105.689,116.309,101.547,116.309z"/>
                         </Grid>
                     </Grid>
-                    <PasswordBox cal:Message.Attach="[Event PasswordChanged] = [Action OnPasswordChanged($source)]" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
+                    <PasswordBox Padding="10" cal:Message.Attach="[Event PasswordChanged] = [Action OnPasswordChanged($source)]" Grid.Column="1" Style="{StaticResource loginPasswordbox}"  />
                 </Grid>
                 <Button Style="{StaticResource DefaultButtonStyle}" Margin="10" Padding="10"   x:Name="LoginButton"  >Bejelentkezés</Button>
                 <Button Style="{StaticResource DefaultButtonStyle}" Margin="10 5" Padding="10"  x:Name="ExitButton"  >Kilépés</Button>
 
-                <CheckBox Margin="0,20,0,0" FlowDirection="RightToLeft"  x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Foreground="White" HorizontalAlignment="Center" Content="Felhasználó mentése">
+                <CheckBox Margin="0,20,0,0"   x:Name="SaveUsernameIsChecked" VerticalAlignment="Center"   Foreground="White"  HorizontalAlignment="Center" Content="Felhasználó mentése" Style="{DynamicResource LoginCheckBox}">
                     
                 </CheckBox>
 
