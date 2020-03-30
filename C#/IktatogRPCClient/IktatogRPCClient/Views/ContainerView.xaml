@@ -19,9 +19,9 @@
     <Grid>
         
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="70" MaxHeight="90" />
+            <RowDefinition MinHeight="70" MaxHeight="80" />
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="auto" />
+            
         </Grid.RowDefinitions>
 
 
@@ -43,32 +43,32 @@
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="Fooldal"  Style="{StaticResource MenuButton}"  Grid.Row="1"  Grid.Column = "0" >
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Főoldal</TextBlock>
                     </Viewbox>
                 </Button>
                 <Button x:Name="Iktatas"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "1">
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Iktatás</TextBlock>
                     </Viewbox>
                 </Button>
                 <Button x:Name="Kereses" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "2">
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Keresés</TextBlock>
                     </Viewbox>
                 </Button>
                 <Button x:Name="Torzs" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "3">
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Törzs</TextBlock>
                     </Viewbox>
                 </Button>
                 <Button x:Name="Kijelentkezes" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "4">
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Kijelentkezés</TextBlock>
                     </Viewbox>
                 </Button>
                 <Button x:Name="Kilepes"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "5">
-                    <Viewbox>
+                    <Viewbox Stretch="Uniform">
                         <TextBlock>Kilépés</TextBlock>
                     </Viewbox>
                 </Button>
