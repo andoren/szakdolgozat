@@ -164,6 +164,7 @@
     <Compile Include="Database\Mysql\UgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
     <Compile Include="Database\Mysql\YearsDatabaseManager.cs" />
+    <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="LadingPage.xaml.cs">
       <DependentUpon>LadingPage.xaml</DependentUpon>
     </Compile>
@@ -173,7 +174,7 @@
     <Compile Include="ManageSql.xaml.cs">
       <DependentUpon>ManageSql.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistryHelper.cs" />
+    <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Service\SerivceForgRPC.cs" />
     <Compile Include="Service\TokenSerivce.cs" />
     <Compile Include="UserManage.xaml.cs">
