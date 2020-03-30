@@ -118,9 +118,6 @@ namespace IktatogRPCServer
             get { return _availablePrivileges; }
             set { _availablePrivileges = value; }
         }
-
-    
-
         private void AddTelephely_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedTelephely != null){

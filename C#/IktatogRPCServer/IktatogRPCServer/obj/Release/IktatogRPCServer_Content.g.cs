@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs/serverlog.txt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("certs/localhost/server.crt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("certs/localhost/server.key")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("certs/server.crt")]

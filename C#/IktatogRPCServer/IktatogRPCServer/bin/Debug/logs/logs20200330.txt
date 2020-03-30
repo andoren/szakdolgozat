@@ -1,0 +1,2 @@
+2020-03-30 11:52:05.824 +02:00 [WRN] Mainwindow.StartServer: sikeres binding Ip:mpekar55.ddns.net Port: 1991
+2020-03-30 11:53:11.139 +02:00 [WRN] A szerver leáll.
