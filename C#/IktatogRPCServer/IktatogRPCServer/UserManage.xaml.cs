@@ -2,6 +2,7 @@
 using IktatogRPCServer.Database;
 using IktatogRPCServer.Database.Abstract;
 using IktatogRPCServer.Database.Mysql;
+using IktatogRPCServer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -193,7 +194,7 @@ namespace IktatogRPCServer
                 Id = -1,
                 Username = NewUsername.Text,
                 Fullname = NewFullname.Text,
-                Password = NewUserPassword.Password,
+                Password = EncryptionHelper.EncryptSha1(NewUserPassword.Password),
                 Privilege = SelectedPrivilege,
 
             };
@@ -324,7 +325,7 @@ namespace IktatogRPCServer
                 Id = SelectedUser.Id,
                 Username = NewUsernameForModification.Text,
                 Fullname = NewFullnameForModification.Text,
-                Password = NewUserPasswordForModification.Password,
+                Password = EncryptionHelper.EncryptSha1(NewUserPasswordForModification.Password),
                 Privilege = SelectedPrivilegeForModification,
 
             };
@@ -356,9 +357,6 @@ namespace IktatogRPCServer
             if (SelectedUser != null && !(userDatabaseManager.Delete(SelectedUser.Id,new User() { Id=1})).Error) MessageBox.Show("Sikeres törlés");
             else MessageBox.Show("Sikertelen törlés.");
         }
-
-        #endregion
-
         private void NewUserPasswordForModification_PasswordChanged(object sender, RoutedEventArgs e)
         {
             CanModifyUser();
@@ -373,13 +371,14 @@ namespace IktatogRPCServer
         {
             CanModifyUser();
         }
-        private void CanModifyUser() {
+        private void CanModifyUser()
+        {
             bool IsValid = true;
             string password = NewUserPasswordForModification.Password;
             string fullname = NewFullnameForModification.Text;
             string username = NewUsernameForModification.Text;
 
-            
+
             if (password.Length == 0) IsValid = true;
             else if (!IsValidPassword(password)) IsValid = false;
             if (SelectedPrivilegeForModification == null) IsValid = false;
@@ -388,9 +387,13 @@ namespace IktatogRPCServer
                 string.IsNullOrWhiteSpace(username)) IsValid = false;
             else if (!IsValidUsername(username)) IsValid = false;
             else if (!IsValidFullname(fullname)) IsValid = false;
-            
-            
+
+
             DoActionForModification.IsEnabled = IsValid;
         }
+
+        #endregion
+
+
     }
 }

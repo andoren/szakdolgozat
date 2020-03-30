@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Iktato;
 using IktatogRPCClient.Models;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -147,7 +148,7 @@ namespace IktatogRPCClient.ViewModels
         {
             Log.Debug("{Class} Felhasználó hozzáadása gomb megnyomva.", GetType());
             Log.Debug("{Class} Várakozás a szerverre... Adat: {Username} , {NewFullname} , SelectedPrivilege, SelectedTelephelyek", GetType(), NewUsername, NewFullname, NewPassword, SelectedPrivilege, SelectedTelephelyek);
-            UserProxy NewUser = await serverHelper.AddUserAsync(NewUsername,NewFullname,NewPassword,SelectedPrivilege,SelectedTelephelyek);
+            UserProxy NewUser = await serverHelper.AddUserAsync(NewUsername,NewFullname, EncryptionHelper.EncryptSha1(NewPassword),SelectedPrivilege,SelectedTelephelyek);
             if (NewUser.Id != -1) {
                 Log.Debug("{Class} Sikeres hozzáadás. Felhasználó hírdetése.", GetType());
                 eventAggregator.PublishOnUIThread(NewUser);

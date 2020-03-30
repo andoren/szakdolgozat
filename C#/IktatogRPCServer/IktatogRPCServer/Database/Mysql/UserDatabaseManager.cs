@@ -222,7 +222,7 @@ namespace IktatogRPCServer.Database.Mysql
             {
                 ParameterName = "@password_b",
                 DbType = System.Data.DbType.String,
-                Value = EncryptionHelper.EncryptSha1(user.Password),
+                Value = user.Password,
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter idp = new MySqlParameter()
