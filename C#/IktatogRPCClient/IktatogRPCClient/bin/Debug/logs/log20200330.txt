@@ -42,3 +42,4 @@
 2020-03-30 13:53:18.900 +02:00 [WRN] Program bezárása.
 2020-03-30 13:54:22.086 +02:00 [WRN] Program bezárása.
 2020-03-30 13:57:02.783 +02:00 [WRN] Program bezárása.
+2020-03-30 14:22:39.528 +02:00 [WRN] Program bezárása.
