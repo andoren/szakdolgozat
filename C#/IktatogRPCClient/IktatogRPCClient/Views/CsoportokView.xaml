@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"            
-             MinHeight="450" MinWidth="380" FontSize="18" >
+             MinHeight="450"  FontSize="18" >
     <Border BorderBrush="#FF036A9A" BorderThickness="3" Margin="0" Padding="0">
         <Grid Margin="0">
             <Grid x:Name="CsoportokIsVisible" >
