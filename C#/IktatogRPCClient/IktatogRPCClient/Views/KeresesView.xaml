@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              FontSize="20"
              FontFamily="Roboto"
-             SnapsToDevicePixels="True"
+           
              xmlns:cal="http://www.caliburnproject.org"
              d:DesignHeight="600" d:DesignWidth="1500" Height="auto">
 
@@ -18,17 +18,14 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--Első sor (Irány combobox, Év combobo, Keresés, Keresőparaméter combobox)-->
-        <Grid  Grid.Row="0" Background="#FF036A9A" Height="auto" Margin="0">
+        <Grid  Grid.Row="0" Background="#FF036A9A" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Irány combobox-->
-            <StackPanel Margin="5"   Orientation="Horizontal">
-                <StackPanel.Effect>
-                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                </StackPanel.Effect>
+            <StackPanel  Orientation="Horizontal">
                 <TextBlock Margin="10 5"  Foreground="White" FontSize="22" VerticalAlignment="Center">Irány:</TextBlock>
                 <ComboBox HorizontalContentAlignment="Left" x:Name="Iranyok" 
                           SelectedItem="{Binding SelectedIranyParameter}" 
@@ -38,9 +35,7 @@
            
             <!--Évek combobox-->
             <StackPanel Grid.Column="1" Margin="5"  Orientation="Horizontal">
-                <StackPanel.Effect>
-                    <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                </StackPanel.Effect>
+             
                 <TextBlock Margin="10 5"  Foreground="White" FontSize="22" VerticalAlignment="Center">Év:</TextBlock>
                 <ComboBox HorizontalContentAlignment="Left" x:Name="AvailabelYears" 
                       SelectedItem="{Binding SelectedYear}" Cursor="Hand" Height="40" 
@@ -52,9 +47,7 @@
             <!--Keresés és Keresőparaméter combobox-->
             <Grid VerticalAlignment="Center" Grid.Column="2" Margin="20,5,10,5">
                 <Grid Background="White">
-                    <Grid.Effect>
-                        <DropShadowEffect  ShadowDepth="5" RenderingBias="Quality" Color="#FF767474" BlurRadius="5"/>
-                    </Grid.Effect>
+              
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
@@ -67,7 +60,7 @@
             </Grid>
         </Grid>
         <!--Második sor (Iktatások táblázata)-->
-        <DataGrid BorderThickness="0" Grid.Row="1" x:Name="ShownIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}"
+        <DataGrid BorderThickness="0" Margin="0" Padding="0" Grid.Row="1" x:Name="ShownIkonyvek" GridLinesVisibility="None" VerticalScrollBarVisibility="Auto" HeadersVisibility="Column"  SelectedItem="{Binding Path=SelectedIkonyv}" 
            CellStyle="{StaticResource CellStyle}" cal:Message.Attach="[Event MouseDoubleClick]= [Action ModifyIkonyv]"   AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="#FFECF1F5"  SelectionMode="Single" SelectionUnit="FullRow" >
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" 

@@ -4,28 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IktatogRPCClient.Views"
+        xmlns:tools="clr-namespace:IktatogRPCClient.Tools"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         FontFamily="Arial"
         FontSize="18"
         WindowStyle="SingleBorderWindow" 
-      
-        Title="Iktatás"   Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
+        Height= "{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.8' }" 
+        Width= "{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={tools:RatioConverter}, ConverterParameter='0.8' }" 
+        Title="Iktatás"   Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico" >
     <Window.Effect>
         <DropShadowEffect RenderingBias="Quality"/>
     </Window.Effect>
-    <Grid >
+    <Grid>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*"/>
+            <RowDefinition MinHeight="70" MaxHeight="90" />
+            <RowDefinition Height="10*"/>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
 
         <!--Főmenü-->
-        <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="#FF036A9A">
-            <Grid UseLayoutRounding="True" SnapsToDevicePixels="True"  Background="#FF036A9A" >
+        
+            <Border Grid.Row="0"  BorderThickness="0,0,0,2" BorderBrush="#FF036A9A">
+            <Grid   Background="#FF036A9A" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -39,16 +42,41 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="Fooldal"  Style="{StaticResource MenuButton}"  Grid.Row="1"  Grid.Column = "0" >Főoldal</Button>
-                <Button x:Name="Iktatas"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "1">Iktatás</Button>
-                <Button x:Name="Kereses" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "2">Keresés</Button>
-                <Button x:Name="Torzs" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "3">Törzs</Button>
-                <Button x:Name="Kijelentkezes" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "4">Kijelentkezés</Button>
-                <Button x:Name="Kilepes"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "5">Kilépés</Button>
+                <Button x:Name="Fooldal"  Style="{StaticResource MenuButton}"  Grid.Row="1"  Grid.Column = "0" >
+                    <Viewbox>
+                        <TextBlock>Főoldal</TextBlock>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="Iktatas"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "1">
+                    <Viewbox>
+                        <TextBlock>Iktatás</TextBlock>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="Kereses" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "2">
+                    <Viewbox>
+                        <TextBlock>Keresés</TextBlock>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="Torzs" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "3">
+                    <Viewbox>
+                        <TextBlock>Törzs</TextBlock>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="Kijelentkezes" Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "4">
+                    <Viewbox>
+                        <TextBlock>Kijelentkezés</TextBlock>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="Kilepes"  Style="{StaticResource MenuButton}" Grid.Row="1" Grid.Column = "5">
+                    <Viewbox>
+                        <TextBlock>Kilépés</TextBlock>
+                    </Viewbox>
+                </Button>
             </Grid>
         </Border>
+      
         <!--Pages(user controlls)-->
-        <ContentControl  Grid.Row="1" Background="#FFf5f5f5"  x:Name="ActiveItem" >
+        <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="#FFf5f5f5"  x:Name="ActiveItem" >
 
         </ContentControl>
         <local:LoadingSpinnerView Grid.RowSpan="5" x:Name="LoaderIsVisible" Visibility="Hidden"></local:LoadingSpinnerView>

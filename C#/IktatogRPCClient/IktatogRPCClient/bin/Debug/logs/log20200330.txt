@@ -9,3 +9,24 @@
    a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    a következő helyen: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
    a következő helyen: IktatogRPCClient.Models.Managers.Helpers.Client.UserHelperSingleton.<Login>d__12.MoveNext() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Models\Managers\Helpers\Client\UserHelperSingleton.cs, sor: 52
+2020-03-30 12:43:10.567 +02:00 [WRN] Program bezárása.
+2020-03-30 12:45:58.821 +02:00 [WRN] Program bezárása.
+2020-03-30 12:49:04.301 +02:00 [WRN] Program bezárása.
+2020-03-30 12:54:18.732 +02:00 [WRN] Szerver által dobott kivétel: Grpc.Core.RpcException: Status(StatusCode=Unauthenticated, Detail="Hibás felhasználónév vagy jelszó!")
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   a következő helyen: IktatogRPCClient.Models.Managers.Helpers.Client.UserHelperSingleton.<Login>d__12.MoveNext() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Models\Managers\Helpers\Client\UserHelperSingleton.cs, sor: 52
+2020-03-30 12:54:44.185 +02:00 [WRN] Program bezárása.
+2020-03-30 13:01:32.255 +02:00 [WRN] Program bezárása.
+2020-03-30 13:04:25.592 +02:00 [WRN] Program bezárása.
+2020-03-30 13:05:15.853 +02:00 [WRN] Program bezárása.
+2020-03-30 13:12:22.645 +02:00 [WRN] Program bezárása.
+2020-03-30 13:13:00.398 +02:00 [WRN] Program bezárása.
+2020-03-30 13:13:42.498 +02:00 [WRN] Program bezárása.
+2020-03-30 13:13:42.568 +02:00 [WRN] Program bezárása.
+2020-03-30 13:23:17.357 +02:00 [WRN] Program bezárása.
+2020-03-30 13:27:41.307 +02:00 [WRN] Program bezárása.
+2020-03-30 13:29:56.206 +02:00 [WRN] Program bezárása.
+2020-03-30 13:32:22.016 +02:00 [WRN] Program bezárása.
+2020-03-30 13:35:03.787 +02:00 [WRN] Program bezárása.

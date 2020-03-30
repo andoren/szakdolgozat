@@ -90,6 +90,7 @@
     <Compile Include="Models\RemovedItem.cs" />
     <Compile Include="Models\TorzsDataView.cs" />
     <Compile Include="Models\UserProxy.cs" />
+    <Compile Include="Tools\RatioConverter.cs" />
     <Compile Include="ViewModels\AddCsoportViewModel.cs" />
     <Compile Include="ViewModels\AddFelhasznaloViewModel.cs" />
     <Compile Include="ViewModels\AddJellegViewModel.cs" />
