@@ -10,7 +10,7 @@
         FontSize="18"
         WindowStyle="SingleBorderWindow" 
       
-        Title="Iktatás" Height="800"  Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
+        Title="Iktatás"   Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico">
     <Window.Effect>
         <DropShadowEffect RenderingBias="Quality"/>
     </Window.Effect>

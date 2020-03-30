@@ -14,7 +14,13 @@ namespace IktatogRPCClient.ViewModels
 {
     class LoginViewModel:Screen
     {
-   
+        public LoginViewModel()
+        {
+            UsernameBox = (string)Registry.GetValue(keyName, "Felhasználónév", "");
+            if (!string.IsNullOrWhiteSpace(UsernameBox)) SaveUsernameIsChecked = true;
+            
+        }
+
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "OtemplomIktato";
         const string keyName = userRoot + "\\" + subkey;
@@ -32,12 +38,7 @@ namespace IktatogRPCClient.ViewModels
 
         public string PasswordBox { get; set; }
 
-        public LoginViewModel()
-        {
-            
-            if (!string.IsNullOrWhiteSpace(UsernameBox)) SaveUsernameIsChecked = true;
-            if(SaveUsernameIsChecked) UsernameBox = (string)Registry.GetValue(keyName, "Felhasználónév", "");
-        }
+       
         private bool _saveUsernameIsChecked;
 
         public bool SaveUsernameIsChecked
@@ -54,7 +55,8 @@ namespace IktatogRPCClient.ViewModels
             bool success = await userHelper.Login(GetDataFromLoginTextBoxes());
             if(success)Log.Debug("{Class} Sikeres csatlakozás", GetType());
             else Log.Debug("{Class} Sikertelen csatlakozás", GetType());
-            if (SaveUsernameIsChecked)Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
+            if (SaveUsernameIsChecked) Registry.SetValue(keyName, "Felhasználónév", UsernameBox);
+            else Registry.SetValue(keyName, "Felhasználónév", "");
             return success;
         }
         private LoginMessage GetDataFromLoginTextBoxes() {            
