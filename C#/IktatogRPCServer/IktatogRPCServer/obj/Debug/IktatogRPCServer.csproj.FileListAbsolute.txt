@@ -1,3 +1,5 @@
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\localhost\server.crt
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\localhost\server.key
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\server.crt
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\certs\server.key
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\grpc_csharp_ext.x86.dll
@@ -19,6 +21,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\MySql.Data.dll
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\MySqlBackup.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Newtonsoft.Json.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Renci.SshNet.dll
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\Serilog.dll
@@ -72,4 +75,3 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debu
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Debug\IktatogRPCServer.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Debug\MySqlBackup.dll

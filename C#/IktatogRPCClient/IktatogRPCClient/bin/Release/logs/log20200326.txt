@@ -1,0 +1,12 @@
+2020-03-26 15:28:55.610 +01:00 [WRN] Szerver által dobott kivétel: Grpc.Core.RpcException: Status(StatusCode=Unavailable, Detail="failed to connect to all addresses")
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   a következő helyen: IktatogRPCClient.Models.Managers.Helpers.Client.UserHelperSingleton.<Login>d__12.MoveNext() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Models\Managers\Helpers\Client\UserHelperSingleton.cs, sor: 52
+2020-03-26 15:29:46.167 +01:00 [WRN] Szerver által dobott kivétel: Grpc.Core.RpcException: Status(StatusCode=Unavailable, Detail="failed to connect to all addresses")
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   a következő helyen: IktatogRPCClient.Models.Managers.Helpers.Client.UserHelperSingleton.<Login>d__12.MoveNext() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Models\Managers\Helpers\Client\UserHelperSingleton.cs, sor: 52
+2020-03-26 15:29:47.498 +01:00 [WRN] Szerver által dobott kivétel: Grpc.Core.RpcException: Status(StatusCode=Unavailable, Detail="failed to connect to all addresses")
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   a következő helyen: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   a következő helyen: IktatogRPCClient.Models.Managers.Helpers.Client.UserHelperSingleton.<Login>d__12.MoveNext() hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\Models\Managers\Helpers\Client\UserHelperSingleton.cs, sor: 52

@@ -1047,3 +1047,49 @@ Paraméter neve: startIndex
 2020-03-24 19:29:00.723 +01:00 [DBG] Connectionstring kilvasása.
 2020-03-24 19:29:00.724 +01:00 [DBG] UgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása
 2020-03-24 19:29:17.046 +01:00 [WRN] A szerver leáll.
+2020-03-24 20:22:15.110 +01:00 [ERR] DocumentDatabaseManager.Add: Hiba történt System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.wrgxerspg5b”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)
+   a következő helyen: System.IO.File.WriteAllBytes(String path, Byte[] bytes)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.Add(Document newObject, User user) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 309
+2020-03-24 20:23:03.642 +01:00 [ERR] DocumentDatabaseManager.GetBytesFromFile: Hiba a dokumentum kiolvasása közben a szerverről System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.wrgxerspg5b”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.GetBytesFromFile(String FileName) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 99
+2020-03-24 20:24:45.638 +01:00 [ERR] DocumentDatabaseManager.Add: Hiba történt System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.svihzhzd3sd”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)
+   a következő helyen: System.IO.File.WriteAllBytes(String path, Byte[] bytes)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.Add(Document newObject, User user) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 309
+2020-03-24 20:24:55.125 +01:00 [ERR] DocumentDatabaseManager.Add: Hiba történt System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.cl5nadkgnw5”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)
+   a következő helyen: System.IO.File.WriteAllBytes(String path, Byte[] bytes)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.Add(Document newObject, User user) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 309
+2020-03-24 20:25:47.471 +01:00 [ERR] DocumentDatabaseManager.GetBytesFromFile: Hiba a dokumentum kiolvasása közben a szerverről System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.svihzhzd3sd”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.GetBytesFromFile(String FileName) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 99
+2020-03-24 20:25:58.783 +01:00 [ERR] DocumentDatabaseManager.GetBytesFromFile: Hiba a dokumentum kiolvasása közben a szerverről System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.cl5nadkgnw5”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.GetBytesFromFile(String FileName) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 99
+2020-03-24 20:27:33.913 +01:00 [ERR] DocumentDatabaseManager.Add: Hiba történt System.IO.DirectoryNotFoundException: Nem található a következő elérési út egy része.: „E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\Upload\2020. 03. 24.sgzzriqv0w1”.
+   a következő helyen: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   a következő helyen: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   a következő helyen: System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)
+   a következő helyen: System.IO.File.WriteAllBytes(String path, Byte[] bytes)
+   a következő helyen: IktatogRPCServer.Database.Mysql.DocumentDatabaseManager.Add(Document newObject, User user) hely: E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\Database\Mysql\DocumentDatabaseManager.cs, sor: 309

@@ -48,8 +48,8 @@ namespace IktatogRPCClient.Models.Managers
             string csatinfo = $"{hostname}:{hostport}";
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new SslCredentials(servercert);
-            Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
-            //Channel channel = new Channel(csatinfo, creds);
+            //Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
+            Channel channel = new Channel(csatinfo, creds);
             return channel;
         }
 

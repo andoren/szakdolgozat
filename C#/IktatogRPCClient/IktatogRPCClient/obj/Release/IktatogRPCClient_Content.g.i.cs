@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cert/localhost/server.crt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cert/server.crt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("grpc_csharp_ext.x86.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("grpc_csharp_ext.x64.dll")]
