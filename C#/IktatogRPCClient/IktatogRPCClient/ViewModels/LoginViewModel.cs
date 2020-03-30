@@ -34,8 +34,9 @@ namespace IktatogRPCClient.ViewModels
 
         public LoginViewModel()
         {
-            UsernameBox = (string)Registry.GetValue(keyName, "Felhasználónév", "");
+            
             if (!string.IsNullOrWhiteSpace(UsernameBox)) SaveUsernameIsChecked = true;
+            if(SaveUsernameIsChecked) UsernameBox = (string)Registry.GetValue(keyName, "Felhasználónév", "");
         }
         private bool _saveUsernameIsChecked;
 
@@ -57,7 +58,7 @@ namespace IktatogRPCClient.ViewModels
             return success;
         }
         private LoginMessage GetDataFromLoginTextBoxes() {            
-            return new LoginMessage() { Username = UsernameBox, Password = PasswordBox };
+            return new LoginMessage() { Username = UsernameBox, Password = EncryptionHelper.EncryptSha1(PasswordBox) };
         }
         private void CheckUsername() {
             if (string.IsNullOrWhiteSpace(UsernameBox)) throw new InvalidUserNameExepction("Hibás felhasználónév");  

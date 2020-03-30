@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IktatogRPCServer.Helpers;
 
 namespace IktatogRPCServer.Database.Mysql
 {
@@ -221,7 +222,7 @@ namespace IktatogRPCServer.Database.Mysql
             {
                 ParameterName = "@password_b",
                 DbType = System.Data.DbType.String,
-                Value = user.Password,
+                Value = EncryptionHelper.EncryptSha1(user.Password),
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter idp = new MySqlParameter()
