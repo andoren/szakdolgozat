@@ -23,15 +23,10 @@ namespace IktatogRPCClient.Models.Managers
         {
 
         }
-
-
-
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
         private int chunkSize = 64 * 1024;
-
         private static Channel channel;
-
         private UserHelperSingleton userHelper;
         public static ServerHelperSingleton GetInstance()
         {
@@ -39,7 +34,6 @@ namespace IktatogRPCClient.Models.Managers
             return serverHelper;
 
         }
-
         public Channel GetChannel()
         {
             lock (typeof(ServerHelperSingleton)) {
@@ -65,7 +59,6 @@ namespace IktatogRPCClient.Models.Managers
             //Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
             channel = new Channel(csatinfo, creds, new[] { new ChannelOption("grpc.keepalive_permit_without_calls", 1) }); 
         }
-
         private IktatoService.IktatoServiceClient Client()
         {
             
@@ -81,7 +74,6 @@ namespace IktatogRPCClient.Models.Managers
              });
         }
         #endregion
-
         #region Getters
         public BindableCollection<Telephely> GetAllTelephely()
         {
@@ -106,19 +98,18 @@ namespace IktatogRPCClient.Models.Managers
             }
             return telephelyek;
         }
-
         public async Task<BindableCollection<Year>> GetYears()
         {
             BindableCollection<Year> years = new BindableCollection<Year>();
 
             try
             {
-                var stream = Client().GetYears(new EmptyMessage(), GetCallOption());
+                using (var stream = Client().GetYears(new EmptyMessage(), GetCallOption())) { 
                 while (await stream.ResponseStream.MoveNext())
                 {
                     years.Add(stream.ResponseStream.Current);
                 }
-
+                }
             }
             catch (RpcException ex) {
                 InformationBox.ShowError(ex);
@@ -134,12 +125,12 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<PartnerUgyintezo> ugyintezok = new BindableCollection<PartnerUgyintezo>();
             try
             {
-                var stream = Client().GetPartnerUgyintezoByPartner(selectedPartner, GetCallOption());
+                using (var stream = Client().GetPartnerUgyintezoByPartner(selectedPartner, GetCallOption())) { 
                 while (await stream.ResponseStream.MoveNext())
                 {
                     ugyintezok.Add(stream.ResponseStream.Current);
                 }
-                
+                }
             }
             catch (RpcException ex)
             {
@@ -157,12 +148,12 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Privilege> privileges = new BindableCollection<Privilege>();
             try
             {
-                var stream = Client().GetPrivileges(new EmptyMessage(), GetCallOption());
+                using (var stream = Client().GetPrivileges(new EmptyMessage(), GetCallOption())) { 
                 while (stream.ResponseStream.MoveNext().Result)
                 {
                     privileges.Add(stream.ResponseStream.Current);
                 }
-                
+                }
             }
             catch (RpcException ex)
             {
@@ -179,7 +170,7 @@ namespace IktatogRPCClient.Models.Managers
             Document document = new Document() { Name = "" };
             List<byte[]> Chunkes = new List<byte[]>();
             Document recivedDocuemnt = new Document();
-            var call =  Client().GetDocumentById(info,GetCallOption());
+            using (var call = Client().GetDocumentById(info, GetCallOption())) { 
             while (await call.ResponseStream.MoveNext())
             {
                 recivedDocuemnt = call.ResponseStream.Current;
@@ -187,11 +178,8 @@ namespace IktatogRPCClient.Models.Managers
             }
             recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
             return recivedDocuemnt;
-         }
-          
-            
-  
-
+            }
+        }                    
         public async Task<BindableCollection<Jelleg>> GetJellegekByTelephelyAsync(Telephely selectedTelephely)
         {
  
@@ -200,12 +188,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = Client().GetJellegekByTelephely(selectedTelephely, GetCallOption());
-                    while (await stream.ResponseStream.MoveNext())
+                    using (var stream = Client().GetJellegekByTelephely(selectedTelephely, GetCallOption()))
                     {
-                        jellegek.Add(stream.ResponseStream.Current);
+                        while (await stream.ResponseStream.MoveNext())
+                        {
+                            jellegek.Add(stream.ResponseStream.Current);
+                        }
                     }
-                    
                 }
             }
             catch (RpcException ex)
@@ -221,22 +210,17 @@ namespace IktatogRPCClient.Models.Managers
         }
         public async Task<BindableCollection<Csoport>> GetCsoportokByTelephelyAsync(Telephely selectedTelephely)
         {
-            /*
-             *  if (selectedTelephely.Name == "Rákóczi")
-                    return new BindableCollection<Csoport>() { new Csoport() { Id = 3, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" }, new Csoport() { Id = 1, Name = "Konyha", Shortname = "K" } };
-                else return new BindableCollection<Csoport>() { new Csoport() { Id = 10, Name = "Munkaügy", Shortname = "M" }, new Csoport() { Id = 1, Name = "Szerződés", Shortname = "SZ" } };
-             */
             BindableCollection<Csoport> csoportok = new BindableCollection<Csoport>();
             try
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = Client().GetCsoportokByTelephely(selectedTelephely, GetCallOption());
-                    while (await stream.ResponseStream.MoveNext())
-                    {
-                        csoportok.Add(stream.ResponseStream.Current);
+                    using (var stream = Client().GetCsoportokByTelephely(selectedTelephely, GetCallOption())) { 
+                        while (await stream.ResponseStream.MoveNext())
+                        {
+                            csoportok.Add(stream.ResponseStream.Current);
+                        }
                     }
-                  
                 }
 
             }
@@ -250,16 +234,16 @@ namespace IktatogRPCClient.Models.Managers
             }
             return csoportok;
         }
-
         public async Task<BindableCollection<Telephely>> GetUserTelephelyeiAsync(UserProxy message)
         {
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
-                var stream = Client().GetUserTelephelyei(message.GetUser, GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
-                {
-                    telephelyek.Add(stream.ResponseStream.Current);
+                using (var stream = Client().GetUserTelephelyei(message.GetUser, GetCallOption())) { 
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        telephelyek.Add(stream.ResponseStream.Current);
+                    }
                 }
             }
             catch (RpcException ex)
@@ -272,30 +256,20 @@ namespace IktatogRPCClient.Models.Managers
             }
             return telephelyek;
         }
-
         public async Task<BindableCollection<Partner>> GetPartnerekByTelephelyAsync(Telephely selectedTelephely)
         {
-            /*
-                Partner partner1 = new Partner() { Id = new Random().Next(1, 4), Name = "Beszállító cica" };
-                Partner partner2 = new Partner() { Id = new Random().Next(5, 9), Name = "KutyaPartner" };
-                Partner partner3 = new Partner() { Id = new Random().Next(5, 9), Name = "E-on" };
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 1, Name = "Cili" });
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 2, Name = "Marci" });
-                partner1.Ugyintezok.Add(new PartnerUgyintezo() { Id = 3, Name = "Elemér" });
-                partner2.Ugyintezok.Add(new PartnerUgyintezo() { Id = 4, Name = "Bodri" });
-                if (selectedTelephely.Name == "Rákóczi") return new BindableCollection<Partner>() { partner1, partner2 };
-                else return new BindableCollection<Partner>() { partner3 };
-             */
             BindableCollection<Partner> partnerek = new BindableCollection<Partner>();
             try
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = Client().GetPartnerekByTelephely(selectedTelephely, GetCallOption());
-                    while (await stream.ResponseStream.MoveNext())
+                    using (var stream = Client().GetPartnerekByTelephely(selectedTelephely, GetCallOption()))
                     {
-                        partnerek.Add(stream.ResponseStream.Current);
-                    }  
+                        while (await stream.ResponseStream.MoveNext())
+                        {
+                            partnerek.Add(stream.ResponseStream.Current);
+                        }
+                    }
                 }
             }
             catch (RpcException ex)
@@ -308,22 +282,19 @@ namespace IktatogRPCClient.Models.Managers
             }
             return partnerek;
         }
-
-    
-
         public async Task<BindableCollection<RovidIkonyv>> GetShortIktSzamokByTelephelyAsync(Telephely selectedTelephely)
         {
-            /*new BindableCollection<RovidIkonyv>() { new RovidIkonyv() { Id=1,Iktatoszam="RövidIktatószám1" }, new RovidIkonyv() { Id = 2, Iktatoszam = "RövidIktatószám2" }, new RovidIkonyv() { Id = 3, Iktatoszam = "RövidIktatószám3" } };
-             */
+           
             BindableCollection<RovidIkonyv> rovidIkonyvs = new BindableCollection<RovidIkonyv>();
             try
             {
-                var stream = Client().GetShortIktSzamokByTelephely(selectedTelephely, GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
+                using (var stream = Client().GetShortIktSzamokByTelephely(selectedTelephely, GetCallOption()))
                 {
-                    rovidIkonyvs.Add(stream.ResponseStream.Current);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        rovidIkonyvs.Add(stream.ResponseStream.Current);
+                    }
                 }
-                
             }
             catch (RpcException ex)
             {
@@ -370,12 +341,13 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (valasztottTelephely != null)
                 {
-                    var stream = Client().GetUgyintezokByTelephely(valasztottTelephely, GetCallOption());
-                    while (await stream.ResponseStream.MoveNext())
+                    using (var stream = Client().GetUgyintezokByTelephely(valasztottTelephely, GetCallOption()))
                     {
-                        ugyintezok.Add(stream.ResponseStream.Current);
+                        while (await stream.ResponseStream.MoveNext())
+                        {
+                            ugyintezok.Add(stream.ResponseStream.Current);
+                        }
                     }
-                    
                 }
             }
             catch (RpcException ex)
@@ -395,12 +367,12 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
-                var stream = Client().GetTelephelyek(new EmptyMessage(), GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
-                {
-                    telephelyek.Add(stream.ResponseStream.Current);
+                using (var stream = Client().GetTelephelyek(new EmptyMessage(), GetCallOption())) { 
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        telephelyek.Add(stream.ResponseStream.Current);
+                    }
                 }
-                
             }
             catch (RpcException ex)
             {
@@ -417,11 +389,13 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<UserProxy> userProxies = new BindableCollection<UserProxy>();
             try
             {
-                
-                var stream = Client().GetAllUser(new EmptyMessage(), GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
+
+                using (var stream = Client().GetAllUser(new EmptyMessage(), GetCallOption()))
                 {
-                    userProxies.Add(new UserProxy(stream.ResponseStream.Current));
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        userProxies.Add(new UserProxy(stream.ResponseStream.Current));
+                    }
                 }
             }
             catch (RpcException ex)
@@ -439,10 +413,12 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Ikonyv> ikonyvek = new BindableCollection<Ikonyv>();
             try
             {
-                var stream = Client().ListIktatas(searchData, GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
+                using (var stream = Client().ListIktatas(searchData, GetCallOption()))
                 {
-                    ikonyvek.Add(stream.ResponseStream.Current);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        ikonyvek.Add(stream.ResponseStream.Current);
+                    }
                 }
             }
             catch (RpcException ex)
@@ -458,14 +434,16 @@ namespace IktatogRPCClient.Models.Managers
         }
         public async Task<BindableCollection<DocumentInfo>> GetDocumentInfoByIkonyvIdAsync(int ikonyvId)
         {
-            // return new BindableCollection<DocumentInfo>() { new DocumentInfo {Id = 1, Name = "KiscicaIktatás", Size = 3.54, Type = "PDF" } };
+           
             BindableCollection<DocumentInfo> documentInfos = new BindableCollection<DocumentInfo>();
             try
             {
-                var stream = Client().GetDocumentInfoByIkonyv(new Ikonyv() { Id = ikonyvId }, GetCallOption());
-                while (await stream.ResponseStream.MoveNext())
+                using (var stream = Client().GetDocumentInfoByIkonyv(new Ikonyv() { Id = ikonyvId }, GetCallOption()))
                 {
-                    documentInfos.Add(stream.ResponseStream.Current);
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        documentInfos.Add(stream.ResponseStream.Current);
+                    }
                 }
                 
             }
@@ -480,7 +458,6 @@ namespace IktatogRPCClient.Models.Managers
             return documentInfos;
         }
         #endregion
-
         #region Additions
         public async Task<bool> AddYearAndActivateAsync()
         {
@@ -687,7 +664,6 @@ namespace IktatogRPCClient.Models.Managers
         }
         public async Task<Csoport> AddCsoportToTelephelyAsync(Telephely valasztottTelephely, string csoportName, string csoportKod)
         {
-            //new Csoport() { Id = new Random().Next(1,200), Name=csoportName , Shortname = csoportKod};
             Csoport csoport = new Csoport() { Id = 0 };
             try
             {
@@ -723,8 +699,7 @@ namespace IktatogRPCClient.Models.Managers
             return rovidIkonyv;
         }
         public async Task<Ugyintezo> AddUgyintezoToTelephelyAsync(Telephely valasztottTelephely, string ugyintezoNeve)
-        {
-            //return new Ugyintezo() {Id = new Random().Next(1,100),Name = ugyintezoNeve };
+        {     
             Ugyintezo ugyintezo = new Ugyintezo() { Id = 0 };
             try
             {
@@ -950,7 +925,7 @@ namespace IktatogRPCClient.Models.Managers
             return success;
         }
         #endregion
-        #region Removes
+        #region Removers
         public async Task<bool> RemoveDocumentAsync(DocumentInfo selectedDocument)
         {
             bool success = false;
