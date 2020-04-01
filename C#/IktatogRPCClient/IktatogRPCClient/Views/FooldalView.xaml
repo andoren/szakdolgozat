@@ -26,7 +26,21 @@
             <TextBlock HorizontalAlignment="Center" Margin="15,0,15,10" FontSize="20" Foreground="#FF036A9A">Célunk az egyszerű iktatás a számotokra!</TextBlock>
             <Line Stroke="#FF036A9A" Fill="#FF036A9A" Margin="15,0" StrokeThickness="2" X1="0" X2="{Binding ElementName=SubSentencePanel, Path=ActualWidth}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  ></Line>
         </StackPanel>
-        <Image Margin="10" Grid.Row="4" Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png"  />
+        <Grid  Margin="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png"  />
+            <StackPanel Grid.Column="2">
+                <TextBlock Margin="5" FontSize="30" x:Name="IgeTitleWithDate">Napi ige(2020.04.10):</TextBlock>
+                <TextBox Margin="5"  IsReadOnly="True" AcceptsReturn="True" FontSize="30" x:Name="NapiIge" TextWrapping="Wrap" Background="Transparent" BorderBrush="Transparent" />
+            </StackPanel>
+            
+        </Grid>
+        
         <!--
         <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="20">
             <Grid.ColumnDefinitions>
