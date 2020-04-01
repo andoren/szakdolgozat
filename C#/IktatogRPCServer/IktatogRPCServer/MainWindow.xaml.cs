@@ -70,15 +70,18 @@ namespace IktatogRPCServer
                 SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });
                 
                 Log.Debug("Mainwindow.StartServer: Server Binding port es cím");
-                server = new Server
+                server = new Server()
                 {
                     Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
                     Ports = { new ServerPort("0.0.0.0", Port, credentials) }
-                    //Ports = { new ServerPort(Ip, Port, ServerCredentials.Insecure) }
 
+                    //Ports = { new ServerPort(Ip, Port, ServerCredentials.Insecure) }
+                     
                 };
                 Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
                 server.Start();
+                
+                
                 StartServerButton.IsEnabled = false;
                 StopServerButton.IsEnabled = true;
 
