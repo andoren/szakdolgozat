@@ -15,7 +15,8 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
         {
             serverHelper =  ServerHelperSingleton.GetInstance();
         }
-        private static UserHelperSingleton userHelper;
+        private static volatile UserHelperSingleton userHelper;
+        private static readonly object lockable = new object();
         private ServerHelperSingleton serverHelper  ;
         private AuthToken _token;
         private static User _currentUser;
@@ -30,9 +31,11 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
 
         public static UserHelperSingleton GetInstance()
         {
-            lock (typeof(UserHelperSingleton))
+            lock (lockable)
             {
-                if (userHelper == null) userHelper = new UserHelperSingleton(); 
+                if (userHelper == null) {
+                    userHelper = new UserHelperSingleton();
+                } 
                 return userHelper;
             }
         }
@@ -53,8 +56,8 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
 
                 if (CurrentUser != null)
                 {
-                    Token = CurrentUser.AuthToken;
-                    serverHelper.InitializeConnection();
+                    userHelper.Token = CurrentUser.AuthToken;
+                    
                     success = true;
                 }
             }

@@ -28,12 +28,10 @@ namespace IktatogRPCClient.Models.Managers
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
         private int chunkSize = 64 * 1024;
-    
 
-        //TODO THE WHOLE HELPER! :(
+        private static Channel channel;
+
         private UserHelperSingleton userHelper;
-        private CallOptions calloptions;
-        private IktatoService.IktatoServiceClient client;
         public static ServerHelperSingleton GetInstance()
         {
 
@@ -43,28 +41,45 @@ namespace IktatogRPCClient.Models.Managers
 
         public Channel GetChannel()
         {
+            lock (typeof(ServerHelperSingleton)) {
+                if (channel == null)
+                {
+                    userHelper = UserHelperSingleton.GetInstance();
+                    CreateNewChannel();
+                }
+                else {
+                    if (channel.State == ChannelState.TransientFailure || channel.State == ChannelState.Shutdown) {
+                        CreateNewChannel();
+                    }
+                }
+            }
+            return channel;
+        }
+        private void CreateNewChannel() {
             string hostname = ConfigurationManager.AppSettings["Hostname"];
             string hostport = ConfigurationManager.AppSettings["Port"];
             string csatinfo = $"{hostname}:{hostport}";
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new SslCredentials(servercert);
             //Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
-            Channel channel = new Channel(csatinfo, creds);
-            return channel;
+            channel = new Channel(csatinfo, creds); 
         }
 
- 
 
-        public void InitializeConnection()
+        private IktatoService.IktatoServiceClient Client()
         {
-            Log.Debug("{Class} Csatlakozás inicializációja", GetType());
             
-            client = new IktatoService.IktatoServiceClient(GetChannel());
-            userHelper = UserHelperSingleton.GetInstance();
+            Log.Debug("{Class} Csatlakozás inicializációja", GetType());
+            IktatoService.IktatoServiceClient client = new IktatoService.IktatoServiceClient(GetChannel());   
             Log.Debug("{Class} Calloption beállítása.", GetType());
-            calloptions = new CallOptions().WithHeaders(new Metadata() { new Metadata.Entry("Authorization", userHelper.Token.Token) });
+            return client;
         }
-
+        private CallOptions GetCallOption() {
+            return new CallOptions().WithHeaders(new Metadata()
+             {
+                 new Metadata.Entry("Authorization", userHelper.Token.Token)
+             });
+        }
         #endregion
 
         #region Getters
@@ -74,7 +89,7 @@ namespace IktatogRPCClient.Models.Managers
 
             try
             {
-                var stream = client.GetAllTelephely(new EmptyMessage(), calloptions);
+                var stream = Client().GetAllTelephely(new EmptyMessage(), GetCallOption());
                 while (stream.ResponseStream.MoveNext().Result)
                 {
                     telephelyek.Add(stream.ResponseStream.Current);
@@ -98,7 +113,7 @@ namespace IktatogRPCClient.Models.Managers
 
             try
             {
-                var stream = client.GetYears(new EmptyMessage(), calloptions);
+                var stream = Client().GetYears(new EmptyMessage(), GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     years.Add(stream.ResponseStream.Current);
@@ -119,7 +134,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<PartnerUgyintezo> ugyintezok = new BindableCollection<PartnerUgyintezo>();
             try
             {
-                var stream = client.GetPartnerUgyintezoByPartner(selectedPartner, calloptions);
+                var stream = Client().GetPartnerUgyintezoByPartner(selectedPartner, GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     ugyintezok.Add(stream.ResponseStream.Current);
@@ -142,7 +157,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Privilege> privileges = new BindableCollection<Privilege>();
             try
             {
-                var stream = client.GetPrivileges(new EmptyMessage(), calloptions);
+                var stream = Client().GetPrivileges(new EmptyMessage(), GetCallOption());
                 while (stream.ResponseStream.MoveNext().Result)
                 {
                     privileges.Add(stream.ResponseStream.Current);
@@ -164,7 +179,7 @@ namespace IktatogRPCClient.Models.Managers
             Document document = new Document() { Name = "" };
             List<byte[]> Chunkes = new List<byte[]>();
             Document recivedDocuemnt = new Document();
-            var call =  client.GetDocumentById(info,calloptions);
+            var call =  Client().GetDocumentById(info,GetCallOption());
             while (await call.ResponseStream.MoveNext())
             {
                 recivedDocuemnt = call.ResponseStream.Current;
@@ -185,7 +200,7 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = client.GetJellegekByTelephely(selectedTelephely, calloptions);
+                    var stream = Client().GetJellegekByTelephely(selectedTelephely, GetCallOption());
                     while (await stream.ResponseStream.MoveNext())
                     {
                         jellegek.Add(stream.ResponseStream.Current);
@@ -216,7 +231,7 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = client.GetCsoportokByTelephely(selectedTelephely, calloptions);
+                    var stream = Client().GetCsoportokByTelephely(selectedTelephely, GetCallOption());
                     while (await stream.ResponseStream.MoveNext())
                     {
                         csoportok.Add(stream.ResponseStream.Current);
@@ -241,7 +256,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
-                var stream = client.GetUserTelephelyei(message.GetUser, calloptions);
+                var stream = Client().GetUserTelephelyei(message.GetUser, GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     telephelyek.Add(stream.ResponseStream.Current);
@@ -276,7 +291,7 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (selectedTelephely != null)
                 {
-                    var stream = client.GetPartnerekByTelephely(selectedTelephely, calloptions);
+                    var stream = Client().GetPartnerekByTelephely(selectedTelephely, GetCallOption());
                     while (await stream.ResponseStream.MoveNext())
                     {
                         partnerek.Add(stream.ResponseStream.Current);
@@ -303,7 +318,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<RovidIkonyv> rovidIkonyvs = new BindableCollection<RovidIkonyv>();
             try
             {
-                var stream = client.GetShortIktSzamokByTelephely(selectedTelephely, calloptions);
+                var stream = Client().GetShortIktSzamokByTelephely(selectedTelephely, GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     rovidIkonyvs.Add(stream.ResponseStream.Current);
@@ -325,7 +340,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.LogoutAsync(new EmptyMessage(), calloptions);
+                Answer answer = await Client().LogoutAsync(new EmptyMessage(), GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -355,7 +370,7 @@ namespace IktatogRPCClient.Models.Managers
             {
                 if (valasztottTelephely != null)
                 {
-                    var stream = client.GetUgyintezokByTelephely(valasztottTelephely, calloptions);
+                    var stream = Client().GetUgyintezokByTelephely(valasztottTelephely, GetCallOption());
                     while (await stream.ResponseStream.MoveNext())
                     {
                         ugyintezok.Add(stream.ResponseStream.Current);
@@ -380,7 +395,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Telephely> telephelyek = new BindableCollection<Telephely>();
             try
             {
-                var stream = client.GetTelephelyek(new EmptyMessage(), calloptions);
+                var stream = Client().GetTelephelyek(new EmptyMessage(), GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     telephelyek.Add(stream.ResponseStream.Current);
@@ -403,7 +418,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 
-                var stream = client.GetAllUser(new EmptyMessage(), calloptions);
+                var stream = Client().GetAllUser(new EmptyMessage(), GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     userProxies.Add(new UserProxy(stream.ResponseStream.Current));
@@ -424,7 +439,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<Ikonyv> ikonyvek = new BindableCollection<Ikonyv>();
             try
             {
-                var stream = client.ListIktatas(searchData, calloptions);
+                var stream = Client().ListIktatas(searchData, GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     ikonyvek.Add(stream.ResponseStream.Current);
@@ -447,7 +462,7 @@ namespace IktatogRPCClient.Models.Managers
             BindableCollection<DocumentInfo> documentInfos = new BindableCollection<DocumentInfo>();
             try
             {
-                var stream = client.GetDocumentInfoByIkonyv(new Ikonyv() { Id = ikonyvId }, calloptions);
+                var stream = Client().GetDocumentInfoByIkonyv(new Ikonyv() { Id = ikonyvId }, GetCallOption());
                 while (await stream.ResponseStream.MoveNext())
                 {
                     documentInfos.Add(stream.ResponseStream.Current);
@@ -472,7 +487,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.AddYearAndActivateAsync(new EmptyMessage(), calloptions);
+                Answer answer = await Client().AddYearAndActivateAsync(new EmptyMessage(), GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -498,7 +513,7 @@ namespace IktatogRPCClient.Models.Managers
             Telephely telephely = new Telephely() { Id = 0, Name = telephelyNeve };
             try
             {
-                telephely = await client.AddTelephelyAsync(telephely, calloptions);
+                telephely = await Client().AddTelephelyAsync(telephely, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -515,12 +530,8 @@ namespace IktatogRPCClient.Models.Managers
             DocumentInfo documentInfo = new DocumentInfo() { Id = 0 };
             try
             {
-                
-               
-                
-                
-              
-                using (var call = client.UploadDocument(calloptions))
+
+                using (var call = Client().UploadDocument(GetCallOption()))
                 {
                     Document chunkDocument = new Document();
                     chunkDocument.Id = 0;
@@ -579,7 +590,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 NewTorzsData newJelleg = new NewTorzsData(){ Telephely = selectedTelephely, Name = jellegNeve};
-                jelleg = await client.AddJellegToTelephelyAsync(newJelleg, calloptions);
+                jelleg = await Client().AddJellegToTelephelyAsync(newJelleg, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -597,7 +608,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 NewTorzsData newUgyintezo = new NewTorzsData(){ Partner = selectedPartner, Name = ugyintezoNeve };
-                partnerUgyintezo = await client.AddPartnerUgyintezoToPartnerAsync(newUgyintezo, calloptions);
+                partnerUgyintezo = await Client().AddPartnerUgyintezoToPartnerAsync(newUgyintezo, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -615,7 +626,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 NewTorzsData newPartner = new NewTorzsData() { Telephely = selectedTelephely, Name = partnerNeve };
-                partner = await client.AddPartnerToTelephelyAsync(newPartner, calloptions);
+                partner = await Client().AddPartnerToTelephelyAsync(newPartner, GetCallOption());
             }
             catch (RpcException ex) {
                 InformationBox.ShowError(ex);
@@ -645,7 +656,7 @@ namespace IktatogRPCClient.Models.Managers
             UserProxy proxy = new UserProxy(user);
             try
             {
-                proxy = new UserProxy(await client.AddUserAsync(user, calloptions));
+                proxy = new UserProxy(await Client().AddUserAsync(user, GetCallOption()));
             }
             catch (RpcException ex)
             {
@@ -662,7 +673,7 @@ namespace IktatogRPCClient.Models.Managers
             RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
             try
             {
-                rovidIkonyv = await client.AddIktatasAsync(newIkonyv, calloptions);
+                rovidIkonyv = await Client().AddIktatasAsync(newIkonyv, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -681,7 +692,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 NewTorzsData newCsoport = new NewTorzsData(){ Telephely = valasztottTelephely, Name = csoportName, Shorname = csoportKod};
-                csoport = await client.AddCsoportToTelephelyAsync(newCsoport, calloptions);
+                csoport = await Client().AddCsoportToTelephelyAsync(newCsoport, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -698,7 +709,7 @@ namespace IktatogRPCClient.Models.Managers
             RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
             try
             {
-                rovidIkonyv = await client.AddIktatasWithValaszAsync(newIkonyv);
+                rovidIkonyv = await Client().AddIktatasWithValaszAsync(newIkonyv);
 
             }
             catch (RpcException ex)
@@ -718,7 +729,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 NewTorzsData newUgyintezo = new NewTorzsData(){ Telephely = valasztottTelephely, Name = ugyintezoNeve};
-                ugyintezo = await client.AddUgyintezoToTelephelyAsync(newUgyintezo, calloptions);
+                ugyintezo = await Client().AddUgyintezoToTelephelyAsync(newUgyintezo, GetCallOption());
             }
             catch (RpcException ex)
             {
@@ -737,7 +748,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyUserAsync(user, calloptions);
+                Answer answer = await Client().ModifyUserAsync(user, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -762,7 +773,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyTelephelyAsync(telephely, calloptions);
+                Answer answer = await Client().ModifyTelephelyAsync(telephely, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -788,7 +799,7 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 selectedPartnerUgyintezo.Name = ugyintezoNeve;
-                Answer answer = await client.ModifyPartnerUgyintezoAsync(selectedPartnerUgyintezo, calloptions);
+                Answer answer = await Client().ModifyPartnerUgyintezoAsync(selectedPartnerUgyintezo, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -814,7 +825,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyPartnerAsync(selectedPartner, calloptions);
+                Answer answer = await Client().ModifyPartnerAsync(selectedPartner, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -840,7 +851,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyJellegAsync(modifiedJelleg, calloptions);
+                Answer answer = await Client().ModifyJellegAsync(modifiedJelleg, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -866,7 +877,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyCsoportAsync(modifiedCsoport, calloptions);
+                Answer answer = await Client().ModifyCsoportAsync(modifiedCsoport, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -892,7 +903,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyUgyintezoAsync(modifiedUgyintezo, calloptions);
+                Answer answer = await Client().ModifyUgyintezoAsync(modifiedUgyintezo, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -917,7 +928,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.ModifyIktatasAsync(ikonyv, calloptions);
+                Answer answer = await Client().ModifyIktatasAsync(ikonyv, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -945,7 +956,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemovedocumentAsync(selectedDocument, calloptions);
+                Answer answer = await Client().RemovedocumentAsync(selectedDocument, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -968,7 +979,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemovePartnerUgyintezoAsync(selectedUgyintezo, calloptions);
+                Answer answer = await Client().RemovePartnerUgyintezoAsync(selectedUgyintezo, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -990,7 +1001,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemovePartnerAsync(selectedPartner, calloptions);
+                Answer answer = await Client().RemovePartnerAsync(selectedPartner, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1012,7 +1023,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.DisableUserAsync(user, calloptions);
+                Answer answer = await Client().DisableUserAsync(user, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1034,7 +1045,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemoveIkonyvAsync(new Ikonyv() { Id = id }, calloptions);
+                Answer answer = await Client().RemoveIkonyvAsync(new Ikonyv() { Id = id }, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1056,7 +1067,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemoveJellegAsync(selectedJelleg, calloptions);
+                Answer answer = await Client().RemoveJellegAsync(selectedJelleg, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1078,7 +1089,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemoveTelephelyAsync(selectedTelephely, calloptions);
+                Answer answer = await Client().RemoveTelephelyAsync(selectedTelephely, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1100,7 +1111,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemoveCsoportAsync(selectedCsoport, calloptions);
+                Answer answer = await Client().RemoveCsoportAsync(selectedCsoport, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
@@ -1122,7 +1133,7 @@ namespace IktatogRPCClient.Models.Managers
             bool success = false;
             try
             {
-                Answer answer = await client.RemoveUgyintezoFromTelephelyAsync(valasztottUgyintezo, calloptions);
+                Answer answer = await Client().RemoveUgyintezoFromTelephelyAsync(valasztottUgyintezo, GetCallOption());
                 if (answer.Error == false)
                 {
                     success = true;
