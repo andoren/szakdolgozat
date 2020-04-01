@@ -76,6 +76,7 @@ namespace IktatogRPCClient.ViewModels
             set
             {
                 _selectedIrany = value;
+                NotifyOfPropertyChange(() => CanIktatButton);
                 NotifyOfPropertyChange(() => SelectedIrany);
             }
         }
@@ -86,6 +87,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _szoveg = value;
                 NotifyOfPropertyChange(() => Szoveg);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
         public RovidIkonyv SelectedIktSzam
@@ -95,6 +97,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedIktSzam = value;
                 NotifyOfPropertyChange(() => SelectedIktSzam);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
         public BindableCollection<RovidIkonyv> IktSzamok
@@ -110,13 +113,18 @@ namespace IktatogRPCClient.ViewModels
         public string ErkezettDatum
         {
             get { return _erkezettDatum; }
-            set { _erkezettDatum = value; }
+            set { _erkezettDatum = value;
+                NotifyOfPropertyChange(() => CanIktatButton);
+            }
         }
         private string _hatidoDatum = DateTime.Now.ToShortDateString();
         public string HatidoDatum
         {
             get { return _hatidoDatum; }
-            set { _hatidoDatum = value; }
+            
+            set { _hatidoDatum = value;
+                NotifyOfPropertyChange(() => CanIktatButton);
+            }
         }
         public Ugyintezo SelectedUgyintezo
         {
@@ -125,6 +133,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedUgyintezo = value;
                 NotifyOfPropertyChange(() => SelectedUgyintezo);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
 
@@ -146,6 +155,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedJelleg = value;
                 NotifyOfPropertyChange(() => SelectedJelleg);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
 
@@ -170,6 +180,7 @@ namespace IktatogRPCClient.ViewModels
                 _selectedPartner = value;
                 NotifyOfPropertyChange(() => SelectedPartner);
                 if (value != null) LoadPartnerUgyintezo();
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
         private async void LoadPartnerUgyintezo()
@@ -188,6 +199,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedPartnerUgyintezo = value;
                 NotifyOfPropertyChange(() => SelectedPartnerUgyintezo);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
         private PartnerUgyintezo _emptyPartnerUgyintezo = new PartnerUgyintezo() { Id = -1, Name = "" };
@@ -229,6 +241,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _targy = value;
                 NotifyOfPropertyChange(() => Targy);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
 
@@ -251,6 +264,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedCsoport = value;
                 NotifyOfPropertyChange(() => SelectedCsoport);
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
 
@@ -261,6 +275,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 _selectedTelephely = value;
                 NotifyOfPropertyChange(() => SelectedTelephely);
+                NotifyOfPropertyChange(() => CanIktatButton);
                 GetTelephelyData();
             }
         }
@@ -329,6 +344,7 @@ namespace IktatogRPCClient.ViewModels
                     LoadRovidIkonyvek();
                 }
                 else { IktSzamok.Clear(); }
+                NotifyOfPropertyChange(() => CanIktatButton);
             }
         }
 
@@ -337,7 +353,7 @@ namespace IktatogRPCClient.ViewModels
             IktSzamok = await serverHelper.GetShortIktSzamokByTelephelyAsync(SelectedTelephely);
             if (IktSzamok.Count > 0) SelectedIktSzam = IktSzamok[0];
         }
-        public async void IktatButton(string targy, string erkezettDatum, string hatidoDatum, string hivatkozasiszam, string szoveg)
+        public async void IktatButton()
         {
             Log.Debug("{Class} Iktatás gomb megnyomva.", GetType());
 
@@ -346,14 +362,14 @@ namespace IktatogRPCClient.ViewModels
             Ikonyv newIkonyv = new Ikonyv()
             {
                 Csoport = SelectedCsoport,
-                Erkezett = erkezettDatum,
-                HatIdo = hatidoDatum,
-                Hivszam = hivatkozasiszam,
+                Erkezett = this.ErkezettDatum,
+                HatIdo = this.HatidoDatum,
+                Hivszam = this.Hivatkozasiszam,
                 Irany = SelectedIrany.Way,
                 Jelleg = SelectedJelleg,
                 Partner = SelectedPartner,
-                Szoveg = szoveg,
-                Targy = targy,
+                Szoveg = this.Szoveg,
+                Targy = this.Targy,
                 Telephely = SelectedTelephely,
                 Ugyintezo = SelectedUgyintezo,
                 ValaszId = -1
@@ -383,15 +399,30 @@ namespace IktatogRPCClient.ViewModels
             MessageBox.Show($"Az új iktatásiszám: {newIkonyv.Iktatoszam}.");
             Log.Debug("{Class} Iktatás sikeres", GetType());
         }
-        public bool CanIktatButton(string targy, string erkezettDatum, string hatidoDatum, string hivatkozasiszam, string szoveg)
+        public bool CanIktatButton
         {
-            if (string.IsNullOrWhiteSpace(targy)
-                || string.IsNullOrWhiteSpace(erkezettDatum)
-                || string.IsNullOrWhiteSpace(hatidoDatum)) return false;
-            return true;
+            get{
+                return FormValidation();
+            }
+         
         }
 
-
+        private bool FormValidation() {
+            bool IsValid = true;
+            if (IsTorzsDataInFormNull()) IsValid = false;
+            else if (string.IsNullOrWhiteSpace(Targy)) IsValid = false;
+            else if (Targy.Length > 250) IsValid = false;
+            else if (DateTime.Parse(HatidoDatum) < DateTime.Parse(ErkezettDatum)) IsValid = false;
+            else if (ValaszIsChecked && SelectedIkonyv == null) IsValid = false;
+            else if (Szoveg.Length > 500) IsValid = false;
+            else if (Hivatkozasiszam.Length > 200) IsValid = false;
+            return IsValid;
+        }
+        private bool IsTorzsDataInFormNull() {
+            return (SelectedJelleg == null || SelectedPartner == null ||
+                    SelectedPartnerUgyintezo == null || SelectedTelephely == null ||
+                    SelectedUgyintezo == null || SelectedCsoport == null || SelectedIrany == null);
+        }
         public override void Handle(RemovedItem message)
         {
             if (message.Item is Ikonyv)

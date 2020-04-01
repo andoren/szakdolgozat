@@ -1,5 +1,6 @@
 
 *.nupkg
+**/bin/*
 **/packages/*
 !**/packages/build/
 **/.vs/*

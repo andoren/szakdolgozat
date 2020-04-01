@@ -22,3 +22,4 @@ select * from partner;
 delete from partner where id = 3;
 select * from user;
 select * from felh_telephely;
+update user set password = sha1('kiscica');

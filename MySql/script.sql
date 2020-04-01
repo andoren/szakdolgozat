@@ -66,3 +66,5 @@ select CONCAT(SUBSTRING_INDEX("B-SZ/R/3-1-2/2020",'/',3),"-",1,"/",2020);
 select * from ikonyv;
 select * from ikonyvpartnerei;
 select * from felh_telephely;
+select * from ikonyv;
+delete from ikonyv where id = 19;
