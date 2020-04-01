@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using System.Configuration;
 using Iktato;
-using System.Threading;
+
 using System.Windows;
 using Caliburn.Micro;
 using IktatogRPCClient.Models.Managers.Helpers.Client;
 using Google.Protobuf;
 using Serilog;
+using System.Timers;
 
 namespace IktatogRPCClient.Models.Managers
 {
@@ -62,9 +63,8 @@ namespace IktatogRPCClient.Models.Managers
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new SslCredentials(servercert);
             //Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
-            channel = new Channel(csatinfo, creds); 
+            channel = new Channel(csatinfo, creds, new[] { new ChannelOption("grpc.keepalive_permit_without_calls", 1) }); 
         }
-
 
         private IktatoService.IktatoServiceClient Client()
         {
