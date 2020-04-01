@@ -9,7 +9,7 @@
    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition MinHeight="40" MaxHeight="100"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -19,43 +19,50 @@
             <ColumnDefinition  Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="15,15,15,0" FontSize="40" Foreground="#FF036A9A">
+        <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="15,15,15,0">
+            <TextBlock   Foreground="#FF036A9A">
             Üdvözöllek !
-        </TextBlock>
+            </TextBlock>
+        </Viewbox>
+     
         <StackPanel Grid.Column="1" Grid.Row="1" x:Name="SubSentencePanel" >
-            <TextBlock HorizontalAlignment="Center" Margin="15,0,15,10" FontSize="20" Foreground="#FF036A9A">Célunk az egyszerű iktatás a számotokra!</TextBlock>
+           
             <Line Stroke="#FF036A9A" Fill="#FF036A9A" Margin="15,0" StrokeThickness="2" X1="0" X2="{Binding ElementName=SubSentencePanel, Path=ActualWidth}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  ></Line>
         </StackPanel>
         <Grid  Margin="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.1*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="1" Source="/IktatogRPCClient;component/Resources/Lutherrose.png"  />
-            <StackPanel Grid.Column="2">
-                <TextBlock TextAlignment ="Center"  Margin="5 20 5 5" FontSize="40" x:Name="IgeTitleWithDate">Napi ige(2020.04.10):</TextBlock>
-                <TextBox Margin="5"  IsReadOnly="True" AcceptsReturn="True" FontSize="30" x:Name="NapiIge" TextWrapping="Wrap" Background="Transparent" BorderBrush="Transparent" >
+            <Image Margin="20 0 0 0" Grid.Column="0" Grid.ColumnSpan="2" Source="/IktatogRPCClient;component/Resources/Lutherrose.png"  />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Margin="5 20 ">
+                    <TextBlock TextAlignment ="Center"    x:Name="IgeTitleWithDate">Napi ige(2020.04.10):</TextBlock>
+                </Viewbox>
+                <TextBox Margin="5"  Grid.Row="1" VerticalAlignment="Top"  IsReadOnly="True" AcceptsReturn="True" FontSize="30" x:Name="NapiIge" TextWrapping="Wrap" Background="Transparent" BorderBrush="Transparent" >
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
-                            <Setter Property="FontSize" Value="14"></Setter>
-                            <Setter Property="FontFamily" Value="Verdana, Geneva, sans-serif"></Setter>
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type TextBox}">
-                                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ControlTemplate  TargetType="{x:Type TextBox}">
+                                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" SnapsToDevicePixels="True">
                                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsEnabled" Value="False">
-                                                
+
                                             </Trigger>
                                             <Trigger Property="IsMouseOver" Value="True">
 
                                             </Trigger>
                                             <Trigger Property="IsKeyboardFocused" Value="True">
-                                           
+
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -64,104 +71,10 @@
                         </Style>
                     </TextBox.Style>
                 </TextBox>
-            </StackPanel>
-            
+            </Grid>
         </Grid>
         
-        <!--
-        <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Margin="5">
-                <Grid.Effect>
-                    <DropShadowEffect/>
-                </Grid.Effect>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid Background="#FF036A9A">
-                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
-                </Grid>
-                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
-                <Grid Grid.Row="2" Background="#FFE0E0E0">
-                    <StackPanel Margin="5">
-                        <TextBlock>Látogasd meg:</TextBlock>
-                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
-                    </StackPanel>
-
-                </Grid>
-            </Grid>
-            <Grid Grid.Column="1" Margin="5">
-                <Grid.Effect>
-                    <DropShadowEffect/>
-                </Grid.Effect>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid Background="#FF036A9A">
-                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
-                </Grid>
-                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
-                <Grid Grid.Row="2" Background="#FFE0E0E0">
-                    <StackPanel Margin="5">
-                        <TextBlock>Látogasd meg:</TextBlock>
-                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
-                    </StackPanel>
-
-                </Grid>
-            </Grid>
-            <Grid Grid.Column="2" Margin="5">
-                <Grid.Effect>
-                    <DropShadowEffect/>
-                </Grid.Effect>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid Background="#FF036A9A">
-                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
-                </Grid>
-                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
-                <Grid Grid.Row="2" Background="#FFE0E0E0">
-                    <StackPanel Margin="5">
-                        <TextBlock>Látogasd meg:</TextBlock>
-                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
-                    </StackPanel>
-
-                </Grid>
-            </Grid>
-            <Grid Grid.Column="3" Margin="5">
-                <Grid.Effect>
-                    <DropShadowEffect/>
-                </Grid.Effect>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid Background="#FF036A9A">
-                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">Weboldal</TextBlock>
-                </Grid>
-                <Grid Background="AliceBlue" Grid.Row="1"></Grid>
-                <Grid Grid.Row="2" Background="#FFE0E0E0">
-                    <StackPanel Margin="5">
-                        <TextBlock>Látogasd meg:</TextBlock>
-                        <TextBlock FontSize="12" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras venenatis, nisi feugiat commodo scelerisque, turpis dolor sagittis sapien, at pulvinar arcu nibh ac nulla. Proin malesuada in augue vel sodales. Quisque eu sapien at augue rhoncus faucibus vel ac purus. Nunc dui nunc, tincidunt ut justo nec, tempus egestas velit. Suspendisse potenti. Cras vulputate ullamcorper turpis, at faucibus enim. Fusce convallis eget elit ut tempus.</TextBlock>
-                    </StackPanel>
-
-                </Grid>
-            </Grid>
-        </Grid>
-        -->
+  
     </Grid>
    
 </UserControl>

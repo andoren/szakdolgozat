@@ -8,25 +8,37 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class FooldalViewModel:Screen
+    class FooldalViewModel : Screen
     {
         public FooldalViewModel()
         {
-            NapiIge = new Ige();
+            Ige = new Ige();
         }
-        private Ige _napiIge;
+        private Ige _ige;
 
-        public Ige NapiIge
+        public Ige Ige
         {
-            get { 
-                return _napiIge;
+            get
+            {
+                return _ige;
             }
-            set { 
-                _napiIge = value;
+            set
+            {
+                _ige = value;
             }
         }
-        public string IgeTitleWithDate { get {
-                return NapiIge.IgeTitleWithDate;    
+        public string IgeTitleWithDate
+        {
+            get
+            {
+                return Ige.IgeTitleWithDate;
+            }
+        }
+        public string NapiIge
+        {
+            get
+            {
+                return Ige.NapiIge;
             }
         }
 

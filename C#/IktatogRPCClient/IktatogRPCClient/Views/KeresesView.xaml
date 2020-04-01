@@ -5,9 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IktatogRPCClient.Views"
              mc:Ignorable="d" 
-             FontSize="20"
-             FontFamily="Roboto"
-           
              xmlns:cal="http://www.caliburnproject.org"
              d:DesignHeight="600" d:DesignWidth="1500" Height="auto">
 

@@ -10,8 +10,8 @@
         FontFamily="Arial"
         FontSize="18"
         WindowStyle="SingleBorderWindow" 
-        Height= "{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.8' }" 
-        Width= "{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={tools:RatioConverter}, ConverterParameter='0.8' }" 
+        Height= "{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.9' }" 
+        Width= "{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={tools:RatioConverter}, ConverterParameter='0.9' }" 
         Title="Iktatás"   Background="#FFf6f9fc"  WindowStartupLocation="CenterScreen" Icon="/IktatogRPCClient;component/icon.ico" >
     <Window.Effect>
         <DropShadowEffect RenderingBias="Quality"/>
