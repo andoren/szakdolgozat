@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using IktatogRPCClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,23 @@ namespace IktatogRPCClient.ViewModels
     {
         public FooldalViewModel()
         {
-
+            NapiIge = new Ige();
         }
+        private Ige _napiIge;
+
+        public Ige NapiIge
+        {
+            get { 
+                return _napiIge;
+            }
+            set { 
+                _napiIge = value;
+            }
+        }
+        public string IgeTitleWithDate { get {
+                return NapiIge.IgeTitleWithDate;    
+            }
+        }
+
     }
 }

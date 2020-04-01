@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Ige.cs" />
     <Compile Include="Models\IkonyvHandlerModel.cs" />
     <Compile Include="Models\DocumentHandlerClosed.cs" />
     <Compile Include="Models\InformationBox.cs" />
