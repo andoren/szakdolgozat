@@ -1,14 +1,19 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IktatogRPCClient.Models
 {
-    class Ige
+    class Ige:PropertyChangedBase
     {
-
+		public Ige()
+		{
+			
+		}
 
 		public string IgeTitleWithDate
 		{
@@ -20,8 +25,9 @@ namespace IktatogRPCClient.Models
 		public string NapiIge
 		{
 			get { return _napiIge; }
-			set { _napiIge = value; }
+			set { _napiIge = value;			
+			}
 		}
-
+	
 	}
 }

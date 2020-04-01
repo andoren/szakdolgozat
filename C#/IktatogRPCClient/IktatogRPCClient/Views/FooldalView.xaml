@@ -25,7 +25,7 @@
             </TextBlock>
         </Viewbox>
      
-        <StackPanel Grid.Column="1" Grid.Row="1" x:Name="SubSentencePanel" >
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0 0 0 20" x:Name="SubSentencePanel" >
            
             <Line Stroke="#FF036A9A" Fill="#FF036A9A" Margin="15,0" StrokeThickness="2" X1="0" X2="{Binding ElementName=SubSentencePanel, Path=ActualWidth}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  ></Line>
         </StackPanel>
@@ -45,7 +45,7 @@
                 <Viewbox Margin="5 20 ">
                     <TextBlock TextAlignment ="Center"    x:Name="IgeTitleWithDate">Napi ige(2020.04.10):</TextBlock>
                 </Viewbox>
-                <TextBox Margin="5"  Grid.Row="1" VerticalAlignment="Top"  IsReadOnly="True" AcceptsReturn="True" FontSize="30" x:Name="NapiIge" TextWrapping="Wrap" Background="Transparent" BorderBrush="Transparent" >
+                <TextBox Margin="5"   Grid.Row="1" VerticalAlignment="Top"  IsReadOnly="True" AcceptsReturn="True" FontSize="30" x:Name="NapiIge" TextWrapping="Wrap" Background="Transparent" BorderBrush="Transparent" >
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
                             <Setter Property="Template">
