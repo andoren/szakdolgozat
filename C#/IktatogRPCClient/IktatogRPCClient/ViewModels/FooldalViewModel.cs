@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
@@ -13,27 +14,17 @@ namespace IktatogRPCClient.ViewModels
     {
         public FooldalViewModel()
         {
-            Ige = new Ige();
-            DownloadIge();
+            
+            if(_ige.LetoltottIgeDatuma < DateTime.Today.Date)DownloadIge();
         }
-        private Ige _ige;
+        private static Ige _ige = new Ige();
 
-        public Ige Ige
-        {
-            get
-            {
-                return _ige;
-            }
-            set
-            {
-                _ige = value;
-            }
-        }
+       
         public string IgeTitleWithDate
         {
             get
             {
-                return Ige.IgeTitleWithDate;
+                return _ige.IgeTitleWithDate;
             }
         }
         
@@ -41,7 +32,7 @@ namespace IktatogRPCClient.ViewModels
         {
             get
             {
-                return Ige.NapiIge;
+                return _ige.NapiIge;
             }
         }
         private async void DownloadIge()
@@ -54,7 +45,8 @@ namespace IktatogRPCClient.ViewModels
                     client.Encoding = Encoding.UTF8;
                     result = await client.DownloadStringTaskAsync("https://napiige.lutheran.hu/igek.php");
                 }
-                Ige.NapiIge = result;
+                _ige.NapiIge = BuildDailyIge(result);
+                _ige.LetoltottIgeDatuma = DateTime.Today.Date;
                 NotifyOfPropertyChange(()=>NapiIge);
             }
             catch (WebException e)
@@ -62,6 +54,26 @@ namespace IktatogRPCClient.ViewModels
                 InformationBox.ShowError(e);
             }
         }
-
+        private string BuildDailyIge(string rawstring) {
+            StringBuilder stringBuilder = new StringBuilder();
+            Regex rxText = new Regex(@"<\s*p[^>]*>(.*?)\s*\(",RegexOptions.Multiline);
+            Regex rxFrom = new Regex(@"<a [^>]+>(.*?)<\/a>", RegexOptions.Multiline);
+            MatchCollection TextMatches = rxText.Matches(rawstring);
+            MatchCollection FromMatches = rxFrom.Matches(rawstring);
+            string firstText = TextMatches[0].Value.Replace("<p>","");
+            string secondText = TextMatches[1].Value.Replace("<p>", "");
+            string firstFromText = FromMatches[0].Value.Substring(FromMatches[0].Value.IndexOf(">")+1).Replace("</a>", "");
+            string secondFromText = FromMatches[1].Value.Substring(FromMatches[1].Value.IndexOf(">") + 1).Replace("</a>", "");
+            return
+                stringBuilder
+                .Append(firstText)
+                .Append(firstFromText)
+                .Append(")")
+                .Append("\n\n")
+                .Append(secondText)
+                .Append(secondFromText)
+                .Append(")")
+                .ToString();
+        }
     }
 }
