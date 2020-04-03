@@ -413,7 +413,7 @@ namespace IktatogRPCClient.ViewModels
             else if (string.IsNullOrWhiteSpace(Targy)) IsValid = false;
             else if (Targy.Length > 250) IsValid = false;
             else if (DateTime.Parse(HatidoDatum) < DateTime.Parse(ErkezettDatum)) IsValid = false;
-            else if (ValaszIsChecked && SelectedIkonyv == null) IsValid = false;
+            else if (ValaszIsChecked && SelectedIktSzam == null) IsValid = false;
             else if (Szoveg.Length > 500) IsValid = false;
             else if (Hivatkozasiszam.Length > 200) IsValid = false;
             return IsValid;

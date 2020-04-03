@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Grpc.Core;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -20,6 +21,7 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             .MinimumLevel.ControlledBy(serverLevelSwitch)
            .WriteTo.File(LogPath, shared: true, rollingInterval: RollingInterval.Day)    
            .CreateLogger();
+        
         }
         public static void SetLoglevel(LogEventLevel level) {
             serverLevelSwitch.MinimumLevel = level;

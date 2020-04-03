@@ -28,6 +28,7 @@ namespace IktatogRPCServer
 
         LadingPage ladingPage = new LadingPage(); 
         Server server;
+        
         int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
         string Ip = ConfigurationManager.AppSettings["APPHOST"];
         private static LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
@@ -48,7 +49,7 @@ namespace IktatogRPCServer
             serverLevelSwitch.MinimumLevel = level;
         }
         private void StartLogger()
-        {
+        {            
             serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
             if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
@@ -65,26 +66,24 @@ namespace IktatogRPCServer
                 var servercert = File.ReadAllText("certs/server.crt");
                 Log.Debug("Mainwindow.StartServer: Ssl key bolvasása.");
                 var serverkey = File.ReadAllText("certs/server.key");
-
                 KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
-                SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });
-                
+                SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });               
                 Log.Debug("Mainwindow.StartServer: Server Binding port es cím");
-                server = new Server()
+                server = new Server(new[] { 
+                    new ChannelOption("grpc.keepalive_permit_without_calls", 1),
+                    new ChannelOption("grpc.http2.max_pings_without_data",0),
+                    new ChannelOption("grpc.keepalive_timeout_ms",50),
+                    new ChannelOption("grpc.keepalive_time_ms",360000)
+                })
                 {
                     Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
                     Ports = { new ServerPort("0.0.0.0", Port, credentials) }
-
-                    //Ports = { new ServerPort(Ip, Port, ServerCredentials.Insecure) }
-                     
+                    //Ports = { new ServerPort("0.0.0.0", Port, ServerCredentials.Insecure) }
                 };
-                Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
-                server.Start();
-                
-                
+                Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);               
+                server.Start();        
                 StartServerButton.IsEnabled = false;
                 StopServerButton.IsEnabled = true;
-
             }
             catch (Exception ex)
             {

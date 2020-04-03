@@ -6,9 +6,16 @@ https://grpc.io/docs/guides/auth/
 https://caliburnmicro.com/
 https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v=pandp.10)?redirectedfrom=MSDN
 https://www.wintellect.com/model-view-viewmodel-mvvm-explained/
-https://hu.wikipedia.org/wiki/Modell-n%C3%A9zet-n%C3%A9zetmodell
+https://hu.wikipedia.org/wiki/Modell-n%C3%A9zet-n%C3%A9zetmodell // WIkit ne irjuk bele.
 https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm
+
 //GRPC
 https://blog.container-solutions.com/introduction-to-grpc
 https://grpc.io/docs/
 https://grpc.io/docs/talks/
+
+Keepalivene szakadjon meg a szerverrel a  kapcsolat. klien and server
+https://github.com/grpc/grpc/blob/master/doc/keepalive.md
+https://grpc.github.io/grpc/csharp/api/Grpc.Core.Server.html
+https://github.com/grpc/grpc/issues/16038
+

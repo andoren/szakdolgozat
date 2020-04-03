@@ -17,11 +17,12 @@ using System.Timers;
 
 namespace IktatogRPCClient.Models.Managers
 {
-    class ServerHelperSingleton
+    class ServerHelperSingleton:IDisposable
     {
+        
         private ServerHelperSingleton()
         {
-
+            
         }
         #region Singleton props and methods
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
@@ -42,11 +43,17 @@ namespace IktatogRPCClient.Models.Managers
                     userHelper = UserHelperSingleton.GetInstance();
                     CreateNewChannel();
                 }
-                else {
-                    if (channel.State == ChannelState.TransientFailure || channel.State == ChannelState.Shutdown) {
-                        CreateNewChannel();
-                    }
-                }
+                //else {
+                //    try
+                //    {
+                //        channel.ConnectAsync().Wait();
+
+                //    }
+                //    catch (Exception e) {
+                //        InformationBox.ShowError(e);
+                //        CreateNewChannel();
+                //    }
+                //}
             }
             return channel;
         }
@@ -56,12 +63,16 @@ namespace IktatogRPCClient.Models.Managers
             string csatinfo = $"{hostname}:{hostport}";
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new SslCredentials(servercert);
-            //Channel channel = new Channel(csatinfo, ChannelCredentials.Insecure);
-            channel = new Channel(csatinfo, creds, new[] { new ChannelOption("grpc.keepalive_permit_without_calls", 1) }); 
+            //channel = new Channel(csatinfo, ChannelCredentials.Insecure);       
+            channel = new Channel(csatinfo, creds, new[] {
+                    new ChannelOption("grpc.keepalive_permit_without_calls", 1),
+                    new ChannelOption("grpc.http2.max_pings_without_data",0),
+                    new ChannelOption("grpc.keepalive_timeout_ms",50),
+                    new ChannelOption("grpc.keepalive_time_ms",360000)
+                });
         }
         private IktatoService.IktatoServiceClient Client()
-        {
-            
+        {           
             Log.Debug("{Class} Csatlakozás inicializációja", GetType());
             IktatoService.IktatoServiceClient client = new IktatoService.IktatoServiceClient(GetChannel());   
             Log.Debug("{Class} Calloption beállítása.", GetType());
@@ -72,6 +83,10 @@ namespace IktatogRPCClient.Models.Managers
              {
                  new Metadata.Entry("Authorization", userHelper.Token.Token)
              });
+        }
+        public void Dispose()
+        {
+            channel.ShutdownAsync().Wait();
         }
         #endregion
         #region Getters
@@ -126,10 +141,10 @@ namespace IktatogRPCClient.Models.Managers
             try
             {
                 using (var stream = Client().GetPartnerUgyintezoByPartner(selectedPartner, GetCallOption())) { 
-                while (await stream.ResponseStream.MoveNext())
-                {
-                    ugyintezok.Add(stream.ResponseStream.Current);
-                }
+                    while (await stream.ResponseStream.MoveNext())
+                    {
+                        ugyintezok.Add(stream.ResponseStream.Current);
+                    }
                 }
             }
             catch (RpcException ex)
@@ -1159,6 +1174,6 @@ namespace IktatogRPCClient.Models.Managers
 
 
 
- 
+
     }
 } 

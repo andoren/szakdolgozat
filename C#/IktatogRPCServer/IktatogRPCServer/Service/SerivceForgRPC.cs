@@ -127,7 +127,7 @@ namespace IktatogRPCServer.Service
             {
                 Csoport csoport = new Csoport() { Name = request.Name, Shortname = request.Shorname };
                 MysqlDatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                return Task.FromResult(manager.Add(request, user)); 
             }
             return Task.FromResult(new Csoport());
         }
