@@ -9,6 +9,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              FontFamily="Roboto" 
              MinHeight="650" d:DesignWidth="1100">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -73,7 +74,7 @@
                 <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Hivatkozásiszám:</TextBlock>
                 <TextBox x:Name="Hivatkozasiszam" Height="40" FontSize="22" Style="{StaticResource loginTextBox}" VerticalAlignment="Center" Margin="5 5 10 5" ></TextBox>
                 <StackPanel Margin="5 0 0 5" Orientation="Horizontal">
-                    <TextBlock Margin="5 0"  VerticalAlignment="Center">Válasz?</TextBlock>
+                    <TextBlock Margin="5 0 10 0"  VerticalAlignment="Center">Előzményezés</TextBlock>
                     <CheckBox  x:Name="ValaszIsChecked" VerticalAlignment="Center" ></CheckBox>
                 </StackPanel>
                 <ComboBox  
@@ -90,7 +91,7 @@
                 <TextBlock Margin="5" Style="{StaticResource TextBlockForIktatas}">Határidő:*</TextBlock>
                 <DatePicker Background="White" x:Name="HatidoDatum" VerticalContentAlignment="Center" Height="40"  
                             BorderThickness="1" BorderBrush="#FF036A9A"  Margin="5 0 10 0" ></DatePicker>
-                <Button x:Name="IktatButton" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="{Binding ElementName=ButtonContainer, Path=ActualWidth}"  Margin="7 10 10 5"  Style="{StaticResource DefaultButtonStyle}"   >Iktatás</Button>
+                    <Button x:Name="IktatButton" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="{Binding ElementName=HatidoDatum, Path=ActualWidth}"  Margin="5 10 10 10 "  Style="{StaticResource DefaultButtonStyle}"   >Iktatás</Button>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="5 -30 5 5" Grid.ColumnSpan="3" >
                 <Grid>
@@ -167,4 +168,5 @@
         </DataGrid>
         <local:LoadingSpinnerView x:Name="LoaderIsVisible" Grid.RowSpan="3"></local:LoadingSpinnerView>
     </Grid>
+</ScrollViewer>
 </UserControl>

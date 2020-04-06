@@ -460,14 +460,16 @@ namespace IktatogRPCClient.ViewModels
 
 		public override void Handle(Ikonyv message)
 		{
-				int index = AllIkonyv.IndexOf(SelectedIkonyv);
-			if (index == -1) return;
+				int indexForAll = AllIkonyv.IndexOf(SelectedIkonyv);
+				int indexForSearched = SearchedIkonyvek.IndexOf(SelectedIkonyv);
+				int indexForShown = ShownIkonyvek.IndexOf(SelectedIkonyv);
+				if (indexForAll == -1 || indexForSearched == -1 || indexForShown == -1) return;
 				AllIkonyv.Remove(SelectedIkonyv) ;
 				SearchedIkonyvek.Remove(SelectedIkonyv);
 				ShownIkonyvek.Remove(SelectedIkonyv);	
-				SearchedIkonyvek.Insert(index,message);
-				ShownIkonyvek.Insert(index, message);
-				AllIkonyv.Insert(index, message);
+				SearchedIkonyvek.Insert(indexForSearched, message);
+				ShownIkonyvek.Insert(indexForShown, message);
+				AllIkonyv.Insert(indexForAll, message);
 				NotifyOfPropertyChange(() => SearchedIkonyvek);
 				NotifyOfPropertyChange(() => ShownIkonyvek);
 			
