@@ -37,6 +37,7 @@ namespace IktatogRPCClient.Models
                     MessageBox.Show($"Hiba: {e.StatusCode} \n\nHiba üzenet: {e.Status.Detail}","Hiba az adatfelvitele során.",MessageBoxButton.OK,MessageBoxImage.Error);
                     break;
                 case StatusCode.PermissionDenied:
+                    MessageBox.Show($"Hiba: {e.StatusCode} \n\nHiba üzenet: {e.Status.Detail}","Authentikációs hiba.", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case StatusCode.Unauthenticated:
                     MessageBox.Show($"Hibás felhasználónév vagy jelszó! Kérem próbálja újra.", "Hibás adatok.", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -13,7 +13,7 @@ https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-an
 https://blog.container-solutions.com/introduction-to-grpc
 https://grpc.io/docs/
 https://grpc.io/docs/talks/
-
+https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/error-handling
 Keepalivene szakadjon meg a szerverrel a  kapcsolat. klien and server
 https://github.com/grpc/grpc/blob/master/doc/keepalive.md
 https://grpc.github.io/grpc/csharp/api/Grpc.Core.Server.html

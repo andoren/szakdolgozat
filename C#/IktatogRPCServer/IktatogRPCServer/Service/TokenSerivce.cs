@@ -26,9 +26,13 @@ namespace IktatogRPCServer.Service
                 //throw new Exception("Ez egy exception a grpcn keresztül.");
                 return true;
             }
+            catch (TokenExpiredException ex2) {
+                Log.Warning("TokenService.IsValidtoken: Lejárt token. Kliens értesítése.");
+                return false;
+            }
             catch (SignatureVerificationException ex)
             {
-                Log.Error("TokenService.IsValidtoken: Nem tudtam kiszedni az adatokat a tokenből. {Message}",ex);
+                Log.Error("TokenService.IsValidtoken: Nem tudtam kiszedni az adatokat a tokenből. {Message}", ex);
                 return false;
             }
             catch (Exception e) {
