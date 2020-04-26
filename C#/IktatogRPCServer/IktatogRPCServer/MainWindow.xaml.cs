@@ -43,7 +43,7 @@ namespace IktatogRPCServer
             StartLogger();
             StartServer();
         }
-        public  void ChangeLogLevel(LogEventLevel level) {
+        public void ChangeLogLevel(LogEventLevel level) {
             serverLevelSwitch.MinimumLevel = level;
         }
         private void StartLogger()
@@ -60,13 +60,7 @@ namespace IktatogRPCServer
         {
             try
             {
-                Log.Debug("Mainwindow.StartServer: Ssl cert bolvasása.");
-                var servercert = File.ReadAllText("certs/server.crt");
-                Log.Debug("Mainwindow.StartServer: Ssl key bolvasása.");
-                var serverkey = File.ReadAllText("certs/server.key");
-                KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
-                SslServerCredentials credentials = new SslServerCredentials(new[] { keyCertificatePair });               
-                Log.Debug("Mainwindow.StartServer: Server Binding port es cím");
+                SslServerCredentials credentials = CreateCredentials();              
                 server = new Server(new[] { 
                     new ChannelOption("grpc.keepalive_permit_without_calls", 1),
                     new ChannelOption("grpc.http2.max_pings_without_data",0),
@@ -75,11 +69,10 @@ namespace IktatogRPCServer
                 })
                 {
                     Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
-                    Ports = { new ServerPort("0.0.0.0", Port, credentials) }
-                    //Ports = { new ServerPort("0.0.0.0", Port, ServerCredentials.Insecure) }
-                };
-                Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);               
-                server.Start();        
+                    Ports = { new ServerPort("0.0.0.0", Port, credentials) }     
+                };   
+                server.Start();
+                Log.Information("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
                 StartServerButton.IsEnabled = false;
                 StopServerButton.IsEnabled = true;
             }
@@ -90,8 +83,18 @@ namespace IktatogRPCServer
             Log.Information("A szerver elindult ");
 
         }
-
-  
+        private SslServerCredentials CreateCredentials() {   
+            SslServerCredentials credentials = new SslServerCredentials(new[] { CreateCertPair() });
+            return credentials;
+        }
+        private KeyCertificatePair CreateCertPair() {
+            Log.Debug("Mainwindow.StartServer: Ssl cert bolvasása.");
+            var servercert = File.ReadAllText("certs/server.crt");
+            Log.Debug("Mainwindow.StartServer: Ssl key bolvasása.");
+            var serverkey = File.ReadAllText("certs/server.key");
+            KeyCertificatePair keyCertificatePair = new KeyCertificatePair(servercert, serverkey);
+            return keyCertificatePair;
+        }
         private void StopServerAndQuit_Click(object sender, RoutedEventArgs e)
         {
             if (server != null) {

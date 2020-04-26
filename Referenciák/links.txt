@@ -19,3 +19,5 @@ https://github.com/grpc/grpc/blob/master/doc/keepalive.md
 https://grpc.github.io/grpc/csharp/api/Grpc.Core.Server.html
 https://github.com/grpc/grpc/issues/16038
 
+ÁBRÁK
+https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=BlockDiagram/Hierarchy&gallery=/repository/ebca847d-88ef-4bcc-81ab-4198c77e63d2.xml&name=Architecture%20Layout

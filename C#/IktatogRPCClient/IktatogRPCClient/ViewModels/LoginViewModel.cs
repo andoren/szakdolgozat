@@ -68,7 +68,7 @@ namespace IktatogRPCClient.ViewModels
         }
         private void CheckPassword() {
             if (string.IsNullOrWhiteSpace(PasswordBox)) throw new InvalidPasswordException("Hibás jelszó");
-            else if (PasswordBox.Length < 3 || PasswordBox.Length > 20) throw new InvalidPasswordException("Hibás jelszó");
+            else if (PasswordBox.Length < 5 || PasswordBox.Length > 16) throw new InvalidPasswordException("Hibás jelszó");
             
         }
         public async void LoginButton() {
@@ -77,6 +77,7 @@ namespace IktatogRPCClient.ViewModels
                 LoaderIsVisible = true;
                 if (await ConnectToServerAndLogin())
                 {
+                    PasswordBox = string.Empty;
                     var manager = new WindowManager();
                     manager.ShowWindow(new ContainerViewModel(), null, null);
                     TryClose();

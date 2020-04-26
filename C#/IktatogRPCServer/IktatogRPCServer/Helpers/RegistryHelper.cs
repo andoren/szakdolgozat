@@ -24,13 +24,24 @@ namespace IktatogRPCServer
         }
         public static LogEventLevel GetLogLevelToShow() {
             int rawlevel = 3;
-            int.TryParse(Registry.GetValue(keyName, "LogToShow", "3").ToString(),out rawlevel);
+            if (int.TryParse(Registry.GetValue(keyName, "LogToShow", "3").ToString(), out rawlevel))
+            {
+                if (rawlevel < 0 || rawlevel > 5)
+                {
+                    rawlevel = 3;
+                }
+            }   
             return (LogEventLevel)rawlevel ; 
         }
 
         public static LogEventLevel GetLogLevel() {   
-            int rawlevel = 3;
-            int.TryParse(Registry.GetValue(keyName, "LogLevel", "3").ToString(), out rawlevel);
+            int rawlevel=3;
+            if (int.TryParse(Registry.GetValue(keyName, "LogLevel", "3").ToString(), out rawlevel)) {
+                if (rawlevel < 0 || rawlevel > 5)
+                {
+                    rawlevel = 3;
+                }
+            }
             return (LogEventLevel)rawlevel;
             
         }

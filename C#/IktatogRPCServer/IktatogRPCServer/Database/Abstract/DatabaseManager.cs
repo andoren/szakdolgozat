@@ -16,17 +16,12 @@ namespace IktatogRPCServer.Database.Abstract
         {
             this.connectionManager = connectionManager;
         }
-
-
         abstract public void OpenConnection(object connection);
         abstract public void CloseConnection(object connection);
         abstract public T Add(NewTorzsData newObject, User user);
         virtual public T Add(T newObject, User user) { return new T(); }
         abstract public Answer Update(T modifiedObject);
         abstract public Answer Delete(int id,User user);
-
-        //abstract public List<T> GetAllData();
         abstract public List<T> GetAllData(object filter);
-        //abstract public T GetDataById(int id);
     }
 }

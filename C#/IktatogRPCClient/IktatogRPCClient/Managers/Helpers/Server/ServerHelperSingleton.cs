@@ -43,17 +43,6 @@ namespace IktatogRPCClient.Models.Managers
                     userHelper = UserHelperSingleton.GetInstance();
                     CreateNewChannel();
                 }
-                //else {
-                //    try
-                //    {
-                //        channel.ConnectAsync().Wait();
-
-                //    }
-                //    catch (Exception e) {
-                //        InformationBox.ShowError(e);
-                //        CreateNewChannel();
-                //    }
-                //}
             }
             return channel;
         }
@@ -63,7 +52,7 @@ namespace IktatogRPCClient.Models.Managers
             string csatinfo = $"{hostname}:{hostport}";
             var servercert = File.ReadAllText("cert/server.crt");
             SslCredentials creds = new SslCredentials(servercert);
-            //channel = new Channel(csatinfo, ChannelCredentials.Insecure);       
+    
             channel = new Channel(csatinfo, creds, new[] {
                     new ChannelOption("grpc.keepalive_permit_without_calls", 1),
                     new ChannelOption("grpc.http2.max_pings_without_data",0),

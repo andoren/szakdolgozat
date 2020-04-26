@@ -720,13 +720,7 @@ namespace IktatogRPCServer.Service
             {
                 Log.Debug("CheckUserIsValid: Token kiolvasása a headerből.");
                 AuthToken authToken = new AuthToken() { Token = header[0].Value.ToString() };
-                Log.Debug("CheckUserIsValid: Sikeres kiolvasás");
-                if (TokenIsUsed(authToken))
-                {
-                    Log.Debug("CheckUserIsValid: A tokennel nem rég jelentkeztek ki.");
-                    user = new User();
-                    success = false;
-                }
+                Log.Debug("CheckUserIsValid: Sikeres kiolvasás");    
                 Log.Debug("CheckUserIsValid: Token validálás megkezdése.");
                 success = TokenManager.IsValidToken(authToken, out user);
                 Log.Debug("CheckUserIsValid: A token: {Success}", success);
@@ -740,14 +734,6 @@ namespace IktatogRPCServer.Service
 
             return success;
         }
-        private bool TokenIsUsed(AuthToken token)
-        {
-            lock (InvalidTokens)
-            {
-                bool used = true;
 
-                return used;
-            }
-        }
     }
 }
