@@ -34,16 +34,9 @@ namespace IktatogRPCClient.ViewModels
         }
         public void CloseScreen(Screen screen, bool? result) {
             Log.Debug("{Class} View bezárása.", GetType());
-            ChildResult = result;
             DeactivateItem(screen,(bool)result);
             Application.Current.Resources["GridVisibility"] = Visibility.Hidden;
-            TryClose(ChildResult);
+            TryClose();
         }
-
- 
-        public bool? ChildResult { get; set; }
-
-
-       
     }
 }

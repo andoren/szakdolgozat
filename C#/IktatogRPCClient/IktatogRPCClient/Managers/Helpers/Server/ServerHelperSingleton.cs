@@ -319,6 +319,7 @@ namespace IktatogRPCClient.Models.Managers
                 if (answer.Error == false)
                 {
                     success = true;
+                    await GetChannel().ShutdownAsync();
                 }
                 else
                 {

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IktatogRPCClient.ViewModels
 {
@@ -84,37 +85,47 @@ namespace IktatogRPCClient.ViewModels
 
 		public object Logger { get; private set; }
 
-		public async Task DownloadDocument() {
-		
-			LoaderIsVisible = true;
-			Log.Debug("{Class} Adatok letöltése a szerverről. Document: {SelectedDocument}", GetType(), SelectedDocument);
-			Document rawdata = await serverHelper.GetDocumentByIdAsync(SelectedDocument);
-			if (rawdata.Id != -1) {
-				Log.Debug("{Class} Sikeres letöltés", GetType(), SelectedDocument);
+		public async void DownloadDocument() {
+			try
+			{
+				LoaderIsVisible = true;
+				Log.Debug("{Class} Adatok letöltése a szerverről. Document: {SelectedDocument}", GetType(), SelectedDocument);
+				Document rawdata = await serverHelper.GetDocumentByIdAsync(SelectedDocument);
+				if (rawdata.Id != -1)
+				{
+					Log.Debug("{Class} Sikeres letöltés", GetType(), SelectedDocument);
+					byte[] bytes = rawdata.Doc.ToByteArray();
+					string temppath = Path.GetTempPath();
+					string fullpath = $"{temppath}{rawdata.Name}.{rawdata.Type}";
+					Log.Debug("{Class} Adatok mentése", GetType(), SelectedDocument);
+					if (File.Exists(fullpath))
+					{
+						File.Delete(fullpath);
+						File.WriteAllBytes(fullpath, bytes);
+					}
+					else File.WriteAllBytes(fullpath, bytes);
+					Log.Debug("{Class} Sikeres adatmentés.", GetType(), SelectedDocument);
+					try
+					{
+						Log.Debug("{Class} Letöltött documentum megnyitása.", GetType(), SelectedDocument);
+						Process.Start(fullpath);
+					}
+					catch (Exception e)
+					{
+						InformationBox.ShowError(e);
+					}
+				}
+				else
+				{
+					MessageBox.Show("Hiba a dokumentum letöltése közben.");
+				}
 
-				byte[] bytes = rawdata.Doc.ToByteArray();
-				string temppath = Path.GetTempPath();
-				string fullpath = $"{temppath}{rawdata.Name}.{rawdata.Type}";
-				Log.Debug("{Class} Adatok mentése", GetType(), SelectedDocument);
-				if (File.Exists(fullpath))
-				{
-					File.Delete(fullpath);
-					File.WriteAllBytes(fullpath, bytes);
-				}
-				else File.WriteAllBytes(fullpath, bytes);
-				Log.Debug("{Class} Sikeres adatmentés.", GetType(), SelectedDocument);
-				try
-				{
-					Log.Debug("{Class} Letöltött documentum megnyitása.", GetType(), SelectedDocument);
-					Process.Start(fullpath);
-				}
-				catch (Exception e)
-				{
-					InformationBox.ShowError(e);
-				}
+				LoaderIsVisible = false;
 			}
-			
-			LoaderIsVisible = false;
+			catch (Exception e)
+			{
+				InformationBox.ShowError(e);
+			}
 		}
 		public async Task UploadDocument() {
 			Log.Debug("{Class} Feltöltés gomb megnyomva.", GetType());
@@ -141,6 +152,7 @@ namespace IktatogRPCClient.ViewModels
 			}
 			else {
 				Log.Debug("{Class} Sikertelen feltöltése. ", GetType());
+				MessageBox.Show("Sikertelen feltöltés.");
 			}
 			LoaderIsVisible = false;
 		}

@@ -24,7 +24,7 @@ namespace IktatogRPCClient.ViewModels
             get { return _currentUSer; }
             set { _currentUSer = value; }
         }
-
+        
         public bool LoaderIsVisible
         {
             get { return _loaderIsVisible; }

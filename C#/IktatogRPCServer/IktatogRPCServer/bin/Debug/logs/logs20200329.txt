@@ -1,1 +1,0 @@
-2020-03-29 16:53:00.119 +02:00 [WRN] Mainwindow.StartServer: sikeres binding Ip:mpekar55.ddns.net Port: 1991

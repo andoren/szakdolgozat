@@ -38,8 +38,6 @@ namespace IktatogRPCClient.ViewModels
  
             }
             AddScreensToEventAggregator();
-      
-
         }
         EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         private async void GetTelephelyekAsync() {

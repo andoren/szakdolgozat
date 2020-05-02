@@ -245,16 +245,16 @@ namespace IktatogRPCServer.Service
                     if (i + chunkSize > document.Doc.Length)
                     {
                         chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, i + chunkSize - document.Doc.Length));
-                        await responseStream.WriteAsync(chunkDocument);
+                       await responseStream.WriteAsync(chunkDocument);
                     }
                     else
                     {
                         chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, 0));
-                        await responseStream.WriteAsync(chunkDocument);
+                         await responseStream.WriteAsync(chunkDocument);
                     }
                 }
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         private byte[] FromToByteArray(byte[] input, long from, long size)
         {

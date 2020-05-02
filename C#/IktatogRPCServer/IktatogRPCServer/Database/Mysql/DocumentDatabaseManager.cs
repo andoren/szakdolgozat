@@ -16,6 +16,7 @@ namespace IktatogRPCServer.Database.Mysql
     {
         public DocumentDatabaseManager(ConnectionManager connection) : base(connection)
         {
+
         }
 
         public override Answer Delete(int id, User user)
@@ -302,7 +303,7 @@ namespace IktatogRPCServer.Database.Mysql
                 string fullpath = path;
                 if (File.Exists(fullpath))
                 {
-                    Log.Debug("DocumentDatabaseManager.Add: Régi fájl felülírva az ujra {Path}", path);
+                    Log.Warning("DocumentDatabaseManager.Add: Régi fájl felülírva az ujra {Path}", path);
                     File.Delete(fullpath);
                     File.WriteAllBytes(fullpath, bytes);
                 }
@@ -323,7 +324,10 @@ namespace IktatogRPCServer.Database.Mysql
         {
             string path = "";
             path += Directory.GetCurrentDirectory() + "\\Upload\\";
-            path += DateTime.Today.ToShortDateString();
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+            path += DateTime.Now.ToString("yyyyMMddHHmmssffff"); 
             path += Path.GetRandomFileName().Replace(".", "");
             return path;
         }

@@ -247,6 +247,7 @@ namespace IktatogRPCClient.ViewModels
             IkonyvToModify.Ugyintezo = SelectedUgyintezo;
             IkonyvToModify.HasDoc = IkonyvHasDocument;
             IkonyvToModify.Szoveg = Szoveg;
+            IkonyvToModify.Targy = Targy;
             Log.Debug("{Class} Módosítás: {IkonyvToModify}.", GetType(), IkonyvToModify);
             bool success = await serverHelper.ModifyIkonyvAsync(IkonyvToModify);
             if (success) {

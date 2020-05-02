@@ -1,0 +1,40 @@
+﻿using Caliburn.Micro;
+using Iktato;
+using IktatogRPCClient.Models.Managers.Helpers.Client;
+using IktatogRPCClient.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace IktatogRPCClient.Models
+{
+    public abstract class IkonyvHandler:Screen,IHandle<RemovedItem>,IHandle<Ikonyv>
+	{
+		private Ikonyv _selectedIkonyv;
+
+		public Ikonyv SelectedIkonyv
+		{
+			get { return _selectedIkonyv; }
+			set {
+				_selectedIkonyv = value;
+				NotifyOfPropertyChange(()=>SelectedIkonyv);
+			}
+		}
+
+		public abstract void Handle(RemovedItem message);
+
+
+		public abstract void Handle(Ikonyv message);
+	
+		public void ModifyIkonyv() {
+			if (SelectedIkonyv == null) return;
+			WindowManager windowManager = new WindowManager();
+			Screen screen = new PopUpViewModel(new ModifyIkonyvViewModel(_selectedIkonyv));
+			screen.Parent = this;
+			windowManager.ShowDialog(screen);				
+		}
+	}
+}

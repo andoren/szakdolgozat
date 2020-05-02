@@ -19,7 +19,7 @@ using System.Windows.Media;
 
 namespace IktatogRPCClient.ViewModels
 {
-	class KeresesViewModel : IkonyvHandlerModel
+	class KeresesViewModel : IkonyvHandler
 	{
 		public KeresesViewModel()
 		{
@@ -282,16 +282,17 @@ namespace IktatogRPCClient.ViewModels
 					for (int i = (CurrentPage ) * SelectedItemsPerPage; i < SearchedIkonyvek.Count; i++)
 					{
 						ShownIkonyvek.Add(SearchedIkonyvek[i]);
-						NotifyOfPropertyChange(() => ShownIkonyvek);
+						
 					}
 				}
 			else {
 				for (int i = CurrentPage * SelectedItemsPerPage; i < CurrentPage * SelectedItemsPerPage + SelectedItemsPerPage; i++)
 				{
 					ShownIkonyvek.Add(SearchedIkonyvek[i]);
-					NotifyOfPropertyChange(() => ShownIkonyvek);
+					
 				}
-				}
+			}
+			NotifyOfPropertyChange(() => ShownIkonyvek);
 			Log.Debug("{Class} gombok beállítása", GetType());
 			SetButtons();
 			NotifyOfPropertyChange(() => MaxItemNumber);
@@ -305,39 +306,37 @@ namespace IktatogRPCClient.ViewModels
 				ICollectionView cv = CollectionViewSource.GetDefaultView(new BindableCollection<Ikonyv>(AllIkonyv));
 				SearchedIkonyvek.Clear();
 				if (!string.IsNullOrEmpty(SearchText))
-				{
-					
+				{					
 					cv.Filter = o =>
 					{
 						Ikonyv p = o as Ikonyv;
-						if (SelectedSearchParameter == "Tárgy")
-							return (p.Targy.ToUpper().Contains(SearchText.ToUpper()));
-						else if (SelectedSearchParameter == "Partner") 
-							return (p.Partner.Name.ToUpper().Contains(SearchText.ToUpper()));
-						else if (SelectedSearchParameter == "Iktatószám") 
-							return (p.Iktatoszam.ToUpper().Contains(SearchText.ToUpper()));
-						else if (SelectedSearchParameter == "Hivatkozási szám") 
-							return (p.Hivszam.ToUpper().Contains(SearchText.ToUpper()));
-						else if (SelectedSearchParameter == "Jelleg") 
-							return (p.Jelleg.Name.ToUpper().Contains(SearchText.ToUpper()));
-						else if (SelectedSearchParameter == "Csoport") 
-							return (p.Csoport.Name.ToUpper().Contains(SearchText.ToUpper()));
-						else return (p.Ugyintezo.Name.ToUpper().Contains(SearchText.ToUpper()));
-
-					};
-					
+						return IsMatchedIkonyv(p);
+					};					
 				}
 				else
 				{
 					cv.Filter = null;
-				}
-				
+				}				
 				SearchedIkonyvek =  new BindableCollection<Ikonyv>(cv.Cast<Ikonyv>().ToList());
 				cv = CollectionViewSource.GetDefaultView(null);
 				NotifyOfPropertyChange(MaxItemNumber);
 			});
 		}
-
+		private bool IsMatchedIkonyv(Ikonyv p) {
+			if (SelectedSearchParameter == "Tárgy")
+				return (p.Targy.ToUpper().Contains(SearchText.ToUpper()));
+			else if (SelectedSearchParameter == "Partner")
+				return (p.Partner.Name.ToUpper().Contains(SearchText.ToUpper()));
+			else if (SelectedSearchParameter == "Iktatószám")
+				return (p.Iktatoszam.ToUpper().Contains(SearchText.ToUpper()));
+			else if (SelectedSearchParameter == "Hivatkozási szám")
+				return (p.Hivszam.ToUpper().Contains(SearchText.ToUpper()));
+			else if (SelectedSearchParameter == "Jelleg")
+				return (p.Jelleg.Name.ToUpper().Contains(SearchText.ToUpper()));
+			else if (SelectedSearchParameter == "Csoport")
+				return (p.Csoport.Name.ToUpper().Contains(SearchText.ToUpper()));
+			else return (p.Ugyintezo.Name.ToUpper().Contains(SearchText.ToUpper()));
+		}
 		#region GombokGenerálása és gomb muveletei
 		/// <summary>
 		/// Gombok beállítása a SearchIkonyvekhez mérten.
@@ -460,21 +459,19 @@ namespace IktatogRPCClient.ViewModels
 
 		public override void Handle(Ikonyv message)
 		{
-				int indexForAll = AllIkonyv.IndexOf(SelectedIkonyv);
-				int indexForSearched = SearchedIkonyvek.IndexOf(SelectedIkonyv);
-				int indexForShown = ShownIkonyvek.IndexOf(SelectedIkonyv);
-				if (indexForAll == -1 || indexForSearched == -1 || indexForShown == -1) return;
-				AllIkonyv.Remove(SelectedIkonyv) ;
-				SearchedIkonyvek.Remove(SelectedIkonyv);
-				ShownIkonyvek.Remove(SelectedIkonyv);	
-				SearchedIkonyvek.Insert(indexForSearched, message);
-				ShownIkonyvek.Insert(indexForShown, message);
-				AllIkonyv.Insert(indexForAll, message);
-				NotifyOfPropertyChange(() => SearchedIkonyvek);
-				NotifyOfPropertyChange(() => ShownIkonyvek);
-			
-
+			int indexForAll = AllIkonyv.IndexOf(SelectedIkonyv);
+			int indexForSearched = SearchedIkonyvek.IndexOf(SelectedIkonyv);
+			int indexForShown = ShownIkonyvek.IndexOf(SelectedIkonyv);
+			if (indexForAll == -1 || indexForSearched == -1 || indexForShown == -1) return;
+			AllIkonyv.Remove(SelectedIkonyv) ;
+			SearchedIkonyvek.Remove(SelectedIkonyv);
+			ShownIkonyvek.Remove(SelectedIkonyv);	
+			SearchedIkonyvek.Insert(indexForSearched, message);
+			ShownIkonyvek.Insert(indexForShown, message);
+			AllIkonyv.Insert(indexForAll, message);
+			NotifyOfPropertyChange(() => SearchedIkonyvek);
+			NotifyOfPropertyChange(() => ShownIkonyvek);
 		}
 	}
+}	
 
-}

@@ -73,7 +73,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Ige.cs" />
-    <Compile Include="Managers\Helpers\IkonyvHandlerModel.cs" />
+    <Compile Include="Managers\Helpers\IkonyvHandler.cs" />
     <Compile Include="Managers\Helpers\DocumentHandlerClosed.cs" />
     <Compile Include="Managers\Helpers\InformationBox.cs" />
     <Compile Include="Models\Irany.cs" />

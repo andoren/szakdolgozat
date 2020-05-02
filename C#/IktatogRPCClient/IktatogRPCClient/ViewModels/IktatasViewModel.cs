@@ -12,24 +12,22 @@ using System.Windows;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class IktatasViewModel : IkonyvHandlerModel, IHandle<RemovedItem>, IHandle<Ikonyv>
+    class IktatasViewModel : IkonyvHandler
     {
         public IktatasViewModel()
         {
-
             LoadData();
         }
         private async void LoadData()
         {
-
             Log.Debug("{Class} Adatok betöltése a szerverről.", GetType());
             SelectedIrany = Iranyok.First();
             eventAggregator.Subscribe(this);
             AvailableTelephelyek = await serverHelper.GetTelephelyekAsync();
             if (AvailableTelephelyek.Count > 0) SelectedTelephely = AvailableTelephelyek.First();
             Log.Debug("{Class} Sikeres adat letöltés.", GetType());
-
         }
+        #region mezők
         private EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
         public static BindableCollection<Ikonyv> _recentlyAddedIkonyvek = new BindableCollection<Ikonyv>();
         private BindableCollection<Telephely> _availableTelephelyek;
@@ -51,7 +49,8 @@ namespace IktatogRPCClient.ViewModels
         private RovidIkonyv _selectedIktSzam;
         private string _szoveg = "";
         private string _hivatkozasiszam = "";
-
+        #endregion
+        #region propetries
         public string Hivatkozasiszam
         {
             get { return _hivatkozasiszam; }
@@ -388,6 +387,7 @@ namespace IktatogRPCClient.ViewModels
             if (rovidIkonyv.Id == 0)
             {
                 LoaderIsVisible = false;
+                MessageBox.Show($"Az iktatás sikertlen.");
                 Log.Debug("{Class} Iktatás sikertelen.", GetType());
                 return;
             }
@@ -406,16 +406,17 @@ namespace IktatogRPCClient.ViewModels
             }
          
         }
-
+        #endregion
+        #region methods and functions
         private bool FormValidation() {
             bool IsValid = true;
             if (IsTorzsDataInFormNull()) IsValid = false;
             else if (string.IsNullOrWhiteSpace(Targy)) IsValid = false;
-            else if (Targy.Length > 250) IsValid = false;
+            else if (Targy.Length > 100) IsValid = false;
             else if (DateTime.Parse(HatidoDatum) < DateTime.Parse(ErkezettDatum)) IsValid = false;
             else if (ValaszIsChecked && SelectedIktSzam == null) IsValid = false;
             else if (Szoveg.Length > 500) IsValid = false;
-            else if (Hivatkozasiszam.Length > 200) IsValid = false;
+            else if (Hivatkozasiszam.Length > 50) IsValid = false;
             return IsValid;
         }
         private bool IsTorzsDataInFormNull() {
@@ -427,27 +428,39 @@ namespace IktatogRPCClient.ViewModels
         {
             if (message.Item is Ikonyv)
             {
-                _recentlyAddedIkonyvek.Remove(message.Item as Ikonyv);
-                NotifyOfPropertyChange(() => RecentlyAddedIkonyvek);
+                Ikonyv ikonyv = message.Item as Ikonyv;
+                for (int i = 0; i < RecentlyAddedIkonyvek.Count; i++)
+                {
+                    if (RecentlyAddedIkonyvek[i].Id == ikonyv.Id)
+                    {
+                        RecentlyAddedIkonyvek.RemoveAt(i);
+                        NotifyOfPropertyChange(() => RecentlyAddedIkonyvek);
+                    }
+                }
             }
 
         }
 
         public override void Handle(Ikonyv message)
         {
-            _recentlyAddedIkonyvek.Remove(SelectedIkonyv);
-            _recentlyAddedIkonyvek.Add(message);
-            NotifyOfPropertyChange(() => RecentlyAddedIkonyvek);
+            
+            for (int i = 0; i < RecentlyAddedIkonyvek.Count; i++)
+            {
+                if (RecentlyAddedIkonyvek[i].Id == message.Id)
+                {
+                    RecentlyAddedIkonyvek.RemoveAt(i);
+                    RecentlyAddedIkonyvek.Add(message);
+                }
+            }
+            NotifyOfPropertyChange(()=> RecentlyAddedIkonyvek);
+           
         }
         private void SetLoader()
         {
             LoaderIsVisible = !LoaderIsVisible;
         }
 
-        public void Handle(BindableCollection<Telephely> message)
-        {
-            AvailableTelephelyek = message;
-            SelectedTelephely = AvailableTelephelyek.First();
-        }
+
+        #endregion
     }
 }
