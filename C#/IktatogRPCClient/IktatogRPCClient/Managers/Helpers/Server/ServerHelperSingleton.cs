@@ -31,9 +31,7 @@ namespace IktatogRPCClient.Models.Managers
         private UserHelperSingleton userHelper;
         public static ServerHelperSingleton GetInstance()
         {
-
             return serverHelper;
-
         }
         public Channel GetChannel()
         {
@@ -320,12 +318,14 @@ namespace IktatogRPCClient.Models.Managers
                 {
                     success = true;
                     await GetChannel().ShutdownAsync();
+                    channel = null;
                 }
                 else
                 {
                     success = false;
                     throw new Exception(answer.Message);
                 }
+               
             }
             catch (RpcException ex)
             {

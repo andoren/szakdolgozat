@@ -46,9 +46,12 @@ namespace IktatogRPCServer
         public void ChangeLogLevel(LogEventLevel level) {
             serverLevelSwitch.MinimumLevel = level;
         }
+        public static LogEventLevel GetLogLevel() { 
+            return serverLevelSwitch.MinimumLevel;
+        }
         private void StartLogger()
         {            
-            serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
+            if(serverLevelSwitch.MinimumLevel != LogEventLevel.Debug) serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
             if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.ControlledBy(serverLevelSwitch)
@@ -72,7 +75,7 @@ namespace IktatogRPCServer
                     Ports = { new ServerPort("0.0.0.0", Port, credentials) }     
                 };   
                 server.Start();
-                Log.Information("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
+                Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
                 StartServerButton.IsEnabled = false;
                 StopServerButton.IsEnabled = true;
             }
@@ -80,7 +83,7 @@ namespace IktatogRPCServer
             {
                 Log.Error("Következő hiba történt a szerver indulásakor: {Message}", ex);
             }
-            Log.Information("A szerver elindult ");
+            Log.Warning("A szerver elindult ");
 
         }
         private SslServerCredentials CreateCredentials() {   

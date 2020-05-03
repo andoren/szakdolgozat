@@ -8,6 +8,7 @@ using Google.Protobuf;
 using Grpc.Core;
 using Iktato;
 using IktatogRPCServer.Database;
+using IktatogRPCServer.Database.Abstract;
 using IktatogRPCServer.Database.Mysql;
 using IktatogRPCServer.Database.Mysql.Abstract;
 using MySql.Data.MySqlClient;
@@ -63,7 +64,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
-                MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
+                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(new NewTorzsData() { User = request }, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -73,7 +74,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
+                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -90,7 +91,7 @@ namespace IktatogRPCServer.Service
                     recivedDocuemnt = requestStream.Current;
                     Chunkes.Add(requestStream.Current.Doc.ToArray());
                 }
-                MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
+                DatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
 
                 recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
                 Document document = manager.Add(recivedDocuemnt, user);
@@ -114,7 +115,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                 Ikonyv ikonyv = manager.Add(request, user);
                 return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
             }
@@ -126,7 +127,7 @@ namespace IktatogRPCServer.Service
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
                 Csoport csoport = new Csoport() { Name = request.Name, Shortname = request.Shorname };
-                MysqlDatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
+                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user));
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -136,7 +137,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                 Ikonyv ikonyv = manager.Add(request, user);
                 return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
             }
@@ -147,7 +148,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
+                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -158,7 +159,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -170,7 +171,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -180,7 +181,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(new NewTorzsData() { Telephely = request }, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -191,7 +192,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Add(request, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -203,7 +204,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Year> manager = new YearsDatabaseManager(connectionManager);
+                DatabaseManager<Year> manager = new YearsDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(new Year() { Id = user.Id }));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -213,7 +214,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
                 List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in telephelyek)
                 {
@@ -276,7 +277,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
+                DatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
                 request.User = user;
                 List<Ikonyv> ikonyvek = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in ikonyvek)
@@ -286,14 +287,13 @@ namespace IktatogRPCServer.Service
                 }
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
-
         }
         public override async Task GetAllTelephely(EmptyMessage request, IServerStreamWriter<Telephely> responseStream, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
 
                 List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(new Object());
                 foreach (var response in telephelyek)
@@ -312,7 +312,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<User> mysqlDatabaseManager = new UserDatabaseManager(connectionManager);
+                DatabaseManager<User> mysqlDatabaseManager = new UserDatabaseManager(connectionManager);
 
                 List<User> users = mysqlDatabaseManager.GetAllData(user);
                 foreach (var response in users)
@@ -331,7 +331,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Csoport> mysqlDatabaseManager = new CsoportDatabaseManager(connectionManager);
+                DatabaseManager<Csoport> mysqlDatabaseManager = new CsoportDatabaseManager(connectionManager);
 
                 List<Csoport> users = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in users)
@@ -369,7 +369,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Jelleg> mysqlDatabaseManager = new JellegDatabaseManager(connectionManager);
+                DatabaseManager<Jelleg> mysqlDatabaseManager = new JellegDatabaseManager(connectionManager);
 
                 List<Jelleg> users = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in users)
@@ -388,7 +388,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Partner> mysqlDatabaseManager = new PartnerDatabaseManager(connectionManager);
+                DatabaseManager<Partner> mysqlDatabaseManager = new PartnerDatabaseManager(connectionManager);
 
                 List<Partner> partnerek = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in partnerek)
@@ -407,7 +407,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<PartnerUgyintezo> mysqlDatabaseManager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<PartnerUgyintezo> mysqlDatabaseManager = new PartnerUgyintezoDatabaseManager(connectionManager);
 
                 List<PartnerUgyintezo> ugyintezok = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in ugyintezok)
@@ -426,7 +426,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
+                DatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
 
                 List<Privilege> privileges = mysqlDatabaseManager.GetAllData(new object());
                 foreach (var response in privileges)
@@ -446,7 +446,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<RovidIkonyv> mysqlDatabaseManager = new RovidIkonyvDatabaseManager(connectionManager);
+                DatabaseManager<RovidIkonyv> mysqlDatabaseManager = new RovidIkonyvDatabaseManager(connectionManager);
 
                 List<RovidIkonyv> privileges = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in privileges)
@@ -465,7 +465,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
 
                 List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(user);
                 foreach (var response in telephelyek)
@@ -485,7 +485,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ugyintezo> mysqlDatabaseManager = new UgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<Ugyintezo> mysqlDatabaseManager = new UgyintezoDatabaseManager(connectionManager);
 
                 List<Ugyintezo> telephelyek = mysqlDatabaseManager.GetAllData(request);
                 foreach (var response in telephelyek)
@@ -504,7 +504,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Year> mysqlDatabaseManager = new YearsDatabaseManager(connectionManager);
+                DatabaseManager<Year> mysqlDatabaseManager = new YearsDatabaseManager(connectionManager);
 
                 List<Year> evek = mysqlDatabaseManager.GetAllData(new object());
                 foreach (var response in evek)
@@ -524,7 +524,7 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
+                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
@@ -534,78 +534,71 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
+                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyPartner(Partner request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyPartnerUgyintezo(PartnerUgyintezo request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyTelephely(Telephely request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyUgyintezo(Ugyintezo request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyUser(User request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
+                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> ModifyIktatas(Ikonyv request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Update(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> DeleteIktatas(DeleteMessage request, ServerCallContext context)
         {
             User user;
@@ -613,7 +606,7 @@ namespace IktatogRPCServer.Service
             {
                 if (user.Privilege.Name == "admin")
                 {
-                    MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                    DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                     return Task.FromResult(manager.Delete(request.Id, user));
                 }
                 else
@@ -624,91 +617,83 @@ namespace IktatogRPCServer.Service
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemoveCsoport(Csoport request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
+                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
 
         }
-
         public override Task<Answer> RemoveIkonyv(Ikonyv request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
-                MysqlDatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
+                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemoveJelleg(Jelleg request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
+                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemovePartner(Partner request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
+                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemovePartnerUgyintezo(PartnerUgyintezo request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemoveTelephely(Telephely request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
+                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> RemoveUgyintezoFromTelephely(Ugyintezo request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
+                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-
         public override Task<Answer> Removedocument(DocumentInfo request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                MysqlDatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
+                DatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
                 return Task.FromResult(manager.Delete(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));

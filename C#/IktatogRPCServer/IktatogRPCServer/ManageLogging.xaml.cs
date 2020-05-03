@@ -33,7 +33,7 @@ namespace IktatogRPCServer
             NewLoggingPath.Text = MainWindow.LogPath;
             ServerLoggingLevelComboBox.ItemsSource = Enum.GetValues(typeof(LogEventLevel));
             ServerLoggingLevelToShowComboBox.ItemsSource = Enum.GetValues(typeof(LogEventLevel));
-            ServerCurrentLogLevel.Text = Enum.GetName(typeof(LogEventLevel), RegistryHelper.GetLogLevel());
+            ServerCurrentLogLevel.Text = Enum.GetName(typeof(LogEventLevel),MainWindow.GetLogLevel());
             ServerCurrentLogLevelToShow.Text= Enum.GetName(typeof(LogEventLevel), RegistryHelper.GetLogLevelToShow());
         }
         
@@ -73,11 +73,10 @@ namespace IktatogRPCServer
             MessageBox.Show("A szerver logolási szintje módosult");
             InformationText.Visibility = Visibility.Visible;
         }
-
         private void ModifyCurrentLogLevelToShow_Click(object sender, RoutedEventArgs e)
         {
             if (ServerLoggingLevelToShowComboBox.SelectedItem == null) return;
-            int currentLogLevel = (int)RegistryHelper.GetLogLevel();
+            int currentLogLevel = (int)MainWindow.GetLogLevel();
             int setLogLevelToShow = (int)ServerLoggingLevelToShowComboBox.SelectedItem;
             if (currentLogLevel <= setLogLevelToShow)
             {

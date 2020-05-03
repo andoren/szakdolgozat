@@ -69,13 +69,12 @@ namespace IktatogRPCClient.ViewModels
                 IkonyvToModify.Szoveg = value;
             } 
         }
-        private string _targy;
         public string Targy
         {
-            get { return _targy; }
+            get { return IkonyvToModify.Targy; }
             set
             {
-                _targy = value;
+                IkonyvToModify.Targy = value;
                 NotifyOfPropertyChange(()=>Targy);
                 NotifyOfPropertyChange(()=>CanModifyButton);
             }
@@ -279,7 +278,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 IsValid = false;
             }
-            else if (IkonyvToModify.Targy.Length < 4 ||IkonyvToModify.Targy.Length> 100) IsValid = false;
+            else if (IkonyvToModify.Targy.Length < 3 ||IkonyvToModify.Targy.Length> 100) IsValid = false;
             return IsValid;
         }
         public async void RemoveButton() {
