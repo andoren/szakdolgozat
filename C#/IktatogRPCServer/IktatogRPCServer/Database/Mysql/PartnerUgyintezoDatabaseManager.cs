@@ -7,23 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class PartnerUgyintezoDatabaseManager : MysqlDatabaseManager<PartnerUgyintezo>
+    class PartnerUgyintezoDatabaseManager : MysqlDatabaseManager, IManagePartnerUgyintezo
     {
-        public PartnerUgyintezoDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
 
-
-        public override PartnerUgyintezo Add(NewTorzsData newObject, User user)
+        public PartnerUgyintezo AddPartnerUgyintezo(NewTorzsData newObject, User user)
         {
             Log.Debug("PartnerUgyintezoDatabaseManager.Add: Mysqlcommand előkészítése.");
             PartnerUgyintezo ugyintezo = new PartnerUgyintezo()
             {
                 Name = newObject.Name,
-                
+
             };
 
             MySqlCommand command = new MySqlCommand();
@@ -45,7 +42,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Value = newObject.Name,
                 Direction = System.Data.ParameterDirection.Input
             };
-            
+
             MySqlParameter userp = new MySqlParameter()
             {
                 ParameterName = "@created_by_b",
@@ -98,11 +95,11 @@ namespace IktatogRPCServer.Database.Mysql
             return ugyintezo;
         }
 
-        public override Answer Delete(int id, User user)
+        public Answer DeletePartnerUgyintezo(int id, User user)
         {
             Log.Debug("PartnerUgyintezoDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
-           
+
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delpartnerugyintezo";
             Log.Debug("PartnerUgyintezoDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {Id}, User: {User}", id, user);
@@ -129,8 +126,8 @@ namespace IktatogRPCServer.Database.Mysql
             command.Connection = connection;
             string message = "Sikeres törlés!";
             try
-            {               
-               Log.Debug("PartnerUgyintezoDatabaseManager.Delete: MysqlCommand végrehajtása");
+            {
+                Log.Debug("PartnerUgyintezoDatabaseManager.Delete: MysqlCommand végrehajtása");
                 eredmeny = command.ExecuteNonQuery() == 0;
                 if (eredmeny) message = "Hiba a törlés közben.";
             }
@@ -150,62 +147,60 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-
-        public override List<PartnerUgyintezo> GetAllData(object filter)
+        public List<PartnerUgyintezo> GetPartnerUgyintezok(Partner filter)
         {
             Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<PartnerUgyintezo> ugyintezok = new List<PartnerUgyintezo>();
-            if (filter is Partner)
-            {
-                Partner partner = filter as Partner;
-                MySqlCommand command = new MySqlCommand();
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "getpartnerugyintezok";
-                Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Partner}", partner);
 
-                command.Parameters.AddWithValue("@partner_b", partner.Id);
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "getpartnerugyintezok";
+            Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Partner}", partner);
+
+            command.Parameters.AddWithValue("@partner_b", filter.Id);
+            try
+            {
+                Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
                 try
                 {
-                    Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
-                    MySqlConnection connection = GetConnection();
-                    command.Connection = connection;
-                    OpenConnection(connection);
-                    try
+                    Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása");
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: MysqlCommand végrehajtása");
-                        MySqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            PartnerUgyintezo ugyintezo = new PartnerUgyintezo();
-                            ugyintezo.Id = int.Parse(reader["id"].ToString());
-                            ugyintezo.Name = reader["name"].ToString();
-                            ugyintezok.Add(ugyintezo);
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Hiba történt {Message}", e);
-
-                    }
-                    finally
-                    {
-                        CloseConnection(connection);
+                        PartnerUgyintezo ugyintezo = new PartnerUgyintezo();
+                        ugyintezo.Id = int.Parse(reader["id"].ToString());
+                        ugyintezo.Name = reader["name"].ToString();
+                        ugyintezok.Add(ugyintezo);
                     }
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
-                    Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+                    Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                }
+                finally
+                {
+                    CloseConnection(connection);
                 }
             }
+            catch (Exception ex)
+            {
+                Log.Error("PartnerUgyintezoDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+            }
+
 
             return ugyintezok;
         }
 
-        public override Answer Update(PartnerUgyintezo modifiedObject)
+        public Answer ModifyPartnerUgyintezo(PartnerUgyintezo modifiedObject)
         {
             Log.Debug("PartnerUgyintezoDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();

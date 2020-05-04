@@ -7,18 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class TelephelyDatabaseManager : MysqlDatabaseManager<Telephely>
+    class TelephelyDatabaseManager : MysqlDatabaseManager, IManageTelephely
     {
-        public TelephelyDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
 
 
-
-        public override Telephely Add(NewTorzsData newObject, User user)
+        public Telephely AddTelephely(NewTorzsData newObject, User user)
         {
             Log.Debug("TelephelyDatabaseManager.Add: Mysqlcommand előkészítése.");
             Telephely telephely = new Telephely()
@@ -89,7 +86,7 @@ namespace IktatogRPCServer.Database.Mysql
             return telephely;
         }
 
-        public override Answer Delete(int id, User user)
+        public Answer DeleteTelephely(int id, User user)
         {
             Log.Debug("TelephelyDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -140,63 +137,57 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-
-
-        public override List<Telephely> GetAllData(object filter)
+        public List<Telephely> GetTelephelyek(User filter)
         {
             Log.Debug("TelephelyDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Telephely> telephelyek = new List<Telephely>();
-            if (filter is User)
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "gettelephelyek";
+            Log.Debug("TelephelyDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. User.Id: {Id}", user.Id);
+            command.Parameters.AddWithValue("@user_b", filter.Id);
+            try
             {
-                User user = filter as User;
-                MySqlCommand command = new MySqlCommand();
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "gettelephelyek";
-                Log.Debug("TelephelyDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. User.Id: {Id}", user.Id);
-                command.Parameters.AddWithValue("@user_b", user.Id);
+                Log.Debug("TelephelyDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
                 try
                 {
-                    Log.Debug("TelephelyDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
-                    MySqlConnection connection = GetConnection();
-                    command.Connection = connection;
-                    OpenConnection(connection);
-                    try
+                    Log.Debug("TelephelyDatabaseManager.GetAllData: MysqlCommand végrehajtása");
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Log.Debug("TelephelyDatabaseManager.GetAllData: MysqlCommand végrehajtása");
-                        MySqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Telephely telephely = new Telephely();
-                            telephely.Id = int.Parse(reader["id"].ToString());
-                            telephely.Name = reader["name"].ToString();
-                            telephelyek.Add(telephely);
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        Log.Error("TelephelyDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("TelephelyDatabaseManager.GetAllData: Hiba történt {Message}", e);
-
-                    }
-                    finally
-                    {
-                        CloseConnection(connection);
+                        Telephely telephely = new Telephely();
+                        telephely.Id = int.Parse(reader["id"].ToString());
+                        telephely.Name = reader["name"].ToString();
+                        telephelyek.Add(telephely);
                     }
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
-                    Log.Error("TelephelyDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+                    Log.Error("TelephelyDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("TelephelyDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                }
+                finally
+                {
+                    CloseConnection(connection);
                 }
             }
-            else {
-                telephelyek = GetAllTelephely();
+            catch (Exception ex)
+            {
+                Log.Error("TelephelyDatabaseManager.GetAllData: Hiba történt {Message}", ex);
             }
+
             return telephelyek;
         }
-        private List<Telephely> GetAllTelephely() {
+
+        public List<Telephely> GetTelephelyek()
+        {
             Log.Debug("TelephelyDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Telephely> telephelyek = new List<Telephely>();
             MySqlCommand command = new MySqlCommand();
@@ -241,9 +232,8 @@ namespace IktatogRPCServer.Database.Mysql
 
             return telephelyek;
         }
-        
 
-        public override Answer Update(Telephely modifiedObject)
+        public Answer ModifyTelephely(Telephely modifiedObject)
         {
             Log.Debug("TelephelyDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();

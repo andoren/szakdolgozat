@@ -7,28 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class PrivilegeDatabaseManager : MysqlDatabaseManager<Privilege>
+    class PrivilegeDatabaseManager : MysqlDatabaseManager,IManagePrivilege
     {
-        public PrivilegeDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
 
- 
-
-        public override Privilege Add(NewTorzsData newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Answer Delete(int id, User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Privilege> GetAllData(object filter)
+        public List<Privilege> GetPrivileges()
         {
             Log.Debug("PrivilegeDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Privilege> privileges = new List<Privilege>();
@@ -74,12 +60,6 @@ namespace IktatogRPCServer.Database.Mysql
 
 
             return privileges;
-        }
-
-
-        public override Answer Update(Privilege modifiedObject)
-        {
-            throw new NotImplementedException();
         }
     }
 }
