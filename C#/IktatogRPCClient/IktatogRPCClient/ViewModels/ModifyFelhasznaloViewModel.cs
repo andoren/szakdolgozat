@@ -21,7 +21,6 @@ namespace IktatogRPCClient.ViewModels
         {
             Log.Debug("{Class} Adatok letöltése.", GetType());
             AvailablePrivileges = serverHelper.GetPrivileges();
-            
             AvailableTelephelyek = serverHelper.GetAllTelephely();
         }
         private string _newUsername;
@@ -198,7 +197,7 @@ namespace IktatogRPCClient.ViewModels
             SelectedTelephelyek = await serverHelper.GetUserTelephelyeiAsync(message);
             for (int i = 0; i < AvailableTelephelyek.Count; i++)
             {
-                for (int j = 0; j < SelectedTelephelyek.Count; j++)
+                for (int j = 0; j < SelectedTelephelyek.Count && i < AvailableTelephelyek.Count; j++)
                 {
                     if (AvailableTelephelyek[i].Name == SelectedTelephelyek[j].Name) AvailableTelephelyek.RemoveAt(i);
                 }

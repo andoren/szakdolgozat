@@ -10,6 +10,7 @@ namespace IktatogRPCServer.Helpers
 {
     class UploadedFileHandler
     {
+        public int chunkSize = 64 * 1024;
         public byte[] GetBytesFromFile(string FileName)
         {
             byte[] ba1 = new byte[1];
@@ -66,6 +67,21 @@ namespace IktatogRPCServer.Helpers
             path += DateTime.Now.ToString("yyyyMMddHHmmssffff");
             path += Path.GetRandomFileName().Replace(".", "");
             return path;
+        }
+        public byte[] FromToByteArray(byte[] input, long from, long size)
+        {
+            byte[] output;
+            if (size == 0) output = new byte[chunkSize];
+
+            else
+            {
+                output = new byte[chunkSize - size];
+            }
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = input[from + i];
+            }
+            return output;
         }
     }
 }

@@ -85,7 +85,6 @@ namespace IktatogRPCClient.ViewModels
 			eventAggregator.Subscribe(modifyScreen);
 			ActivateItem(modifyScreen);
 			eventAggregator.PublishOnUIThread(SelectedUser);
-			eventAggregator.PublishOnUIThread(telephelyek);
 		}
 		public async void DisableUser() {
 			Log.Warning("{Class} Felhasználó törlése gomb megnyomva. User: {CurrentUser}", GetType(),UserHelperSingleton.CurrentUser);

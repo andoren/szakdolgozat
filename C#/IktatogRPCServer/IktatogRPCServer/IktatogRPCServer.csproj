@@ -170,7 +170,6 @@
     <Compile Include="Database\Mysql\PartnerDatabaseManager.cs" />
     <Compile Include="Database\Mysql\PartnerUgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\PrivilegeDatabaseManager.cs" />
-    <Compile Include="Database\Mysql\RovidIkonyvDatabaseManager.cs" />
     <Compile Include="Database\Mysql\TelephelyDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />

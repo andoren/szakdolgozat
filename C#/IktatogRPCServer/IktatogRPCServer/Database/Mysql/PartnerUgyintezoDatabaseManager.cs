@@ -156,7 +156,7 @@ namespace IktatogRPCServer.Database.Mysql
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "getpartnerugyintezok";
-            Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Partner}", partner);
+            Log.Debug("PartnerUgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Partner}", filter);
 
             command.Parameters.AddWithValue("@partner_b", filter.Id);
             try

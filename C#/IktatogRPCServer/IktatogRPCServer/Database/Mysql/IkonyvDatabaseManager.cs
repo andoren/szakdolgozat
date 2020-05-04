@@ -14,7 +14,7 @@ namespace IktatogRPCServer.Database.Mysql
     class IkonyvDatabaseManager : MysqlDatabaseManager, IManageIkonyv
     {
 
-        public Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
+        public RovidIkonyv AddRootIkonyv(Ikonyv newObject, User user)
         {
             Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -173,10 +173,10 @@ namespace IktatogRPCServer.Database.Mysql
 
             }
 
-            return newObject;
+            return new RovidIkonyv() { Id = newObject.Id, Iktatoszam = newObject.Iktatoszam };
         }
 
-        public Ikonyv AddSubIkonyv(Ikonyv newObject, User user)
+        public RovidIkonyv AddSubIkonyv(Ikonyv newObject, User user)
         {
             Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -342,8 +342,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Log.Error("IkonyvDatabaseManager.AddSubIkonyv: Hiba történt {Message}", ex);
 
             }
-
-            return newObject;
+            return new RovidIkonyv() { Id = newObject.Id, Iktatoszam = newObject.Iktatoszam };
         }
 
         public Answer DeleteIkonyv(int id, User user)
@@ -467,6 +466,57 @@ namespace IktatogRPCServer.Database.Mysql
                 }
             }
             return ikonyvek;
+        }
+
+        public List<RovidIkonyv> GetRovidIkonyvek(Telephely filter)
+        {
+            Log.Debug("RovidIkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
+            List<RovidIkonyv> rovidikoynvek = new List<RovidIkonyv>();
+ 
+                MySqlCommand command = new MySqlCommand();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "getshortikonyv";
+                Log.Debug("RovidIkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", filter);
+                command.Parameters.AddWithValue("@telephely_b", filter.Id);
+                try
+                {
+                    Log.Debug("RovidIkonyvDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+                    MySqlConnection connection = GetConnection();
+                    command.Connection = connection;
+                    OpenConnection(connection);
+                    try
+                    {
+                        Log.Debug("RovidIkonyvDatabaseManager.GetAllData: MysqlCommand végrehajtása");
+                        MySqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            RovidIkonyv rovidikonyv = new RovidIkonyv();
+                            rovidikonyv.Id = int.Parse(reader["ikonyvid"].ToString());
+                            rovidikonyv.Iktatoszam = reader["iktatoszam"].ToString();
+                            rovidikoynvek.Add(rovidikonyv);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Log.Error("RovidIkonyvDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("RovidIkonyvDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                    }
+                    finally
+                    {
+                        CloseConnection(connection);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("RovidIkonyvDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+                }
+           
+
+            return rovidikoynvek;
         }
 
         public Answer ModifyIkonyv(Ikonyv modifiedObject)

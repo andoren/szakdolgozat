@@ -16,12 +16,12 @@ namespace IktatogRPCServer.Database.Services
             this.dbManager = dbManager;
         }
 
-        public Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
+        public RovidIkonyv AddRootIkonyv(Ikonyv newObject, User user)
         {
             return dbManager.AddRootIkonyv(newObject, user);
         }
 
-        public Ikonyv AddSubIkonyv(Ikonyv newObject, User user)
+        public RovidIkonyv AddSubIkonyv(Ikonyv newObject, User user)
         {
             return dbManager.AddSubIkonyv(newObject, user);
         }
@@ -34,6 +34,11 @@ namespace IktatogRPCServer.Database.Services
         public List<Ikonyv> GetIkonyvek(SearchIkonyvData filter)
         {
             return dbManager.GetIkonyvek(filter);
+        }
+
+        public List<RovidIkonyv> GetRovidIkonyvek(Telephely filter)
+        {
+            return dbManager.GetRovidIkonyvek(filter);
         }
 
         public Answer ModifyIkonyv(Ikonyv modifiedObject)

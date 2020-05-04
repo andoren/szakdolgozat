@@ -140,7 +140,7 @@ namespace IktatogRPCServer.Database.Mysql
             Log.Debug("PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Partner> partnerek = new List<Partner>();
             MySqlCommand command = new MySqlCommand();
-            Log.Debug("PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
+            Log.Debug("PartnerDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", filter);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "getpartners";
             command.Parameters.AddWithValue("@telephely_b", filter.Id);

@@ -690,7 +690,7 @@ namespace IktatogRPCClient.Models.Managers
             RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
             try
             {
-                rovidIkonyv = await Client().AddIktatasWithValaszAsync(newIkonyv);
+                rovidIkonyv = await Client().AddIktatasWithValaszAsync(newIkonyv,GetCallOption());
 
             }
             catch (RpcException ex)

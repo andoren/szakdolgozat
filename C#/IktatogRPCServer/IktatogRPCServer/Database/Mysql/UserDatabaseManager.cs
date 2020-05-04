@@ -145,7 +145,7 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-        public Answer ModifyUser(User modifiedobject)
+        public Answer ModifyUser(User modifiedObject)
         {
             Log.Debug("UserDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -336,7 +336,7 @@ namespace IktatogRPCServer.Database.Mysql
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "modifyuserpassword";
             //IN PARAMETERS
-            Log.Debug("UserDatabaseManager.ModifyPassword: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {ModifiedObject}", user);
+            Log.Debug("UserDatabaseManager.ModifyPassword: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {ModifiedObject}", modifiedObject);
             MySqlParameter usernamep = new MySqlParameter()
             {
                 ParameterName = "@password_b",

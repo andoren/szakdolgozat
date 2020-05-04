@@ -1,7 +1,6 @@
 ﻿using Iktato;
-using IktatogRPCServer.Database;
-using IktatogRPCServer.Database.Abstract;
 using IktatogRPCServer.Database.Mysql;
+using IktatogRPCServer.Database.Services;
 using IktatogRPCServer.Helpers;
 using System;
 using System.Collections.Generic;
@@ -32,15 +31,15 @@ namespace IktatogRPCServer
 
 
         }
-        DatabaseManager<User> userDatabaseManager = new UserDatabaseManager(new ConnectionManager());
-        DatabaseManager<Telephely> telephelyDatabaseManager = new TelephelyDatabaseManager(new ConnectionManager());
-        DatabaseManager<Privilege> privilegeDatabaseManager = new PrivilegeDatabaseManager(new ConnectionManager());
+        UserService userService = new UserService( new UserDatabaseManager());
+        TelephelyService telephelyService = new TelephelyService(new TelephelyDatabaseManager());
+        PrivilegeService privilegeService = new PrivilegeService(new PrivilegeDatabaseManager());
 
         private async void LoadDataAndSet() {
             await Task.Run(() => {
-                AllUser = userDatabaseManager.GetAllData(new User());
-                AvailableTelephelyek = telephelyDatabaseManager.GetAllData(new object());
-                AvailablePrivileges = privilegeDatabaseManager.GetAllData(new object());
+                AllUser = userService.GetallUser();
+                AvailableTelephelyek = telephelyService.GetTelephelyek();
+                AvailablePrivileges = privilegeService.GetPrivileges();
                 AvailableTelephelyForModification = new List<Telephely>(AvailableTelephelyek);
             });
             AllUserCombobox.ItemsSource = AllUser;
@@ -201,11 +200,11 @@ namespace IktatogRPCServer
             {
 
             }
-            user = userDatabaseManager.Add(new NewTorzsData() { User = user }, new User() { Id = 1 });
+            user = userService.AddUser(new NewTorzsData() { User = user }, new User() { Id = 1 });
             if (user.Id != -1)
             {
                 SelectedTelephelyek.Clear();
-                AvailableTelephelyek = telephelyDatabaseManager.GetAllData(new object());
+                AvailableTelephelyek = telephelyService.GetTelephelyek();
                 SelectedTelephelyekListBox.Items.Refresh();
                 AllTelephely.ItemsSource = AvailableTelephelyek;
                 AllTelephely.Items.Refresh();
@@ -279,7 +278,7 @@ namespace IktatogRPCServer
                 DeleteButton.IsEnabled = false;
             }
 
-            SelectedTelephelyekForModification = telephelyDatabaseManager.GetAllData(SelectedUser);
+            SelectedTelephelyekForModification = telephelyService.GetTelephelyek(SelectedUser);
             AvailableTelephelyForModification = new List<Telephely>(AvailableTelephelyek);
             AvailableTelephelyForModification.RemoveAll(item => SelectedTelephelyekForModification.Contains(item));
             AllTelephelyForModification.ItemsSource = AvailableTelephelyForModification;
@@ -330,7 +329,7 @@ namespace IktatogRPCServer
             {
                 user.Telephelyek.Add(telephely);
             }     
-            Answer answer = userDatabaseManager.Update(user);
+            Answer answer = userService.ModifyUser(user);
             if (!answer.Error)
             {
                 PrivilegesForModificationComboBox.SelectedIndex = -1;
@@ -351,7 +350,7 @@ namespace IktatogRPCServer
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedUser != null && !(userDatabaseManager.Delete(SelectedUser.Id,new User() { Id=1})).Error) MessageBox.Show("Sikeres törlés");
+            if (SelectedUser != null && !(userService.DisableUser(SelectedUser.Id,new User() { Id=1})).Error) MessageBox.Show("Sikeres törlés");
             else MessageBox.Show("Sikertelen törlés.");
         }
         private void NewUserPasswordForModification_PasswordChanged(object sender, RoutedEventArgs e)

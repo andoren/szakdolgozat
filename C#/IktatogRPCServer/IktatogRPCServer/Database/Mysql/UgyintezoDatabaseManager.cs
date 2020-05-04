@@ -147,7 +147,7 @@ namespace IktatogRPCServer.Database.Mysql
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "getugyintezok";
-            Log.Debug("UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
+            Log.Debug("UgyintezoDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", filter);
             command.Parameters.AddWithValue("@telephely_b", filter.Id);
             try
             {

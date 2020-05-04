@@ -162,7 +162,7 @@ namespace IktatogRPCServer.Database.Mysql
             OpenConnection(connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "getGroup";
-            Log.Debug("CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id}", telephely.Id);
+            Log.Debug("CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id}", filter.Id);
             command.Parameters.AddWithValue("@telephely_b", filter.Id);
             try
             {

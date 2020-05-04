@@ -27,7 +27,7 @@ namespace IktatogRPCServer.Service
                 return true;
             }
             catch (TokenExpiredException ex2) {
-                Log.Warning("TokenService.IsValidtoken: Lejárt token. Kliens értesítése.");
+                Log.Warning("TokenService.IsValidtoken: Lejárt token. Kliens értesítése.{Ex}",ex2);
                 return false;
             }
             catch (SignatureVerificationException ex)

@@ -379,9 +379,9 @@ namespace IktatogRPCClient.ViewModels
             {
                 Log.Debug("{Class} Parent hozzáadása. Parent.Id: {Id}", GetType(), SelectedIktSzam.Id);
                 newIkonyv.ValaszId = SelectedIktSzam.Id;
-
+                rovidIkonyv = await serverHelper.AddIktatasWithValaszAsync(newIkonyv);
             }
-
+            else
             rovidIkonyv = await serverHelper.AddIktatas(newIkonyv);
 
             if (rovidIkonyv.Id == 0)

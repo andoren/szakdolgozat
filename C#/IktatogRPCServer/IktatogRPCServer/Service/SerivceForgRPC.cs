@@ -8,10 +8,9 @@ using Google.Protobuf;
 using Grpc.Core;
 using Iktato;
 using IktatogRPCServer.Database;
-using IktatogRPCServer.Database.Abstract;
 using IktatogRPCServer.Database.Mysql;
-using IktatogRPCServer.Database.Mysql.Abstract;
-using MySql.Data.MySqlClient;
+using IktatogRPCServer.Database.Services;
+using IktatogRPCServer.Helpers;
 using Serilog;
 namespace IktatogRPCServer.Service
 {
@@ -21,16 +20,16 @@ namespace IktatogRPCServer.Service
         {
 
         }
-
+        private UploadedFileHandler fileHandler = new UploadedFileHandler();
         private readonly TokenSerivce TokenManager = new TokenSerivce();
         private readonly ConnectionManager connectionManager = new ConnectionManager();
         private static List<(string, DateTime)> InvalidTokens = new List<(string, DateTime)>();
-        private int chunkSize = 64 * 1024;
+
         public override Task<User> Login(LoginMessage request, ServerCallContext context)
         {
-            UserDatabaseManager userManager = new UserDatabaseManager(new Database.ConnectionManager());
+            UserService service = new UserService(new UserDatabaseManager());
             User user;
-            if (userManager.IsValidUser(request, out user))
+            if (service.IsValidUser(request, out user))
             {
                 Log.Debug("Login: Sikeres user validálás. {Username}", user);
                 Log.Debug("Login: Token generálás megkezdése a következő adatokkal: Felhasználónév: {Username}, Privilege: {Name}, Id: {Id}", user, user.Privilege, user);
@@ -64,8 +63,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
-                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(new NewTorzsData() { User = request }, user)); ;
+                UserService service = new UserService(new UserDatabaseManager());
+                return Task.FromResult(service.AddUser(new NewTorzsData() { User = request }, user)); ;
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -74,8 +73,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                UserService service = new UserService(new UserDatabaseManager());
+                return Task.FromResult(service.DisableUser(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -91,10 +90,9 @@ namespace IktatogRPCServer.Service
                     recivedDocuemnt = requestStream.Current;
                     Chunkes.Add(requestStream.Current.Doc.ToArray());
                 }
-                DatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
-
+                DocumentService service = new DocumentService(new DocumentDatabaseManager());
                 recivedDocuemnt.Doc = ByteString.CopyFrom(Chunkes.ToArray().SelectMany(inner => inner).ToArray());
-                Document document = manager.Add(recivedDocuemnt, user);
+                Document document = service.AddDocument(recivedDocuemnt, user);
                 return new DocumentInfo()
                 {
                     Id = document.Id,
@@ -115,53 +113,41 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                if (newObject.ValaszId == -1)
-                {
-                    Log.Debug("IkonyvDatabaseManager.Add: AddRootIkonyv meghívva.");
-                    return AddRootIkonyv(newObject, user);
-                }
-                else
-                {
-                    Log.Debug("IkonyvDatabaseManager.Add: AddSubIkonyv meghívva.");
-                    return AddSubIkonyv(newObject, user);
-                }
-                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
-                Ikonyv ikonyv = manager.Add(request, user);
-                return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                Log.Debug("IkonyvDatabaseManager.Add: AddRootIkonyv meghívva.");
+                return Task.FromResult (service.AddRootIkonyv(request, user));  
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Csoport> AddCsoportToTelephely(NewTorzsData request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                Csoport csoport = new Csoport() { Name = request.Name, Shortname = request.Shorname };
-                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user));
+                CsoportService service = new CsoportService(new CsoportDatabaseManager());
+                return Task.FromResult(service.AddCsoport(request, user));
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<RovidIkonyv> AddIktatasWithValasz(Ikonyv request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
-                Ikonyv ikonyv = manager.Add(request, user);
-                return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                return Task.FromResult(service.AddSubIkonyv(request,user));
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Jelleg> AddJellegToTelephely(NewTorzsData request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                JellegService service = new JellegService(new JellegDatabaseManager());
+                return Task.FromResult(service.AddJelleg(request, user)); ;
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Partner> AddPartnerToTelephely(NewTorzsData request, ServerCallContext context)
         {
@@ -169,10 +155,10 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                PartnerService service = new PartnerService(new PartnerDatabaseManager());
+                return Task.FromResult(service.AddPartner(request, user)); 
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
 
 
         }
@@ -181,41 +167,38 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                PartnerUgyintezoService service = new PartnerUgyintezoService(new PartnerUgyintezoDatabaseManager());
+                return Task.FromResult(service.AddPartnerUgyintezo(request, user)); 
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Telephely> AddTelephely(Telephely request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(new NewTorzsData() { Telephely = request }, user)); ;
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                return Task.FromResult(service.AddTelephely(new NewTorzsData() { Telephely = request }, user)); 
             }
             throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Ugyintezo> AddUgyintezoToTelephely(NewTorzsData request, ServerCallContext context)
         {
-
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Add(request, user)); ;
+                UgyintezoService service = new UgyintezoService(new UgyintezoDatabaseManager());
+                return Task.FromResult(service.AddUgyintezo(request, user)); 
             }
-            throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
-
-
+            else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
         public override Task<Answer> AddYearAndActivate(EmptyMessage request, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Year> manager = new YearsDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(new Year() { Id = user.Id }));
+                EvService service = new EvService(new YearsDatabaseManager());
+                return Task.FromResult(service.CloseOldYearAndActivateNewOne(new Year() { Id = user.Id }));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -224,8 +207,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
-                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(request);
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                List<Telephely> telephelyek = service.GetTelephelyek(request);
                 foreach (var response in telephelyek)
                 {
                     await responseStream.WriteAsync(response);
@@ -242,54 +225,39 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DocumentDatabaseManager databaseManager = new DocumentDatabaseManager(connectionManager);
-                Document document = databaseManager.GetDataById(request);
+                DocumentService service = new DocumentService(new DocumentDatabaseManager());
+                Document document = service.GetDocumentByInfo(request);
                 Document chunkDocument = new Document();
                 chunkDocument.Id = 0;
                 chunkDocument.IkonyvId = document.IkonyvId;
                 chunkDocument.Name = document.Name;
                 chunkDocument.Type = document.Type;
                 byte[] byteToSend = document.Doc.ToArray();
-                for (long i = 0; i < byteToSend.Length; i += chunkSize)
+                for (long i = 0; i < byteToSend.Length; i += fileHandler.chunkSize)
                 {
 
-                    if (i + chunkSize > document.Doc.Length)
+                    if (i + fileHandler.chunkSize > document.Doc.Length)
                     {
-                        chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, i + chunkSize - document.Doc.Length));
+                        chunkDocument.Doc = ByteString.CopyFrom(fileHandler.FromToByteArray(byteToSend, i, i + fileHandler.chunkSize - document.Doc.Length));
                        await responseStream.WriteAsync(chunkDocument);
                     }
                     else
                     {
-                        chunkDocument.Doc = ByteString.CopyFrom(FromToByteArray(byteToSend, i, 0));
+                        chunkDocument.Doc = ByteString.CopyFrom(fileHandler.FromToByteArray(byteToSend, i, 0));
                          await responseStream.WriteAsync(chunkDocument);
                     }
                 }
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
-        private byte[] FromToByteArray(byte[] input, long from, long size)
-        {
-            byte[] output;
-            if (size == 0) output = new byte[chunkSize];
-
-            else
-            {
-                output = new byte[chunkSize - size];
-            }
-            for (int i = 0; i < output.Length; i++)
-            {
-                output[i] = input[from + i];
-            }
-            return output;
-        }
         public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context)
         {
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ikonyv> mysqlDatabaseManager = new IkonyvDatabaseManager(connectionManager);
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
                 request.User = user;
-                List<Ikonyv> ikonyvek = mysqlDatabaseManager.GetAllData(request);
+                List<Ikonyv> ikonyvek = service.GetIkonyvek(request);
                 foreach (var response in ikonyvek)
                 {
                     await responseStream.WriteAsync(response);
@@ -303,9 +271,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
-
-                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(new Object());
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                List<Telephely> telephelyek = service.GetTelephelyek();
                 foreach (var response in telephelyek)
                 {
                     await responseStream.WriteAsync(response);
@@ -320,11 +287,10 @@ namespace IktatogRPCServer.Service
         public override async Task GetAllUser(EmptyMessage request, IServerStreamWriter<User> responseStream, ServerCallContext context)
         {
             User user;
-            if (CheckUserIsValid(context.RequestHeaders, out user))
+            if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
-                DatabaseManager<User> mysqlDatabaseManager = new UserDatabaseManager(connectionManager);
-
-                List<User> users = mysqlDatabaseManager.GetAllData(user);
+                UserService service = new UserService(new UserDatabaseManager());
+                List<User> users = service.GetallUser();
                 foreach (var response in users)
                 {
                     await responseStream.WriteAsync(response);
@@ -341,9 +307,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Csoport> mysqlDatabaseManager = new CsoportDatabaseManager(connectionManager);
+                CsoportService service = new CsoportService(new CsoportDatabaseManager());
 
-                List<Csoport> users = mysqlDatabaseManager.GetAllData(request);
+                List<Csoport> users = service.GetCsoportok(request);
                 foreach (var response in users)
                 {
                     await responseStream.WriteAsync(response);
@@ -360,9 +326,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DocumentDatabaseManager mysqlDatabaseManager = new DocumentDatabaseManager(connectionManager);
+                DocumentService service = new DocumentService(new DocumentDatabaseManager());
 
-                List<DocumentInfo> infos = mysqlDatabaseManager.GetDocumentInfosByIkonyv(request);
+                List<DocumentInfo> infos = service.GetDocumentInfosByIkonyv(request);
                 foreach (var response in infos)
                 {
                     await responseStream.WriteAsync(response);
@@ -379,10 +345,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Jelleg> mysqlDatabaseManager = new JellegDatabaseManager(connectionManager);
-
-                List<Jelleg> users = mysqlDatabaseManager.GetAllData(request);
-                foreach (var response in users)
+                JellegService service = new JellegService(new JellegDatabaseManager());
+                List<Jelleg> jellegek = service.GetJellegek(request);
+                foreach (var response in jellegek)
                 {
                     await responseStream.WriteAsync(response);
 
@@ -398,9 +363,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Partner> mysqlDatabaseManager = new PartnerDatabaseManager(connectionManager);
-
-                List<Partner> partnerek = mysqlDatabaseManager.GetAllData(request);
+                PartnerService service = new PartnerService(new PartnerDatabaseManager());
+                List<Partner> partnerek = service.GetPartnerek(request);
                 foreach (var response in partnerek)
                 {
                     await responseStream.WriteAsync(response);
@@ -417,9 +381,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<PartnerUgyintezo> mysqlDatabaseManager = new PartnerUgyintezoDatabaseManager(connectionManager);
+                PartnerUgyintezoService service = new PartnerUgyintezoService(new PartnerUgyintezoDatabaseManager());
 
-                List<PartnerUgyintezo> ugyintezok = mysqlDatabaseManager.GetAllData(request);
+                List<PartnerUgyintezo> ugyintezok = service.GetPartnerUgyintezok(request);
                 foreach (var response in ugyintezok)
                 {
                     await responseStream.WriteAsync(response);
@@ -436,9 +400,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Privilege> mysqlDatabaseManager = new PrivilegeDatabaseManager(connectionManager);
-
-                List<Privilege> privileges = mysqlDatabaseManager.GetAllData(new object());
+                PrivilegeService service = new PrivilegeService(new PrivilegeDatabaseManager());
+                List<Privilege> privileges = service.GetPrivileges();
                 foreach (var response in privileges)
                 {
                     await responseStream.WriteAsync(response);
@@ -456,10 +419,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<RovidIkonyv> mysqlDatabaseManager = new RovidIkonyvDatabaseManager(connectionManager);
-
-                List<RovidIkonyv> privileges = mysqlDatabaseManager.GetAllData(request);
-                foreach (var response in privileges)
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                List<RovidIkonyv> rovidikonyvek = service.GetRovidIkonyvek(request);
+                foreach (var response in rovidikonyvek)
                 {
                     await responseStream.WriteAsync(response);
 
@@ -475,9 +437,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> mysqlDatabaseManager = new TelephelyDatabaseManager(connectionManager);
-
-                List<Telephely> telephelyek = mysqlDatabaseManager.GetAllData(user);
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                List<Telephely> telephelyek = service.GetTelephelyek(user);
                 foreach (var response in telephelyek)
                 {
                     await responseStream.WriteAsync(response);
@@ -495,13 +456,11 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ugyintezo> mysqlDatabaseManager = new UgyintezoDatabaseManager(connectionManager);
-
-                List<Ugyintezo> telephelyek = mysqlDatabaseManager.GetAllData(request);
+                UgyintezoService service = new UgyintezoService(new UgyintezoDatabaseManager());
+                List<Ugyintezo> telephelyek = service.GetUgyintezok(request);
                 foreach (var response in telephelyek)
                 {
                     await responseStream.WriteAsync(response);
-
                 }
             }
             else
@@ -514,9 +473,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Year> mysqlDatabaseManager = new YearsDatabaseManager(connectionManager);
-
-                List<Year> evek = mysqlDatabaseManager.GetAllData(new object());
+                EvService service = new EvService(new YearsDatabaseManager());
+                List<Year> evek = service.GetEvek();
                 foreach (var response in evek)
                 {
                     await responseStream.WriteAsync(response);
@@ -534,8 +492,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                CsoportService service = new CsoportService(new CsoportDatabaseManager());
+                
+                return Task.FromResult(service.ModifyCsoport(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -544,8 +503,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                JellegService service = new JellegService(new JellegDatabaseManager());
+                return Task.FromResult(service.ModifyJelleg(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -554,8 +513,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                PartnerService service = new PartnerService(new PartnerDatabaseManager());
+                return Task.FromResult(service.ModifyPartner(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -564,8 +523,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                PartnerUgyintezoService service = new PartnerUgyintezoService(new PartnerUgyintezoDatabaseManager());
+                return Task.FromResult(service.ModifyPartnerUgyintezo(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -574,8 +533,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                return Task.FromResult(service.ModifyTelephely(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -584,8 +543,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                UgyintezoService service = new UgyintezoService(new UgyintezoDatabaseManager());
+                return Task.FromResult(service.ModifyUgyintezo(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -594,8 +553,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<User> manager = new UserDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                UserService service = new UserService(new UserDatabaseManager());
+                return Task.FromResult(service.ModifyUser(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -604,8 +563,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Update(request));
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                return Task.FromResult(service.ModifyIkonyv(request));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -616,8 +575,8 @@ namespace IktatogRPCServer.Service
             {
                 if (user.Privilege.Name == "admin")
                 {
-                    DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
-                    return Task.FromResult(manager.Delete(request.Id, user));
+                    IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                    return Task.FromResult(service.DeleteIkonyv(request.Id, user));
                 }
                 else
                 {
@@ -632,8 +591,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Csoport> manager = new CsoportDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                CsoportService service = new CsoportService(new CsoportDatabaseManager());
+                return Task.FromResult(service.DeleteCsoport(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
 
@@ -643,8 +602,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user) && user.Privilege.Name == "admin")
             {
-                DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                IkonyvService service = new IkonyvService(new IkonyvDatabaseManager());
+                return Task.FromResult(service.DeleteIkonyv(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -653,8 +612,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Jelleg> manager = new JellegDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                JellegService service = new JellegService(new JellegDatabaseManager());
+                return Task.FromResult(service.DeleteJelleg(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -663,8 +622,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Partner> manager = new PartnerDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                PartnerService service = new PartnerService(new PartnerDatabaseManager());
+                return Task.FromResult(service.DeletePartner(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -673,8 +632,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<PartnerUgyintezo> manager = new PartnerUgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                PartnerUgyintezoService service = new PartnerUgyintezoService(new PartnerUgyintezoDatabaseManager());
+                return Task.FromResult(service.DeletePartnerUgyintezo(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -683,8 +642,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Telephely> manager = new TelephelyDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                TelephelyService service = new TelephelyService(new TelephelyDatabaseManager());
+                return Task.FromResult(service.DeleteTelephely(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -693,8 +652,8 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Ugyintezo> manager = new UgyintezoDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                UgyintezoService service = new UgyintezoService(new UgyintezoDatabaseManager());
+                return Task.FromResult(service.DeleteUgyintezo(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
@@ -703,8 +662,9 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
-                DatabaseManager<Document> manager = new DocumentDatabaseManager(connectionManager);
-                return Task.FromResult(manager.Delete(request.Id, user));
+                DocumentService service = new DocumentService(new DocumentDatabaseManager());
+
+                return Task.FromResult(service.DeleteDocument(request.Id, user));
             }
             else throw new RpcException(new Status(StatusCode.PermissionDenied, "Hibás felhasználó vagy lejárt időkorlát! Kérem jelentkezzen be újra!"));
         }
