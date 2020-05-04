@@ -1,4 +1,5 @@
-﻿using IktatogRPCServer.Database.Interfaces;
+﻿using Iktato;
+using IktatogRPCServer.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace IktatogRPCServer.Database.Services
         public PrivilegeService(IManagePrivilege dbManager)
         {
             this.dbManager = dbManager;
+        }
+
+        public List<Privilege> GetPrivileges()
+        {
+            return dbManager.GetPrivileges();
         }
     }
 }

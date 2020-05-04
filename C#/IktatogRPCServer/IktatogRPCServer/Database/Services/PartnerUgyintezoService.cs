@@ -1,4 +1,5 @@
-﻿using IktatogRPCServer.Database.Interfaces;
+﻿using Iktato;
+using IktatogRPCServer.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,26 @@ namespace IktatogRPCServer.Database.Services
         public PartnerUgyintezoService(IManagePartnerUgyintezo dbManager)
         {
             this.dbManager = dbManager;
+        }
+
+        public PartnerUgyintezo AddPartnerUgyintezo(NewTorzsData newObject, User user)
+        {
+            return dbManager.AddPartnerUgyintezo(newObject, user);
+        }
+
+        public Answer DeletePartnerUgyintezo(int id, User user)
+        {
+            return dbManager.DeletePartnerUgyintezo(id, user);
+        }
+
+        public List<PartnerUgyintezo> GetPartnerUgyintezok(Partner filter)
+        {
+            return dbManager.GetPartnerUgyintezok(filter);
+        }
+
+        public Answer ModifyPartnerUgyintezo(PartnerUgyintezo modifiedObject)
+        {
+            return dbManager.ModifyPartnerUgyintezo(modifiedObject);
         }
     }
 }

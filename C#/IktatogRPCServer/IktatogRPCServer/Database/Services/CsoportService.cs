@@ -1,4 +1,5 @@
-﻿using IktatogRPCServer.Database.Interfaces;
+﻿using Iktato;
+using IktatogRPCServer.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,26 @@ namespace IktatogRPCServer.Database.Services
         public CsoportService(IManageCsoport dbManager)
         {
             this.dbManager = dbManager;
+        }
+
+        public Csoport AddCsoport(NewTorzsData data, User user)
+        {
+            return dbManager.AddCsoport(data, user);
+        }
+
+        public Answer DeleteCsoport(int id, User user)
+        {
+            return dbManager.DeleteCsoport(id, user);
+        }
+
+        public List<Csoport> GetCsoportok(Telephely filter)
+        {
+            return dbManager.GetCsoportok(filter);
+        }
+
+        public Answer ModifyCsoport(Csoport modifiedObject)
+        {
+            return dbManager.ModifyCsoport(modifiedObject);
         }
     }
 }

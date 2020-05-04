@@ -1,4 +1,5 @@
-﻿using IktatogRPCServer.Database.Interfaces;
+﻿using Iktato;
+using IktatogRPCServer.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,31 @@ namespace IktatogRPCServer.Database.Services
         public IkonyvService(IManageIkonyv dbManager)
         {
             this.dbManager = dbManager;
+        }
+
+        public Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
+        {
+            return dbManager.AddRootIkonyv(newObject, user);
+        }
+
+        public Ikonyv AddSubIkonyv(Ikonyv newObject, User user)
+        {
+            return dbManager.AddSubIkonyv(newObject, user);
+        }
+
+        public Answer DeleteIkonyv(int id, User user)
+        {
+            return dbManager.DeleteIkonyv(id, user);
+        }
+
+        public List<Ikonyv> GetIkonyvek(SearchIkonyvData filter)
+        {
+            return dbManager.GetIkonyvek(filter);
+        }
+
+        public Answer ModifyIkonyv(Ikonyv modifiedObject)
+        {
+            return dbManager.ModifyIkonyv(modifiedObject);
         }
     }
 }

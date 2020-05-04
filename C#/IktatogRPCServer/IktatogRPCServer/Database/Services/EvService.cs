@@ -1,4 +1,5 @@
-﻿using IktatogRPCServer.Database.Interfaces;
+﻿using Iktato;
+using IktatogRPCServer.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,16 @@ namespace IktatogRPCServer.Database.Services
         public EvService(IManageEv dbManager)
         {
             this.dbManager = dbManager;
+        }
+
+        public Answer CloseOldYearAndActivateNewOne(Year modifiedObject)
+        {
+            return dbManager.CloseOldYearAndActivateNewOne(modifiedObject);
+        }
+
+        public List<Year> GetEvek()
+        {
+            return dbManager.GetEvek();
         }
     }
 }
