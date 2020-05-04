@@ -7,34 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class IkonyvDatabaseManager : MysqlDatabaseManager<Ikonyv>
+    class IkonyvDatabaseManager : MysqlDatabaseManager, IManageIkonyv
     {
-        public IkonyvDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
-    
-        public override Ikonyv Add(NewTorzsData newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
 
-        public override Ikonyv Add(Ikonyv newObject, User user)
-        {
-            if (newObject.ValaszId == -1) {
-                Log.Debug("IkonyvDatabaseManager.Add: AddRootIkonyv meghívva.");
-                return AddRootIkonyv(newObject, user);
-            }else
-            {
-                Log.Debug("IkonyvDatabaseManager.Add: AddSubIkonyv meghívva.");
-                return AddSubIkonyv(newObject, user);
-            }
-         
-        }
-
-        private Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
+        public Ikonyv AddRootIkonyv(Ikonyv newObject, User user)
         {
             Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -77,7 +57,7 @@ namespace IktatogRPCServer.Database.Mysql
             {
                 ParameterName = "@partnerugyint_b",
                 DbType = System.Data.DbType.Int32,
-                Value = newObject.Partner.Ugyintezok.Count > 0?newObject.Partner.Ugyintezok[0].Id:-1,
+                Value = newObject.Partner.Ugyintezok.Count > 0 ? newObject.Partner.Ugyintezok[0].Id : -1,
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter userp = new MySqlParameter()
@@ -119,14 +99,14 @@ namespace IktatogRPCServer.Database.Mysql
             {
                 ParameterName = "@erkezett_b",
                 DbType = System.Data.DbType.DateTime,
-                Value = DateTime.Parse(newObject.Erkezett) ,
+                Value = DateTime.Parse(newObject.Erkezett),
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter hatidop = new MySqlParameter()
             {
                 ParameterName = "@hatido_b",
                 DbType = System.Data.DbType.DateTime,
-                Value =  DateTime.Parse(newObject.HatIdo),
+                Value = DateTime.Parse(newObject.HatIdo),
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter szovegp = new MySqlParameter()
@@ -141,7 +121,7 @@ namespace IktatogRPCServer.Database.Mysql
             MySqlParameter newidp = new MySqlParameter()
             {
                 ParameterName = "@newid",
-                DbType = System.Data.DbType.Int32,  
+                DbType = System.Data.DbType.Int32,
                 Direction = System.Data.ParameterDirection.Output
             };
             MySqlParameter iktaszmp = new MySqlParameter()
@@ -167,14 +147,14 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(iktaszmp);
             try
             {
-    
+
                 try
                 {
                     Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Command végrehajtása");
                     command.ExecuteNonQuery();
                     newObject.Id = int.Parse(command.Parameters["@newid"].Value.ToString());
                     newObject.Iktatoszam = command.Parameters["@iktszam"].Value.ToString();
-                    Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Kimenő paraméterek: {NewObject} ",newObject);
+                    Log.Debug("IkonyvDatabaseManager.AddRootIkonyv: Kimenő paraméterek: {NewObject} ", newObject);
                 }
                 catch (MySqlException ex)
                 {
@@ -195,7 +175,9 @@ namespace IktatogRPCServer.Database.Mysql
 
             return newObject;
         }
-        private Ikonyv AddSubIkonyv(Ikonyv newObject, User user) {
+
+        public Ikonyv AddSubIkonyv(Ikonyv newObject, User user)
+        {
             Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -335,7 +317,7 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(parentidp);
             try
             {
-     
+
                 try
                 {
                     Log.Debug("IkonyvDatabaseManager.AddSubIkonyv: Command végrehajtása");
@@ -364,7 +346,7 @@ namespace IktatogRPCServer.Database.Mysql
             return newObject;
         }
 
-        public override Answer Delete(int id, User user)
+        public Answer DeleteIkonyv(int id, User user)
         {
             Log.Debug("IkonyvDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -414,12 +396,12 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-
-        public override List<Ikonyv> GetAllData(object filter)
+        public List<Ikonyv> GetIkonyvek(SearchIkonyvData filter)
         {
             Log.Debug("IkonyvDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Ikonyv> ikonyvek = new List<Ikonyv>();
-            if (filter is SearchIkonyvData) {
+            if (filter is SearchIkonyvData)
+            {
                 SearchIkonyvData data = filter as SearchIkonyvData;
                 MySqlCommand command = new MySqlCommand();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -427,13 +409,13 @@ namespace IktatogRPCServer.Database.Mysql
                 Log.Debug("IkonyvDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Adat: {Data}", data);
                 command.Parameters.AddWithValue("@user_id_b", data.User.Id);
                 command.Parameters.AddWithValue("@year_id_b", data.Year.Id);
-                command.Parameters.AddWithValue("@irany_b", data.Irany); 
+                command.Parameters.AddWithValue("@irany_b", data.Irany);
                 MySqlConnection connection = GetConnection();
                 command.Connection = connection;
                 OpenConnection(connection);
                 try
                 {
-               
+
                     try
                     {
 
@@ -457,7 +439,7 @@ namespace IktatogRPCServer.Database.Mysql
                                 Name = reader["partnername"].ToString()
                             };
                             int oszlopszam = reader.GetOrdinal("partnerugyintezoid");
-                            if (!reader.IsDBNull(oszlopszam))ikonyv.Partner.Ugyintezok.Add(new PartnerUgyintezo { Id = int.Parse(reader["partnerugyintezoid"].ToString()), Name = reader["partnerugyintezoname"].ToString() });
+                            if (!reader.IsDBNull(oszlopszam)) ikonyv.Partner.Ugyintezok.Add(new PartnerUgyintezo { Id = int.Parse(reader["partnerugyintezoid"].ToString()), Name = reader["partnerugyintezoname"].ToString() });
                             ikonyv.Ugyintezo = new Ugyintezo() { Id = int.Parse(reader["ugyintezoid"].ToString()), Name = reader["ugyintezoname"].ToString() };
                             ikonyv.Csoport = new Csoport() { Id = int.Parse(reader["csoportid"].ToString()), Name = reader["csoportname"].ToString(), Shortname = reader["csoportshortname"].ToString(), };
                             ikonyv.Jelleg = new Jelleg() { Id = int.Parse(reader["jellegid"].ToString()), Name = reader["jellegname"].ToString() };
@@ -487,8 +469,7 @@ namespace IktatogRPCServer.Database.Mysql
             return ikonyvek;
         }
 
-
-        public override Answer Update(Ikonyv modifiedObject)
+        public Answer ModifyIkonyv(Ikonyv modifiedObject)
         {
             Log.Debug("IkonyvDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();

@@ -115,6 +115,16 @@ namespace IktatogRPCServer.Service
             User user;
             if (CheckUserIsValid(context.RequestHeaders, out user))
             {
+                if (newObject.ValaszId == -1)
+                {
+                    Log.Debug("IkonyvDatabaseManager.Add: AddRootIkonyv meghívva.");
+                    return AddRootIkonyv(newObject, user);
+                }
+                else
+                {
+                    Log.Debug("IkonyvDatabaseManager.Add: AddSubIkonyv meghívva.");
+                    return AddSubIkonyv(newObject, user);
+                }
                 DatabaseManager<Ikonyv> manager = new IkonyvDatabaseManager(connectionManager);
                 Ikonyv ikonyv = manager.Add(request, user);
                 return Task.FromResult(new RovidIkonyv() { Id = ikonyv.Id, Iktatoszam = ikonyv.Iktatoszam });
