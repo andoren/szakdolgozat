@@ -7,16 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class JellegDatabaseManager : MysqlDatabaseManager<Jelleg>
+    class JellegDatabaseManager : MysqlDatabaseManager, IManageJelleg
     {
-        public JellegDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
 
-        public override Jelleg Add(NewTorzsData newObject, User user)
+
+        public Jelleg AddJelleg(NewTorzsData newObject, User user)
         {
             Log.Debug("JellegDatabaseManager.Add: Mysqlcommand előkészítése.");
             Jelleg jelleg = new Jelleg()
@@ -42,7 +41,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Value = newObject.Name,
                 Direction = System.Data.ParameterDirection.Input
             };
- 
+
             MySqlParameter userp = new MySqlParameter()
             {
                 ParameterName = "@created_by_b",
@@ -51,7 +50,7 @@ namespace IktatogRPCServer.Database.Mysql
                 Direction = System.Data.ParameterDirection.Input
             };
             command.Parameters.Add(telephelyp);
-            command.Parameters.Add(namep);   
+            command.Parameters.Add(namep);
             command.Parameters.Add(userp);
             //OUTPARAMETER
             MySqlParameter newJellegId = new MySqlParameter()
@@ -95,16 +94,14 @@ namespace IktatogRPCServer.Database.Mysql
             return jelleg;
         }
 
-
-
-        public override Answer Delete(int id, User user)
+        public Answer DeleteJelleg(int id, User user)
         {
             Log.Debug("JellegDatabaseManager.Delete: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             MySqlConnection connection = GetConnection();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delkind";
-            Log.Debug("JellegDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {Id}, User: {User}", id,user);
+            Log.Debug("JellegDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. Id: {Id}, User: {User}", id, user);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -148,61 +145,58 @@ namespace IktatogRPCServer.Database.Mysql
             return new Answer() { Error = eredmeny, Message = message };
         }
 
-
-        public override List<Jelleg> GetAllData(object filter)
+        public List<Jelleg> GetJellegek(Telephely filter)
         {
             Log.Debug("JellegDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
             List<Jelleg> jellegek = new List<Jelleg>();
-            if (filter is Telephely) {
-                Telephely telephely = filter as Telephely;
-                MySqlCommand command = new MySqlCommand();
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "getjellegek";
-                Log.Debug("JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
-                command.Parameters.AddWithValue("@telephely_b",telephely.Id);
+
+            Telephely telephely = filter as Telephely;
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "getjellegek";
+            Log.Debug("JellegDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Telephely}", telephely);
+            command.Parameters.AddWithValue("@telephely_b", telephely.Id);
+            try
+            {
+                Log.Debug("JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
                 try
                 {
-                    Log.Debug("JellegDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
-                    MySqlConnection connection = GetConnection();
-                    command.Connection = connection;
-                    OpenConnection(connection);
-                    try
+                    Log.Debug("JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása");
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Log.Debug("JellegDatabaseManager.GetAllData: MysqlCommand végrehajtása"); 
-                        MySqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Jelleg jelleg = new Jelleg();
-                            jelleg.Id = int.Parse(reader["id"].ToString());
-                            jelleg.Name = reader["name"].ToString();
-                            jellegek.Add(jelleg);
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        Log.Error("JellegDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("JellegDatabaseManager.GetAllData: Hiba történt {Message}", e);
-
-                    }
-                    finally
-                    {
-                        CloseConnection(connection);
+                        Jelleg jelleg = new Jelleg();
+                        jelleg.Id = int.Parse(reader["id"].ToString());
+                        jelleg.Name = reader["name"].ToString();
+                        jellegek.Add(jelleg);
                     }
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
-                    Log.Error("JellegDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+                    Log.Error("JellegDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("JellegDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                }
+                finally
+                {
+                    CloseConnection(connection);
                 }
             }
-          
+            catch (Exception ex)
+            {
+                Log.Error("JellegDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+            }
+
             return jellegek;
         }
 
-
-        public override Answer Update(Jelleg modifiedObject)
+        public Answer ModifyJelleg(Jelleg modifiedObject)
         {
             Log.Debug("JellegDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -259,5 +253,6 @@ namespace IktatogRPCServer.Database.Mysql
 
             return new Answer() { Error = eredmeny, Message = message };
         }
+
     }
 }

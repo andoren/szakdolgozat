@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Iktato;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace IktatogRPCServer.Database.Interfaces
 {
     interface IManageJelleg
     {
+        Jelleg AddJelleg(NewTorzsData newObject, User user);
+        Answer DeleteJelleg(int id, User user);
+        List<Jelleg> GetJellegek(Telephely filter);
+        Answer ModifyJelleg(Jelleg modifiedObject);
     }
 }
