@@ -6,17 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql.Abstract
 {
-    public abstract class MysqlDatabaseManager<T> : DatabaseManager<T> where T: new ()
+    public abstract class MysqlDatabaseManager: IDatabaseConnectionManager<MySqlConnection>
     {
-        public MysqlDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-
+        public ConnectionManager ConnectionManager { get {
+                return new ConnectionManager();
+            }
         }
 
-        public override void CloseConnection(object connection)
+        public void CloseConnection(MySqlConnection connection)
         {
             try
             {
@@ -38,10 +39,10 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
 
         public MySqlConnection GetConnection()
         {
-            return new MySqlConnection(connectionManager.ConnectionString);
+            return new MySqlConnection(ConnectionManager.ConnectionString);
         }
 
-        public override void OpenConnection(object connection)
+        public void OpenConnection(MySqlConnection connection)
         {
             try
             {

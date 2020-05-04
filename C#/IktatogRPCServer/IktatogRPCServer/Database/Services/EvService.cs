@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class EvService:IManageEv
     {
+        IManageEv dbManager;
+        public EvService(IManageEv dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

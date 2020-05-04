@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class JellegService:IManageJelleg
     {
+        IManageJelleg dbManager;
+        public JellegService(IManageJelleg dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class CsoportService:IManageCsoport
     {
+        IManageCsoport dbManager;
+        public CsoportService(IManageCsoport dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

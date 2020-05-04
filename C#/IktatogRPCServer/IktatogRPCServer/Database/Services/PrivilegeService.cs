@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class PrivilegeService:IManagePrivilege
     {
+        IManagePrivilege dbManager;
+        public PrivilegeService(IManagePrivilege dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class UserService:IManageUser
     {
+        IManageUser dbManager;
+        public UserService(IManageUser dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

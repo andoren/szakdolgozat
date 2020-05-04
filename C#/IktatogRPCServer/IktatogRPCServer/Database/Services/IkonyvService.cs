@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class IkonyvService:IManageIkonyv
     {
+        IManageIkonyv dbManager;
+        public IkonyvService(IManageIkonyv dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

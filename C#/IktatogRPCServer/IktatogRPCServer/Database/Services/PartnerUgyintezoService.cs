@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class PartnerUgyintezoService:IManagePartnerUgyintezo
     {
+        IManagePartnerUgyintezo dbManager;
+        public PartnerUgyintezoService(IManagePartnerUgyintezo dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class DocumentService:IManageDocument
     {
+        IManageDocument dbManager;
+        public DocumentService(IManageDocument dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }

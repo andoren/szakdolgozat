@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCServer.Database.Interfaces
 {
-    public interface IDatabaseConnectionManager
-    {
-        ConnectionManager ConnectionManager { get; set; }
-        void OpenConnection(object connection);
-        void CloseConnection(object connection);
+    public interface IDatabaseConnectionManager<T>
+    {     
+        ConnectionManager ConnectionManager { get;  }
+        void OpenConnection(T connection);
+        void CloseConnection(T connection);
+        T GetConnection();
     }
 }

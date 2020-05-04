@@ -7,48 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class CsoportDatabaseManager : MysqlDatabaseManager<Csoport>
+    class CsoportDatabaseManager : MysqlDatabaseManager, IManageCsoport
     {
-        public CsoportDatabaseManager(ConnectionManager connection) : base(connection)
-        {
-        }
 
-
-        public override Csoport Add(NewTorzsData newObject, User user)
+        public Csoport AddCsoport(NewTorzsData data, User user)
         {
             Csoport csoport = new Csoport()
             {
-                Name = newObject.Name,
-                Shortname = newObject.Shorname
+                Name = data.Name,
+                Shortname = data.Shorname
             };
             Log.Debug("CsoportDatabaseManager.Add: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "addgroup";
             //IN PARAMETERS
-            Log.Debug("CsoportDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Csoport}",newObject);
+            Log.Debug("CsoportDatabaseManager.Add: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához. {Csoport}", data);
             MySqlParameter telephelyp = new MySqlParameter()
             {
                 ParameterName = "@telephely_b",
                 DbType = System.Data.DbType.Int32,
-                Value = newObject.Telephely.Id,
+                Value = data.Telephely.Id,
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter namep = new MySqlParameter()
             {
                 ParameterName = "@name_b",
                 DbType = System.Data.DbType.String,
-                Value = newObject.Name,
+                Value = data.Name,
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter shortnamep = new MySqlParameter()
             {
                 ParameterName = "@shortname_b",
                 DbType = System.Data.DbType.String,
-                Value = newObject.Shorname,
+                Value = data.Shorname,
                 Direction = System.Data.ParameterDirection.Input
             };
             MySqlParameter userp = new MySqlParameter()
@@ -87,7 +84,7 @@ namespace IktatogRPCServer.Database.Mysql
                 }
                 catch (MySqlException ex)
                 {
-                    Log.Error("CsoportDatabaseManager.Add: Adatbázis hiba. {Message}",ex);
+                    Log.Error("CsoportDatabaseManager.Add: Adatbázis hiba. {Message}", ex);
                 }
                 catch (Exception e)
                 {
@@ -105,7 +102,7 @@ namespace IktatogRPCServer.Database.Mysql
             return csoport;
         }
 
-        public override Answer Delete(int id,User user)
+        public Answer DeleteCsoport(int id, User user)
         {
             Log.Debug("CsoportDatabaseManager.Delete: MysqlConnection létrehozása és nyitása.");
             MySqlCommand command = new MySqlCommand();
@@ -113,7 +110,7 @@ namespace IktatogRPCServer.Database.Mysql
             OpenConnection(connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "delgroup";
-            Log.Debug("CsoportDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id} User: {User}", id,user);
+            Log.Debug("CsoportDatabaseManager.Delete: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id} User: {User}", id, user);
             MySqlParameter idp = new MySqlParameter()
             {
                 ParameterName = "@id_b",
@@ -130,7 +127,7 @@ namespace IktatogRPCServer.Database.Mysql
             };
             command.Parameters.Add(idp);
             command.Parameters.Add(deleterp);
-            bool eredmeny = true ;
+            bool eredmeny = true;
             string message = "Sikeres törlés!";
             try
             {
@@ -154,62 +151,60 @@ namespace IktatogRPCServer.Database.Mysql
             }
             return new Answer() { Error = eredmeny, Message = message };
         }
-    
 
-        public override List<Csoport> GetAllData(object filter)
+        public List<Csoport> GetCsoportok(Telephely filter)
         {
             List<Csoport> csoportok = new List<Csoport>();
-            if (filter is Telephely) {
-                Telephely telephely = filter as Telephely;
-                Log.Debug("CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
-                MySqlCommand command = new MySqlCommand();
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "getGroup";
-                Log.Debug("CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id}", telephely.Id);
-                command.Parameters.AddWithValue("@telephely_b",telephely.Id);
+            Log.Debug("CsoportDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection connection = GetConnection();
+            command.Connection = connection;
+            OpenConnection(connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "getGroup";
+            Log.Debug("CsoportDatabaseManager.GetAllData: Bemenő paraméterek beolvasása és hozzáadása a paraméter listához.Id {Id}", telephely.Id);
+            command.Parameters.AddWithValue("@telephely_b", filter.Id);
+            try
+            {
+
+
                 try
                 {
-                   
-                    
-                    try
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        MySqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Log.Debug("CsoportDatabaseManager.Delete: MysqlCommand végrehajtása");
-                            Csoport csoport = new Csoport();
-                            csoport.Id = int.Parse(reader["id"].ToString());
-                            csoport.Name = reader["name"].ToString();
-                            csoport.Shortname = reader["shortname"].ToString();
-                            csoportok.Add(csoport);
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        Log.Error("CsoportDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", e);
-
-                    }
-                    finally { 
-                        CloseConnection(connection);
+                        Log.Debug("CsoportDatabaseManager.Delete: MysqlCommand végrehajtása");
+                        Csoport csoport = new Csoport();
+                        csoport.Id = int.Parse(reader["id"].ToString());
+                        csoport.Name = reader["name"].ToString();
+                        csoport.Shortname = reader["shortname"].ToString();
+                        csoportok.Add(csoport);
                     }
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
-                    Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+                    Log.Error("CsoportDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
                 }
-                
+                catch (Exception e)
+                {
+                    Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                }
+                finally
+                {
+                    CloseConnection(connection);
+                }
             }
+            catch (Exception ex)
+            {
+                Log.Error("CsoportDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+            }
+
+
             return csoportok;
         }
 
-        public override Answer Update(Csoport modifiedObject)
+        public Answer ModifyCsoport(Csoport modifiedObject)
         {
             Log.Debug("CsoportDatabaseManager.Update: MysqlConnection létrehozása és nyitása.");
             MySqlCommand command = new MySqlCommand();
@@ -248,7 +243,7 @@ namespace IktatogRPCServer.Database.Mysql
             command.Parameters.Add(idp);
             try
             {
-             
+
                 try
                 {
                     Log.Debug("CsoportDatabaseManager.Update: MysqlCommand végrehajtása");
@@ -274,5 +269,6 @@ namespace IktatogRPCServer.Database.Mysql
 
             return new Answer() { Error = eredmeny, Message = message };
         }
+
     }
 }

@@ -9,5 +9,10 @@ namespace IktatogRPCServer.Database.Services
 {
     class TelephelyService:IManageTelephely
     {
+        IManageTelephely dbManager;
+        public TelephelyService(IManageTelephely dbManager)
+        {
+            this.dbManager = dbManager;
+        }
     }
 }
