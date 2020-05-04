@@ -149,8 +149,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database\Abstract\DatabaseManager.cs" />
+    <Compile Include="Database\Interfaces\IDatabaseConnectionManager.cs" />
     <Compile Include="Database\ConnectionManager.cs" />
+    <Compile Include="Database\Interfaces\IManageCsoport.cs" />
+    <Compile Include="Database\Interfaces\IManageDocument.cs" />
+    <Compile Include="Database\Interfaces\IManageEv.cs" />
+    <Compile Include="Database\Interfaces\IManageIkonyv.cs" />
+    <Compile Include="Database\Interfaces\IManageJelleg.cs" />
+    <Compile Include="Database\Interfaces\IManagePartner.cs" />
+    <Compile Include="Database\Interfaces\IManagePartnerUgyintezo.cs" />
+    <Compile Include="Database\Interfaces\IManagePrivilege.cs" />
+    <Compile Include="Database\Interfaces\IManageTelephely.cs" />
+    <Compile Include="Database\Interfaces\IManageUgyintezo.cs" />
+    <Compile Include="Database\Interfaces\IManageUser.cs" />
     <Compile Include="Database\Mysql\Abstract\MysqlDatabaseManager.cs" />
     <Compile Include="Database\Mysql\CsoportDatabaseManager.cs" />
     <Compile Include="Database\Mysql\DocumentDatabaseManager.cs" />
@@ -164,6 +175,17 @@
     <Compile Include="Database\Mysql\UgyintezoDatabaseManager.cs" />
     <Compile Include="Database\Mysql\UserDatabaseManager.cs" />
     <Compile Include="Database\Mysql\YearsDatabaseManager.cs" />
+    <Compile Include="Database\Services\CsoportService.cs" />
+    <Compile Include="Database\Services\DocumentService.cs" />
+    <Compile Include="Database\Services\EvService.cs" />
+    <Compile Include="Database\Services\IkonyvService.cs" />
+    <Compile Include="Database\Services\JellegService.cs" />
+    <Compile Include="Database\Services\PartnerService.cs" />
+    <Compile Include="Database\Services\PartnerUgyintezoService.cs" />
+    <Compile Include="Database\Services\PrivilegeService.cs" />
+    <Compile Include="Database\Services\TelephelyService.cs" />
+    <Compile Include="Database\Services\UgyintezoService.cs" />
+    <Compile Include="Database\Services\UserService.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="LadingPage.xaml.cs">
       <DependentUpon>LadingPage.xaml</DependentUpon>
