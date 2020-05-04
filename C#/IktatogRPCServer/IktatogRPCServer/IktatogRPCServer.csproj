@@ -187,6 +187,7 @@
     <Compile Include="Database\Services\UgyintezoService.cs" />
     <Compile Include="Database\Services\UserService.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
+    <Compile Include="Helpers\UploadedFileHandler.cs" />
     <Compile Include="LadingPage.xaml.cs">
       <DependentUpon>LadingPage.xaml</DependentUpon>
     </Compile>
