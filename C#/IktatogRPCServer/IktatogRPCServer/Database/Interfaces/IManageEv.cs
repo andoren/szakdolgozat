@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Iktato;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace IktatogRPCServer.Database.Interfaces
 {
     interface IManageEv
     {
+        List<Year> GetEvek();
+        Answer CloseOldYearAndActivateNewOne(Year modifiedObject);
     }
 }

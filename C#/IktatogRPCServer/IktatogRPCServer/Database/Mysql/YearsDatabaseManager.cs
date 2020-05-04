@@ -1,5 +1,4 @@
 ﻿using Iktato;
-using IktatogRPCServer.Database.Abstract;
 using IktatogRPCServer.Database.Mysql.Abstract;
 using MySql.Data.MySqlClient;
 using System;
@@ -8,84 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using IktatogRPCServer.Database.Interfaces;
 
 namespace IktatogRPCServer.Database.Mysql
 {
-    class YearsDatabaseManager : MysqlDatabaseManager<Year>
+    class YearsDatabaseManager : MysqlDatabaseManager, IManageEv
     {
-        public YearsDatabaseManager(ConnectionManager connectionManager) : base(connectionManager)
-        {
-
-        }
-
-
-
-        public override Year Add(NewTorzsData newObject, User user)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public override Answer Delete(int id, User user)
-        {
-            throw new NotImplementedException();
-        }
-
- 
-
-        public override List<Year> GetAllData(object filter)
-        {
-            Log.Debug("YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
-            List<Year> evek = new List<Year>();
-            MySqlCommand command = new MySqlCommand();
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.CommandText = "getevek";
-            try
-            {
-                Log.Debug("YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
-                MySqlConnection connection = GetConnection();
-                command.Connection = connection;
-                OpenConnection(connection);
-                try
-                {
-                    Log.Debug("YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása");
-                    MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Year ev = new Year();
-                        ev.Id = int.Parse(reader["id"].ToString());
-                        ev.Year_ = int.Parse(reader["year"].ToString());
-                        ev.Active = int.Parse(reader["active"].ToString()) == 1 ? true : false;
-                        evek.Add(ev);
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    Log.Error("YearsDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
-                }
-                catch (Exception e)
-                {
-                    Log.Error("YearsDatabaseManager.GetAllData: Hiba történt {Message}", e);
-
-                }
-                finally
-                {
-                    CloseConnection(connection);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error("YearsDatabaseManager.GetAllData: Hiba történt {Message}", ex);
-            }
-            return evek;
-        }
-
-
-
-
-
-        public override Answer Update(Year modifiedObject)
+        public Answer CloseOldYearAndActivateNewOne(Year modifiedObject)
         {
             Log.Debug("YearsDatabaseManager.Update: Mysqlcommand előkészítése.");
             MySqlCommand command = new MySqlCommand();
@@ -133,6 +61,52 @@ namespace IktatogRPCServer.Database.Mysql
 
             }
             return new Answer() { Error = eredmeny, Message = message };
+        }
+        public List<Year> GetEvek()
+        {
+            Log.Debug("YearsDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
+            List<Year> evek = new List<Year>();
+            MySqlCommand command = new MySqlCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "getevek";
+            try
+            {
+                Log.Debug("YearsDatabaseManager.GetAllData: MysqlConnection létrehozása és nyitása.");
+                MySqlConnection connection = GetConnection();
+                command.Connection = connection;
+                OpenConnection(connection);
+                try
+                {
+                    Log.Debug("YearsDatabaseManager.GetAllData: MysqlCommand végrehajtása");
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Year ev = new Year();
+                        ev.Id = int.Parse(reader["id"].ToString());
+                        ev.Year_ = int.Parse(reader["year"].ToString());
+                        ev.Active = int.Parse(reader["active"].ToString()) == 1 ? true : false;
+                        evek.Add(ev);
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Log.Error("YearsDatabaseManager.GetAllData: Adatbázis hiba. {Message}", ex);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("YearsDatabaseManager.GetAllData: Hiba történt {Message}", e);
+
+                }
+                finally
+                {
+                    CloseConnection(connection);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("YearsDatabaseManager.GetAllData: Hiba történt {Message}", ex);
+            }
+            return evek;
         }
     }
 }
