@@ -16,48 +16,31 @@ namespace IktatogRPCServer.Database.Mysql.Abstract
                 return new ConnectionManager();
             }
         }
-
         public void CloseConnection(MySqlConnection connection)
         {
             try
             {
-                (connection as MySqlConnection).Close();
-
-            }
-            catch (MySqlException e)
-            {
-                Log.Warning("Hiba az adatbázis kapcsolat bontása közben. {Message}",e);
+                connection.Close();
 
             }
             catch (Exception ex)
             {
                 Log.Warning("Hiba az adatbázis kapcsolat bontása közben. {Message}", ex);
-
             }
         }
-
-
         public MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionManager.ConnectionString);
         }
-
         public void OpenConnection(MySqlConnection connection)
         {
             try
             {
-                (connection as MySqlConnection).Open();
-
-            }
-            catch (MySqlException e)
-            {
-                Log.Error("Hiba az adatbázis kapcsolat nyitása közben. {Message}", e);
-
+                connection.Open();
             }
             catch (Exception ex)
             {
                 Log.Error("Hiba az adatbázis kapcsolat nyitása közben. {Message}", ex);
-
             }
         }
     }   

@@ -4,22 +4,11 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using MySql.Data.MySqlClient;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace IktatogRPCServer
@@ -59,7 +48,6 @@ namespace IktatogRPCServer
             dlg.ShowPlacesList = true;
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
-
                 await Task.Run(() =>
                 {
                     try
@@ -87,10 +75,7 @@ namespace IktatogRPCServer
                                     mb.ExportInfo.IntervalForProgressReport = 50;
                                     mb.ExportInfo.GetTotalRowsMode = GetTotalRowsMethod.SelectCount;
                                     mb.ExportToFile(file);
-
-
                                     conn.Close();
-
                                 }
                             }
                         }
@@ -105,8 +90,6 @@ namespace IktatogRPCServer
 
                             }
                         });
-
-
                     }
                     catch (Exception ex)
                     {
@@ -136,10 +119,8 @@ namespace IktatogRPCServer
                 {
                     try
                     {
-
                         IsErrorOccured = false;
-                        file = dialog.FileName;
-                       
+                        file = dialog.FileName;                      
                         using (MySqlConnection conn = new MySqlConnection(constring))
                         {
                             using (MySqlCommand cmd = new MySqlCommand())
@@ -147,11 +128,9 @@ namespace IktatogRPCServer
                                 using (MySqlBackup mb = new MySqlBackup(cmd))
                                 {
                                     cmd.Connection = conn;
-                                    conn.Open();
-                                    
+                                    conn.Open();                                 
                                     mb.ImportFromFile(file);
                                     conn.Close();
-
                                 }
                             }
                         }
@@ -163,7 +142,6 @@ namespace IktatogRPCServer
                             else
                             {
                                 SaveStatus.Text = $"Hiba az adatbázis importálása közben.";
-
                             }
                         });
                     }
@@ -175,7 +153,5 @@ namespace IktatogRPCServer
                 });
             }
         }
-
-
     }
 }

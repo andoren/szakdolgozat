@@ -13,7 +13,6 @@ namespace IktatogRPCServer.Database.Mysql
 {
     class PartnerDatabaseManager : MysqlDatabaseManager, IManagePartner
     {
-
         public Partner AddPartner(NewTorzsData newObject, User user)
         {
             Log.Debug("PartnerDatabaseManager.Add: Mysqlcommand előkészítése.");
@@ -83,7 +82,6 @@ namespace IktatogRPCServer.Database.Mysql
 
             return partner;
         }
-
         public Answer DeletePartner(int id, User user)
         {
             Log.Debug("PartnerDatabaseManager.Delete: Mysqlcommand előkészítése.");
@@ -134,7 +132,6 @@ namespace IktatogRPCServer.Database.Mysql
             }
             return new Answer() { Error = eredmeny, Message = message };
         }
-
         public List<Partner> GetPartnerek(Telephely filter)
         {
             Log.Debug("PartnerDatabaseManager.GetAllData: Mysqlcommand előkészítése.");
@@ -184,7 +181,6 @@ namespace IktatogRPCServer.Database.Mysql
 
             return partnerek;
         }
-
         public Answer ModifyPartner(Partner modifiedObject)
         {
             Log.Debug("PartnerDatabaseManager.Update: Mysqlcommand előkészítése.");
@@ -242,6 +238,5 @@ namespace IktatogRPCServer.Database.Mysql
 
             return new Answer() { Error = eredmeny, Message = message };
         }
-
     }
 }
