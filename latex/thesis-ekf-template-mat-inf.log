@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  6 MAY 2020 13:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  9 MAY 2020 21:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,47 +865,47 @@ e-mat-inf.toc [2
 [6
 
 ] [7] [8] [9]
-Overfull \hbox (6.89464pt too wide) in paragraph at lines 120--120
+Overfull \hbox (6.89464pt too wide) in paragraph at lines 121--121
 []\T1/lmr/bx/n/17.28 A rend-szer-re vo-nat-ko-zó pá-lyá-zat, tör-vé-nyek, ren-
  []
 
 
-Underfull \hbox (badness 1048) in paragraph at lines 144--144
+Underfull \hbox (badness 1048) in paragraph at lines 148--148
 []|\T1/lmr/m/n/12 Egy he-lyen le-hes-sen ke-zel-ni a tör-zset.
  []
 
 
-Underfull \hbox (badness 1052) in paragraph at lines 146--146
+Underfull \hbox (badness 1052) in paragraph at lines 150--150
 []|\T1/lmr/m/n/12 Az ik-ta-tás-hoz tar-to-zó in-for-má-ci-ók egy
  []
 
 
-Underfull \hbox (badness 2521) in paragraph at lines 148--148
+Underfull \hbox (badness 2521) in paragraph at lines 152--152
 \T1/lmr/m/n/12 ku-men-tu-mo-kat. Do-ku-men-tu-mok jel-le-ge
  []
 
 
-Overfull \hbox (8.93213pt too wide) in alignment at lines 133--159
+Overfull \hbox (8.93213pt too wide) in alignment at lines 137--163
  [] [] [] [] 
  []
 
-
-Underfull \vbox (badness 10000) detected at line 159
+[10]
+Underfull \vbox (badness 10000) detected at line 163
  []
 
-[10] [11]
+[11]
 <adatbazisterv.png, id=221, 939.51pt x 933.4875pt>
 File: adatbazisterv.png Graphic file (type png)
 <use adatbazisterv.png>
-Package pdftex.def Info: adatbazisterv.png  used on input line 168.
+Package pdftex.def Info: adatbazisterv.png  used on input line 172.
 (pdftex.def)             Requested size: 199.16928pt x 197.88986pt.
 <archdiag.png, id=222, 793.96625pt x 664.4825pt>
 File: archdiag.png Graphic file (type png)
 <use archdiag.png>
-Package pdftex.def Info: archdiag.png  used on input line 177.
+Package pdftex.def Info: archdiag.png  used on input line 181.
 (pdftex.def)             Requested size: 199.16928pt x 166.688pt.
- [12 <./adatbazisterv.png>] [13 <./archdiag.png>] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
+ [12] [13 <./adatbazisterv.png> <./archdiag.png>] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
 
  []
 
@@ -914,12 +914,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 291--292
 <mvvmdiag.png, id=264, 550.30594pt x 267.24844pt>
 File: mvvmdiag.png Graphic file (type png)
 <use mvvmdiag.png>
-Package pdftex.def Info: mvvmdiag.png  used on input line 311.
+Package pdftex.def Info: mvvmdiag.png  used on input line 315.
 (pdftex.def)             Requested size: 351.54803pt x 170.71652pt.
 [18
 
  <./mvvmdiag.png>] [19] [20]
-Overfull \hbox (26.09927pt too wide) in paragraph at lines 337--338
+Overfull \hbox (26.09927pt too wide) in paragraph at lines 341--342
 \T1/lmr/m/n/12 Boot-strap-per-Ba-se osz-tály le-szár-ma-zott-ja és hoz-zá-ad-ju
 k azt a prog-ram ResourceDictonary-
  []
@@ -927,7 +927,7 @@ k azt a prog-ram ResourceDictonary-
 <proto.png, id=280, 346.29375pt x 258.9675pt>
 File: proto.png Graphic file (type png)
 <use proto.png>
-Package pdftex.def Info: proto.png  used on input line 344.
+Package pdftex.def Info: proto.png  used on input line 348.
 (pdftex.def)             Requested size: 199.16928pt x 148.94861pt.
 [21] [22 <./proto.png>] [23]
 4. fejezet.
@@ -935,13 +935,13 @@ Package pdftex.def Info: proto.png  used on input line 344.
 
 ] [25] [26] [27] [28] [29] [30]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
-55.
+59.
 
 (c:/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [31] [32] [33] [34]
 [35] [36] [37]
-Overfull \hbox (15.49307pt too wide) in paragraph at lines 755--756
+Overfull \hbox (15.49307pt too wide) in paragraph at lines 759--760
 \T1/lmr/m/n/12 tud-nia kell. A szol-gál-ta-tás osz-tá-lyunk-nak az ®s-osz-tá-ly
 a az Ik-ta-toS-er-vi-ce.IktatoServiceBase.
  []
@@ -955,23 +955,23 @@ a az Ik-ta-toS-er-vi-ce.IktatoServiceBase.
 [47
 
 ] [48]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 932.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 936.
  [49
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 932.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 936.
  (./thesis-ekf-template-mat-inf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 932.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 932.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 936.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 936.
 Package rerunfilecheck Info: File `thesis-ekf-template-mat-inf.out' has not cha
 nged.
 (rerunfilecheck)             Checksum: 3A60034B5C93A1AFFB93DEFC054C1155;6202.
  ) 
 Here is how much of TeX's memory you used:
- 16894 strings out of 492167
- 242409 string characters out of 6129159
+ 16896 strings out of 492167
+ 242432 string characters out of 6129159
  648815 words of memory out of 5000000
- 20459 multiletter control sequences out of 15000+600000
+ 20461 multiletter control sequences out of 15000+600000
  78855 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  54i,7n,40p,1838b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -985,7 +985,7 @@ type1/public/lm/lmcsc10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/l
 mr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texliv
 e/2019/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2019/texmf-dist/
 fonts/type1/public/lm/lmsy10.pfb>
-Output written on thesis-ekf-template-mat-inf.pdf (49 pages, 467419 bytes).
+Output written on thesis-ekf-template-mat-inf.pdf (49 pages, 469545 bytes).
 PDF statistics:
  926 PDF objects out of 1000 (max. 8388607)
  845 compressed objects within 9 object streams

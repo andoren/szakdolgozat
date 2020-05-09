@@ -16,10 +16,10 @@ namespace IktatogRPCServer
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow window = new MainWindow(); 
+            MainWindow window = new MainWindow();
             if (e.Args.Length > 0)
             {
-                if (e.Args.Contains("-d")) window.ChangeLogLevel(LogEventLevel.Debug);
+                if (e.Args.Contains("-d")) RegistryHelper.SetLogLevel(2);
                 if (e.Args.Contains("-s")) window.StartServer_Click(null, null);                          
             }
             window.Show();

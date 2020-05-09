@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog.Events;
 using System.Windows;
+using IktatogRPCServer.Exceptions;
+using System.IO;
 
 namespace IktatogRPCServer
 {
-    class RegistryHelper
+   public class RegistryHelper
     {
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "OtemplomIktato";
@@ -20,7 +22,9 @@ namespace IktatogRPCServer
             return (string)Registry.GetValue(keyName, "LogPath", "");
         }
         public static void SetLogPath(string Path) {
-            Registry.SetValue(keyName, "LogPath", Path + "\\logs.txt");
+            if (!Directory.Exists(Path)) throw new DirectoryNotFoundException($"A mappa nem létezik: {Path}");
+            else Registry.SetValue(keyName, "LogPath", Path + "\\logs.txt");
+
         }
         public static LogEventLevel GetLogLevelToShow() {
             int rawlevel = 3;
@@ -47,20 +51,20 @@ namespace IktatogRPCServer
         }
         public static void SetLogLevelToShow(int level)
         {
+            LogEventLevel currentServerLogLevel = GetLogLevel();
             if (level < 0 || level > 5)
             {
-                MessageBox.Show("Hibás LogEventLevel!");
-                return;
+                throw new InvalidLogLevelToShowException($"Hibás naplózási érték: {level}!");
+                
             }
-
+            if(level < (int)currentServerLogLevel) throw new InvalidLogLevelToShowException($"Hibás naplózási érték. A mutatott naplózási érték nem lehet kisebb mint a szerveré!");
             Registry.SetValue(keyName, "LogToShow", level);
         }
 
         public static void SetLogLevel(int level)
         {
             if (level < 0 || level > 5) {
-                MessageBox.Show("Hibás LogEventLevel!");
-                return;
+                throw new InvalidLogLevelException($"Hibás naplózási érték: {level}!");
             } 
             Registry.SetValue(keyName, "LogLevel", level);
 

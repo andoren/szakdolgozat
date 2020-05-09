@@ -50,6 +50,7 @@ Ezen programok fejlesztése után jutottunk el az iktatáshoz, amelyet ugyanúgy
 
 Így a dolgozatom célja munkáltatóm ügyviteli rendszerének összehangolása, átszervezése, iktatásának központosítása és digitalizálása. Azért hangsúlyos ez a terület ebben az intézményben, mert az itt folyó szociális és ápolói munka során számos egyéb hivatalos szervvel kerülünk kapcsolatba, ami megköveteli a naprakész, pontos és folyamatában követhető iratkezelést.
 
+A dolgozatom következő fejezetében bemutatom a szoftver fejlesztés megkezdéséhez szükséges specifikációkat amiket a félreértések elkerülése érdekében készítettem. A harmadik fejezetben említést teszek a felhasznált technológiákról, ami magába foglalja a kliens oldali Caliburn.Micro MVVM keretrendszert, a szerver és kliens szétválasztását lehetővé tevő gRPC-ről. A negyedik fejezet a kliens és szerver oldali implementálásokról illetve azok fontosabb összetevőiről fog szólni, valamint az adatbázis kialakításáról. Végül az összefoglalás előtti fejezet a kimaradt és a visszajelzések alapján megfogalmazódott fejlesztésekről szól. 
 
 \chapter{Követelmény specifikáció}
 \section{Fogalomtár}
@@ -118,15 +119,18 @@ A rendszergazdának legyen szerveren kezelő felülete, ahol az adatbázist, fel
 
 Jó lenne az egyházi jelleg megjelenése a programban. Például a főoldal tartalmazhatná a napi igét, illetve az evangélikus egyház jelképe, azaz a Luther-rózsa is megjelenhetne.
 \section{A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások felsorolása}
-(ok, hogy ismertetjük a jogszabályi hátteret, de akkor a törvények felsorolása mellett röviden definiáljuk, hogy mit vár el … ne csak azt mondjuk, hogy figyelembe kell venni, mert ez így elég logikátlan) (latex-ben ki lesz dolgozva)
-Az iratkezelés menetét alapvetően meghatározza a jelenleg hatályos, többször módosított 1995. évi LXVI. törvény, a levéltári törvény a köziratokról, a közlevéltárakról és a magánlevéltári anyag védelméről. 
-CompLex Jogtár, 1995. évi LXVI. törvény, a levéltári törvény a köziratokról 
+Az iratkezelés menetét az applikációban alapvetően 2 törvény határozza meg, ezek a jelenleg hatályos, többször módosított, a levéltári törvény a köziratokról, a közlevéltárakról és a magánlevéltári anyag védelméről szóló \textbf{1995. évi LXVI. törvény}, valamint a közfeladatot ellátó szervek iratkezelésének általános követelményeiről szóló \textbf{35/2005.(XII: 29.) Korm. rendelet}. 
 
-335/2005. (XII. 29.) Korm. rendelet a közfeladatot ellátó szervek iratkezelésének általános követelményeiről
-CompLex Jogtár, 335/2005. (XII.29.) Korm. rendelet 
+A kormányrendeletben szereplő 6.§-ban foglalt egyes pontjai határozzák meg a program működését legfőképpen. Ezek a pontok magukba foglalják, hogy 
+\begin{itemize}
+	\item a szervezethez érkezett, ott keletkező, illetve onnan továbbított irat azonosítható, fellelési helye, útja követhető, ellenőrizhető és visszakereshető legyen;
+	\item az irat tartalma csak az arra jogosult számára legyen megismerhető;
+	\item az irat kezeléséért fennálló személyi felelősség egyértelműen megállapítható legyen.
+\end{itemize}
 
-Ügyiratkezelési intézményi szabályzat:…
+A törvény a 9.§ -ban foglaltak alapján a program, az intézményhez érkezett és az általa készített iratokat az érkezés, illetve a keletkezés időpontját eltárolja, azaz nyilvántartásba veszi. Valamint a keletkező, nem selejtezhető iratoknak tartós megőrzését kell lehetővé tennie.
 
+Mivel az \textbf{intézmény ügyiratkezelés szabályzata} ezen törvények előírásai alapján készült tehát szabályozza az iratok biztonságos kezelési módját, szakszerű iktatását és megőrzését. Ide tartozik minden olyan feladat, ami az iratok átvételéhez, érkeztetéséhez, elosztásához, nyilvántartásba vételéhez, irattárazásához. Így a program írásakor figyelembe kellett venni, hogy az iktatási csoportok elkülöníthető betűjeleket kapjanak, valamint külön telephelyekre vonatkozó választási lehetőség legyen. Ezen felül a telephelyeket és ügyirati csoportokat ez a szabályzat határozza meg. 
 
 \section{Követelmény lista}
 A fent említett igények alapján állítottuk össze a követelmény listát, ami megfogalmazza, hogy egyes verzió számú program részek már milyen tudással bírjanak.

@@ -51,7 +51,7 @@ namespace IktatogRPCServer
         }
         private void StartLogger()
         {            
-            if(serverLevelSwitch.MinimumLevel != LogEventLevel.Debug) serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
+            serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
             if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.ControlledBy(serverLevelSwitch)

@@ -4,10 +4,10 @@
 \select@language {magyar} \contentsline {section}{\numberline {2.2}Jelenlegi helyzet leírása}{7}{section.2.2}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.3}Vágyálom rendszer}{9}{section.2.3}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.4}A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások felsorolása}{10}{section.2.4}% 
-\select@language {magyar} \contentsline {section}{\numberline {2.5}Követelmény lista}{10}{section.2.5}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.5}Követelmény lista}{11}{section.2.5}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.6}Technikai feltétel}{12}{section.2.6}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.7}Rendszerspecifikáció}{12}{section.2.7}% 
-\select@language {magyar} \contentsline {section}{\numberline {2.8}Az alkalmazással szemben támasztott funkcionális követelmény}{13}{section.2.8}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.8}Az alkalmazással szemben támasztott funkcionális követelmény}{14}{section.2.8}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.9}Funkcionális specifikáció}{14}{section.2.9}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {2.9.1}Felhasználók számára elérhető funkciók}{14}{subsection.2.9.1}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {2.9.2}Adminok számára elérhető funkciók}{16}{subsection.2.9.2}% 

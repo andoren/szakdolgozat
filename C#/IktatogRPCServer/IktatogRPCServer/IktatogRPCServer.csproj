@@ -185,7 +185,9 @@
     <Compile Include="Database\Services\TelephelyService.cs" />
     <Compile Include="Database\Services\UgyintezoService.cs" />
     <Compile Include="Database\Services\UserService.cs" />
+    <Compile Include="Exceptions\InvalidLogLevelException.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
+    <Compile Include="Exceptions\InvalidLogLevelToShowException.cs" />
     <Compile Include="Helpers\UploadedFileHandler.cs" />
     <Compile Include="LadingPage.xaml.cs">
       <DependentUpon>LadingPage.xaml</DependentUpon>

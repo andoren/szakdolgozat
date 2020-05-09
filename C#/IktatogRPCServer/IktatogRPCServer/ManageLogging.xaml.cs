@@ -17,6 +17,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
 using Serilog;
 using Serilog.Events;
+using IktatogRPCServer.Exceptions;
 
 namespace IktatogRPCServer
 {
@@ -61,7 +62,14 @@ namespace IktatogRPCServer
 
         private void ModifyPathButton_Click(object sender, RoutedEventArgs e)
         {
-            RegistryHelper.SetLogPath(NewLoggingPath.Text);
+            try
+            {
+                RegistryHelper.SetLogPath(NewLoggingPath.Text);
+            }
+            catch (Exception ex) {
+                Log.Error(ex.Message);
+                return;
+            }
             MessageBox.Show("A logolás elérésí útja módosult.");
             InformationText.Visibility = Visibility.Visible;
         }
@@ -69,23 +77,28 @@ namespace IktatogRPCServer
         private void ModifyServerLogLevel_Click(object sender, RoutedEventArgs e)
         {
             if (ServerLoggingLevelComboBox.SelectedItem == null) return;
-            RegistryHelper.SetLogLevel((int)ServerLoggingLevelComboBox.SelectedItem);
+            try
+            {
+                RegistryHelper.SetLogLevel((int)ServerLoggingLevelComboBox.SelectedItem);
+            }
+            catch (Exception ex) {
+                Log.Warning(ex.Message);
+                return;
+            }
             MessageBox.Show("A szerver logolási szintje módosult");
             InformationText.Visibility = Visibility.Visible;
         }
         private void ModifyCurrentLogLevelToShow_Click(object sender, RoutedEventArgs e)
         {
             if (ServerLoggingLevelToShowComboBox.SelectedItem == null) return;
-            int currentLogLevel = (int)MainWindow.GetLogLevel();
-            int setLogLevelToShow = (int)ServerLoggingLevelToShowComboBox.SelectedItem;
-            if (currentLogLevel <= setLogLevelToShow)
+            try
             {
-                RegistryHelper.SetLogLevelToShow(setLogLevelToShow);
+                RegistryHelper.SetLogLevelToShow((int)ServerLoggingLevelToShowComboBox.SelectedItem);
                 MessageBox.Show("A mutatott logolási szint módosult");
                 InformationText.Visibility = Visibility.Visible;
             }
-            else {
-                MessageBox.Show("A mutatott logolás szintje nem lehet kisebb mint a szerver logolási szintje.");
+            catch (Exception ex) {
+                Log.Warning(ex.Message);
             }
         }
     }
