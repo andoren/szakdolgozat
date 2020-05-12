@@ -75,19 +75,18 @@ namespace IktatogRPCClient.Models
         }
 
         public static bool IsValidPassword(string newPassword)
-        {
-            //TODO Password Is Valid method
-            return newPassword.Length > 5;
+        {       
+            return !string.IsNullOrEmpty(newPassword) && !string.IsNullOrWhiteSpace(newPassword) && newPassword.Length > 5 && newPassword.Length <= 20;
         }
 
         public static bool IsValidFullname(string newFullname)
         {
-            return !(newFullname.Length < 4 || newFullname.Length > 100 || !newFullname.Contains(" "));
+            return !string.IsNullOrEmpty(newFullname) && !string.IsNullOrWhiteSpace(newFullname) && !(newFullname.Length < 4 || newFullname.Length > 100 || !newFullname.Contains(" "));
         }
 
         public  static bool IsValidUsername(string newUsername)
         {
-            return !(newUsername.Length < 4 || newUsername.Length > 20);
+            return !string.IsNullOrEmpty(newUsername) && !string.IsNullOrWhiteSpace(newUsername) && !(newUsername.Length < 4 || newUsername.Length > 20);
         }
         public bool IsAdmin {
             get {

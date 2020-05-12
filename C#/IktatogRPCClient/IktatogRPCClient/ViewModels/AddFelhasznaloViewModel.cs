@@ -12,13 +12,16 @@ using System.Windows.Controls;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddFelhasznaloViewModel : TorzsDataView<UserProxy>,IHandle<BindableCollection<Telephely>>
+    public class AddFelhasznaloViewModel : TorzsDataView<UserProxy>,IHandle<BindableCollection<Telephely>>
     {
         public AddFelhasznaloViewModel()
         {
             LoadData();
         }
-
+        public AddFelhasznaloViewModel(bool test)
+        {
+            
+        }
         private  void LoadData()
         {
 

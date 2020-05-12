@@ -26,9 +26,10 @@ namespace IktatogRPCServer
 
         LadingPage ladingPage = new LadingPage(); 
         Server server;
-        
-        int Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
-        string Ip = ConfigurationManager.AppSettings["APPHOST"];
+
+        int Port; 
+        string Ip;
+        bool secure;
         private static LoggingLevelSwitch serverLevelSwitch = new LoggingLevelSwitch();
         private static string _logPath = "";
 
@@ -52,7 +53,7 @@ namespace IktatogRPCServer
         private void StartLogger()
         {            
             serverLevelSwitch.MinimumLevel = RegistryHelper.GetLogLevel();
-            if (LogPath == "") LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
+            if (string.IsNullOrEmpty(LogPath)) LogPath = Directory.GetCurrentDirectory() + "\\logs\\log.txt";
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.ControlledBy(serverLevelSwitch)
            .WriteTo.File(LogPath, shared: true, rollingInterval: RollingInterval.Day)
@@ -63,17 +64,8 @@ namespace IktatogRPCServer
         {
             try
             {
-                SslServerCredentials credentials = CreateCredentials();              
-                server = new Server(new[] { 
-                    new ChannelOption("grpc.keepalive_permit_without_calls", 1),
-                    new ChannelOption("grpc.http2.max_pings_without_data",0),
-                    new ChannelOption("grpc.keepalive_timeout_ms",50),
-                    new ChannelOption("grpc.keepalive_time_ms",360000)
-                })
-                {
-                    Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
-                    Ports = { new ServerPort("0.0.0.0", Port, credentials) }     
-                };   
+                if (!ReadConfig()) return;
+                server = CreateServer();
                 server.Start();
                 Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
                 StartServerButton.IsEnabled = false;
@@ -82,9 +74,52 @@ namespace IktatogRPCServer
             catch (Exception ex)
             {
                 Log.Error("Következő hiba történt a szerver indulásakor: {Message}", ex);
+                return;
             }
             Log.Warning("A szerver elindult ");
 
+        }
+        private Server CreateServer() {
+          
+            Server server = new Server();
+            ChannelOption[] options = new[] {
+                    new ChannelOption("grpc.keepalive_permit_without_calls", 1),
+                    new ChannelOption("grpc.http2.max_pings_without_data",0),
+                    new ChannelOption("grpc.keepalive_timeout_ms",50),
+                    new ChannelOption("grpc.keepalive_time_ms",360000)
+                };
+            if (secure)
+            {
+                SslServerCredentials credentials = CreateCredentials();
+                server = new Server(options)
+                {
+                    Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
+                    Ports = { new ServerPort(Ip, Port, credentials) }
+                };
+                Log.Warning("A szerver biztonságos módban fog elindulni.");
+            }
+            else {
+                server = new Server(options)
+                {
+                    Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
+                    Ports = { new ServerPort(Ip, Port, ServerCredentials.Insecure) }
+                };
+                Log.Warning("A szerver NEM biztonságos módban fog elindulni.");
+            }
+            return server;
+        }
+        private bool ReadConfig() {
+            try
+            {
+                Port = int.Parse(ConfigurationManager.AppSettings["APPPORT"]);
+                Ip = ConfigurationManager.AppSettings["APPHOST"];
+                secure = bool.Parse(ConfigurationManager.AppSettings["Secure"]);
+                return true;
+            }
+            catch (Exception e) {
+                Log.Error("Hiba a konfig fájl feldolgozása közben: {Message}",e.Message);
+                return false;
+            }
         }
         private SslServerCredentials CreateCredentials() {   
             SslServerCredentials credentials = new SslServerCredentials(new[] { CreateCertPair() });

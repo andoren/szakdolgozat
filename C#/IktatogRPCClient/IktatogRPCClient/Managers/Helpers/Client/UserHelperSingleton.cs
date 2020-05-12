@@ -67,13 +67,13 @@ namespace IktatogRPCClient.Models.Managers.Helpers.Client
             }
             catch (Exception e )
             {
-                MessageBox.Show($"Sima Exception: {e.Message}");           
+                InformationBox.ShowError(e);
             }
             return success;
         }
         public bool IsAdmin {
             get {
-                return CurrentUser.Privilege.Name == "admin" ? true : false;
+                return CurrentUser.Privilege.Name.ToLower() == "admin" ? true : false;
             }
         }
     }

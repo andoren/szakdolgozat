@@ -158,8 +158,7 @@ namespace IktatogRPCClient.ViewModels
 
         public void Handle((Telephely, Ugyintezo) message)
         {
-            
-       
+            if (TelephelyUgyintezoi == null || ValaszthatoTelephely == null || message.Item2 == null || message.Item1 == null) return;
                 Ugyintezo temp = TelephelyUgyintezoi.Where(x => x.Name == message.Item2.Name).FirstOrDefault();
                 if (temp == null) {
                     UgyintezokIsVisible = true;
@@ -170,7 +169,6 @@ namespace IktatogRPCClient.ViewModels
 
                             TelephelyUgyintezoi.Remove(ValasztottUgyintezo);
                             TelephelyUgyintezoi.Add(message.Item2);
-
 
                         }
                         else if(message.Item1.Name == ValasztottTelephely.Name) {

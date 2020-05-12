@@ -10,7 +10,7 @@ using Serilog;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddCsoportViewModel : TorzsDataView<Csoport>,IHandle<BindableCollection<Telephely>>
+    public class AddCsoportViewModel : TorzsDataView<Csoport>,IHandle<BindableCollection<Telephely>>
     {
         public AddCsoportViewModel()
         {

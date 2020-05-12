@@ -4,7 +4,7 @@
 \select@language {magyar} \contentsline {section}{\numberline {2.2}Jelenlegi helyzet leírása}{7}{section.2.2}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.3}Vágyálom rendszer}{9}{section.2.3}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.4}A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások felsorolása}{10}{section.2.4}% 
-\select@language {magyar} \contentsline {section}{\numberline {2.5}Követelmény lista}{11}{section.2.5}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.5}Követelmény lista}{10}{section.2.5}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.6}Technikai feltétel}{12}{section.2.6}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.7}Rendszerspecifikáció}{12}{section.2.7}% 
 \select@language {magyar} \contentsline {section}{\numberline {2.8}Az alkalmazással szemben támasztott funkcionális követelmény}{14}{section.2.8}% 
@@ -18,18 +18,30 @@
 \select@language {magyar} \contentsline {subsubsection}{Caliburn Micro bemutatása}{19}{section*.2}% 
 \select@language {magyar} \contentsline {section}{\numberline {3.2}gRPC és a Protobuffer}{21}{section.3.2}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}gRPC bemutatása}{21}{subsection.3.2.1}% 
-\select@language {magyar} \contentsline {subsubsection}{gRPC Protokoll}{22}{section*.3}% 
+\select@language {magyar} \contentsline {subsubsection}{gRPC Protokoll}{21}{section*.3}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Protobuffer bemutatása}{22}{subsection.3.2.2}% 
 \select@language {magyar} \contentsline {subsubsection}{Message}{22}{section*.4}% 
 \select@language {magyar} \contentsline {subsubsection}{Service}{23}{section*.5}% 
 \select@language {magyar} \contentsline {subsubsection}{Proto fájlból DLL}{23}{section*.6}% 
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Implementálás}{24}{chapter.4}% 
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Kliens implementálása}{24}{section.4.1}% 
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Szerver implementálása}{35}{section.4.2}% 
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Szerver implementálása}{36}{section.4.2}% 
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Adatbázis}{43}{section.4.3}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.1}Adatbázis-kezelő}{43}{subsection.4.3.1}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}Táblák}{43}{subsection.4.3.2}% 
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}Tárolt eljárások}{44}{subsection.4.3.3}% 
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Nézetek}{45}{subsection.4.3.4}% 
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Továbbfejlesztési lehetőségek}{46}{chapter.5}% 
-\select@language {magyar} \contentsline {chapter}{\numberline {6}Összefoglalás}{47}{chapter.6}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}Tárolt eljárások}{45}{subsection.4.3.3}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Nézetek}{46}{subsection.4.3.4}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Továbbfejlesztési lehetőségek és ismert hibák.}{47}{chapter.5}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Összefoglalás}{49}{chapter.6}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Dokumentáció}{52}{chapter.7}% 
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Szerver telepítése és alapbeállítása}{52}{section.7.1}% 
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Felhasználói dokumentáció}{54}{section.7.2}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Bejelentkezés}{54}{subsection.7.2.1}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Törzs}{55}{subsection.7.2.2}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Iktatás}{56}{subsection.7.2.3}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Keresés}{57}{subsection.7.2.4}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Iktatás módosítás}{57}{subsection.7.2.5}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.6}Dokumentumkezelés}{58}{subsection.7.2.6}% 
+\select@language {magyar} \contentsline {subsubsection}{Feltöltés}{58}{section*.8}% 
+\select@language {magyar} \contentsline {subsubsection}{Letöltés}{58}{section*.9}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.7}Kijelentkezés$\backslash $Kilépés}{58}{subsection.7.2.7}% 

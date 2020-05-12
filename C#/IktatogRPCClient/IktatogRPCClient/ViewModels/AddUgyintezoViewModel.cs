@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddUgyintezoViewModel:TorzsDataView<Ugyintezo>,IHandle<BindableCollection<Telephely>>
+    public class AddUgyintezoViewModel:TorzsDataView<Ugyintezo>,IHandle<BindableCollection<Telephely>>
     {
         public AddUgyintezoViewModel()
         {
@@ -62,7 +62,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 isValid = false;
             }
-            else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 100) isValid = false;
+            else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 50) isValid = false;
             return isValid;
         }
         public async override void DoAction() {

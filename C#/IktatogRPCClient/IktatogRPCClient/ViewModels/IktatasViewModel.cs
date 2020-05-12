@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class IktatasViewModel : IkonyvHandler
+   public class IktatasViewModel : IkonyvHandler
     {
         public IktatasViewModel()
         {

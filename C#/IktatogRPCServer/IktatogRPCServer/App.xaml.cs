@@ -14,6 +14,12 @@ namespace IktatogRPCServer
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler((object sender, UnhandledExceptionEventArgs e) => {
+                MessageBox.Show((e.ExceptionObject as Exception).Message);
+            });
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow window = new MainWindow();

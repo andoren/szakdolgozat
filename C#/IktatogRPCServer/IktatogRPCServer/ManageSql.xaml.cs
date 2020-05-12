@@ -109,6 +109,7 @@ namespace IktatogRPCServer
             OpenFileDialog dialog = new OpenFileDialog();
             string file;
             string constring = connectionManager.ConnectionString;
+            constring = constring.Replace("Database=iktato;","");
             dialog.Filter = "SQL script| *sql;";
             dialog.Multiselect = false;
             dialog.CheckFileExists = true;

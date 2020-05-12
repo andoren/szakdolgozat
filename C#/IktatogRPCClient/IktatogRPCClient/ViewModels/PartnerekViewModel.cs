@@ -163,7 +163,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Telephely, Partner) message)
         {
             PartnerekIsVisible = true;
-            if (message.Item1.Name == SelectedTelephely.Name)
+            if (SelectedTelephely != null && message.Item1 != null && message.Item1.Name == SelectedTelephely.Name)
             {
                 Partner partner = AvailablePartnerek.Where(x => x.Id == message.Item2.Id).FirstOrDefault();
                 if (partner != null)

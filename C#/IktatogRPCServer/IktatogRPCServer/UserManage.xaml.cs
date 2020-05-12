@@ -145,7 +145,7 @@ namespace IktatogRPCServer
             string username = NewUsername.Text;
            
             if (SelectedPrivilege == null) IsValid = false;
-            else if (SelectedTelephelyek.Count == 0) IsValid = false;
+            else if (SelectedTelephelyek.Count == 0 && SelectedPrivilege.Name.ToLower() != "admin" ) IsValid = false;
             else if (string.IsNullOrWhiteSpace(fullname) ||
                 string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password)) IsValid = false;
@@ -196,9 +196,6 @@ namespace IktatogRPCServer
             };
             foreach (Telephely telephely in SelectedTelephelyek) {
                 user.Telephelyek.Add(telephely);
-            }
-            {
-
             }
             user = userService.AddUser(new NewTorzsData() { User = user }, new User() { Id = 1 });
             if (user.Id != -1)
@@ -388,8 +385,12 @@ namespace IktatogRPCServer
             DoActionForModification.IsEnabled = IsValid;
         }
 
+
         #endregion
 
-
+        private void AvailablePrivilegesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ValidateNewUserData();
+        }
     }
 }

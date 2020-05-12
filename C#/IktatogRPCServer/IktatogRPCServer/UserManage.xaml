@@ -26,8 +26,8 @@
                     <TextBlock Margin="10 5" >Jelszó:*</TextBlock>
                     <PasswordBox PasswordChanged="NewUserPassword_PasswordChanged" x:Name="NewUserPassword" Margin="10 5"  ></PasswordBox>
                     <TextBlock Margin="10 5" >Jogosultság:*</TextBlock>
-                    <ComboBox Margin="10 5"  x:Name="AvailablePrivilegesComboBox" SelectedItem="{Binding Path=SelectedPrivilege,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
-                    <TextBlock Margin="10 5" >Telephelyei:*</TextBlock>
+                    <ComboBox Margin="10 5" SelectionChanged="AvailablePrivilegesComboBox_SelectionChanged"  x:Name="AvailablePrivilegesComboBox" SelectedItem="{Binding Path=SelectedPrivilege,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
+                    <TextBlock Margin="10 5" >Telephelyei:*(Admin jogosultsághoz nem kötelező!)</TextBlock>
                     <ComboBox Margin="10 5"  x:Name="AllTelephely" SelectedItem="{Binding Path=SelectedTelephely,Mode=OneWayToSource}" DisplayMemberPath="Name"></ComboBox>
                 </StackPanel>
                 <Grid Margin="10" Grid.Row="2">

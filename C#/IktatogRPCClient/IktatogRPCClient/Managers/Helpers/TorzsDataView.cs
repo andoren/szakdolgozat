@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.Models
 {
-    abstract class TorzsDataView<T> : Screen where T : new()
+    public abstract class TorzsDataView<T> : Screen where T : new()
     {
         public TorzsDataView()
         {
 
         }
-        protected EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
-        protected ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
+        public EventAggregatorSingleton eventAggregator = EventAggregatorSingleton.GetInstance();
+        public ServerHelperSingleton serverHelper = ServerHelperSingleton.GetInstance();
         protected override void OnActivate()
         {
             

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  9 MAY 2020 21:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.3)  12 MAY 2020 21:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -839,7 +839,7 @@ LaTeX Info: Redefining \nameref on input line 34.
 LaTeX Info: Redefining \cal on input line 576.
 LaTeX Info: Redefining \mit on input line 577.
 )
-<eszterhazy-logo-hu.pdf, id=129, 256.07469pt x 84.78476pt>
+<eszterhazy-logo-hu.pdf, id=169, 256.07469pt x 84.78476pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 41.
@@ -885,96 +885,221 @@ Underfull \hbox (badness 2521) in paragraph at lines 152--152
  []
 
 
-Overfull \hbox (8.93213pt too wide) in alignment at lines 137--163
- [] [] [] [] 
+Underfull \vbox (badness 10000) detected at line 164
  []
 
-[10]
-Underfull \vbox (badness 10000) detected at line 163
- []
-
-[11]
-<adatbazisterv.png, id=221, 939.51pt x 933.4875pt>
+[10] [11]
+<adatbazisterv.png, id=276, 939.51pt x 933.4875pt>
 File: adatbazisterv.png Graphic file (type png)
 <use adatbazisterv.png>
-Package pdftex.def Info: adatbazisterv.png  used on input line 172.
-(pdftex.def)             Requested size: 199.16928pt x 197.88986pt.
-<archdiag.png, id=222, 793.96625pt x 664.4825pt>
+Package pdftex.def Info: adatbazisterv.png  used on input line 173.
+(pdftex.def)             Requested size: 170.71652pt x 169.61581pt.
+ [12]
+<archdiag.png, id=285, 793.96625pt x 664.4825pt>
 File: archdiag.png Graphic file (type png)
 <use archdiag.png>
-Package pdftex.def Info: archdiag.png  used on input line 181.
+Package pdftex.def Info: archdiag.png  used on input line 194.
 (pdftex.def)             Requested size: 199.16928pt x 166.688pt.
- [12] [13 <./adatbazisterv.png> <./archdiag.png>] [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 295--296
+ [13 <./adatbazisterv.png> <./archdiag.png>] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
 [16] [17]
 3. fejezet.
-<mvvmdiag.png, id=264, 550.30594pt x 267.24844pt>
+<mvvmdiag.png, id=323, 550.30594pt x 267.24844pt>
 File: mvvmdiag.png Graphic file (type png)
 <use mvvmdiag.png>
-Package pdftex.def Info: mvvmdiag.png  used on input line 315.
+Package pdftex.def Info: mvvmdiag.png  used on input line 318.
 (pdftex.def)             Requested size: 351.54803pt x 170.71652pt.
 [18
 
  <./mvvmdiag.png>] [19] [20]
-Overfull \hbox (26.09927pt too wide) in paragraph at lines 341--342
+Overfull \hbox (26.09927pt too wide) in paragraph at lines 340--341
 \T1/lmr/m/n/12 Boot-strap-per-Ba-se osz-tály le-szár-ma-zott-ja és hoz-zá-ad-ju
 k azt a prog-ram ResourceDictonary-
  []
 
-<proto.png, id=280, 346.29375pt x 258.9675pt>
+<proto.png, id=354, 346.29375pt x 258.9675pt>
 File: proto.png Graphic file (type png)
 <use proto.png>
-Package pdftex.def Info: proto.png  used on input line 348.
+Package pdftex.def Info: proto.png  used on input line 347.
 (pdftex.def)             Requested size: 199.16928pt x 148.94861pt.
 [21] [22 <./proto.png>] [23]
 4. fejezet.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 374.
 [24
 
 ] [25] [26] [27] [28] [29] [30]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
-59.
+57.
 
 (c:/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [31] [32] [33] [34]
-[35] [36] [37]
-Overfull \hbox (15.49307pt too wide) in paragraph at lines 759--760
+) [31]
+Underfull \hbox (badness 10000) in paragraph at lines 591--592
+
+ []
+
+[32] [33] [34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 708--709
+
+ []
+
+[36] [37]
+Overfull \hbox (15.49307pt too wide) in paragraph at lines 750--751
 \T1/lmr/m/n/12 tud-nia kell. A szol-gál-ta-tás osz-tá-lyunk-nak az ®s-osz-tá-ly
 a az Ik-ta-toS-er-vi-ce.IktatoServiceBase.
  []
 
-[38] [39] [40] [41] [42] [43] [44] [45]
-5. fejezet.
-[46
+[38] [39] [40]
+Overfull \hbox (6.75475pt too wide) in paragraph at lines 832--835
+\T1/lmr/m/n/12 Els® lé-pés-ként ki-ol-vas-suk és el-len-®riz-zük, hogy az ada-t
+ok a kon-fi-gu-rá-ci-ós fájl-ban helyesek-
+ []
 
-]
-6. fejezet.
+[41] [42] [43] [44] [45] [46]
+5. fejezet.
 [47
 
 ] [48]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 936.
- [49
+6. fejezet.
+[49
+
+] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
+[]\T1/lmr/m/sc/12 Excel: \T1/lmr/m/n/12 https://www.forbes.com/sites/bernardmar
+r/2016/06/16/spreadsheet-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
+[]\T1/lmr/m/sc/12 MVVM: \T1/lmr/m/n/12 https://docs.microsoft.com/en-us/previou
+s-versions/msp-n-
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 932--933
+[]\T1/lmr/m/sc/12 Hibakezelés: \T1/lmr/m/n/12 https://docs.microsoft.com/en-us/
+dotnet/architecture/grpc-for-
+ []
+
+[51
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 936.
- (./thesis-ekf-template-mat-inf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 936.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 936.
+7. fejezet.
+
+Overfull \hbox (36.56924pt too wide) in paragraph at lines 942--943
+[]\T1/lmr/m/n/12 MySQL 8.0.20 szer-ver - https://dev.mysql.com/get/Downloads/My
+SQLInstaller/mysql-
+ []
+
+<dokukepek/sfooldal.jpg, id=866, 748.29562pt x 449.42906pt>
+File: dokukepek/sfooldal.jpg Graphic file (type jpg)
+<use dokukepek/sfooldal.jpg>
+Package pdftex.def Info: dokukepek/sfooldal.jpg  used on input line 947.
+(pdftex.def)             Requested size: 199.16928pt x 119.61931pt.
+[52
+
+ <./dokukepek/sfooldal.jpg>]
+<dokukepek/sadat.jpg, id=873, 843.15pt x 394.47375pt>
+File: dokukepek/sadat.jpg Graphic file (type jpg)
+<use dokukepek/sadat.jpg>
+Package pdftex.def Info: dokukepek/sadat.jpg  used on input line 965.
+(pdftex.def)             Requested size: 199.16928pt x 93.18288pt.
+<dokukepek/sfelh.jpg, id=875, 850.67813pt x 654.19406pt>
+File: dokukepek/sfelh.jpg Graphic file (type jpg)
+<use dokukepek/sfelh.jpg>
+Package pdftex.def Info: dokukepek/sfelh.jpg  used on input line 972.
+(pdftex.def)             Requested size: 258.98267pt x 199.16928pt.
+<dokukepek/clogin.jpg, id=876, 742.27313pt x 521.69907pt>
+File: dokukepek/clogin.jpg Graphic file (type jpg)
+<use dokukepek/clogin.jpg>
+Package pdftex.def Info: dokukepek/clogin.jpg  used on input line 979.
+(pdftex.def)             Requested size: 199.16928pt x 139.98497pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[53 <./dokukepek/sadat.jpg>]
+File: dokukepek/clogin.jpg Graphic file (type jpg)
+<use dokukepek/clogin.jpg>
+Package pdftex.def Info: dokukepek/clogin.jpg  used on input line 989.
+(pdftex.def)             Requested size: 199.16928pt x 139.98497pt.
+<dokukepek/ctorzs.jpg, id=884, 1054.6903pt x 660.96938pt>
+File: dokukepek/ctorzs.jpg Graphic file (type jpg)
+<use dokukepek/ctorzs.jpg>
+Package pdftex.def Info: dokukepek/ctorzs.jpg  used on input line 998.
+(pdftex.def)             Requested size: 199.16928pt x 124.8089pt.
+<dokukepek/ctorzsmod.jpg, id=885, 417.81094pt x 349.305pt>
+File: dokukepek/ctorzsmod.jpg Graphic file (type jpg)
+<use dokukepek/ctorzsmod.jpg>
+Package pdftex.def Info: dokukepek/ctorzsmod.jpg  used on input line 1007.
+(pdftex.def)             Requested size: 199.16928pt x 166.51321pt.
+<dokukepek/ctorzsdelete.jpg, id=886, 419.31656pt x 352.31625pt>
+File: dokukepek/ctorzsdelete.jpg Graphic file (type jpg)
+<use dokukepek/ctorzsdelete.jpg>
+Package pdftex.def Info: dokukepek/ctorzsdelete.jpg  used on input line 1016.
+(pdftex.def)             Requested size: 199.16928pt x 167.3412pt.
+ [54 <./dokukepek/sfelh.jpg> <./dokukepek/clogin.jpg>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[55 <./dokukepek/ctorzs.jpg>]
+<dokukepek/ciktatas.jpg, id=899, 1290.32062pt x 726.46407pt>
+File: dokukepek/ciktatas.jpg Graphic file (type jpg)
+<use dokukepek/ciktatas.jpg>
+Package pdftex.def Info: dokukepek/ciktatas.jpg  used on input line 1023.
+(pdftex.def)             Requested size: 199.16928pt x 112.12411pt.
+ [56 <./dokukepek/ctorzsmod.jpg> <./dokukepek/ctorzsdelete.jpg> <./dokukepek/ci
+ktatas.jpg>]
+<dokukepek/ckereses.jpg, id=907, 1054.6903pt x 660.96938pt>
+File: dokukepek/ckereses.jpg Graphic file (type jpg)
+<use dokukepek/ckereses.jpg>
+Package pdftex.def Info: dokukepek/ckereses.jpg  used on input line 1031.
+(pdftex.def)             Requested size: 199.16928pt x 124.8089pt.
+<dokukepek/ciktatmod.jpg, id=908, 677.53125pt x 380.17032pt>
+File: dokukepek/ciktatmod.jpg Graphic file (type jpg)
+<use dokukepek/ciktatmod.jpg>
+Package pdftex.def Info: dokukepek/ciktatmod.jpg  used on input line 1040.
+(pdftex.def)             Requested size: 199.16928pt x 111.7548pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1048.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\delimiter' on input line 1048.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1048.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1049.
+[57 <./dokukepek/ckereses.jpg> <./dokukepek/ciktatmod.jpg>] [58]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1049.
+
+(./thesis-ekf-template-mat-inf.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1049.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1049.
+
 Package rerunfilecheck Info: File `thesis-ekf-template-mat-inf.out' has not cha
 nged.
-(rerunfilecheck)             Checksum: 3A60034B5C93A1AFFB93DEFC054C1155;6202.
+(rerunfilecheck)             Checksum: 8696371F7BABCC105A8980448B4215F1;8160.
  ) 
 Here is how much of TeX's memory you used:
- 16896 strings out of 492167
- 242432 string characters out of 6129159
- 648815 words of memory out of 5000000
- 20461 multiletter control sequences out of 15000+600000
+ 17036 strings out of 492167
+ 245362 string characters out of 6129159
+ 610815 words of memory out of 5000000
+ 20563 multiletter control sequences out of 15000+600000
  78855 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,7n,40p,1838b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,7n,40p,1838b,2003s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2019/tex
 mf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvi
 ps/lm/lm-mathsy.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/lat
@@ -985,10 +1110,10 @@ type1/public/lm/lmcsc10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/l
 mr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texliv
 e/2019/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2019/texmf-dist/
 fonts/type1/public/lm/lmsy10.pfb>
-Output written on thesis-ekf-template-mat-inf.pdf (49 pages, 469545 bytes).
+Output written on thesis-ekf-template-mat-inf.pdf (58 pages, 1924085 bytes).
 PDF statistics:
- 926 PDF objects out of 1000 (max. 8388607)
- 845 compressed objects within 9 object streams
- 478 named destinations out of 1000 (max. 500000)
- 286 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1063 PDF objects out of 1200 (max. 8388607)
+ 962 compressed objects within 10 object streams
+ 504 named destinations out of 1000 (max. 500000)
+ 416 words of extra memory for PDF output out of 10000 (max. 10000000)
 

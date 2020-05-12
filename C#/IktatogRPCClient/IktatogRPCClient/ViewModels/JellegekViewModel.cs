@@ -157,7 +157,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Telephely, Jelleg) message)
         {
             JellegekIsVisible = true;
-            if (message.Item1.Name == SelectedTelephely.Name)
+            if (SelectedTelephely != null && message.Item1 != null && message.Item1.Name == SelectedTelephely.Name)
             {
                 if (!string.IsNullOrWhiteSpace(message.Item2.Name))
                 {

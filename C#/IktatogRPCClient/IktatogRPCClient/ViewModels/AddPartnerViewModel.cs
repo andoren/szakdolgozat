@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddPartnerViewModel : TorzsDataView<Partner>, IHandle<BindableCollection<Telephely>>
+    public class AddPartnerViewModel : TorzsDataView<Partner>, IHandle<BindableCollection<Telephely>>
     {
 
         private BindableCollection<Telephely> _availableTelephelyek;
@@ -75,7 +75,7 @@ namespace IktatogRPCClient.ViewModels
 
         protected override bool ValidateDataInForm()
         {
-            return !(PartnerNeve.Length < 3 || PartnerNeve.Length > 50);
+            return !string.IsNullOrEmpty(PartnerNeve)&&!(PartnerNeve.Length < 3 || PartnerNeve.Length > 50);
         }
     }
 }

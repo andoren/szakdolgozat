@@ -281,7 +281,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Partner, PartnerUgyintezo) message)
         {
             PartnerekIsVisible = true;
-            if (message.Item1.Name == SelectedPartner.Name)
+            if (SelectedPartner != null && message.Item1 != null && message.Item1.Name == SelectedPartner.Name)
             {
                 AvailableUgyintezok.Add(message.Item2);
                 NotifyOfPropertyChange(() => AvailableUgyintezok);

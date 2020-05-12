@@ -172,7 +172,7 @@ namespace IktatogRPCClient.ViewModels
         public void Handle((Telephely, Csoport) message)
         {
             CsoportokIsVisible = true;
-            if (message.Item1.Name == SelectedTelephely.Name) {
+            if (SelectedTelephely != null && message.Item1 != null && message.Item1.Name == SelectedTelephely.Name) {
                 TelephelyCsoportjai.Add(message.Item2);
             }
         }

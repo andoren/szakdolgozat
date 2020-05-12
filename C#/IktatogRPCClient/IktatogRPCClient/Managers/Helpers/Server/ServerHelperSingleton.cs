@@ -17,7 +17,7 @@ using System.Timers;
 
 namespace IktatogRPCClient.Models.Managers
 {
-    class ServerHelperSingleton:IDisposable
+    public class ServerHelperSingleton:IDisposable
     {
         
         private ServerHelperSingleton()
@@ -25,6 +25,9 @@ namespace IktatogRPCClient.Models.Managers
             
         }
         #region Singleton props and methods
+        private string hostname;
+        private string hostport;
+        private bool secure;
         private static ServerHelperSingleton serverHelper = new ServerHelperSingleton();
         private int chunkSize = 64 * 1024;
         private static Channel channel;
@@ -36,6 +39,7 @@ namespace IktatogRPCClient.Models.Managers
         public Channel GetChannel()
         {
             lock (typeof(ServerHelperSingleton)) {
+                if(string.IsNullOrEmpty(hostname))ReadConfig();
                 if (channel == null)
                 {
                     userHelper = UserHelperSingleton.GetInstance();
@@ -44,19 +48,39 @@ namespace IktatogRPCClient.Models.Managers
             }
             return channel;
         }
+        private bool ReadConfig() {
+            try
+            {
+                hostname = ConfigurationManager.AppSettings["Hostname"];
+                hostport = ConfigurationManager.AppSettings["Port"];
+                secure = bool.Parse(ConfigurationManager.AppSettings["Secure"]);
+                return true;
+            }
+            catch (Exception e) {
+                throw e;
+
+            }
+        }
         private void CreateNewChannel() {
-            string hostname = ConfigurationManager.AppSettings["Hostname"];
-            string hostport = ConfigurationManager.AppSettings["Port"];
+
             string csatinfo = $"{hostname}:{hostport}";
             var servercert = File.ReadAllText("cert/server.crt");
-            SslCredentials creds = new SslCredentials(servercert);
-    
-            channel = new Channel(csatinfo, creds, new[] {
+           
+            ChannelOption[] options = new[] {
                     new ChannelOption("grpc.keepalive_permit_without_calls", 1),
                     new ChannelOption("grpc.http2.max_pings_without_data",0),
                     new ChannelOption("grpc.keepalive_timeout_ms",50),
                     new ChannelOption("grpc.keepalive_time_ms",360000)
-                });
+                };
+            if (secure)
+            {
+                SslCredentials creds = creds = new SslCredentials(servercert);
+                channel = new Channel(csatinfo, creds, options);
+            }
+            else {
+                channel = new Channel(csatinfo, SslCredentials.Insecure, options);
+            }
+            
         }
         private IktatoService.IktatoServiceClient Client()
         {           

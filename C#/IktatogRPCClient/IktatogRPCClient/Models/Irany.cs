@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.Models
 {
-    class Irany
+   public class Irany
     {
         public Irany(string Name, int Way)
         {

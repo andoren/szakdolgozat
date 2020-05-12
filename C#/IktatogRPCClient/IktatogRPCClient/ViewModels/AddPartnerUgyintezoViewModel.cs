@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddPartnerUgyintezoViewModel : TorzsDataView<PartnerUgyintezo>,IHandle<BindableCollection<Partner>>
+    public class AddPartnerUgyintezoViewModel : TorzsDataView<PartnerUgyintezo>,IHandle<BindableCollection<Partner>>
     {
         private BindableCollection<Partner> _availablePartnerek;
         private Partner _selectedPartner;
@@ -75,7 +75,7 @@ namespace IktatogRPCClient.ViewModels
             {
                 isValid = false;
             }
-            else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 100) isValid = false;
+            else if (UgyintezoNeve.Length < 5 || UgyintezoNeve.Length > 50) isValid = false;
             return isValid;
         }
     }

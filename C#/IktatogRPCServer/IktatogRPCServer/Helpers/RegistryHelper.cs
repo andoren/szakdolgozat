@@ -28,26 +28,38 @@ namespace IktatogRPCServer
         }
         public static LogEventLevel GetLogLevelToShow() {
             int rawlevel = 3;
-            if (int.TryParse(Registry.GetValue(keyName, "LogToShow", "3").ToString(), out rawlevel))
+            try
             {
-                if (rawlevel < 0 || rawlevel > 5)
+                if (int.TryParse(Registry.GetValue(keyName, "LogToShow", "3").ToString(), out rawlevel))
                 {
-                    rawlevel = 3;
+                    if (rawlevel < 0 || rawlevel > 5)
+                    {
+                        rawlevel = 3;
+                    }
                 }
-            }   
+            }
+            catch (Exception e) { }
             return (LogEventLevel)rawlevel ; 
         }
 
-        public static LogEventLevel GetLogLevel() {   
-            int rawlevel=3;
-            if (int.TryParse(Registry.GetValue(keyName, "LogLevel", "3").ToString(), out rawlevel)) {
-                if (rawlevel < 0 || rawlevel > 5)
+        public static LogEventLevel GetLogLevel() {
+            int rawlevel = 3;
+            try
+            {
+                
+                if (int.TryParse(Registry.GetValue(keyName, "LogLevel", "3").ToString(), out rawlevel))
                 {
-                    rawlevel = 3;
+                    if (rawlevel < 0 || rawlevel > 5)
+                    {
+                        rawlevel = 3;
+                    }
                 }
             }
+            catch(Exception) {
+                
+            }
             return (LogEventLevel)rawlevel;
-            
+
         }
         public static void SetLogLevelToShow(int level)
         {

@@ -4,10 +4,9 @@ https://grpc.io/docs/guides/auth/
 
 //MVVM
 https://caliburnmicro.com/
-https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v=pandp.10)?redirectedfrom=MSDN
-https://www.wintellect.com/model-view-viewmodel-mvvm-explained/
+https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v=pandp.10)
 https://hu.wikipedia.org/wiki/Modell-n%C3%A9zet-n%C3%A9zetmodell // WIkit ne irjuk bele.
-https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm
+
 https://books.google.hu/books?id=EC0on5ZY7zkC&pg=PT899&lpg=PT899&dq=mvvm+history&source=bl&ots=vw_0cUBaYW&sig=ACfU3U3Tt_ld1GFXp0iKdy_R7GhxbYgI6g&hl=hu&sa=X&ved=2ahUKEwjP95uby4rpAhVSmIsKHSFZDGgQ6AEwD3oECBMQAQ#v=onepage&q=mvvm%20history&f=false
 
 //GRPC

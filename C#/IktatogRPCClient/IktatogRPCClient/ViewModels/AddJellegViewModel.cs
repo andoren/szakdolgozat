@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddJellegViewModel : TorzsDataView<Jelleg>,IHandle<BindableCollection<Telephely>>,IHandle<Jelleg>
+    public class AddJellegViewModel : TorzsDataView<Jelleg>,IHandle<BindableCollection<Telephely>>,IHandle<Jelleg>
     {
         private BindableCollection<Telephely> _availableTelephelyek;
         private Telephely _selectedTelephely;

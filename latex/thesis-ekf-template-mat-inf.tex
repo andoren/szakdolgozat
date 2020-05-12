@@ -33,8 +33,8 @@
 
 \begin{document}
 \institute{Matematikai és Informatikai Intézet}
-\title{Iktató program}
-\author{Pekár Mihály\\Pti vagy Szofi?}
+\title{Iktató program készítése szociális intézmény részére}
+\author{Pekár Mihály\\Programtervező informatikus BSc}
 \supervisor{Balla Tamás\\Tanársegéd}
 \city{Eger}
 \date{2020}
@@ -80,18 +80,18 @@ A dolgozatom következő fejezetében bemutatom a szoftver fejlesztés megkezdé
 Minden hivatalos iratokkal foglalkozó kollégánál van egy Excel tábla, amit iktatásra használ. Ebben a táblában iktatja a hozzá beérkező, illetve az általa elkészített ügyiratokat. Hátrányai ennek a helyzetnek, hogy az iktatások állandósága sérül, azaz egy-egy irat kaphat olyan számot, ami már foglalt. Mivel vannak, olyan esetek, amelyek több munkacsoportot is érintenek, az adott irattal előfordulhat, hogy többször vagy egyszer sem iktatnak le. Az iktatásokhoz nem lehet előzményezést rendelni. Az egységek nem látják egységesen az iktatási anyagaikat, így egymás segítségére szorulnak. Az iktatott dokumentumokat csak több perces keresés árán tudják megtalálni. 
 Excel hibái a jelenlegi helyzetre:
 \begin{enumerate}[leftmargin=0pt]
-	\item A legtöbb embernek nincs kellő ismerete: 
+	\item A legtöbb embernek nincs kellő ismerete
 	
-Valamilyen oknál fogva az emberek többsége nem szereti az Excelt, főleg azon dolgozók között, akiknek nincs tapasztalata a program használatához. Legtöbben zavarónak és félelmetesnek találják, ezért meg sem próbálják megtanulni a használatát. Ez nálunk sincs másképp, hasonló problémákba ütközök nap, mint nap a kollégáim körében. Ha valaki kap egy feladatot, amit Excelben kell elvégeznie a legapróbb nehézségnél is segítséget kérnek.
+A legtöbb dolgozó zavarónak és félelmetesnek találják az Excelt, ezért meg sem próbálják megtanulni a használatát. Leginkább ez azon dolgozókra igaz akik nem rendelkeznek sok tapasztalattal az Excelről. Ez nálunk sincs másképp, hasonló problémákba ütközök nap, mint nap a kollégáim körében. Ha valaki kap egy feladatot, amit Excelben kell elvégeznie a legapróbb nehézségnél is segítséget kérnek.
    \item A fontos adat eltűnik
   
-Mivel az összes adatot látjuk egyszerre, ezért nagyon nehéz átnézni úgy, hogy felfedezzük melyik adat fontos és melyik nem. Sokszor tapasztalom azt a kollégák körében, hogy a használt Excel dokumentumokat több percig is nézik, hogy megtalálják a keresett adatot, amire kíváncsiak voltak. Természetesen lehet használni színezéseket is, de e módszerek használata egy idő után növelik az átláthatatlanságát. Továbbá a nem egységesen használt színkezelés csak bonyolítják az értelmezését.
+Mivel az összes adatot látjuk egyszerre, ezért nagyon nehéz átnézni úgy, hogy felfedezzük melyik adat fontos és melyik nem.\cite{excel} Sokszor tapasztalom azt a kollégák körében, hogy a használt Excel dokumentumokat több percig is nézik, hogy megtalálják a keresett adatot, amire kíváncsiak voltak. Természetesen lehet használni színezéseket is, de e módszerek használata egy idő után növelik az átláthatatlanságát.\cite{excel} Továbbá a nem egységesen használt színkezelés csak bonyolítják az értelmezését. 
 	\item Nyomonkövetés
 	
 Sok esetben előfordult, hogy a dolgozók egymás adatait véletlenül törölték, módosították. Mivel a munkafüzetet nem arra tervezték, hogy eltárolja a változásokat, ezért ha egy adatot módosítunk vagy törlünk, azt csak mentésből tudjuk visszaállítani. Ezeknek a manipulációknak a visszakövetése nem lehetséges. 
 	\item Megosztás
 	
-Annak ellenére, hogy léteznek felhőalapú technológiák, a mai napig nehéz megosztani a munkafüzetet több dolgozó között. Mivel annak a lehetősége, hogy az adatot kitörlik vagy megváltoztatják, a munkafüzetet ritkán tesszük elérhetővé mások számára valós időben. A legjobb megoldás az lehet, hogy heti rendszerességgel elküldjük e-mail formátumban. Viszont ez meg azt a problémát veti fel, hogy a fontos információ elveszhet a dolgozók beérkezett üzenetei között.
+A felhőalapú technológiák manapság már megkönnyítik a dokumentum megosztást a dolgozók között, de még mindig nem a legjobb megoldás. Mivel annak a lehetősége, hogy az adatot kitörlik vagy megváltoztatják, a munkafüzetet ritkán tesszük elérhetővé mások számára valós időben. \cite{excel}
 	\item Az adatkezelési szabályok betartása 
 	
 Az Excelben nem lehet az iktatószámokat nyomon követni és azok konzisztenciáját megőrizni. Könnyen el lehet rontani az iktatószám felépítését. Több telephely iktatásának tárolása a munkafüzeten komplikációt okoz, illetve nincs kontroll az iktatások felvitelében, így bárki bármikor ütközhet. A dokumentumkezelés is nehézséges, az iktatásokhoz külső link formájában hozzáadhatjuk a dokumentumot, viszont ha ezek az adatok más helyre kerülnek, akkor az összes csatolt linket módosítani kellene. 
@@ -139,8 +139,8 @@ A fent említett igények alapján állítottuk össze a követelmény listát, 
 	\hline 
 	ID & Név & V. & Kifejtés \\ 
 	\hline 
-	1 & Bejelentkezés és jelszó védelem & 0.1 &  \multicolumn{1}{m{7.5cm}|}{
-		Legyen egy szép és egyszerű bejelentkezési felület, ahol a felhasználó nevet el lehessen menteni, de csak akkor, ha szeretné a user. A felhasználók jelszavát a rendszergazda se tudja visszanézni, viszont módosítani csak ő tudja. A jelszavak legyenek titkosítva az adatbázisban.
+	1 & Bejelentkezés  & 0.1 &  \multicolumn{1}{m{7.5cm}|}{
+		Legyen egy szép és egyszerű bejelentkezési felület, ahol a felhasználó nevet el lehessen menteni, de csak akkor, ha szeretné a user. A felhasználók jelszavát a rendszergazda se tudja visszanézni, viszont módosítani csak ő tudja. 
 	}\\ 
 	\hline 
 	2 & Főoldal és ige & 0.2 & \multicolumn{1}{m{7.5cm}|}{A belépés után jelenjen meg az üdvözlő felület. Ahol megtalálható az egyház szimbóluma, és a napi ige.} \\ 
@@ -157,9 +157,10 @@ A fent említett igények alapján állítottuk össze a követelmény listát, 
 	\hline 
 	8 & Adatbázis mentés & 0.8 & \multicolumn{1}{m{7.5cm}|}{A szerveren legyen lehetőség az adatbázis mentésére és annak visszatöltésére. Az adatbázis mentés ütemezhető legyen.} \\ 
 	\hline 
-	9 &  Felhasználó kezelés & 1 & \multicolumn{1}{m{7.5cm}|}{A szerver oldalon is legyen lehetőség a felhasználó felvitelére, módosítására és törlésére. A jelszavak módosítása csak innen legyen lehetséges.} \\ 
+	9 &  Felhasználó kezelés & 0.9 & \multicolumn{1}{m{7.5cm}|}{A szerver oldalon is legyen lehetőség a felhasználó felvitelére, módosítására és törlésére. A jelszavak módosítása csak innen legyen lehetséges.} \\ 
 	\hline 
-
+	10 & Jelszó védelem & 1.0 & \multicolumn{1}{m{7.5cm}|}{A jelszavak legyenek titkosítva az adatbázisban.} \\ 
+	\hline 
 \end{longtable}
 
 \section{Technikai feltétel}
@@ -167,23 +168,19 @@ A rendszer MySQL adatbázis kezelőt használjon, a program szerver részét leh
 
 \section {Rendszerspecifikáció}
 Adatbázis terv:
-\begin{figure}[th!]
+\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=7cm]{adatbazisterv}
+	\includegraphics[width=6cm]{adatbazisterv}
 	\caption{Adatbázis tervezet}
 	\label{fig:adatbazisterv}
 \end{figure}
-Az adatbázis a következő táblákat fogja tartalmazni: Ikonyv, Ikonyvdocs, Doc, Telephely, Csoport, Ugyintezo, Jelleg, User, felh\_telephely, Privilege, evek, ikonyvpartnerei, partner, partnerugyintezo. Ezek a táblák lefedik a követelmény specifikációkban foglaltakat. Minden adatbázis művelet tárolt eljáráson keresztül végződik.
+Az adatbázis a következő táblákat fogja tartalmazni: Ikonyv, Ikonyvdocs, Doc, Telephely, Csoport, Ugyintezo, Jelleg, User, felh\_telephely, Privilege, evek, ikonyvpartnerei, partner, partnerugyintezo. Ahogy \az{\ref{fig:adatbazisterv}} ábrán is látható. Ezek a táblák lefedik a követelmény specifikációkban foglaltakat. Minden adatbázis művelet tárolt eljáráson keresztül végződik.
 
-A program működésének ábrázolása use case diagram segítségével:
-\begin{figure}
-	\centering
-	\includegraphics[width=7cm]{archdiag}
-	\caption[Use Case ábra]{Use Case}
-	\label{fig:archdiag}
-\end{figure}
+A program működésének ábrázolása use case diagram segítségével (\az{\ref{fig:usediag} } ábrán látható.)
 
-Az egyes telephelyeken lévő felhasználók bejelentkeznek a számítógépjeiken feltelepített kliens programjuk segítségével. A szoftver egy TLS gRPC csatorna segítségével kommunikál a szerverrel. A szerveren lévő applikációhoz a rendszergazda hozzá férhet, ahol beállításokat és mentéseket készíthet. Csak a szerver képes kommunikálni a MySQL adatbázis kezelő rendszerrel.\\
+Az egyes telephelyeken lévő felhasználók bejelentkeznek a számítógépjeiken feltelepített kliens programjuk segítségével. A szoftver egy TLS gRPC csatorna segítségével kommunikál a szerverrel.
+
+A szerveren lévő applikációhoz a rendszergazda hozzá férhet, ahol beállításokat és mentéseket készíthet. Csak a szerver képes kommunikálni a MySQL adatbázis kezelő rendszerrel.\\
 A rendszerrel szemben támasztott általános követelmények:
 \begin{itemize}
 	\item A rendszer funkcióit csak bejelentkezés után használhatják a felhasználók
@@ -192,6 +189,12 @@ A rendszerrel szemben támasztott általános követelmények:
 	\item A szerver és a kliens Windows platformra legyen tervezve
 	\item TLS kapcsolat a szerver és a kliens között
 \end{itemize}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=7cm]{archdiag}
+	\caption[Use Case ábra]{A szoftver működési elve.}
+	\label{fig:usediag}
+\end{figure}
 \section{Az alkalmazással szemben támasztott funkcionális követelmény}
 Felhasználókezelés
 o	Admin
@@ -281,7 +284,7 @@ A kijelentkezés gomb a menüsorban található. A felhasználót kijelentkeztet
 \end{enumerate}
 \subsection{Adminok számára elérhető funkciók}
 A felhasználók által használt funkciók ugyanúgy az adminok által is elérhetőek, csak azokat soroljuk fel, amiben a két felhasználó különbözik.
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item \textbf{Regisztrálás:}
 	
 	A regisztrálás a rendszergazda vagy admin által történik. Az első felhasználókat csak a rendszergazda képes létrehozni.
@@ -309,49 +312,45 @@ Csoport és telephely adatok módosítására azért nincs lehetősége a felhas
 \section{MVVM}
 \subsection{MVVM bemutatása}
 
-Az MVVM nem mást jelent, mint Model, View és ViewModel ami egy architektúrális tervezési minta. Ezt a mintát először a Smalltalk összefüggésében írták le a Xeroxnál, 1979-ben. Ez a minta elválasztja a GUI (Graphical user interface)-t az üzleti logikától. Kliens oldalon szokták használni. Ebben a mintában, a modell nem jelent mást, mint az adat, amit meg fogunk jeleníteni a nézetben a nézet-modellnek a segítségével. Az MVVM-mel elő jön a tisztaság fogalma, ami a sok kódra utal a code-bihend-ban. Azaz ennek a tervezési mintának a használatával nem tárolunk kódot a xaml fájl mögött. 
+Az MVVM nem mást jelent, mint Model, View és ViewModel ami egy architektúrális tervezési minta. Ezt a mintát először a Smalltalk összefüggésében írták le a Xeroxnál, 1979-ben.\cite{mvvmbook} Ez a minta elválasztja a GUI (Graphical user interface)-t az üzleti logikától. Kliens oldalon szokták használni. Ebben a mintában, a modell nem jelent mást, mint az adat, amit meg fogunk jeleníteni a nézetben a nézet-modellnek a segítségével. Az MVVM-mel elő jön a tisztaság fogalma, ami a sok kódra utal a code-bihend-ban. Azaz ennek a tervezési mintának a használatával nem tárolunk kódot a xaml fájl mögött. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[height=6cm]{mvvmdiag}
-	\caption[MVVM]{MVVM működése}
+	\caption[MVVM]{MVVM működése \cite{mvvmmicrosoft}}
 	\label{fig:mvvmdiag}
 \end{figure}
-A nézet-modell úgy viselkedik, mint egy közvetítő a nézet és a modell között, és felelős a nézet logikájának a kezeléséért is. Általában, a nézet-modell interakcióba lép a modellel azáltal, hogy meghív egy eljárást a modell osztályban. Ez után a nézet-modell biztosítja az adatot a nézet számára olyan formában, hogy a nézet azt könnyedén tudja használni. A nézet-modell az adatokat a modellből szedi ki és aztán azokat elérhetővé teszi a nézet számára, előfordulhat, hogy ezeket az adatokat egyszerűbbé kell konvertálni, hogy a nézet kezelni tudja őket. A nézet-modellben találhatóak meg azok az eljárások, amik a nézetben használt XAML elemek eseményei váltanak ki. Például ha a felhasználó rá klikkel egy gombra a UI az meghív egy metódust a nézet-modellben. A nézet-modellnek még olyan feladata van, hogy a logikai állapotokat definiálja.
+A nézet-modell úgy viselkedik, mint egy közvetítő a nézet és a modell között, és felelős a nézet logikájának a kezeléséért is. Általában, a nézet-modell interakcióba lép a modellel azáltal, hogy meghív egy eljárást a modell osztályban. Ez után a nézet-modell biztosítja az adatot a nézet számára olyan formában, hogy a nézet azt könnyedén tudja használni. A nézet-modell az adatokat a modellből szedi ki és aztán azokat elérhetővé teszi a nézet számára, előfordulhat, hogy ezeket az adatokat egyszerűbbé kell konvertálni, hogy a nézet kezelni tudja őket. A nézet-modellben találhatóak meg azok az eljárások, amik a nézetben használt XAML elemek eseményei váltanak ki. Például ha a felhasználó rá klikkel egy gombra a UI az meghív egy metódust a nézet-modellben. A nézet-modellnek még olyan feladata van, hogy a logikai állapotokat definiálja.\cite{mvvmmicrosoft}
 
 A nézet és a nézet-modell, metódusok hívások, property-k, események, üzeneteken és adatkötésen keresztül kommunikálnak egymással. Az adatkötéshez a nézetünk adat kontextusához hozzáadjuk nézet-modellünket. Így a nézet-modell mezői, property-jei elérhetővé válnak a XAML elemeinek számára, ezáltal tudjuk megjeleníteni, frissíteni az adatokat a nézetben és befolyásolni a nézet-modell adatait. A nézet-modell nem csak a modell adatait tartalmazza és jeleníti azt meg a nézeten, hanem más propertiket is, mint állapot információ.
 
-A nézet-modell felelős teljesen a modellért ebben az estben. De szerencsére ezeknek az adatoknak a kezelésére több lehetősége is van:
-\begin{itemize}
-	\item A nézet-modell mutathat a modellre közvetlenül vagy propertyken keresztül
-	\item A nézet-modell tartalmazhat interfészeket szolgáltatásokhoz, konfigurációs adatokhoz, amellyel fel tudja tölteni a propertijeit adatokkal.
-\end{itemize}
+
 \subsection{MVVM keretrendszer}
 \subsubsection{Caliburn Micro bemutatása}
-Ez egy kicsi, de mégis erőteljes keretrendszer, amit arra terveztek, hogy megkönnyítse a programok fejlesztését minden XAML platformon. Erős MV* minta támogatottsága segít abban, hogy az applikációinkat gyorsan, kód minőség vagy tesztelhetőség feláldozása nélkül fejleszthessük. Fejlesztők: Nigel Sampson, Rob Eisenberg és Thomas Ibel. Mivel ez is egy nyílt forráskódú projekt ezért sokan mások is hozzájárultak a fejlesztéshez. A Caliburn.micro is minden sok más keretrendszer is név konvenciót alkalmaz. Ezáltal találja meg a nézet-modell a hozzá tartozó nézetet. A keretrendszernek egyetlen függősége van és az a System.Windows.Interactivity amit igazából mindenki használ amikor WPF alkalmazást fejleszt. 27.000 kód sort tartalmaz a keretrendszer. Legfontosabb tulajdonságai: 
+Ez egy kicsi, de mégis erőteljes keretrendszer, amit arra terveztek, hogy megkönnyítse a programok fejlesztését minden XAML platformon. Erős MV* minta támogatottsága segít abban, hogy az applikációinkat gyorsan, kód minőség vagy tesztelhetőség feláldozása nélkül fejleszthessük. Fejlesztők: Nigel Sampson, Rob Eisenberg és Thomas Ibel. Mivel ez is egy nyílt forráskódú projekt ezért sokan mások is hozzájárultak a fejlesztéshez. A Caliburn.micro is minden sok más keretrendszer is név konvenciót alkalmaz. Ezáltal találja meg a nézet-modell a hozzá tartozó nézetet. A keretrendszernek egyetlen függősége van és az a System.Windows.Interactivity amit igazából mindenki használ amikor WPF alkalmazást fejleszt. 27.000 kód sort tartalmaz a keretrendszer.\cite{caliburn} Legfontosabb tulajdonságai: 
 \begin{itemize}[leftmargin=*]
-\item \textbf{Action Messages: }Az Action működése megengedi számunkra, hogy össze kössük a UI triggereit mint például gomb nyomása a nézet-modellben található metódussal. Ez a mechanizmus lehetőséget nyújt paraméterek továbbítására is a metódusok számára. A paraméter lehet egy másik FrameworkElement értéke vagy más speciális érték, mint a DataContext vagy EventArgs. Minden paraméteren elvégez egy automatikusan típus konverziót, ami a metódus szignatúrája határozz meg. Ezek a meghívások támogatják még egy védő mechanizmus is „CanExecute”-t. Ha van a triggerelt action nevéhez hasonló metódus vagy property ami Can szóval van kiegészítve az elején akkor az blokkolhatja „disable” vagy engedélyezheti „enable” azt az elemet a UI-ban. A Caliburn.Micro ActionMassages implementációja a System.Windows.Interactivity-re épül. Ezáltal lehetőség nyílik, hogy ezt a funkciót bármilyen TriggerBase alapú triggerre használhassuk.	
-\item \textbf{Action Conventions: }A konvenciók a x:Name-re épülnek. A nézetben lévő elemet és a nézet-modellben található megegyező nevű metódusra automatikusan készít egy EventTriggert az elem által alapértelmezetten definiált eseményre, és hozzárendel egy ActionMessage-t ami metódusra fog mutatni. Ha van egy metódusunk amit „Login”-nak hívunk és van egy gombunk UI-on aminek a neve ugyanúgy „Login” akkor arra a keretrendszer automatikusan összeköti. Így amikor a gombra rá kattintunk a login metódus fog meghívódni. Továbbá figyeli a metódus szignatúráját és a szerint építi fel az ActionMassage paramétereit. Ez csak egy lehetőség, amit bármikor kikapcsolhatunk, vagy tetszés szerint módosíthatunk. Ezeken kívül módosíthatunk, hozzáadhatunk új konvenciókat különböző elemkehez. Például, tudunk olyat is csinálni, amivel feliratkozunk a gomb MouseMove eseményére.  
-\item \textbf{Binding Conventions: }A Caliburn.Micro támogatja a konvenció-alapú adatkötést is. Ez ugyanúgy x:Name segítségével is működik. Hogyha van egy property a nézet-modellben ugyan olyan névvel, mint az elem neve akkor azt megpróbálja összekapcsolni. Mikor egy összekötés bekövetkezik akkor a keretrendszer több lépésen keresztül építi a kapcsolatot. Ezek közül mind testre szabható, mint például az adatkötés módja azaz BindingMode vagy StringFormat, ValueConverter stb\dots 	
+\item \textbf{Action Messages: }Az Action működése megengedi számunkra, hogy össze kössük a UI triggereit mint például gomb nyomása a nézet-modellben található metódussal. Ez a mechanizmus lehetőséget nyújt paraméterek továbbítására is a metódusok számára. A paraméter lehet egy másik FrameworkElement értéke vagy más speciális érték, mint a DataContext vagy EventArgs. Minden paraméteren elvégez egy automatikusan típus konverziót, ami a metódus szignatúrája határozz meg. Ezek a meghívások támogatják még egy védő mechanizmus is „CanExecute”-t. Ha van a triggerelt action nevéhez hasonló metódus vagy property ami Can szóval van kiegészítve az elején akkor az blokkolhatja „disable” vagy engedélyezheti „enable” azt az elemet a UI-ban. A Caliburn.Micro ActionMassages implementációja a System.Windows.Interactivity-re épül. Ezáltal lehetőség nyílik, hogy ezt a funkciót bármilyen TriggerBase alapú triggerre használhassuk.\cite{caliburn}	
+\item \textbf{Action Conventions: }A konvenciók a x:Name-re épülnek. A nézetben lévő elemet és a nézet-modellben található megegyező nevű metódusra automatikusan készít egy EventTriggert az elem által alapértelmezetten definiált eseményre, és hozzárendel egy ActionMessage-t ami metódusra fog mutatni. Ha van egy metódusunk amit „Login”-nak hívunk és van egy gombunk UI-on aminek a neve ugyanúgy „Login” akkor arra a keretrendszer automatikusan összeköti. Így amikor a gombra rá kattintunk a login metódus fog meghívódni. Továbbá figyeli a metódus szignatúráját és a szerint építi fel az ActionMassage paramétereit. Ez csak egy lehetőség, amit bármikor kikapcsolhatunk, vagy tetszés szerint módosíthatunk. Ezeken kívül módosíthatunk, hozzáadhatunk új konvenciókat különböző elemkehez. Például, tudunk olyat is csinálni, amivel feliratkozunk a gomb MouseMove eseményére.  \cite{caliburn}
+\item \textbf{Binding Conventions: }A Caliburn.Micro támogatja a konvenció-alapú adatkötést is. Ez ugyanúgy x:Name segítségével is működik. Hogyha van egy property a nézet-modellben ugyan olyan névvel, mint az elem neve akkor azt megpróbálja összekapcsolni. Mikor egy összekötés bekövetkezik akkor a keretrendszer több lépésen keresztül építi a kapcsolatot. Ezek közül mind testre szabható, mint például az adatkötés módja azaz BindingMode vagy StringFormat, ValueConverter stb\dots 	\cite{caliburn}
 \item \textbf{Screen, Conductor és Collection: }A Screen, Conductor és Collection osztály felel a nézetünk életciklusáért azaz a helyes indításért, leállításért és leállítás megszakításáért az applikációnkban. A screen-t usercontroll nézet-modellkén használják. Ezek az építő elemei a megjelenítésnek a caliburn.microban. A conductor és Collection is a Screen osztály leszármazottjai. A Conductor is lehet használni usercontrolloknál de ezt már ablakoknál vagy oldalaknál alkalmazzák javarészt, lényege, hogy képes kezelni egy Screen típusú osztályt, amit meg tud jeleníteni. A Collectionek két fajtája van.  A Collection.AllActive és a Collection.OneActive. Mindegyik több screen befogadására képes, de az egyik egyszerre csak egy screent jelenít, meg míg a másik akár egyszerre az összeset is.
 \item \textbf{Event Aggregator:  }Az aggregátor egy pub/sub tervezési mintára épülő osztály. Azaz feliratkoztatjuk az egyik osztályunkat és az üzeneteket fog nekünk küldeni attól függően, hogy a regisztrált osztály milyen IHandle<T> interfészeket implementált. Az értesítés az UI szálon történik. Támogatja a polimorfizmust is. 
-\item \textbf{View Locator:  }Minden nézet-modellhez a programunkban van egy alap stratégia a hozzá tartozó nézet megtalálásához. Ezt név konvenció alapján végzi el. Például ha a nézet-modellünket elnevezzük IktatogRPCClient.ViewModels.ContainerViewMode-nek akkor a Caliburn.Micro a IktatogRPCClient.Views.ContainerView-t fogja keresni. Egy nézetnek akár több nézet-modellje is lehet. 
-\item \textbf{View Model Locator: }	Attól függetlenül, hogy alapértelmezetten a Caliburn.Micro a nézet-modelltől indul ki alapértelmezetten ez módosítható. Azaz támogatja, hogy először a nézetet keresi és utána nézet-modellt ugyan azzal az eljárással, mintha ennek az ellenkezője lenne. 
-\item \textbf{Window Manager: }Ez a szolgáltatás is jelzi, hogy ez a keretrendszer nézett-modell központú. Átadunk a számára egy példányt abból a nézet-modellből, amit megszeretnénk jeleníteni, ő megkeresi a hozzátartozó nézetet, beállítja az összes konvenciót, amit beállítottunk rajta és megjeleníti az ablakot. 
-\item \textbf{PropertyChangedBase and BindableCollection: }	A keretrendszerben lévő implementáció lehetővé teszi számunkra, a string és lambda kifejezés alapú változás értesítéseket. Megbizonyosodik róla, hogy minden esemény ami a propertyhez kapcsolódik a UI szálon történjen. A BindableCollection az ObservableCollection leszármazottja, azaz egy egyszerű lista azonban itt is ügyel arra, hogy minden eseménye a UI szálon történjen.
-\item \textbf{Bootstrapper: }Ennek az osztálynak a segítségével tudjuk a szoftverünket elindítani és futtatni. Nem kell, mást tenni hozzá csak létrehozunk egy saját osztályt, ami a BootstrapperBase osztály leszármazottja és hozzáadjuk azt a program ResourceDictonary-be. Innen tudjuk begyűjteni még az indítási paramétereket is.
+\item \textbf{View Locator:  }Minden nézet-modellhez a programunkban van egy alap stratégia a hozzá tartozó nézet megtalálásához. Ezt név konvenció alapján végzi el. Például ha a nézet-modellünket elnevezzük IktatogRPCClient.ViewModels.ContainerViewMode-nek akkor a Caliburn.Micro a IktatogRPCClient.Views.ContainerView-t fogja keresni. Egy nézetnek akár több nézet-modellje is lehet. \cite{caliburn}
+\item \textbf{View Model Locator: }	Attól függetlenül, hogy alapértelmezetten a Caliburn.Micro a nézet-modelltől indul ki alapértelmezetten ez módosítható. Azaz támogatja, hogy először a nézetet keresi és utána nézet-modellt ugyan azzal az eljárással, mintha ennek az ellenkezője lenne. \cite{caliburn}
+\item \textbf{Window Manager: }Ez a szolgáltatás is jelzi, hogy ez a keretrendszer nézett-modell központú. Átadunk a számára egy példányt abból a nézet-modellből, amit megszeretnénk jeleníteni, ő megkeresi a hozzátartozó nézetet, beállítja az összes konvenciót, amit beállítottunk rajta és megjeleníti az ablakot. \cite{caliburn}
+\item \textbf{PropertyChangedBase and BindableCollection: }	A keretrendszerben lévő implementáció lehetővé teszi számunkra, a string és lambda kifejezés alapú változás értesítéseket. Megbizonyosodik róla, hogy minden esemény ami a propertyhez kapcsolódik a UI szálon történjen. A BindableCollection az ObservableCollection leszármazottja, azaz egy egyszerű lista azonban itt is ügyel arra, hogy minden eseménye a UI szálon történjen.\cite{caliburn}
+\item \textbf{Bootstrapper: }Ennek az osztálynak a segítségével tudjuk a szoftverünket elindítani és futtatni. Nem kell, mást tenni hozzá csak létrehozunk egy saját osztályt, ami a BootstrapperBase osztály leszármazottja és hozzáadjuk azt a program ResourceDictonary-be. Innen tudjuk begyűjteni még az indítási paramétereket is.\cite{caliburn}
 \end{itemize}
 \section{gRPC és a Protobuffer}
 \subsection{gRPC bemutatása}
-A gRPC rekurzív mozaik szó. A jelentése gRPC Remote Procedure Call. A google fejlesztette 2015-ben. Nyílt forráskódú. Segítségével közvetlenül meghívhatunk metódusokat egy távoli gépen, mintha az lokális objektum lenne. Könnyedén létrehozhatunk vele osztott alkalmazásokat, szolgáltatásokat. Két fő részből áll. A gRPC protokollból és a protobufferből. A többi RPC szolgáltatáshoz hasonlóan itt is előre kell definiálni a szolgáltatásokat. Ezen szolgáltatások metódusait, amelyeket a későbbiek folyamán meg lehet hívni a paraméterek megadásával. A gRPC platform független. Támogatott nyelvek: c\#, java, c/c++, Dart, Go, Kotlin, Node, Objective-C, PHP, Python, Ruby. Egyik előnye, hogy automatikusan generálja nekünk a kliens csonkokat és a szerver osztályokat.
-\begin{figure}
+A gRPC rekurzív mozaik szó. A jelentése gRPC Remote Procedure Call. A google fejlesztette 2015-ben. Nyílt forráskódú. Segítségével közvetlenül meghívhatunk metódusokat egy távoli gépen, mintha az lokális objektum lenne. Könnyedén létrehozhatunk vele osztott alkalmazásokat, szolgáltatásokat. Két fő részből áll. A gRPC protokollból és a protobufferből. A többi RPC szolgáltatáshoz hasonlóan itt is előre kell definiálni a szolgáltatásokat. Ezen szolgáltatások metódusait, amelyeket a későbbiek folyamán meg lehet hívni a paraméterek megadásával. A gRPC platform független. Támogatott nyelvek: c\#, java, c/c++, Dart, Go, Kotlin, Node, Objective-C, PHP, Python, Ruby. Egyik előnye, hogy automatikusan generálja nekünk a kliens csonkokat és a szerver osztályokat.\cite{grpc}
+\begin{figure}[th!]
 	\centering
 	\includegraphics[width=7cm]{proto}
-	\caption{}
+		\caption[gRPC]{gRPC műkődési elve \cite{grpc}}
 	\label{fig:proto}
 \end{figure}
 
 \subsubsection {gRPC Protokoll}
-A protokoll http2 alapokon működik és ki is használja annak előnyeit. A gRPC támogat több beépített lehetőséget, amit a http2-től örökölt. Például fejléc tömörítése, folyamatos és egyetlen TCP kapcsolat, csatlakozási, megszakítási és időtúllépési szerződések a kliens és a szerver között. A protokollnak van beépített folyamatirányítás vezérlése az adatkereteken, amit ugyanúgy a http2-től örökölt. Ez nagyon hasznos annak biztosítása érdekében, hogy az kliensek tiszteletben tartsák a rendszer teljesítményét, de extra összetettséget eredményez az infrastruktúrában felmerülő problémák diagnosztizálásakor, mivel akár az ügyfél, akár a szerver beállíthatja saját folyamatirányítási értékeit. A gRPC szerver fogja kezelni a kliens hívásokat. A kliens oldalon van egy csonk, ami azoknak a metódusoknak a fejlécét tartalmazza, amik a szerveren is megtalálhatók. Ezek segítségével fogjuk meghívni a szerver oldalon a service által definiált metódusokat. 
+A protokoll http2 alapokon működik és ki is használja annak előnyeit. A gRPC támogat több beépített lehetőséget, amit a http2-től örökölt. Például fejléc tömörítése, folyamatos és egyetlen TCP kapcsolat, csatlakozási, megszakítási és időtúllépési szerződések a kliens és a szerver között. A protokollnak van beépített folyamatirányítás vezérlése az adatkereteken, amit ugyanúgy a http2-től örökölt. Ez nagyon hasznos annak biztosítása érdekében, hogy az kliensek tiszteletben tartsák a rendszer teljesítményét, de extra összetettséget eredményez az infrastruktúrában felmerülő problémák diagnosztizálásakor, mivel akár az ügyfél, akár a szerver beállíthatja saját folyamatirányítási értékeit. A gRPC szerver fogja kezelni a kliens hívásokat. A kliens oldalon van egy csonk, ami azoknak a metódusoknak a fejlécét tartalmazza, amik a szerveren is megtalálhatók. Ezek segítségével fogjuk meghívni a szerver oldalon a service által definiált metódusokat. \cite{grpcprotokol}
 \subsection{Protobuffer bemutatása}
 A protocol buffer egy nyelvi és platform semleges protokoll, ami az adatok szerializációjáért felel. A Protocol buffer tölti be a szerződés szerepét a kliens és a szerver között. Sokkal egyszerűbb, hatékonyabb, mint egy XML struktúra és könnyebben olvasható is. Két részből áll az egyik a Message a másik a Service amiben az RPC-k találhatóak. 
 \subsubsection{Message}
@@ -372,7 +371,7 @@ Ebben a részben be fogom mutatni a kliens oldali programom részeit. Ezeket  r�
 \textbf{Indítás/alapbeállítás:}
 
 Az indításhoz való legelső konfigurációs lépés nem más volt, mint az applikáció App.xml fájlja én sem tettem mást, mint a dokumentációkban leírtak alapján hozzáadtam az indító fájlt illetve kivettem a StartupUri részt az application részből.
-\begin{lstlisting}
+\begin{lstlisting}[caption={App.xml},captionpos=b]
 <Application.Resources>
 	<ResourceDictionary>
 		<ResourceDictionary.MergedDictionaries>
@@ -385,7 +384,7 @@ Az indításhoz való legelső konfigurációs lépés nem más volt, mint az ap
 </Application.Resources>
 \end{lstlisting}
 Mint látható a ResourceDictionary-hoz egy MergedDictionary-t adtam hozzá. Az egyik dictionary tartalmazza az indítani kívánt osztályt, aminek a BootstrapperBase osztálynak az ősének kell lennie. A másik tartalmazza a szoftver formázási stílusait így XAML fájlba nem kell közvetlenül beleírnom ezeket a megjelenítési beállításokat és így azok újra felhasználhatóvá válnak és átláthatóbbá teszi a nézet kódját.
-\begin{lstlisting}
+\begin{lstlisting}[caption={Indításért felelős osztály},captionpos=b]
 public class Bootstrapper:BootstrapperBase
 {
 	public Bootstrapper()
@@ -406,7 +405,7 @@ Létrehoztunk egy Bootstrapper osztályt a BootstrapperBase osztály leszármazo
 
 Ebben a nézet-modellben összesen három property található. Ezekbe tárolom el a felhasználó adatait illetve, egy bool propertyt ami jelzi, hogy a felhasználó szeretné-e, hogy elmentsük a jelszavát. Ha szeretné a jelölő kattintásával módosítja a nézet-modellben található property-t és bejelentkezéskor az adatot a windows registrybe mentem. Ennek a segítségére megtalálható három konstans, ami az adat elérési útját tartalmazza. Ezen kívül megtalálható egy privát mező is ami a UserHelperSingleton osztály, mivel a Login lehetőség ebben az osztályban érhető el. Több metódus is a rendelkezésünkre áll ezek közül a legfontosabb a szerverhez való csatlakozásra használt.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Bejelentkezés},captionpos=b]
 async Task<bool> ConnectToServerAndLogin()
 {
 	CheckUsername();
@@ -425,7 +424,7 @@ Ez egy async metódus annak érdekében, hogy ne blokkoljuk a UI threadet a csat
 
 Ebben a nézetben található meg a menüsor, illetve itt fog változni az egész program. Azaz amikor egy menü gombra rákattintunk, ami nem kilépés vagy kijelentkezés akkor az adott usercontroller betöltésre kerül. Ez egy conductor osztály amit a caliburn.micro keretrendszere nyújt. Így mindig lehet egy aktív screenem. Ennek a segítségére létre hoztam egy külön osztályt amit SceneManager-nek neveztem el. Ennek az osztálynak van egy CreateScene függvénye aminek egy paramétere a Scenes enumok közül választható. Visszatérési érteke egy screen osztály béli objektum. A Scenes enumok nem mást tartalmaznak, mint a megjeleníthető nézetek listáját. 
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Nézet váltás metódusa},captionpos=b]
 private void ChangeScene(Scenes scene) {
 	Log.Debug("{Class} Oldal valtasa {Scene}", GetType(),scene);
 	ActivateItem(SceneManager.CreateScene(scene));
@@ -435,7 +434,7 @@ Ezt a metódust a gombokhoz hozzárendelt metódusok hívják meg. Így egy hely
 \textbf{Főoldal:}
 
 A főoldalon egy üdvözlő üzenet jelenik meg, illetve a vágyálom rendszerben is megfogalmazott napi ige. Erre a főoldal nézet-modellje az ige modellt használja. Az ige osztály három propertyből áll és két mezőből. A LetoltottIgeDatuma jelzi, hogy mikor volt letöltve az ige. Ennek van egy alapértelmezett dátuma, ami biztos kisebb, mint az aktuális nap dátuma. Van egy property aminek csak getterje van, ez a property szolgáltatja a címet, ami magába foglalja az aktuális nap dátumát. Az utolsó pedig maga a napi ige tárolására szolgál. A főoldalon ezt a modellt statikusként állítottam be, annak érdekében, hogy a nézet-modell ne végezze el az ige adatok letöltését és formázást, csak ha szükséges. A letöltéshez a következő metódust használom:
-\begin{lstlisting}
+\begin{lstlisting}[caption={Ige letöltése és formázása.},captionpos=b]
 private async void DownloadIge()
 {
 	try
@@ -460,7 +459,7 @@ Az aszinkronitás itt is megvan  azért, hogy a UI szálat ne foglaljuk le. Elő
 \textbf{Iktatás:}
 
 Az iktatás nézetében, megtalálható az összes kötelező törzs adat kiválasztási lehetősége. Ezeket legördülő menü formájában találja meg a felhasználó a felületen. Ezek mindegyikéhez a nézet-modellben tartozik egy név azonos property, illetve a kijelölt elemek számára is. A nézet-modell-t az IkonyvHandlerből származtatom, ami tartalmazz két IHandle interfészt és a Screen osztály leszármazottja. Ezt a segéd osztályt azért hoztam létre, hogy csoportosítsam egy helyre azokat a tulajdonságokat egy nézetnek, amit muszáj kezelnie, ha tartalmaz olyan DataGridet amiben iktatásokat jelenít meg. Három metódus tartalmazz ebből kettő absztrakt, hogy azt a gyermekosztály majd megvalósítsa. Az iktatókönyv módosítására való metódus viszont mindenhol ugyan az ezért azt már itt implementáltam. 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Iktatás módosítása ablak megnyítása WindowManager segítségével.},captionpos=b]
 public void ModifyIkonyv() {
 	if (SelectedIkonyv == null) return;
 	WindowManager windowManager = new WindowManager();
@@ -471,7 +470,7 @@ public void ModifyIkonyv() {
 Ebben a metódusban található egy WindowManager ami az új ablak megnyitásáért felelős a Caliburn.Micro keretrendszerben. A ShowDialog függvénynek a bemeneti paramétere egy PopUpViewModel lesz, aminek át adunk egy másik nézet-modellt ez pedig az iktatás módosítására használt objektum. A PopUp nézetett azért hoztam létre, hogy az ablak mögötti rész el sötétítése egy helyen történjen, ne kelljen folyamatosan újra implementálnom, a hibákon kívül minden felugró ablak ezen a nézet-modellen keresztül fog megjelenni. 
 
 Az iktatás nézet-modell konstruktorában először csak a telephelyeket szedem, le az adatbázisból majd beállítom az első lehetséges telephelyet. Ennek hatására megindul a telephelyhez tartozó adatoknak is a letöltése. 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Iktatáshoz szükséges adatok letöltése.},captionpos=b]
 private async void LoadData()
 {
 	Log.Debug("{Class} Adatok betoltese a szerverrol.", GetType());
@@ -484,7 +483,7 @@ private async void LoadData()
 \end{lstlisting}
 Az irányok belevannak „égetve” az osztályba mert, ezek nem fognak változni. Alapértelmezetten kijelöli a „bejövő” részt tehát erre fog iktatni a felhasználó, ha ezt nem módosítja. A konstruktorban még fel is iratkozok a Caliburn.Micro által nyújtott EventAggregatorra. Az eventAggregator segít abban, hogy az osztály értesítéseket kapjon azokról az eseményekről, amikre az IHandle interfészek által feliratkozott Az IHandle implementálni kell, mivel a KonyvHandler osztályban nincsenek.\\
 A Handlerek implementációja:
-\begin{lstlisting}
+\begin{lstlisting}[caption={Iktatás törlése a táblából.},captionpos=b]
 public override void Handle(RemovedItem message)
 {
 	if (message.Item is Ikonyv)
@@ -495,15 +494,17 @@ public override void Handle(RemovedItem message)
 }
 \end{lstlisting}
 A RemovedItem handler arra szolgál, ha törölné a felhasználó az éppen felöltött iktatást, akkor az a statikus Iktatókönyvek közül kitörölje. 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Iktatás módosítása a táblában.},captionpos=b]
 public override void Handle(Ikonyv message)
 {
 	for (int i = 0; i < RecentlyAddedIkonyvek.Count; i++)
 	{
 		if (RecentlyAddedIkonyvek[i].Id == message.Id)
-	{
-	RecentlyAddedIkonyvek.RemoveAt(i);
-	RecentlyAddedIkonyvek.Add(message);
+		{
+		RecentlyAddedIkonyvek.RemoveAt(i);
+		RecentlyAddedIkonyvek.Add(message);
+		}
+	}
 }
 
 \end{lstlisting}
@@ -511,7 +512,7 @@ A módosított iktatásokat kapja el. Ha egy módosítás bekövetkezik, akkor a
 
 Ha a felhasználó iktatni szeretne és elkezdi ki tölteni a mezőket, azt folyamatosan ellenőrizzük, ha a bevitt adat elegendő és az összes kötelező mezőt kitöltötte, akkor az iktatási gomb, ami alapértelmezetten kikapcsolt állapotba van, bekapcsoltra állítjuk. Ennek a funkciónak a megkönnyítésére is van lehetőség Caliburn.Micro-ban amit ugyanúgy névkonvenció alapján összetudja kötni a logikai propertyt a XAML elemmel. A gombot el neveztük IktatButton-nak így a publikus property amit létre kell hoznunk az a CanIktatButton.
 Ezen a property-n belül csak vissza adom az én saját private logikai függvényem értékét ahol történik az igazi ellenőrzés. 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Iktatáshoz tartozó adatok validálása.},captionpos=b]
 private bool FormValidation() {
 	bool IsValid = true;
 	if (IsTorzsDataInFormNull()) IsValid = false;
@@ -527,20 +528,17 @@ private bool FormValidation() {
 Az függvény folyamán ellenőrzöm a szöveges mezők számának a hosszát, hogy az nem haladta-e meg az adatbázisban foglalt oszlop maximális karakter számát. Továbbá ellenőrzöm még azt, hogy a határidő dátuma ne legyen kisebb, mint az érkeztetés dátuma és még azt is, hogy minden kötelező mező ki lett-e töltve. Ha ez sikeres, akkor az iktatás gombra rá tudunk kattintani, ahol nem történik más, mint létrehoz egy új iktatási objektumot, ami a ServerHelperSingleton által szolgáltatott AddIktatas függvényét meghívjuk. 
 
 A függvény bemeneti paramétere egy Ikonyv típusú objektum a kimeneti paramétere egy RovidIkonyv ami csak az Id-t és az iktatószámot fogja tartalmazni. Ez a gRPC által generált kliens csonkot fogja használni arra, hogy a szerverre elmentse az adatokat. 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Iktatás hozzzáadása.},captionpos=b]
 public async Task<RovidIkonyv> AddIktatas(Ikonyv newIkonyv)
 {
 	RovidIkonyv rovidIkonyv = new RovidIkonyv() { Id = 0 };
-	try
-	{
+	try{
 		rovidIkonyv = await Client().AddIktatasAsync(newIkonyv, GetCallOption());
 	}
-	catch (RpcException ex)
-	{
+	catch (RpcException ex)	{
 		InformationBox.ShowError(ex);
 	}
-	catch (Exception e)
-	{
+	catch (Exception e){
 		InformationBox.ShowError(e);
 	}
 	return rovidIkonyv;
@@ -551,7 +549,7 @@ A visszatérés után megjelenítjük a felhasználónak az új iktatószámot �
 \textbf{Keresés:}
 
 A keresés is gyermek osztálya a IkonyvHandler osztálynak. Első lépésként leszedem a szerverről az elérhető éveket és beállítom a lehetséges irányokat. Amint a felhasználó mind a két legördülő menüből kiválasztott egy lehetőséget megkezdődik a szerverről az iktatásoknak a letöltése. Az adatok megjelenítéséhez három BindableCollection<Ikonyv> property-t kell, amik a következők: AllIkonyv, SearchedIkonyvek, ShownIkonyvek. Az első property tartalmazza az összes iktatást, amit leszedtünk, a második tartalmazza azokat az adatok, amik megfelelnek a keresési kritériumoknak és a harmadik maga a megjelenített iktatások. A megjelenítéskor figyelembe veszem, hogy a felhasználó hány darab iktatást szeretne megjeleníteni az oldalon és csak annyit jelenítek meg. Az oldalak kezeléséhez a gombokat le kell generálni, aminek darabszámát mindig a SearchedIkonyvek található adatok száma és a megjeleníteni kívánt iktatás oldalanként határozza meg. Az összes letöltött adat darab számát megjelenítem.
-\begin{lstlisting}
+\begin{lstlisting}[caption={Megjeleníthető iktatások a keresésben.},captionpos=b]
 private async void SetVisibleIktatas() {	
 	if (AllIkonyv.Count == 0) return;
 	await SetSearchData();
@@ -580,7 +578,7 @@ A megjelenítésnek a folyamata a következő képen zajlik. Ellenőrzöm, hogy 
 \textbf{Törzs:}
 
 A nézet-modell a Collection.AllActive gyermek osztálya. Mint azt már korábban említettem, ez az osztály abban különbözik a Conductor osztálytól, hogy több Screen eleme is lehet és egyszerre ezek közül többet is meg tud jeleníteni. Ahhoz hogy megjelenítsük ezeket a nézet-modelleket nincs más teendőnk, mint létrehozni minden egyes megjeleníteni kívánt Screen típusú osztálynak egy property-t amit a caliburn.micro össze köt a XAML-ben található contentcontroller elemekkel. Itt megnézzük, hogy a felhasználó admin-e ha igen, akkor az összes beállítási lehetőségeket megkapja. Ebben a törzs nézet-modellben történik még meg a telephelyek letöltése és publikálása, de csak miután megjelenítettük és felírattuk az összes többi nézet-modellt az eventaggregatorra. 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Telephelyek letöltése a törzs adatok számára.},captionpos=b]
 private async void GetTelephelyekAsync() {
 	Log.Debug("{Class} Telephelyek letoltese.", GetType());
 	LoaderIsVisible = true;
@@ -591,21 +589,20 @@ private async void GetTelephelyekAsync() {
 \end{lstlisting}
 
 Mint látható a TorzsViewModel is a ServerHelperSinglton osztályt alkalmazza az adatok letöltésére. Miután ez megtörtént az EventAggregatornak van egy metódusa, hogy PublishOnUIThreadAsync() aminek a bemeneti paraméter egy object osztály. Tehát bármilyen osztályt alkalmazhatunk ezáltal. Ezután a hívás után azok az elemek is elkezdhetik a saját adataiknak a letöltését a szerverről, amelyek implementálták az IHandle<Telephely> interfészt. Mindegyik nézet-modell implementálja azokat az IHandle<T> interfészeket, amikre szükségük van. Ebben a menüpontban van a legjobban kihasználva az EventAggregator és az ServerHelperSingleton osztálynak a tulajdonságai.  Mindegyik törzset kezelő felület tartalmazza szerver elérésére létrehozott egyke osztályt, ennek hála mindegyik lekérdezés ugyan azon a csatornán fog végződni mivel ebből az osztályból csak egy van az egész program futtatása alatt. \\
+
 \textbf{Dokumentumkezelés:}
 
 A dokumentum kezelésre minden olyan felületnek van lehetőség amelyik implementálja a IkonyvHandler osztályt. Ugyanis az iktatáshoz tartozó dokumentumok kezelésére a módosítás közben van lehetőségünk. Amint rákattintunk kétszer egy iktatásra a DataGrid-en az egy új ablakot fog megjeleníteni ahol is található a dokumentumok gomb. Ennek a gombnak a megnyomásra jelenik, meg az a felület ahol látjuk az összes dokumentumot és ahol fel is tudunk tölteni újat. A dokumentum megnyitása úgy történik, hogy kijelöljük a megnyitni kívántat és rákattintunk a megnyitás gombra. Ennek hatására a DownloadDocument metódus fog meghívódni.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Dokumentum letöltése.},captionpos=b]
 public async void DownloadDocument() {
 	try
 {
 LoaderIsVisible = true;
 	Document rawdata = await serverHelper.GetDocumentByIdAsync(SelectedDocument);
 	if (rawdata.Id != -1){
-		Log.Debug("{Class} Sikeres letoltes", GetType(), SelectedDocument);
 		byte[] bytes = rawdata.Doc.ToByteArray();
 		string temppath = Path.GetTempPath();
 		string fullpath = $"{temppath}{rawdata.Name}.{rawdata.Type}";
-		Log.Debug("{Class} Adatok mentese", GetType(), SelectedDocument);
 		if (File.Exists(fullpath)){
 			File.Delete(fullpath);
 			File.WriteAllBytes(fullpath, bytes);
@@ -613,7 +610,6 @@ LoaderIsVisible = true;
 		else File.WriteAllBytes(fullpath, bytes);
 		Log.Debug("{Class} Sikeres adatmentes.", GetType(), SelectedDocument);
 		try{
-			Log.Debug("{Class} Letoltott documentum megnyitasa.", GetType(), SelectedDocument);
 			Process.Start(fullpath);
 		}
 		catch (Exception e){
@@ -633,21 +629,17 @@ LoaderIsVisible = true;
 A függvény először vár az adat letöltésére, ha sikerült, akkor visszakapjuk annak a fontos információit és magát a dokumentumot. Ha az Id mező nem egyenlő -1 -el akkor megyünk tovább. Az adatokat berakjuk byte tömbbe, lekérjük a rendszertől az ideiglenes fájlok tárolására használta mappának az elérési útvonalát. Ha ez sikeres, akkor konkatenáljuk ezt az útvonalat a letöltött dokumentum nevével. Ha már letöltötték ezt a fájlt, akkor először kitöröljük, majd újra kiírjuk a lemezre, ha nem akkor csak kiírjuk. Ezután a Process.Start() segítségével megnyitjuk az állományunkat. Ennek a metódusnak több változata is van, de én a string paramétereset hívom meg, ami fájl vagy dokumentum elérési útvonalának kell lenni ennek hatására elindítja az alapértelmezett programmal azt.
 
 A feltöltés gomb az UploadDocument metódust indítja el. Először megjelenítjük a c\# által támogatott fájl kiválasztót, ha ott sikeresen kijelöltünk egy fájlt létrehozunk egy új Document objektumot. Itt minden információt megadunk a fájlról és beolvassuk a Doc mezőjébe a fájl adatait.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Dokumentum feltöltése.},captionpos=b]
 public async Task UploadDocument() {
-	Log.Debug("{Class} Feltoltes gomb megnyomva.", GetType());
-	Log.Debug("{Class} Adatok beszerzese", GetType());
+
 	string[] FileInfo = ChooseDataToUpload();
 	if (string.IsNullOrWhiteSpace(FileInfo[2])) return;
-	Log.Debug("{Class} Fajl feltoltes megkezdese.", GetType());
 	LoaderIsVisible = true;
 	Document document = new Document();
 	document.Name = FileInfo[0];
 	document.Type = FileInfo[1];
-	Log.Debug("{Class} ByteArray to BysteString", GetType());
 	document.Doc = ByteString.CopyFrom(GetBytesFromFile(FileInfo[2]));
 	document.IkonyvId = ikonyvid;
-	Log.Debug("{Class} Adatok feltoltese. Doc: {Name}", GetType(), document.Name);
 	DocumentInfo uploadedDocument = await serverHelper.UploadDocumentAsync(document);
 	if (uploadedDocument.Id != -1)
 	{
@@ -667,7 +659,7 @@ Sikeres beolvasás után elindítjuk a feltöltést, ellenőrizzük annak sikere
 \textbf{SeverHelperSingleton:}
 
 Ez az osztály a legfontosabb a szerver eléréséhez, ugyanis ő használja a kliens csonkokat. Ő az egyke osztályok azon fajtáját reprezentálja, amit úgy hívunk, hogy „mohó”. A mohó osztály annyiban különbözik a „lustától” hogy alapból szálbiztos, de erőforrásait egyből inicializálja. A csonkok használatán kívül más feladatai is vannak. Az egyik a gRPC csatorna létrehozása és annak lezárása a másik, hogy a hitelesítési adatokat mindig elküldje a http2 fejlécében a szerver számára.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={gRPC csatorna készítése.},captionpos=b]
 private void CreateNewChannel() {
 	string hostname = ConfigurationManager.AppSettings["Hostname"];
 	string hostport = ConfigurationManager.AppSettings["Port"];
@@ -685,7 +677,7 @@ private void CreateNewChannel() {
 A csatorna létrehozása során beolvassuk az app.config fájlban található csatlakozási adatokat. Ezeket az adatokat egy socketté állítjuk össze. Ezután beolvassuk a hitelesítést, amit a gRPC névtérben található SslCredentials objektum létrehozásához használunk. Ha ez megtörtént létrehozzuk magát a csatornát. A csatorna bemeneti paraméterei a socket, hitelesítés, és az általunk konfigurált csatorna beállítások. Ezeken a beállításoknak meg kell egyeznie a szerveren lévővel, különben a szerver bonthatja a kapcsolatot hibás konfigurációra hivatkozva. Ezek az opciók arra szolgálnak, hogy a kapcsolat ne szűnjön meg, hogyha a program egésznap is fut, és nem történik egy gRPC hívás sem.
 
 Az fejlécbe történő adat beágyazás nem bonyolult. Ugyanis a gRPC-nél minden híváshoz megadhatók hívási beállítások. Ezek között a találjuk meg a http2 protokoll fejlécét is.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={CallOption beállítása.},captionpos=b]
 private CallOptions GetCallOption() {
 	return new CallOptions().WithHeaders(new Metadata()
 		{
@@ -694,7 +686,6 @@ private CallOptions GetCallOption() {
 }
 \end{lstlisting}
 Ezért úgy oldottam meg, hogy minden egyes híváshoz lekérünk új CallOptions –t amibe beleágyazom a tokent, amit a bejelentkezéskor kapott meg a felhasználó. 
-
 \section {Szerver implementálása}
 A szervernek is egy kisebb WPF applikációt hoztam létre, itt nem használtam már semmilyen keretrendszert. A szerverben implementáltam a gRPC protobuffer által generált szolgáltatásokat, MySQL adatbázisban található adatok manipulálásához a szükséges osztályokat, illetve a rendszergazdai kezelő felületet.  A kezelő felületek között megtalálható a naplózás beállításainak lehetősége, adatbázis mentése és a felhasználók létrehozása illetve módosítása jelszóval együtt.\\
 \textbf{Adatbázis kezelő osztályok:}
@@ -703,7 +694,7 @@ Minden adatbázis kezelő osztályomnak két kötelező interfészt kell impleme
 
 A csatlakozásért felelős interfészt, két metódust, egy függvényt és egy propertyt tartalmazz.
 Ez egy generikus interfész, így bármelyik adatbázis kezelőnek a csatlakozást megadhatjuk neki (Pl.: MySqlConnection).
-\begin{lstlisting}
+\begin{lstlisting}[caption={Kötelező interfész adatbázist kezelő osztályok számára.},captionpos=b]
 public interface IDatabaseConnectionManager<T>
 {     
 	ConnectionManager ConnectionManager { get;  }
@@ -714,8 +705,8 @@ public interface IDatabaseConnectionManager<T>
 \end{lstlisting}
 A property nem más, mint egy ConnectionManager osztály, ami annyit csinál, hogy kiszedi az applikációnk konfigurációs fájljából a szükséges adatbázis információkat. Az OpenConnection és a CloseConnection fog felelni az adatbázis kapcsolat helyes nyitásáért és bezárásért. A bemeneti paraméterek a T osztály. Visszatérési értéke nincs, mivel ha hiba történik valamelyik metódus közben akkor kivételt váltunk ki amit elkapunk és beleírjuk a naplófájlba. A GetConnection pedig az visszaadja a kapcsolatot az adatbázis műveletet végző osztályaink számára.
 
-A másik interfészre egy példa a IManagePartner. Ő sem tartalmazz mást csak azokat a függvényeket amik szükséges a Partner adatainak a manipulációjához. Interfészek használatával meg felek a GOF1-ben foglaltaknak azaz később a Service osztályomba ezekre fogok tudni hivatkozni.
-\begin{lstlisting}
+A másik interfészre egy példa a IManagePartner. Ő sem tartalmazz mást csak azokat a függvényeket amik szükséges a Partner adatainak a manipulációjához. Interfészek használatával meg felek a GOF1-ben foglaltaknak azaz később a Service osztályomba ezekre fogok tudni hivatkozni.\\
+\begin{lstlisting}[caption={Kötelező interfész partnereket kezelő osztályok.},captionpos=b]
 interface IManagePartner
 {
 	Partner AddPartner(NewTorzsData newObject, User user);
@@ -724,12 +715,12 @@ interface IManagePartner
 	Answer ModifyPartner(Partner modifiedObject);
 }
 \end{lstlisting}
-Ebben az interfészben megtalálható az AddPartner függvény aminek a bemeneti paramétere egy protobuffer fájlban meghatározott message ami a NewTorzsData ez az osztály tartalmazza a törzs adatokat így bármelyik belehelyezhető. Illetve bekér még egy felhasználót is, erre azért van szükség, mert az adatbázisba csak így tudjuk eltárolni, hogy éppen ki mit csinált. Visszatérési érteke egy Partner típusú objektum. A DeletePartner bemeneti érteke egy partnernek az id-je illetve ugyanúgy bekérem a usert is hasonló szándékok miatt. Visszatérési értéke egy Answer message ami tartalmaz egy string, és egy bool propertyt. Ezeket arra használom, hogy a kliens felé tudom jelezni, ha valami hiba történt és egyből a szervertől fogja meg kapni a hiba pontos leírását is. Letudom kérni a telephelyenkénti partnereket is a GetPartnerek segítségével, így a bemeneti paraméter egy Telephely osztály lesz a kimenete pedig partnerek listája. Az utolsó függvény a ModifyPartner aminek a bemeneti értéke a módosított partner ami mindent tartalmaz ami számunkra fontos az adatbázisban való módosításhoz. Visszatérési értéke ugyanúgy egy Answer mint a törlésnél.
+Ebben az interfészben megtalálható az AddPartner függvény aminek a bemeneti paramétere egy protobuffer fájlban meghatározott message ami a NewTorzsData ez az osztály tartalmazza a törzs adatokat így bármelyik belehelyezhető. Illetve bekér még egy felhasználót is, erre azért van szükség, mert az adatbázisba csak így tudjuk eltárolni, hogy éppen ki mit csinált. Visszatérési érteke egy Partner típusú objektum. A DeletePartner bemeneti érteke egy partnernek az id-je illetve ugyanúgy bekérem a usert is hasonló szándékok miatt. Visszatérési értéke egy Answer message ami tartalmaz egy string, és egy bool propertyt. Ezeket arra használom, hogy a kliens felé tudom jelezni, ha valami hiba történt és egyből a szervertől fogja meg kapni a hiba pontos leírását is. \cite{errorhandling}Letudom kérni a telephelyenkénti partnereket is a GetPartnerek segítségével, így a bemeneti paraméter egy Telephely osztály lesz a kimenete pedig partnerek listája. Az utolsó függvény a ModifyPartner aminek a bemeneti értéke a módosított partner ami mindent tartalmaz ami számunkra fontos az adatbázisban való módosításhoz. Visszatérési értéke ugyanúgy egy Answer mint a törlésnél.
 
 Az ismétlés elkerülése végett az IDatabaseConnectionManagert egy absztrakt osztályba implementáltam, de már megadtam a generikus változójának az értéket. Ennek az osztálynak a neve MysqlDatabaseManager. Ez egy kis osztály, de annál fontosabb, így minden MySql-el foglalkozó osztálynak csatlakozásáért itt tudom befolyásolni. Illetve ha pontosabb hiba kezelést akarok az adatbázis kapcsolat zárása vagy nyitásához, akkor csak itt fog kelleni módosítani.
 
 Minden IManage(adat) interfészhez létrehoztam egy service osztályt is. Ezek a service osztályok fognak meg jelnni a gRPC szolgáltatásai között, így ha le akarom cserélni az adatbázis osztályt vagy egy másik adatbázis kezelőt kell implementálnom nagyban megfogja könnyíteni a dolgomat, mert ez az osztály dependency injectiont és dependency delegationt használ. 
-\begin{lstlisting}
+\begin{lstlisting}[caption={A partnerekkel foglalkozó osztály.},captionpos=b]
 class PartnerService:IManagePartner
 {
 	IManagePartner dbManager;
@@ -759,7 +750,7 @@ PartnerDatabaseManager ebben az osztályban már az összes metódus az adatbáz
 Ez az osztály implementálja az összes olyan szolgáltatást amit a gRPC szervernek tudnia kell. A szolgáltatás osztályunknak az ősosztálya az IktatoService.IktatoServiceBase. Ebben az ősosztályban minden metódus virtuális így az általunk készített osztályban felül írhatjuk őket a saját logikánkkal. A ServiceForgRPC osztály összesen 48 eljárást tartalmazz. Ebből 46 gRPC hívásokkal foglalkozik, míg a maradék kettő közül az egyik a felöltött fájlok beolvasásáért felel, a másik ellenőrzi, hogy a hívásokból érkező fejlécekben érvényes-e a felhasználói adat. A gRPC hívások nagyon egyszerűek nekem így már csak annyi volt a feladatom, hogy meghívtam a MySQLDatabaseManager által szolgálatot valamelyik függvényét és annak a visszatérési értékét csak vissza kell küldenem válaszként. Minden gRPC hívásból bemutatok egyet, kivéve a kétirányú távoli eljárást.
 \begin{itemize}[leftmargin=0pt]
 	\item \textbf{ServerStreaming: }
-	\begin{lstlisting}
+	\begin{lstlisting}[showstringspaces=false,caption={Iktatások küldése a kliens számára.},captionpos=b]
 public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWriter<Ikonyv> responseStream, ServerCallContext context){
 	User user;
 	if (CheckUserIsValid(context.RequestHeaders, out user)){
@@ -774,9 +765,9 @@ public override async Task ListIktatas(SearchIkonyvData request, IServerStreamWr
 } 
 
 	\end{lstlisting}
-	Ennek a függvények a segítségével egy listát fogunk összeállítani a kliens oldalon ezért a paraméterei a következők. Első egy olyan osztály, ami a szűrési paramétereket fogja tartalmazni. Amik a kliens által kijelölt évet, irányt, és a felhasználó id-jét jelenti. A második egy olyan osztály, amivel a kliens oldalra fogjuk tudni küldeni az adatokat. A harmadik a hívásnak a kontextusa. Ebben a kontextusban található meg a fejléc ahol mi a tokent tároljuk, amit a felhasználó kapott a bejelentkezéskor. Megnézzük, hogy a token helyes-e, ha igen akkor kinyerjük belőle a felhasználót, ha nem akkor kivételt váltunk ki ez a kliens felé fog eljutni.  Helyes felhasználó esetén tovább megyünk, példányosítunk egy adatbázis kezelő osztályunkból segítségével lekérjük az adatokat ezután a responseStream.WriteAsync metódussal aszinkron módon visszaküldjük egyesével az adatokat a kliens felé. Ha az utolsó adatot is el küldtük a hívás befejeződik.
+	Ennek a függvények a segítségével egy listát fogunk összeállítani a kliens oldalon ezért a paraméterei a következők. Első egy olyan osztály, ami a szűrési paramétereket fogja tartalmazni. Amik a kliens által kijelölt évet, irányt, és a felhasználó id-jét jelenti. A második egy olyan osztály, amivel a kliens oldalra fogjuk tudni küldeni az adatokat. A harmadik a hívásnak a kontextusa. Ebben a kontextusban található meg a fejléc ahol mi a tokent tároljuk, amit a felhasználó kapott a bejelentkezéskor. Megnézzük, hogy a token helyes-e, ha igen akkor kinyerjük belőle a felhasználót, ha nem akkor kivételt váltunk ki ez a kliens felé fog eljutni.\cite{errorhandling}  Helyes felhasználó esetén tovább megyünk, példányosítunk egy adatbázis kezelő osztályunkból segítségével lekérjük az adatokat ezután a responseStream.WriteAsync metódussal aszinkron módon visszaküldjük egyesével az adatokat a kliens felé. Ha az utolsó adatot is el küldtük a hívás befejeződik.
 	\item \textbf{Unary: }
-		\begin{lstlisting}
+		\begin{lstlisting}[showstringspaces=false,caption={Partner módosítása.},captionpos=b]
 public override Task<Answer> ModifyPartner(Partner request, ServerCallContext context){
 	User user;
 	if (CheckUserIsValid(context.RequestHeaders, out user)){
@@ -789,7 +780,7 @@ public override Task<Answer> ModifyPartner(Partner request, ServerCallContext co
 	\end{lstlisting}
 	A függvényünkkel módosítunk egy partnert. A bemenő paraméter a módosított partner és a hívási kontextus. A visszatérési értéke egy Answer osztály egy példánya, ami jelzi azt a kliens számára, hogy a hívás sikeres volt-e. Példányosítjuk az adatbázis kezelő osztályt és meghívjuk annak az Update függvényét. A függvénynek a bemeneti paramétere egy partner osztály. A visszatérési érteke pedig egy Answer. A Task.FromResult() jelzi a gRPC eljárásunknak, hogy a művelet sikeresen lezajlott és a bemeneti paraméterében megadott értékkel fog visszatérni a klienshez.
 	\item \textbf{ClientSreaming: }
-			\begin{lstlisting}
+			\begin{lstlisting}[showstringspaces=false,caption={ Dokumentum feltöltésnek a szerver oldala.},captionpos=b]
 public override async Task<DocumentInfo> UploadDocument(IAsyncStreamReader<Document> requestStream, ServerCallContext context)  {
 	User user;
     if (CheckUserIsValid(context.RequestHeaders, out user)){
@@ -819,36 +810,29 @@ public override async Task<DocumentInfo> UploadDocument(IAsyncStreamReader<Docum
 \end{itemize}
 \textbf{Indítás: }
 
-A szerver indításához van lehetőség paraméterek megadására, hasonlóan mint a kliens oldalon. Itt két paraméter elfogadott a –s és a –d. A –d kapcsoló a naplózási szintet debug módba állítja, a –s pedig automatikus el indítja a gRPC szerver szolgáltatását. A fő képernyőm a MainWindow. Innen lehet minden más menüpontot elérni, illetve a szervert ki és be kapcsolni. A szolgáltatás elindításához először be kell tölteni az SSL kulcs párokat, amiket az openssl segítségével generáltam. 
-\begin{lstlisting}
+A szerver indításához van lehetőség paraméterek megadására, hasonlóan mint a kliens oldalon. Itt két paraméter elfogadott a –s és a –d. A –d kapcsoló a naplózási szintet debug módba állítja, a –s pedig automatikus el indítja a gRPC szerver szolgáltatását. A fő képernyőm a MainWindow. Innen lehet minden más menüpontot elérni, illetve a szervert ki és be kapcsolni. A szolgáltatás elindításához először be kell tölteni az SSL kulcs párokat, amiket az openssl segítségével generáltam. \cite{openssl}
+\begin{lstlisting}[showstringspaces=false,caption={gRPC szerver indítása.},captionpos=b]
 private void StartServer(){
 	try{
-		SslServerCredentials credentials = CreateCredentials();              
-		server = new Server(new[] { 
-			new ChannelOption("grpc.keepalive_permit_without_calls", 1),
-			new ChannelOption("grpc.http2.max_pings_without_data",0),
-			new ChannelOption("grpc.keepalive_timeout_ms",50),
-			new ChannelOption("grpc.keepalive_time_ms",360000)
-		})
-		{
-			Services = { IktatoService.BindService(new Service.SerivceForgRPC()) },
-			Ports = { new ServerPort("0.0.0.0", Port, credentials) }     
-		};   
+		if (!ReadConfig()) return;
+		server = CreateServer();
 		server.Start();
+		Log.Warning("Mainwindow.StartServer: sikeres binding Ip:{Ip} Port: {Port}", Ip, Port);
 		StartServerButton.IsEnabled = false;
 		StopServerButton.IsEnabled = true;
 	}
 	catch (Exception ex){
 		Log.Error("Kovetkezo hiba tortent a szerver indulasakor: {Message}", ex);
+		return;
 	}
 	Log.Warning("A szerver elindult ");
-}
 
+}
 \end{lstlisting}
-Hasonlóan a klienshez itt is el kell végeznünk a csatorna beállításokat. A szerver osztály példányosításakor van lehetőségünk megadni a szolgáltatásokat és a portot amin várni fogja a kapcsolatokat. A Services-be megadom a DLL állományban található szolgáltatás egy gyermek osztályát. A portba az ip címet, portot és a kulcspárt adjuk meg. Hitelesítés nélkül is lehet használni a gRPC szervert, de akkor is a portnak át kell adnunk egy osztályt, ami a SslServerCredentials.Insecure. Ez visszatér egy olyan hitelesítési példánnyal, ami nem nyújt, semmilyen biztonsági mechanizmust ezáltal az adataink se lesznek titkosítva a kommunikációs csatornán. Ezután csak megkell hívnunk a szerver.Start() metódusát. Sikertelen indítás esetén például foglalt már a socket a munkaállomáson akkor IOException fog dobni, ha nem keletkezik kivétel akkora szerverünk már képes is fogadni a kapcsolatokat.\\
+Első lépésként kiolvassuk és ellenőrizzük, hogy az adatok a konfigurációs fájlban helyesek-e, ha minden rendben van akkor, készítünk egy szerver osztályt a beolvasott adatok alapján. Hasonlóan a klienshez itt is el végeztük a csatorna beállításokat.\cite{channel} A szerver osztály példányosításakor van lehetőségünk megadni a szolgáltatásokat és a portot amin várni fogja a kapcsolatokat. A Services-be megadom a DLL állományban található szolgáltatás egy gyermek osztályát. A portba az ip címet, portot és a kulcspárt adjuk meg. Hitelesítés nélkül is lehet használni a gRPC szervert, de akkor is a portnak át kell adnunk egy osztályt, ami a SslServerCredentials.Insecure. Ez visszatér egy olyan hitelesítési példánnyal, ami nem nyújt, semmilyen biztonsági mechanizmust ezáltal az adataink se lesznek titkosítva a kommunikációs csatornán.\cite{serverauth} Ezután csak meg kell hívnunk a szerver.Start() metódusát. Sikertelen indítás esetén például foglalt már a socket a munkaállomáson akkor IOException fog dobni, ha nem keletkezik kivétel akkora szerverünk már képes is fogadni a kapcsolatokat.\\
 \textbf{Felhasználó kezelés: }
 Ezen a felületen van lehetősége a rendszergazdának felhasználókat hozzáadni, módosítani, illetve jelszavakat módosítani. A módszerek megegyeznek a kliensben látottakkal csak itt, ha beírunk egy új jelszót módosításkor, azaz nem hagyjuk üresen, akkor a jelszó módosításra kerül.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false,caption={Szerver oldali felhasználó kezelés usere.}, captionpos=b]
 user = userService.AddUser(new NewTorzsData() { User = user }, new User() { Id = 1 });
 \end{lstlisting}
  
@@ -859,7 +843,7 @@ Itt van lehetőségünk az adatbázisnak a teljes mentésére illetve visszatöl
 \textbf{Naplózási beállítások: }
 
 Az utolsó menürészen találhatóak, azok a funkciók, amik a rendszer logolását befolyásolják. Belehet állítani a helyét, szintjét és még azt is, hogy a főoldalon milyen szintű naplózási üzeneteket jelenítse meg. Ezek a beállítási lehetősége jól el vannak különítve a nézeten. Mikor megnyitjuk, ezt a részt a konstruktorban először minden szükséges adatot kiolvasunk a registryből és ezeket az adatokat megjelenítjük a rendszergazda számára. Ha a rendszergazda szeretné módosítani a szerveren mutatott naplózást akkor a következő metódus fog meghívódni:
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false, caption={A szerveren mutatott naplózás beállítása.}, captionpos=b]
 private void ModifyCurrentLogLevelToShow_Click(object sender, RoutedEventArgs e){
 	if (ServerLoggingLevelToShowComboBox.SelectedItem == null) return;
 	int currentLogLevel = (int)MainWindow.GetLogLevel();
@@ -909,8 +893,8 @@ AddRootIkonyv, AddSubIkonyv, DelIkonyv, setDeletedByValaszID, getNextIktatottID,
 \end{itemize}
 \subsection{Nézetek}
 Összesen három darab nézetem van. Ebből egydarab az iktatószámok generálásáért és két darab az iktatások helyes letöltetésért felel. Első a creatIktSzam, ahol az iktatókönyv tábla összes idegen kulcsa össze van kapcsolva a táblájával és ezekből összeállítja az aktuális iktató könyv iktatószámát. A második a currentYearIkonyv itt lekérem az aktuális év iktatásait olyan formában, amiben majd a programban kelleni fog. Illetve az utolsó a prevYearIkonyv ami hasonló a currentYearIkonyvhöz de itt saját kezűleg kell paraméterezni az évet.
-\chapter{Továbbfejlesztési lehetőségek}
-A programot lassan egy hónapja használják. Ez alapján kapott visszajelzések azt mutatják, hogy követelmény specifikációban leírtak teljesen lefedték a mindennapi használat során felmerülő funkciókat. Kisebb tovább fejlesztésekre tartanak igényt, mint például az új iktatáskor a tárgy illetve hivatkozási szám mezőben legyen automatikus kitöltési lehetőség, azaz előzőleg felvitt iktatások adataiból lehessen választani. Ez nagyban lecsökkentené a felvitelre szánt időt a program felhasználói számára.
+\chapter{Továbbfejlesztési lehetőségek és ismert hibák.}
+A programot lassan egy hónapja használják. Ez alapján kapott visszajelzések azt mutatják, hogy követelmény specifikációban leírtak teljesen lefedték a mindennapi használat során felmerülő funkciókat. Kisebb tovább fejlesztésekre tartanak igényt, mint például az új iktatáskor a tárgy illetve hivatkozási szám mezőben legyen automatikus kitöltési lehetőség, azaz előzőleg felvitt iktatások adataiból lehessen választani. Ez nagyban lecsökkentené a felvitelre szánt időt a program felhasználói számára. Hibák is előfordultak amik a program működését nem nagyon befolyásolták de zavaróak, mint egy új törzs adat hozzáadásakor olyan elem is lekezelheti a változást aminek nem kellene.(Visszaugrik például a telephely az alapértelmezettre) vagy iktatáskor ha egy telephelyen van partner és partnerügyintéző is és ha át váltunk egy olyan telephelyre ahol egyik sincs, akkor a partnerügyintéző benne marad a kiválasztható listában és még van egy nagyon zavaró, hogy a  törzs adatoknál, ha görgetni szeretne lefelé és egy másik view listbox-ba van az egér akkor sajnos nem megy lejjebb a képernyő.
 
 Sajnálatos módon már nem volt időm a következő feladatokra, amiket még terveztem a program készítése során, de a jövőben fejlesztésre kerülnek:
 \begin{itemize}[leftmargin=0pt]
@@ -918,6 +902,7 @@ Sajnálatos módon már nem volt időm a következő feladatokra, amiket még te
 	\item \underline{\textit{Cache/Cache kezelés: }}Az adatbázis szerver felé irányuló folyamatokat szeretném ezáltal csökkenteni. Egy proxy osztályt fogok létrehozni az adatbázis kezelő osztályokból így azok el fogják tárolni a lekért adatokat, és ha nem volt módosítás a következő kéréskor, akkor ők azt fogják visszaadni. Ezeknek az osztályoknak a kezelését is elérhetővé fogom tenni a szerver oldalon, azaz ha túl nagy lenne egy cache, akkor onnan könnyen lehet majd azokat törölni.
 	\item \underline{\textit{Csoportosítás: }}A kliens oldalon lévő keresés menüpontnál lévő datagrid-ben az iktatások csoportosítása előzményezés szerint. Azaz ha egy iktatószámnak vannak „gyermekei” akkor az a „szülő” melletti + gomb által lesznek megjeleníthetőek, lenyithatóak. 
 	\item \underline{\textit{Hiba kezelés bővítése: }}A kliensben pontosabb hibaüzenetek létrehozása adatfelvitelkor. Így a felhasználó sem fog kérdésekbe bocsátkozni még akkor is, ha a hiba mivolta teljesen egyértelmű.
+	\item \underline{\textit{Elfelejtett jelszó: }}A bejelentkezésnél található az elfelejtett jelszó link, erre se volt sajnos időm. A megvalósítása valószínűleg úgy lesz, hogy küld a felhasználó e-mail címére egy kódot(később email is fog kelleni felhasználó létrehozáshoz) és a kód beírásával előjön a jelszó módosítás ablak.
 \end{itemize}
 \chapter{Összefoglalás}
 A szakdolgozatom kitűzött célja az volt, hogy az Ótemplomi Szeretetszolgálat jelenlegi ügyviteli rendszerét lecseréljem. A jelenlegi helyzetben lévő problémák az iktatással kapcsolatban, hogy a bevezetésben említett egyesülés után az Excel dokumentumok száma megnövekedett. Az iktatáshoz használt munkafüzetek hátránya, hogy az iktatások konzisztenciájának megőrzése lehetetlen, azaz egy-egy be-és kimenő irat is kaphat olyan számot, ami már foglalt, illetve előfordulnak, olyan esetek, amelyek több munkacsoportot is érintenek, emiatt egy iktatást többször vagy egyszer sem iktatnak le. Az iktatásokhoz nem lehet előzményezést rendelni. Az iktatott dokumentumokat csak több perces keresés árán tudják megtalálni. A gazdasági vezető nem képes nyomon követni telephelyek iktatásait, illetve bármilyen dokumentumot elérni.  Valamint probléma, hogy a dokumentumokról nem készül semmilyen mentés, archiválás.
@@ -928,9 +913,137 @@ A szerver oldal elérhetővé tette számunkra az adatbázis mentését, és ann
 
 Az eddigi tapasztaltak alapján a kollégák nagy örömmel fogadták a programot. Kaptam tovább fejlesztésre való ötleteket illetve kisebb javítási igényeket a felhasználó felületben.  Úgy érzem, a gazdasági vezető által kitűzött, és a felhasználók munka végezésének megkönnyítésére tett célokat elértük.
 \begin{thebibliography}{2}
-\bibitem{Fazekas}
-\textsc{Fazekas István}: \emph{Valószínűségszámítás}, Debreceni Egyetem, Debrecen, 2004.
-\bibitem{Tomacs}
-\textsc{Tómács Tibor}: \emph{A valószínűségszámítás alapjai}, Líceum Kiadó, Eger, 2005.
+\bibitem{excel}
+\textsc{Excel: }https://www.forbes.com/sites/bernardmarr/2016/06/16/spreadsheet-reporting-5-reasons-why-it-is-bad-for-business/	
+\bibitem{mvvmmicrosoft} \textsc{MVVM:} https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v=pandp.10)
+\bibitem{mvvmbook}
+\textsc{MVVM könyv: } MVVM Survival Guide for Enterprise Architectures in Silverlight and WPF
+\bibitem{caliburn}\textsc{Caliburn.Micro: }https://caliburnmicro.com/
+\bibitem{grpc}\textsc{gRPC: }https://grpc.io/docs/guides/
+\bibitem{grpcprotokol}
+\textsc{Protokoll: } https://blog.container-solutions.com/introduction-to-grpc
+\bibitem{openssl}
+\textsc{SSL:} https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
+\bibitem{channel}
+\textsc{gRPC Csatorna: } https://github.com/grpc/grpc/issues/16038
+\bibitem{serverauth}
+\textsc{Szerver módok:} https://grpc.io/docs/guides/auth/
+\bibitem{errorhandling}
+\textsc{Hibakezelés:} https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/error-handling
+
+
 \end{thebibliography}
+
+\chapter{Dokumentáció}
+\textbf{Követelmények:}
+\begin{itemize}
+	\item .net 4.7.2 framework - http://go.microsoft.com/fwlink/?LinkId=863262
+	\item VC\_redist.x86 - https://aka.ms/vs/16/release/vc\_redist.x86.exe
+	\item MySQL 8.0.20 szerver - https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-8.0.20.0.msi
+\end{itemize}
+\section{Szerver telepítése és alapbeállítása}
+\begin{figure}[!th]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/sfooldal}
+	\caption{Szerver főoldala.}
+	\label{fig:sfooldal}
+\end{figure}
+
+A szerver telepítésekor nem sok tenni valónk van mint, a kapott állományokat rá tesszük a számítógépünkre. Miután ez megtörtént a konfigurációs állományba módosítást kell végezni(IktatogRPCServer.exe.config) ahová beleírjuk a következő adatokat, 
+\begin{itemize}
+	\item[] APPHOST: Ami azt jelzi a programnak, hogy milyen ip címen fog ő működni.
+	\item[] APPPORT: Azt jelzi a program számára, hogy milyen porton kell figyelnie.
+	\item[] Secure: Azt jelzi a program számára, hogy milyen csatornát fog használni a kliens és szerver közötti kommunikáció során. Ha az érték "true" akkor szükség van először generálni egy kulcs párt, és azt hozzáadni a szerver certs mappájába. server.crt és server.key néven. Ha "false" akkor nincs szükség ezekere a fájlokra, mert titkosítatlan csatornát fognak használni.(Ezt a kliensen is be kell állítani).
+	\item[] Test: Ide kell beírnunk az adatbázis connectionstringjét.(MySQL-re van szükség)
+\end{itemize}
+
+Ha ez megtörént elindíthatjuk a szervert az IktatogRPCServer.exe fájl segítségével. Ezután a következő kép fog fogadni minket:
+
+Még mielőtt rá megyünk az indítás gombra be kell töltenünk az alap adatbázis csomagot, amit az "Adatbázis" fülön tudunk megtenni. Miután rákattintottunk, két lehetőséget fogunk látni, adatbázis mentése és visszatöltése.(\Az{\ref{fig:sadat}} ábra) Nekünk most a visszatöltés fog kelleni.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/sadat}
+	\caption{Adatbázis műveletek}
+	\label{fig:sadat}
+\end{figure}
+Rákattintunk a betöltés gombra és meg fog jelenni egy fájl kiválasztó itt meg keressük az üres adatbázis scriptet vagy a demo adatbázist töltjük be. Ha a demot választjuk akkor a bejelentkezési lehetőség a következő. Felhasználónév: noname Jelszó: 12345678.(Ilyenkor lehet ugrani a kliens bemutatásra.) Én most a szerint írom tovább a telepítést mintha az üreset töltöttük volna be. Miután sikeresen betöltötte a scriptet létre kell hoznunk egy alap felhasználót a kliensek számára, ez a felhasználó fog majd tudni felvenni az elején telephelyeket, új felhasználókat stb\dots. (\Az{\ref{fig:sfelh} ábra}) Ha át váltottunk a felhasználó menüre akkor létre hozunk egy új felhasználót ennek a felhasználónak megadjuk a felhasználónevét(min 4 karakter), teljes nevét(szóközt tartalmaznia kell), jelszavát(min 5 karakter) és kiválasztjuk, hogy ő admin lesz ezáltal nem szükséges megadnunk telephelyet, mivel később ő a kliensen belül magához tudja rendelni azt.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=7cm]{dokukepek/sfelh}
+	\caption{Alap felhasználó hozzáadása}
+	\label{fig:sfelh}
+\end{figure}
+Itt van lehetőségünk még felhasználó módosítására is. Illetve itt található meg a jelszó módosítás opció is. Ezután vissza mehetünk a főoldalra és el indíthatjuk a szervert.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/clogin}
+	\caption{Bejelentkezés a szerveren hozzáadott felhasználóval.}
+	\label{fig:clogin}
+\end{figure} 
+Most már van lehetőségünk a kliensen bejelentkezni. A bejelentkezéskor előtt a kliensen is módosítani kell a konfigurációs állományt az előzőekben leírt módon. 
+Ha az megtörtént az előbb létre hozott felhasználóval be is tudunk jelentkezni. Sikertelen bejelentkezés esetén a rendszer kiírja a hibát, ha a szerver nem elérhető hibát kapjuk valószínűleg nem egyeznek meg a konfigurációs állományok a szerverrel. A használathoz először a törzs-be kell belemennünk és hozzá kell adunk egy telephelyet. Ne lepődjünk meg, hogy nem látjuk a hozzáadott a telephelyet, mert után hozzá kell adni a felhasználó számára is, úgy hogy módosítjuk azt. Módosításkor a "Telephelyei" legördülő menüjében megjelenik az új telephely. Adjuk hozzá a felhasználónkhoz, ezután rá kattinthatunk a módosítás gombra. Majd újra lekérjük a törzs menü pontot és már látszódik is a telephely. Ugyan ilyen módon több telephelyet is hozzáadhatunk. Ha ezzel végeztünk létre hozhatjuk a többi felhasználókat és adatokat.
+\section{Felhasználói dokumentáció}
+\subsection{Bejelentkezés}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/clogin}
+	\caption{Bejelentkezés ablak.}
+	\label{fig:clogin2}
+\end{figure}
+A bejelentkezéshez nem kell mást tennünk, mint beírjuk a kapott felhasználó és jelszó párost. A bejelentkezésnél van még lehetőség a felhasználónevünk elmentésére ha kipipáljuk a kis jelölő négyzetet. Így ha legközelebb elindítjuk a programot akkor már ezt nem fog kelleni beírni. Felhasználót a rendszergazdától vagy vezetőségtől lehet kérni. Ha elfelejtette a jelszavát egyenlőre még a rendszergazdát kell keresnie, de a későbbiekben használható lesz az "elfelejtett jelszó" funkció is.
+\subsection{Törzs}
+A törzs menüben tudja kezelni az iktatáshoz szükséges adatokat mint például Ügyintézők, Jellegek, Partnerek, Partnerek ügyintézői stb\dots. Mindegyik fajtának található egy kis ablak. \Az{\ref{fig:ctorzs}} ábrán látható. Mindegyik ablakban van hozzáadás, módosítás és törlési lehetőség. Viszont vannak olyan lehetőségek amiket csak admin jogosultsággal rendelkező felhasználó tud kezelni. Mint az év, csoportok, telephelyek, felhasználók. Így ők tudnak felhasználót is felvinni, telephelyeket hozzáadni, elvenni felhasználóktól és évet zárni. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ctorzs}
+	\caption{}
+	\label{fig:ctorzs}
+\end{figure}
+\textbf{Példa hozzáadás:}
+Miután rákattintottunk az ügyintézőknél a hozzáadás gombra van lehetőségünk telephelyet kiválasztani és új nevet beírni. Ha ezt megtettük és az adatokat helyesek a felvitelhez(nem üres és nagyobb mint 5 és kisebb mint 50 hosszú) akkor a hozzáadás gomb zöldre vált. Ha rákattintottunk akkor hozzáadja az új ügyintézőt az adatbázishoz és vissza lép a lista nézetbe. \\
+\textbf{Példa módosítást:}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ctorzsmod}
+	\caption{Ügyintéző módosítása}
+	\label{fig:ctorzsmod}
+\end{figure}
+A módosításhoz ki kell jelölnünk a módosítani kívánt személyt ha ez megtörtént a módosítás gomb zöldre vált és a következő nézetben láthatjuk az ügyintéző módosítható adatait. Ha módosítottuk az adatot és megfelel az adat felvitel kritériumainak(nem üres és nagyobb mint 5 és kisebb mint 50 hosszú) akkor a módosítás gomb zöldre vált. Ha rákattintottunk akkor módosítja az ügyintézőt az adatbázisban és vissza lép a lista nézetbe.\\
+\textbf{Példa törlés:}
+A törlés mindegyik lehetőségnél ugyan úgy működik. Ha kijelöljük a törölni kívánt adatott akkor az ablakon a törlés gomb pirosra vált és ha megnyomjuk akkor ki is törli az adatbázisból azt az adatott.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ctorzsdelete}
+	\caption{Ügyintéző törlése}
+	\label{fig:ctorzsdelete}
+\end{figure}
+\subsection{Iktatás}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ciktatas}
+	\caption{Iktatás hozzáadása}
+	\label{fig:ciktatas}
+\end{figure}
+Az iktatásnál majdnem minden mező kötelező. Kivéve a megjegyzés, a hivatkozási szám, partner ügyintéző és az előzményezés. Ha ezeken kívül mindent kitöltünk és a tárgy karakter hosszúsága is legalább 3 és maximum 100 között van akkor az iktatás gomb kékre vált. Ha rákattintunk az adatbázisba mentés után megkapjuk az iktató számunkat amit egy felugró ablak segítségével jelenít meg számunkra a program. Ezután még hozzáadja a nem régiben hozzáadott iktatások listájához is. Ez a lista csak a program újra indításakor vagy kijelentkezéskor törlődik.
+\subsection{Keresés}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ckereses}
+	\caption{Keresés}
+	\label{fig:ckereses}
+\end{figure}
+A keresés legelső fázisa az, hogy megadjuk az iktatás irányát és az évét. Ezután a program el is kezdi leszedni a dokumentumokat. Miután leszedte megjelenít annyit belőle amennyit az "Iktatás/Oldal" szám mutat. Ezt is tudjuk módosítani ilyenkor automatikusan újra generálja a megjelenített nézetett. Ha szűrni szeretnénk akkor a lista feletti kereső sávban ezt megtehetjük. A szűrési feltétel kiválasztása után Pl.: Iktatószám. van lehetőségünk iktatószámra keresni. Ilyenkor amit a kereső sávba beírtunk szövegre illeszkedő iktatásokat fogja megjeleníteni.
+\subsection{Iktatás módosítás}
+Ha a keresésben vagy az iktatás fülön az iktatás listájában valamelyik dokumentumra kétszer rákattintunk akkor lesz lehetőségünk az iktatás módosítására.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7cm]{dokukepek/ciktatmod}
+	\caption{Iktatás módosítása}
+	\label{fig:ciktatmod}
+\end{figure}
+
+\subsection{Dokumentumkezelés}
+\subsubsection{Feltöltés}
+\subsubsection{Letöltés}
+\subsection{Kijelentkezés$\backslash$Kilépés}
 \end{document}

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IktatogRPCClient.ViewModels
 {
-    class AddTelephelyViewModel : TorzsDataView<Telephely>
+    public class AddTelephelyViewModel : TorzsDataView<Telephely>
     {
         private string _telephelyNeve = "";
 
@@ -45,7 +45,7 @@ namespace IktatogRPCClient.ViewModels
 
         protected override bool ValidateDataInForm()
         {
-            return !(TelephelyNeve.Length < 5 || TelephelyNeve.Length > 50);
+            return !string.IsNullOrEmpty(TelephelyNeve)&&!string.IsNullOrWhiteSpace(TelephelyNeve)&&!(TelephelyNeve.Length < 5 || TelephelyNeve.Length > 50);
         }
     }
 }
