@@ -70,7 +70,7 @@ namespace IktatogRPCClient.Models.Managers
                     new ChannelOption("grpc.keepalive_permit_without_calls", 1),
                     new ChannelOption("grpc.http2.max_pings_without_data",0),
                     new ChannelOption("grpc.keepalive_timeout_ms",50),
-                    new ChannelOption("grpc.keepalive_time_ms",360000)
+                    new ChannelOption("grpc.keepalive_time_ms",7200000)
                 };
             if (secure)
             {

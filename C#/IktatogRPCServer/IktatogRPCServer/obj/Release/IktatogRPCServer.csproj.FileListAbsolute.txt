@@ -11,6 +11,8 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Rele
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\libgrpc_csharp_ext.x64.dylib
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\App.config
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.exe.config
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.exe.manifest
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.application
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.pdb
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\BouncyCastle.Crypto.dll
@@ -55,6 +57,7 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Rele
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\System.Memory.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\System.Numerics.Vectors.xml
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.csprojAssemblyReference.cache
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\LadingPage.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\ManageLogging.g.cs
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\MainWindow.g.cs
@@ -72,11 +75,8 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Rele
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.g.resources
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.Properties.Resources.resources
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.csproj.GenerateResource.cache
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.exe.manifest
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.application
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.pdb
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.exe.manifest
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\bin\Release\IktatogRPCServer.application
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.csprojAssemblyReference.cache
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.exe.manifest
-E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCServer\IktatogRPCServer\obj\Release\IktatogRPCServer.application

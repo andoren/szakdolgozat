@@ -110,3 +110,6 @@ E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Rele
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Release\IktatogRPCClient.csproj.CopyComplete
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Release\IktatogRPCClient.exe
 E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\obj\Release\IktatogRPCClient.pdb
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Release\Google.Protobuf.dll
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Release\Google.Protobuf.pdb
+E:\Repos\szakdolgozat\szakdolgozat\C#\IktatogRPCClient\IktatogRPCClient\bin\Release\Google.Protobuf.xml
